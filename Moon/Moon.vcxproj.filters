@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\core">
+      <UniqueIdentifier>{09afa307-c8ce-4ca1-b23c-808ee8be90fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\core">
+      <UniqueIdentifier>{b09862b8-81c2-4297-b7e6-9647d1c1ce4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\msg">
+      <UniqueIdentifier>{0a51aec4-9575-49f0-9c5e-6e343c89168e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\msg">
+      <UniqueIdentifier>{5f46cbd0-6b05-49ae-bd3d-42fb4a4ff976}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\app">
+      <UniqueIdentifier>{07c35637-cb3f-4d2a-9aa2-eb6f2f305bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app">
+      <UniqueIdentifier>{8973f682-5627-4c6c-8b6c-6ab533f6e97f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\cfg">
+      <UniqueIdentifier>{7bb34291-11bc-4b77-8890-7a7411450c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\cfg">
+      <UniqueIdentifier>{199a4911-4758-46de-a23a-1f6cf2b495c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\module">
+      <UniqueIdentifier>{fa155da3-5387-4c07-90c1-7e2d38b6b38e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\module">
+      <UniqueIdentifier>{d5a30719-bc1d-4d45-a629-a90d6931a337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\collection">
+      <UniqueIdentifier>{2e2d96a9-f5bc-47a3-9650-2a9b7fe69094}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\collection">
+      <UniqueIdentifier>{a70a606e-29a0-4b10-9765-4cf5d7248f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\config">
+      <UniqueIdentifier>{f222f773-c5a8-4f0f-8856-ed16abf10d8e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="core\readme.txt">
+      <Filter>头文件\core</Filter>
+    </None>
+    <None Include="msg\readme.txt">
+      <Filter>头文件\msg</Filter>
+    </None>
+    <None Include="app\readme.txt">
+      <Filter>头文件\app</Filter>
+    </None>
+    <None Include="cfg\readme.txt">
+      <Filter>头文件\cfg</Filter>
+    </None>
+    <None Include="module\readme.txt">
+      <Filter>头文件\module</Filter>
+    </None>
+    <None Include="image\logo.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="config\moon.cfg">
+      <Filter>头文件\config</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cfg\environment.h">
+      <Filter>头文件\cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="app\get_opt.h">
+      <Filter>头文件\app</Filter>
+    </ClInclude>
+    <ClInclude Include="app\moon_main.h">
+      <Filter>头文件\app</Filter>
+    </ClInclude>
+    <ClInclude Include="core\server.h">
+      <Filter>头文件\core</Filter>
+    </ClInclude>
+    <ClInclude Include="module\module_log.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\module_cfg.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\moon_config_struct.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\moon_malloc.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\moon_string.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\array_list.h">
+      <Filter>头文件\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\link_list.h">
+      <Filter>头文件\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\queue.h">
+      <Filter>头文件\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="collection\stack.h">
+      <Filter>头文件\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ms_nt__iocp.h">
+      <Filter>头文件\core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ms_socket_context.h">
+      <Filter>头文件\core</Filter>
+    </ClInclude>
+    <ClInclude Include="msg\moon_protocol.h">
+      <Filter>头文件\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="module\moon_char.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\moon_http_service.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\moon_thread_pool.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="app\get_opt.c">
+      <Filter>源文件\app</Filter>
+    </ClCompile>
+    <ClCompile Include="app\moon_main.c">
+      <Filter>源文件\app</Filter>
+    </ClCompile>
+    <ClCompile Include="moon.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="core\server.c">
+      <Filter>源文件\core</Filter>
+    </ClCompile>
+    <ClCompile Include="module\module_log.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\module_cfg.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_config_struct.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_malloc.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_string.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\array_list.c">
+      <Filter>源文件\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\link_list.c">
+      <Filter>源文件\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\queue.c">
+      <Filter>源文件\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\stack.c">
+      <Filter>源文件\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="core\ms_nt__iocp.c">
+      <Filter>源文件\core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\ms_socket_context.c">
+      <Filter>源文件\core</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_http_service.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_thread_pool.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Moon.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,1 @@
+the dictionary is about config（该文件夹下面存放的是配置相关）

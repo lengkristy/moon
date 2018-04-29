@@ -1,0 +1,14 @@
+2017/11/22 15:57:20 info->starting server,please waiting...
+2017/11/22 15:57:20 info->load config
+2017/11/22 15:57:20 info->The read main configuration is as follows:
+2017/11/22 15:57:20 info->server_ip:192.168.0.101
+2017/11/22 15:57:20 info->server_port:8890
+2017/11/22 15:57:20 info->server_node_name:node_one
+2017/11/22 15:57:20 info->server_colony_count:10
+2017/11/22 15:57:20 info->client_count:1000
+2017/11/22 15:57:20 info->start ms_nt_iocp server...
+2017/11/22 15:57:20 info->init ms_nt_iocp finished
+2017/11/22 15:57:20 info->init socket success
+2017/11/22 15:57:20 info->listen socket binding success
+2017/11/22 15:57:20 info->init ms_init_listen_socket finished
+2017/11/22 15:57:20 info->ms_nt_iocp server has start

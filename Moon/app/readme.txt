@@ -1,0 +1,1 @@
+the dictionary is about application （该文件夹下面存放应用层相关代码）

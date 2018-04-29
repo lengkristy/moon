@@ -1,0 +1,1 @@
+the dictionary is about message(该文件夹下面存放的关于消息相关)
