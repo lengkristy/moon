@@ -16,7 +16,10 @@ int windows_main(int argc, _TCHAR* argv[]);//windows Moon入口
 #endif
 
 
-
+/**linux main entry point*/
+#ifdef LINUX
+int linux_main(int argc, char **argv);
+#endif
 
 #ifdef __cplusplus
 }

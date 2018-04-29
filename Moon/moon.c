@@ -21,6 +21,6 @@ int _tmain(int argc, _TCHAR* argv[])
 #else
 int main(int argc, char **argv)
 {
-	return 0;
+	return linux_main(argc,argv);
 }
 #endif
