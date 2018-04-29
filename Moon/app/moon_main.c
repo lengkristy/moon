@@ -2,6 +2,9 @@
 #include "../core/server.h"
 #include "../cfg/environment.h"
 #include <stdio.h>
+#ifdef MS_WINDOWS
+#include <tchar.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
