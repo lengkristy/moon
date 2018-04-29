@@ -54,4 +54,7 @@ temp/
 target/  
 build/  
 Debug/  
-Release/  
+Release/
+Moon/log/
+Moon/Debug
+Moon/Release
