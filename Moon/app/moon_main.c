@@ -12,7 +12,7 @@ int windows_main(int argc, _TCHAR* argv[])
 {
 	moon_start();
 	getchar();
-	//提供操作命令窗体
+	//cammand option
 	moon_stop();
 	return 0;
 }
