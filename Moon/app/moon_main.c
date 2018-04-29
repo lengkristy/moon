@@ -1,6 +1,7 @@
 #include "moon_main.h"
 #include "../core/server.h"
 #include "../cfg/environment.h"
+#include <stdio.h>
 
 #ifdef __cplusplus
 extern "C" {
