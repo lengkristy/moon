@@ -26,7 +26,10 @@ int windows_main(int argc, _TCHAR* argv[])
 #ifdef LINUX
 int linux_main(int argc, char **argv)
 {
-	printf("linux server");
+	moon_start();
+	getchar();
+	//cammand option
+	moon_stop();
 	return 0;
 }
 #endif
