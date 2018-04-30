@@ -2,36 +2,36 @@
 #include "moon_http_service.h"
 #include "moon_config_struct.h"
 #include "moon_thread_pool.h"
-#include <Strsafe.h>
 #include "module_log.h"
 #include "moon_string.h"
 #include "moon_malloc.h"
-#include <direct.h>
 #include <stdio.h>
 #ifdef MS_WINDOWS
+#include <direct.h>
+#include <Strsafe.h>
 #include <winbase.h>
 #endif
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define RECV_BUF_LENGTH 1024 //¶¨Òå½ÓÊÕÊı¾İ°üµÄ»º³åÇø´óĞ¡
-#define MIN_BUF 128 //×îĞ¡»º³åÇø´óĞ¡
-#define RESPONSE_BUF_LENGTH 1024*10 //ÏìÓ¦»º³åÇø´óĞ¡
-#define SEND_FILE_SIZE 1024 //Ã¿´Î·¢ËÍÎÄ¼şµÄ´óĞ¡
+#define RECV_BUF_LENGTH 1024 //define receipt data package buffer size
+#define MIN_BUF 128 //min buffer size
+#define RESPONSE_BUF_LENGTH 1024*10 //response buffer size
+#define SEND_FILE_SIZE 1024 //send a single file size
 
-	extern Moon_Server_Config* p_global_server_config;//·şÎñÅäÖÃÈ«¾Ö±äÁ¿
+	extern Moon_Server_Config* p_global_server_config;//global configuration
 
-	static Array_List* pThreads = NULL;//Ïß³Ì³ØÈİÆ÷
+	static Array_List* pThreads = NULL;//thread list
 
-	static bool g_bEndListen = false;//ÊÇ·ñÍ£Ö¹¼àÌı
+	static bool g_bEndListen = false;//has end listen
 
 	
 	/************************************************************************/
-	/* »ñÈ¡ÇëÇó³É¹¦µÄĞ­ÒéÍ·×Ö·û´®                                           */
-	/*	²ÎÊı£ºpOutHead Êä³öµÄ×Ö·û´®											*/
-	/*		  sendContextLength ·¢ËÍÎÄ±¾´óĞ¡								*/
-	/*	·µ»ØÖµ£º·µ»ØÊä³ö×Ö·û´®µÄ´óĞ¡										*/
+	/* è·å–è¯·æ±‚æˆåŠŸçš„åè®®å¤´å­—ç¬¦ä¸²                                           */
+	/*	å‚æ•°ï¼špOutHead è¾“å‡ºçš„å­—ç¬¦ä¸²											*/
+	/*		  sendContextLength å‘é€æ–‡æœ¬å¤§å°								*/
+	/*	è¿”å›å€¼ï¼šè¿”å›è¾“å‡ºå­—ç¬¦ä¸²çš„å¤§å°										*/
 	/************************************************************************/
 	int moon_http_request_success_200(char* pOutHead,long sendContextLength)
 	{
@@ -40,10 +40,10 @@ extern "C" {
 	}
 
 	/************************************************************************/
-	/* »ñÈ¡ÇëÇó³É¹¦µÄĞ­ÒéÍ·£¬ÓÃÓÚÍ¼Æ¬ÇëÇó                                           */
-	/*	²ÎÊı£ºpOutHead Êä³öµÄ×Ö·û´®											*/
-	/*		  sendContextLength ·¢ËÍÎÄ±¾´óĞ¡								*/
-	/*	·µ»ØÖµ£º·µ»ØÊä³ö×Ö·û´®µÄ´óĞ¡										*/
+	/* è·å–è¯·æ±‚æˆåŠŸçš„åè®®å¤´ï¼Œç”¨äºå›¾ç‰‡è¯·æ±‚                                           */
+	/*	å‚æ•°ï¼špOutHead è¾“å‡ºçš„å­—ç¬¦ä¸²											*/
+	/*		  sendContextLength å‘é€æ–‡æœ¬å¤§å°								*/
+	/*	è¿”å›å€¼ï¼šè¿”å›è¾“å‡ºå­—ç¬¦ä¸²çš„å¤§å°										*/
 	/************************************************************************/
 	int moon_http_response_head_image(char* pOutHead,long sendContextLength,char* extension)
 	{
@@ -67,13 +67,13 @@ extern "C" {
 
 
 /*********************************************************************************************************
-	 ÒÔÏÂÊÇ¹ØÓÚwebä¯ÀÀÆ÷ÍøÒ³ÇëÇó´¦Àí
+	 ä»¥ä¸‹æ˜¯å…³äºwebæµè§ˆå™¨ç½‘é¡µè¯·æ±‚å¤„ç†
 **********************************************************************************************************/
 
 	/************************************************************************/
-	/*ä¯ÀÀÆ÷ÇëÇóhttp·şÎñ·¢Éú´íÎó                                            */
-	/*	pOutContent:Êä³öÄÚÈİ												*/
-	/*	errmsg£º´íÎóÄÚÈİ													*/
+	/*æµè§ˆå™¨è¯·æ±‚httpæœåŠ¡å‘ç”Ÿé”™è¯¯                                            */
+	/*	pOutContent:è¾“å‡ºå†…å®¹												*/
+	/*	errmsgï¼šé”™è¯¯å†…å®¹													*/
 	/************************************************************************/
 	int moon_http_browser_request_error(char* pOutContent,char* errmsg)
 	{
@@ -90,9 +90,9 @@ extern "C" {
 	}
 
 	/************************************************************************/
-	/* ä¯ÀÀÆ÷Ê×Ò³ÇëÇó                                                       */
-	/*	²ÎÊı£ºpOutContent Êä³öÄÚÈİ											*/
-	/*	·µ»ØÖµ£º·µ»ØÊä³öÄÚÈİ³¤¶È											*/
+	/* æµè§ˆå™¨é¦–é¡µè¯·æ±‚                                                       */
+	/*	å‚æ•°ï¼špOutContent è¾“å‡ºå†…å®¹											*/
+	/*	è¿”å›å€¼ï¼šè¿”å›è¾“å‡ºå†…å®¹é•¿åº¦											*/
 	/************************************************************************/
 	int moon_http_browser_request_index(char* pOutContent)
 	{
@@ -112,13 +112,58 @@ extern "C" {
 		return moon_get_string_length(pOutContent);
 	}
 
+
+/*****************************************************************************************************************/
+
+
 	/************************************************************************/
-	/* ä¯ÀÀÆ÷ÇëÇóÎÄ¼ş£¨Í¼Æ¬µÈĞÅÏ¢£©                                         */
-	/*	²ÎÊı£ºpOutContent:Êä³öÍ¼Æ¬Á÷										*/
-	/*		  path:ÇëÇóµÄÍ¼Æ¬Â·¾¶(Ïà¶ÔÂ·¾¶)  								*/
-	/*		  clientSock:·¢ËÍÊı¾İ°ü			  								*/
+	/* å°†è¯·æ±‚çš„urlçš„è·¯å¾„å’Œå‚æ•°åˆ†éš”å¼€                                        */
+	/*   å‚æ•°ï¼šsrcUrl:è¯·æ±‚çš„urlå®Œæ•´å­—ç¬¦ä¸²									*/
+	/*		   pOutUrlPath:è¾“å‡ºçš„è·¯å¾„ä¿¡æ¯									*/
+	/*		   pOutParamï¼šè¾“å‡ºçš„å‚æ•°ä¿¡æ¯									*/
 	/************************************************************************/
-	long moon_http_browser_request_file(char* pOutContent,char* path,SOCKET clientSock)
+	void moon_http_splite_url_and_param(char* srcUrl,char* pOutUrlPath,char* pOutParam)
+	{
+		int i = 0;
+		int iParam = 0;
+		if (srcUrl == NULL)
+		{
+			return;
+		}
+		while (srcUrl[i] != '\0' && srcUrl[i] != '?')//æˆªå–urlpath
+		{
+			pOutUrlPath[i] = srcUrl[i];
+			i++;
+		}
+		//å¡«å……\0
+		pOutUrlPath[i] = '\0';
+		while (srcUrl[i] != '\0')//æˆªå–å‚æ•°
+		{
+			if (srcUrl[i] != '?')
+			{
+				pOutParam[iParam] = srcUrl[i];
+				iParam++;
+			}
+			i++;
+		}
+		pOutParam[iParam] = '\0';
+	}
+
+#ifdef MS_WINDOWS
+
+	static HANDLE g_hListener = NULL;//ç›‘å¬çº¿ç¨‹å¥æŸ„
+
+	static DWORD g_dListenerId = 0;//ç›‘å¬çº¿ç¨‹ID
+
+	static SOCKET g_sListener=NULL;//ç›‘å¬å¥—æ¥å­—
+
+	/************************************************************************/
+	/* æµè§ˆå™¨è¯·æ±‚æ–‡ä»¶ï¼ˆå›¾ç‰‡ç­‰ä¿¡æ¯ï¼‰                                         */
+	/*	å‚æ•°ï¼špOutContent:è¾“å‡ºå›¾ç‰‡æµ										*/
+	/*		  path:è¯·æ±‚çš„å›¾ç‰‡è·¯å¾„(ç›¸å¯¹è·¯å¾„)  								*/
+	/*		  clientSock:å‘é€æ•°æ®åŒ…			  								*/
+	/************************************************************************/
+	long moon_win32_http_browser_request_file(char* pOutContent,char* path,SOCKET clientSock)
 	{
 		int responseHeadLength = 0;
 		char responseHead[1024] = {0};
@@ -126,25 +171,25 @@ extern "C" {
 		char imagePath[1024] = {0};
 		FILE *resource = NULL;
 		char errmsg[126] = {0};
-		char tmpPath[1024] = {0};//´æ·Å´óĞ´Â·¾¶£¬ÓÃÓÚÑ°ÕÒºó×º
-		char imageExt[20] = {0};//Í¼Æ¬À©Õ¹Ãû
-		char send_buf[SEND_FILE_SIZE] = {0};//Ã¿´Î·¢ËÍÎÄ¼şµÄ´óĞ¡
-		// ½«ÇëÇóµÄurlÂ·¾¶×ª»»Îª±¾µØÂ·¾¶
+		char tmpPath[1024] = {0};//å­˜æ”¾å¤§å†™è·¯å¾„ï¼Œç”¨äºå¯»æ‰¾åç¼€
+		char imageExt[20] = {0};//å›¾ç‰‡æ‰©å±•å
+		char send_buf[SEND_FILE_SIZE] = {0};//æ¯æ¬¡å‘é€æ–‡ä»¶çš„å¤§å°
+		// å°†è¯·æ±‚çš„urlè·¯å¾„è½¬æ¢ä¸ºæœ¬åœ°è·¯å¾„
 		_getcwd(imagePath,_MAX_PATH);
 		strcat(imagePath,path);
-		// ´ò¿ª±¾µØÂ·¾¶ÏÂµÄÎÄ¼ş£¬ÍøÂç´«ÊäÖĞÓÃrÎÄ±¾·½Ê½´ò¿ª»á³ö´í
+		// æ‰“å¼€æœ¬åœ°è·¯å¾„ä¸‹çš„æ–‡ä»¶ï¼Œç½‘ç»œä¼ è¾“ä¸­ç”¨ræ–‡æœ¬æ–¹å¼æ‰“å¼€ä¼šå‡ºé”™
 		resource = fopen(imagePath,"rb");
-		//Èç¹ûÍ¼Æ¬²»´æÔÚ£¬Ôò·µ»Ø´íÎóĞÅÏ¢
+		//å¦‚æœå›¾ç‰‡ä¸å­˜åœ¨ï¼Œåˆ™è¿”å›é”™è¯¯ä¿¡æ¯
 		if(resource==NULL)
 		{
 			return moon_http_browser_request_error(pOutContent,"request file not found");
 		}
-		//ÇóÎÄ¼ş³¤¶È
+		//æ±‚æ–‡ä»¶é•¿åº¦
 		fseek(resource,0,SEEK_SET);
 		fseek(resource,0,SEEK_END);
 		imageLength = ftell(resource);
-		fseek(resource,0,SEEK_SET);//ÖØÖÃÎÄ¼şÖ¸Õë
-		//ÅĞ¶ÏÍ¼Æ¬¸ñÊ½
+		fseek(resource,0,SEEK_SET);//é‡ç½®æ–‡ä»¶æŒ‡é’ˆ
+		//åˆ¤æ–­å›¾ç‰‡æ ¼å¼
 		moon_to_capital(imagePath,tmpPath);
 		if (strstr(imagePath,"JPG") != NULL || strstr(imagePath,"JPEG") != NULL)
 		{
@@ -158,12 +203,12 @@ extern "C" {
 		{
 			strcpy(imageExt,"BMP");
 		}
-		responseHeadLength = moon_http_response_head_image(responseHead,imageLength,imageExt);//·¢ËÍ³É¹¦µÄÏìÓ¦Í·²¿
-		send(clientSock,responseHead,responseHeadLength,0);//Í·²¿
-		//¿ªÊ¼·¢ËÍÍ¼Æ¬ÎÄ¼ş
+		responseHeadLength = moon_http_response_head_image(responseHead,imageLength,imageExt);//å‘é€æˆåŠŸçš„å“åº”å¤´éƒ¨
+		send(clientSock,responseHead,responseHeadLength,0);//å¤´éƒ¨
+		//å¼€å§‹å‘é€å›¾ç‰‡æ–‡ä»¶
 		while (1)
 		{
-			memset(send_buf,0,SEND_FILE_SIZE); //»º´æÇå0
+			memset(send_buf,0,SEND_FILE_SIZE); //ç¼“å­˜æ¸…0
 			imageLength = fread(send_buf,1,SEND_FILE_SIZE,resource);
 			if (SOCKET_ERROR == send(clientSock, send_buf, imageLength, 0))
 			{
@@ -181,92 +226,47 @@ extern "C" {
 		return 0;
 	}
 
-
-/*****************************************************************************************************************/
-
-
 	/************************************************************************/
-	/* ½«ÇëÇóµÄurlµÄÂ·¾¶ºÍ²ÎÊı·Ö¸ô¿ª                                        */
-	/*   ²ÎÊı£ºsrcUrl:ÇëÇóµÄurlÍêÕû×Ö·û´®									*/
-	/*		   pOutUrlPath:Êä³öµÄÂ·¾¶ĞÅÏ¢									*/
-	/*		   pOutParam£ºÊä³öµÄ²ÎÊıĞÅÏ¢									*/
+	/* å¤„ç†httpå“åº”                                                         */
+	/*	å‚æ•°ï¼šurl è¯·æ±‚çš„urlå­—ç¬¦ä¸²											*/
+	/*		  pOutContent å“åº”çš„å†…å®¹										*/
+	/*		  clientSock ç”¨äºå‘é€æ–‡ä»¶ç­‰å¤§æ•°æ®								*/
+	/*	è¿”å›å€¼ï¼šè¿”å›å“åº”å†…å®¹å­—ç¬¦ä¸²çš„é•¿åº¦									*/
 	/************************************************************************/
-	void moon_http_splite_url_and_param(char* srcUrl,char* pOutUrlPath,char* pOutParam)
+	long moon_win32_http_response(char* url,char* pOutContent,SOCKET clientSock)
 	{
-		int i = 0;
-		int iParam = 0;
-		if (srcUrl == NULL)
-		{
-			return;
-		}
-		while (srcUrl[i] != '\0' && srcUrl[i] != '?')//½ØÈ¡urlpath
-		{
-			pOutUrlPath[i] = srcUrl[i];
-			i++;
-		}
-		//Ìî³ä\0
-		pOutUrlPath[i] = '\0';
-		while (srcUrl[i] != '\0')//½ØÈ¡²ÎÊı
-		{
-			if (srcUrl[i] != '?')
-			{
-				pOutParam[iParam] = srcUrl[i];
-				iParam++;
-			}
-			i++;
-		}
-		pOutParam[iParam] = '\0';
-	}
-
-	/************************************************************************/
-	/* ´¦ÀíhttpÏìÓ¦                                                         */
-	/*	²ÎÊı£ºurl ÇëÇóµÄurl×Ö·û´®											*/
-	/*		  pOutContent ÏìÓ¦µÄÄÚÈİ										*/
-	/*		  clientSock ÓÃÓÚ·¢ËÍÎÄ¼şµÈ´óÊı¾İ								*/
-	/*	·µ»ØÖµ£º·µ»ØÏìÓ¦ÄÚÈİ×Ö·û´®µÄ³¤¶È									*/
-	/************************************************************************/
-	long moon_http_response(char* url,char* pOutContent,SOCKET clientSock)
-	{
-		char requestPath[1024] = {0};//ÇëÇóÂ·¾¶
-		char requestParam[1024] = {0};//ÇëÇó²ÎÊı
-		//½«url×ª³É´óĞ´
+		char requestPath[1024] = {0};//è¯·æ±‚è·¯å¾„
+		char requestParam[1024] = {0};//è¯·æ±‚å‚æ•°
+		//å°†urlè½¬æˆå¤§å†™
 		char urlTmp[MIN_BUF] = {0};
-		char logMsg[1200] = {0};//ÈÕÖ¾ĞÅÏ¢
+		char logMsg[1200] = {0};//æ—¥å¿—ä¿¡æ¯
 		sprintf(logMsg,"current request url path:%s",url);
 		moon_write_debug_log(logMsg);
-		if (strcmp("\\",url) == 0)//±íÊ¾ä¯ÀÀÆ÷ÇëÇóÊ×Ò³
+		if (strcmp("\\",url) == 0)//è¡¨ç¤ºæµè§ˆå™¨è¯·æ±‚é¦–é¡µ
 		{
 			return moon_http_browser_request_index(pOutContent);
 		}
-		else //½âÎöä¯ÀÀÆ÷²ÎÊı
+		else //è§£ææµè§ˆå™¨å‚æ•°
 		{
 			moon_http_splite_url_and_param(url,requestPath,requestParam);
 			memset(urlTmp,0,MIN_BUF);
-			moon_to_capital(requestParam,urlTmp);//½«ÇëÇóµÄurlÂ·¾¶×ª³É´óĞ´£¬ºÃ×öÅĞ¶Ï
-			//ÅĞ¶Ï²ÎÊıÊÇ·ñÎª¿Õ£¬»òÕßÇëÇóÆ½Ì¨Îª¿Õ
+			moon_to_capital(requestParam,urlTmp);//å°†è¯·æ±‚çš„urlè·¯å¾„è½¬æˆå¤§å†™ï¼Œå¥½åšåˆ¤æ–­
+			//åˆ¤æ–­å‚æ•°æ˜¯å¦ä¸ºç©ºï¼Œæˆ–è€…è¯·æ±‚å¹³å°ä¸ºç©º
 			if(stringIsEmpty(requestParam) || strstr(urlTmp,"PLATFORM=") == NULL)
 			{
 				return moon_http_browser_request_error(pOutContent,"request url platform is null");
 			}
 			memset(urlTmp,0,MIN_BUF);
-			moon_to_capital(requestPath,urlTmp);//½«ÇëÇóµÄurlÂ·¾¶×ª³É´óĞ´£¬ºÃ×öÅĞ¶Ï
-			if(strstr(urlTmp,".JPG") != NULL || strstr(urlTmp,".PNG") != NULL || strstr(urlTmp,".BMP") != NULL|| strstr(urlTmp,".JPEG") != NULL)//Èç¹ûÇëÇóÍ¼Æ¬
+			moon_to_capital(requestPath,urlTmp);//å°†è¯·æ±‚çš„urlè·¯å¾„è½¬æˆå¤§å†™ï¼Œå¥½åšåˆ¤æ–­
+			if(strstr(urlTmp,".JPG") != NULL || strstr(urlTmp,".PNG") != NULL || strstr(urlTmp,".BMP") != NULL|| strstr(urlTmp,".JPEG") != NULL)//å¦‚æœè¯·æ±‚å›¾ç‰‡
 			{
-				return moon_http_browser_request_file(pOutContent,urlTmp,clientSock);
+				return moon_win32_http_browser_request_file(pOutContent,urlTmp,clientSock);
 			}
 		}
 		return moon_get_string_length(pOutContent);
 	}
 
-#ifdef MS_WINDOWS
-
-	static HANDLE g_hListener = NULL;//¼àÌıÏß³Ì¾ä±ú
-
-	static DWORD g_dListenerId = 0;//¼àÌıÏß³ÌID
-
-	static SOCKET g_sListener=NULL;//¼àÌıÌ×½Ó×Ö
-
-	//ÇëÇó´¦Àí
+	//è¯·æ±‚å¤„ç†
 	VOID CALLBACK moon_win32_http_request(PTP_CALLBACK_INSTANCE instance,PVOID context,PTP_WORK work)  
 	{  
 		moon_http_context* pContext = (moon_http_context*)context;
@@ -276,42 +276,42 @@ extern "C" {
 		char url[MIN_BUF] = {0};
 		char strMsg[256] = {0};
 		int i, j;
-		char responseHead[1024] = {0};//ÏìÓ¦Í·²¿
-		int responseHeadLength = 0;//ÏìÓ¦Í·²¿³¤¶È
-		char responseError[1024] = {0};//ÏìÓ¦´íÎó
-		int responseErrorLength = 0;//ÏìÓ¦´íÎó³¤¶È
-		char* pResponseContent = NULL;//ÏìÓ¦ÄÚÈİ
-		long responseLength = 0;//ÏìÓ¦ÄÚÈİ³¤¶È
-		if (recv(sAccept,recv_buf,sizeof(recv_buf),0) == SOCKET_ERROR)   //½ÓÊÕ´íÎó
+		char responseHead[1024] = {0};//å“åº”å¤´éƒ¨
+		int responseHeadLength = 0;//å“åº”å¤´éƒ¨é•¿åº¦
+		char responseError[1024] = {0};//å“åº”é”™è¯¯
+		int responseErrorLength = 0;//å“åº”é”™è¯¯é•¿åº¦
+		char* pResponseContent = NULL;//å“åº”å†…å®¹
+		long responseLength = 0;//å“åº”å†…å®¹é•¿åº¦
+		if (recv(sAccept,recv_buf,sizeof(recv_buf),0) == SOCKET_ERROR)   //æ¥æ”¶é”™è¯¯
 		{
 			sprintf(strMsg,"http service request at recv() Failed:%d",WSAGetLastError());
 			moon_write_error_log(strMsg);
 			return;
 		}
 		i = 0; j = 0;
-		// È¡³öµÚÒ»¸öµ¥´Ê£¬Ò»°ãÎªHEAD¡¢GET¡¢POST
+		// å–å‡ºç¬¬ä¸€ä¸ªå•è¯ï¼Œä¸€èˆ¬ä¸ºHEADã€GETã€POST
 		while (!(' ' == recv_buf[j]) && (i < sizeof(method) - 1))
 		{
 			method[i] = recv_buf[j];
 			i++; j++;
 		}
-		method[i] = '\0';   // ½áÊø·û£¬ÕâÀïÒ²ÊÇ³õÑ§ÕßºÜÈİÒ×ºöÊÓµÄµØ·½
-		// Èç¹û²»ÊÇGET»òHEAD·½·¨£¬ÔòÖ±½Ó¶Ï¿ª±¾´ÎÁ¬½Ó
-		// Èç¹ûÏë×öµÄ¹æ·¶Ğ©¿ÉÒÔ·µ»Øä¯ÀÀÆ÷Ò»¸ö501Î´ÊµÏÖµÄ±¨Í·ºÍÒ³Ãæ
+		method[i] = '\0';   // ç»“æŸç¬¦ï¼Œè¿™é‡Œä¹Ÿæ˜¯åˆå­¦è€…å¾ˆå®¹æ˜“å¿½è§†çš„åœ°æ–¹
+		// å¦‚æœä¸æ˜¯GETæˆ–HEADæ–¹æ³•ï¼Œåˆ™ç›´æ¥æ–­å¼€æœ¬æ¬¡è¿æ¥
+		// å¦‚æœæƒ³åšçš„è§„èŒƒäº›å¯ä»¥è¿”å›æµè§ˆå™¨ä¸€ä¸ª501æœªå®ç°çš„æŠ¥å¤´å’Œé¡µé¢
 		if (stricmp(method, "GET") && stricmp(method, "HEAD"))
 		{
 			if (sAccept != NULL)
 			{
-				closesocket(sAccept); //ÊÍ·ÅÁ¬½ÓÌ×½Ó×Ö£¬½áÊøÓë¸Ã¿Í»§µÄÍ¨ĞÅ
+				closesocket(sAccept); //é‡Šæ”¾è¿æ¥å¥—æ¥å­—ï¼Œç»“æŸä¸è¯¥å®¢æˆ·çš„é€šä¿¡
 				sAccept = NULL;
 			}
 			moon_write_debug_log("http request is not get or head method.close ok.");
 			return;
 		}
 
-		// ÌáÈ¡³öµÚ¶ş¸öµ¥´Ê(urlÎÄ¼şÂ·¾¶£¬¿Õ¸ñ½áÊø)£¬²¢°Ñ'/'¸ÄÎªwindowsÏÂµÄÂ·¾¶·Ö¸ô·û'\'
-		// ÕâÀïÖ»¿¼ÂÇ¾²Ì¬ÇëÇó(±ÈÈçurlÖĞ³öÏÖ'?'±íÊ¾·Ç¾²Ì¬£¬ĞèÒªµ÷ÓÃCGI½Å±¾£¬'?'ºóÃæµÄ×Ö·û´®±íÊ¾²ÎÊı£¬¶à¸ö²ÎÊıÓÃ'+'¸ô¿ª
-		// ÀıÈç£ºwww.csr.com/cgi_bin/cgi?arg1+arg2 ¸Ã·½·¨ÓĞÊ±Ò²½Ğ²éÑ¯£¬ÔçÆÚ³£ÓÃÓÚËÑË÷)
+		// æå–å‡ºç¬¬äºŒä¸ªå•è¯(urlæ–‡ä»¶è·¯å¾„ï¼Œç©ºæ ¼ç»“æŸ)ï¼Œå¹¶æŠŠ'/'æ”¹ä¸ºwindowsä¸‹çš„è·¯å¾„åˆ†éš”ç¬¦'\'
+		// è¿™é‡Œåªè€ƒè™‘é™æ€è¯·æ±‚(æ¯”å¦‚urlä¸­å‡ºç°'?'è¡¨ç¤ºéé™æ€ï¼Œéœ€è¦è°ƒç”¨CGIè„šæœ¬ï¼Œ'?'åé¢çš„å­—ç¬¦ä¸²è¡¨ç¤ºå‚æ•°ï¼Œå¤šä¸ªå‚æ•°ç”¨'+'éš”å¼€
+		// ä¾‹å¦‚ï¼šwww.csr.com/cgi_bin/cgi?arg1+arg2 è¯¥æ–¹æ³•æœ‰æ—¶ä¹Ÿå«æŸ¥è¯¢ï¼Œæ—©æœŸå¸¸ç”¨äºæœç´¢)
 		i = 0;
 		while ((' ' == recv_buf[j]) && (j < sizeof(recv_buf)))
 			j++;
@@ -333,43 +333,43 @@ extern "C" {
 			if (pResponseContent == NULL)
 			{
 				moon_write_error_log("moon_malloc falied");
-				//Ïò¿Í»§¶Ë·¢ËÍ·şÎñÆ÷´íÎóµÄĞÅÏ¢
-				//ÅĞ¶ÏÊÇä¯ÀÀÆ÷ÇëÇó»¹ÊÇmoonManagerÇëÇó
+				//å‘å®¢æˆ·ç«¯å‘é€æœåŠ¡å™¨é”™è¯¯çš„ä¿¡æ¯
+				//åˆ¤æ–­æ˜¯æµè§ˆå™¨è¯·æ±‚è¿˜æ˜¯moonManagerè¯·æ±‚
 			}
 		}
-		responseLength = moon_http_response(url,pResponseContent,sAccept);//Èç¹ûÓĞÏìÓ¦ĞÅÏ¢²Å·¢ËÍÊı¾İ°ü
+		responseLength = moon_win32_http_response(url,pResponseContent,sAccept);//å¦‚æœæœ‰å“åº”ä¿¡æ¯æ‰å‘é€æ•°æ®åŒ…
 		if (responseLength > 0)
 		{
 			responseHeadLength = moon_http_request_success_200(responseHead,responseLength);
-			send(sAccept,responseHead,responseHeadLength,0);//·¢ËÍ200£¬ÇëÇó³É¹¦µÄÍ·²¿
-			send(sAccept,pResponseContent,responseLength, 0);//·¢ËÍÏìÓ¦ÄÚÈİ
+			send(sAccept,responseHead,responseHeadLength,0);//å‘é€200ï¼Œè¯·æ±‚æˆåŠŸçš„å¤´éƒ¨
+			send(sAccept,pResponseContent,responseLength, 0);//å‘é€å“åº”å†…å®¹
 		}
-		closesocket(sAccept); //ÊÍ·ÅÁ¬½ÓÌ×½Ó×Ö£¬½áÊøÓë¸Ã¿Í»§µÄÍ¨ĞÅ
+		closesocket(sAccept); //é‡Šæ”¾è¿æ¥å¥—æ¥å­—ï¼Œç»“æŸä¸è¯¥å®¢æˆ·çš„é€šä¿¡
 		sAccept = NULL;
 		moon_free(pResponseContent);
 		pResponseContent = NULL;
 	} 
 
 
-	//¼àÌıÏß³Ì
+	//ç›‘å¬çº¿ç¨‹
 	DWORD WINAPI moon_win32_http_listen(LPVOID lpParameter)
 	{
 		char strMsg[256] = {0};
 		WSADATA wsaData;
-		SOCKET sAccept;        //·şÎñÆ÷¼àÌıÌ×½Ó×Ö£¬Á¬½ÓÌ×½Ó×Ö
-		moon_http_context context;//httpÉÏÏÂÎÄ
-		int serverport=p_global_server_config->http_port;   //·şÎñÆ÷¶Ë¿ÚºÅ
-		struct sockaddr_in ser,cli;   //·şÎñÆ÷µØÖ·£¬¿Í»§¶ËµØÖ·
+		SOCKET sAccept;        //æœåŠ¡å™¨ç›‘å¬å¥—æ¥å­—ï¼Œè¿æ¥å¥—æ¥å­—
+		moon_http_context context;//httpä¸Šä¸‹æ–‡
+		int serverport=p_global_server_config->http_port;   //æœåŠ¡å™¨ç«¯å£å·
+		struct sockaddr_in ser,cli;   //æœåŠ¡å™¨åœ°å€ï¼Œå®¢æˆ·ç«¯åœ°å€
 		int iLen;
 		PTP_POOL tPool;
 		TP_CALLBACK_ENVIRON pcbe;
-		//µÚÒ»²½£º¼ÓÔØĞ­ÒéÕ»
+		//ç¬¬ä¸€æ­¥ï¼šåŠ è½½åè®®æ ˆ
 		if (WSAStartup(MAKEWORD(2,2),&wsaData) !=0)
 		{
 			moon_write_error_log("Failed to load Winsock.");
 			return -1;
 		}
-		//µÚ¶ş²½£º´´½¨¼àÌıÌ×½Ó×Ö£¬ÓÃÓÚ¼àÌı¿Í»§ÇëÇó
+		//ç¬¬äºŒæ­¥ï¼šåˆ›å»ºç›‘å¬å¥—æ¥å­—ï¼Œç”¨äºç›‘å¬å®¢æˆ·è¯·æ±‚
 		g_sListener =socket(AF_INET,SOCK_STREAM,0);
 		if (g_sListener == INVALID_SOCKET)
 		{
@@ -377,37 +377,37 @@ extern "C" {
 			moon_write_error_log(strMsg);
 			return -1;
 		}
-		//´´½¨·şÎñÆ÷µØÖ·£ºIP+¶Ë¿ÚºÅ
+		//åˆ›å»ºæœåŠ¡å™¨åœ°å€ï¼šIP+ç«¯å£å·
 		ser.sin_family=AF_INET;
-		ser.sin_port=htons(serverport);               //·şÎñÆ÷¶Ë¿ÚºÅ
-		ser.sin_addr.s_addr=inet_addr(p_global_server_config->server_ip);   //·şÎñÆ÷IPµØÖ·
+		ser.sin_port=htons(serverport);               //æœåŠ¡å™¨ç«¯å£å·
+		ser.sin_addr.s_addr=inet_addr(p_global_server_config->server_ip);   //æœåŠ¡å™¨IPåœ°å€
 
-		//µÚÈı²½£º°ó¶¨¼àÌıÌ×½Ó×ÖºÍ·şÎñÆ÷µØÖ·
+		//ç¬¬ä¸‰æ­¥ï¼šç»‘å®šç›‘å¬å¥—æ¥å­—å’ŒæœåŠ¡å™¨åœ°å€
 		if (bind(g_sListener,(LPSOCKADDR)&ser,sizeof(ser))==SOCKET_ERROR)
 		{
 			sprintf(strMsg,"http service blind() Failed:%d",WSAGetLastError());
 			moon_write_error_log(strMsg);
 			return -1;
 		}
-		//µÚÎå²½£ºÍ¨¹ı¼àÌıÌ×½Ó×Ö½øĞĞ¼àÌı
+		//ç¬¬äº”æ­¥ï¼šé€šè¿‡ç›‘å¬å¥—æ¥å­—è¿›è¡Œç›‘å¬
 		if (listen(g_sListener,5)==SOCKET_ERROR)
 		{
 			sprintf(strMsg,"http service listen() Failed:%d",WSAGetLastError());
 			moon_write_error_log(strMsg);
 			return -1;
 		}
-		//´´½¨Ïß³Ì³Ø
+		//åˆ›å»ºçº¿ç¨‹æ± 
 		tPool = CreateThreadpool(NULL);
-		//ÉèÖÃÏß³Ì³Ø×î´ó×îĞ¡µÄÏß³ÌÊıÁ¿
+		//è®¾ç½®çº¿ç¨‹æ± æœ€å¤§æœ€å°çš„çº¿ç¨‹æ•°é‡
 		SetThreadpoolThreadMinimum(tPool,5);
 		SetThreadpoolThreadMaximum(tPool,10);
-		//³õÊ¼»¯Ïß³Ì³Ø»·¾³±äÁ¿
+		//åˆå§‹åŒ–çº¿ç¨‹æ± ç¯å¢ƒå˜é‡
 		InitializeThreadpoolEnvironment(&pcbe);
-		//ÎªÏß³Ì³ØÉèÖÃÏß³Ì³Ø»·¾³±äÁ¿
+		//ä¸ºçº¿ç¨‹æ± è®¾ç½®çº¿ç¨‹æ± ç¯å¢ƒå˜é‡
 		SetThreadpoolCallbackPool(&pcbe,tPool);
-		while (!g_bEndListen)  //Ñ­»·µÈ´ı¿Í»§µÄÇëÇó
+		while (!g_bEndListen)  //å¾ªç¯ç­‰å¾…å®¢æˆ·çš„è¯·æ±‚
 		{
-			//µÚÁù²½£º½ÓÊÜ¿Í»§¶ËµÄÁ¬½ÓÇëÇó£¬·µ»ØÓë¸Ã¿Í»§½¨Á¢µÄÁ¬½ÓÌ×½Ó×Ö
+			//ç¬¬å…­æ­¥ï¼šæ¥å—å®¢æˆ·ç«¯çš„è¿æ¥è¯·æ±‚ï¼Œè¿”å›ä¸è¯¥å®¢æˆ·å»ºç«‹çš„è¿æ¥å¥—æ¥å­—
 			iLen=sizeof(cli);
 			sAccept=accept(g_sListener,(struct sockaddr*)&cli,&iLen);
 			if (sAccept==INVALID_SOCKET)
@@ -416,29 +416,29 @@ extern "C" {
 				moon_write_error_log(strMsg);
 				break;
 			}
-			//µÚÆß²½£¬´´½¨ÈÎÎñ½ÓÊÜä¯ÀÀÆ÷ÇëÇó
+			//ç¬¬ä¸ƒæ­¥ï¼Œåˆ›å»ºä»»åŠ¡æ¥å—æµè§ˆå™¨è¯·æ±‚
 			//DWORD ThreadID;
 			//CreateThread(NULL,0,SimpleHTTPServer,(LPVOID)sAccept,0,&ThreadID);
-			//µ¥´Î¹¤×÷Ìá½»
+			//å•æ¬¡å·¥ä½œæäº¤
 			context.m_socket = sAccept;
 			TrySubmitThreadpoolCallback(moon_win32_http_request,&context,&pcbe);
 		}
-		//ÇåÀíÏß³Ì³ØµÄ»·¾³±äÁ¿
+		//æ¸…ç†çº¿ç¨‹æ± çš„ç¯å¢ƒå˜é‡
 		DestroyThreadpoolEnvironment(&pcbe);
-		//¹Ø±ÕÏß³Ì³Ø
+		//å…³é—­çº¿ç¨‹æ± 
 		CloseThreadpool(tPool);
 		return 0;
 	}
 #endif
 
 	/************************************************************************/
-	/* Æô¶¯http·şÎñ                                                         */
+	/* å¯åŠ¨httpæœåŠ¡                                                         */
 	/************************************************************************/
 	bool lauch_http_service()
 	{
-		//´´½¨Ïß³Ì³Ø
+		//åˆ›å»ºçº¿ç¨‹æ± 
 #ifdef MS_WINDOWS
-		//´´½¨¼àÌıÏß³Ì
+		//åˆ›å»ºç›‘å¬çº¿ç¨‹
 		g_bEndListen = false;
 		g_hListener = CreateThread(NULL,0,moon_win32_http_listen,NULL,0,&g_dListenerId);
 		if (g_hListener == NULL)
@@ -446,7 +446,7 @@ extern "C" {
 			moon_write_error_log("create http_listenning_server thread failed");
 			return false;
 		}
-		//¹Ø±Õ¼àÌıÏß³Ì¾ä±ú
+		//å…³é—­ç›‘å¬çº¿ç¨‹å¥æŸ„
 		CloseHandle(g_hListener);
 		//pThreads = moon_create_thread_pool(10,moon_win32_http_request,NULL);
 #endif
@@ -454,13 +454,13 @@ extern "C" {
 	}
 
 	/************************************************************************/
-	/* Í£Ö¹http·şÎñ                                                         */
+	/* åœæ­¢httpæœåŠ¡                                                         */
 	/************************************************************************/
 	bool end_http_service()
 	{
 		moon_write_info_log("close http server");
 		g_bEndListen = true;
-		//µÈ´ı¼àÌıÏß³ÌÍË³ö
+		//ç­‰å¾…ç›‘å¬çº¿ç¨‹é€€å‡º
 #ifdef MS_WINDOWS
 		WaitForSingleObject(g_hListener,1000);
 		closesocket(g_sListener);

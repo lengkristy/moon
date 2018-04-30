@@ -13,16 +13,16 @@
 extern "C" {
 #endif
 
-static FILE* pFile = NULL;/*ÎÄ¼þÖ¸Õë*/
+static FILE* pFile = NULL;/*log file point*/
 
 #ifdef MS_WINDOWS
 static HANDLE g_hMutex;
 #endif
 
-extern Moon_Server_Config* p_global_server_config;//Íâ²¿È«¾ÖÅäÖÃ±äÁ¿
+extern Moon_Server_Config* p_global_server_config;//global configuration struct
 extern bool b_config_load_finish;
 
-/*¿ØÖÆÌ¨ÈÕÖ¾*/
+/*console output log*/
 void moon_console_print(const char *log) //overwrite printf function with line feed
 {
 	time_t rawtime; 
@@ -36,7 +36,7 @@ void moon_console_print(const char *log) //overwrite printf function with line f
 	printf("\n\r");
 }
 
-/*Ð´ÎÄ¼þÈÕÖ¾*/
+/*write file log*/
 void moon_file_print(const char* log)//write file log,thread sync
 {
 
@@ -44,7 +44,7 @@ void moon_file_print(const char* log)//write file log,thread sync
 	struct tm * timeinfo; 
 	char strTime[255] = {0};
 
-//ÐèÒª×öÏß³ÌÍ¬²½
+//thread synchronous
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LOG_MUTEX));
 	if(hMutex == NULL)
@@ -52,11 +52,10 @@ void moon_file_print(const char* log)//write file log,thread sync
 		moon_console_print("can not OpenMutex");
 		return ;
 	}
-	//WaitforsingleObject½«µÈ´ýÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓÐÈ¨
-	//Í¨¹ý»¥³âËø±£Ö¤³ý·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎÞ·¨Êä³ö¡£
+	//get mutexes object
 	WaitForSingleObject(hMutex, 1000);
 #endif
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	time(&rawtime); 
 	timeinfo = localtime( &rawtime ); 
 	sprintf (strTime,"%d/%d/%d %d:%d:%d ",
@@ -74,7 +73,7 @@ void moon_file_print(const char* log)//write file log,thread sync
 }
 
 /************************************************************************/
-/* Ð´ÈÕÖ¾»·¾³³õÊ¼»¯£¬Ö÷ÒªÊÇÎªÁË³õÊ¼»¯ÈÕÖ¾ÎÄ¼þÒÔ¼°Ïß³Ì»¥³â¶ÔÏó           */
+/* log init													           */
 /************************************************************************/
 bool moon_log_init()
 {
@@ -83,7 +82,7 @@ bool moon_log_init()
 	{
 		return false;
 	}
-	//´´½¨Ïß³Ì»¥³âÌå¶ÔÏó
+	//create windows mutexes object
 #ifdef MS_WINDOWS
 	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(LOG_MUTEX));
 	if (g_hMutex == NULL)
@@ -96,7 +95,7 @@ bool moon_log_init()
 }
 
 /************************************************************************/
-/* ¹Ø±ÕÈÕÖ¾¼ÇÂ¼£¬¹Ø±ÕÎÄ¼þÒÔ¼°Ïß³Ì»¥³â¶ÔÏó                               */
+/* close log record            			                               */
 /************************************************************************/
 void moon_log_close()
 {
@@ -104,10 +103,12 @@ void moon_log_close()
 	{
 		fclose(pFile);
 	}
+#ifdef MS_WINDOWS
 	if (g_hMutex != NULL)
 	{
 		CloseHandle(g_hMutex);
 	}
+#endif
 }
 
 void moon_write_info_log(char* log)
@@ -115,7 +116,8 @@ void moon_write_info_log(char* log)
 	unsigned long length = 0;
 	unsigned int infoLength = moon_get_string_length(LOG_INFO);
 	char* pFormateLog = NULL;
-	if (b_config_load_finish && p_global_server_config != NULL && 'Y' != p_global_server_config->log_level_info)//ÅÐ¶ÏÊÇ·ñÅäÖÃinfoÈÕÖ¾¼¶±ð,Èç¹ûÃ»ÓÐÅäÖÃÔò²»ÐèÒª¼ÇÂ¼
+	//info level log record
+	if (b_config_load_finish && p_global_server_config != NULL && 'Y' != p_global_server_config->log_level_info)
 		return;
 	if (log == NULL)
 	{

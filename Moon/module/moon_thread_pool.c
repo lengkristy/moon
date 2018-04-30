@@ -9,12 +9,12 @@
 extern "C" {
 #endif
 
-	extern Moon_Server_Config* p_global_server_config;//·şÎñÅäÖÃÈ«¾Ö±äÁ¿
+	extern Moon_Server_Config* p_global_server_config;//æœåŠ¡é…ç½®å…¨å±€å˜é‡
 
 	/************************************************************************/
-	/* ´´½¨Ïß³Ì³Ø                                                           */
-	/*    ²ÎÊı:size   Ïß³Ì³Ø´óĞ¡											*/
-	/*	  ·µ»ØÖµ£º´´½¨³É¹¦·µ»ØÏß³ÌÊı×éµØÖ·£¬´´½¨Ê§°Ü·µ»ØNULL    			*/
+	/* åˆ›å»ºçº¿ç¨‹æ±                                                            */
+	/*    å‚æ•°:size   çº¿ç¨‹æ± å¤§å°											*/
+	/*	  è¿”å›å€¼ï¼šåˆ›å»ºæˆåŠŸè¿”å›çº¿ç¨‹æ•°ç»„åœ°å€ï¼Œåˆ›å»ºå¤±è´¥è¿”å›NULL    			*/
 	/************************************************************************/
 	Array_List* moon_create_thread_pool(int size,
 #ifdef MS_WINDOWS
@@ -23,9 +23,11 @@ extern "C" {
 		void* param
 		)
 	{
+#ifdef MS_WINDOWS
 		HANDLE handle = NULL;
-		int i = 0;
 		DWORD threadId = 0;
+#endif
+		int i = 0;
 		Array_List* pThreads = array_list_init();
 		if (pThreads == NULL)
 		{

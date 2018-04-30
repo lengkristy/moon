@@ -11,7 +11,7 @@ extern "C" {
 #endif
 
 Moon_Server_Config* p_global_server_config = NULL;/*global server config*/
-bool b_config_load_finish = false;//配置是否加载完毕
+bool b_config_load_finish = false;//config has inited
 
 /************************************************************************/
 /* start server			                                                */
@@ -38,7 +38,7 @@ void moon_start()
 	b_config_load_finish = true;
 #ifdef MS_WINDOWS
 	moon_write_info_log("start ms_nt_iocp server...");
-	//加载ms_nt_iocp服务
+	//start windows platform server
 	if(!ms_iocp_server_start(p_global_server_config))
 	{
 		moon_write_error_log("start ms_nt_iocp server falied");
@@ -47,7 +47,7 @@ void moon_start()
 	moon_write_info_log("ms_nt_iocp server has start");
 #endif
 
-	//初始化http服务
+	//start http server
 	lauch_http_service();
 }
 
@@ -66,7 +66,7 @@ void moon_stop()
 	/*close server*/
 	ms_iocp_server_stop();
 #endif
-	//关闭http服务
+	/*close http server*/
 	end_http_service();
 	//close log
 	moon_log_close();

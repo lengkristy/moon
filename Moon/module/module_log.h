@@ -1,5 +1,5 @@
 /************************************************************************/
-/* 该模块为日志操作		                                                */
+/* 璇ユā鍧椾负鏃ュ織鎿嶄綔		                                                */
 /************************************************************************/
 #pragma once
 #ifndef _MODULE_LOG_H
@@ -16,7 +16,7 @@ extern "C" {
 #define LOG_WARN  "warnning"
 #define LOG_DEBUG "debug"
 #define LOG_INFO "info"
-/**线程互斥体对象名称*/
+/**thread mutexes object name*/
 #define LOG_MUTEX "LOG_MUTEX"
 #endif
 
