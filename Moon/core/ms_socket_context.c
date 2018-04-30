@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-/*╢╢╫╗пб╣дIOиообнд*/
+/*Е┬⌡Е╩╨Ф√╟Г └IOД╦┼Д╦▀Ф√┤*/
 PMS_IO_CONTEXT create_new_io_context()
 {
 	PMS_IO_CONTEXT context = (MS_IO_CONTEXT*)moon_malloc(sizeof(MS_IO_CONTEXT));
@@ -19,13 +19,13 @@ PMS_IO_CONTEXT create_new_io_context()
 	return context;
 }
 
-/*йм╥еIOиообнд*/
+/*И┤┼Ф■╬IOД╦┼Д╦▀Ф√┤*/
 void free_io_context(PMS_IO_CONTEXT context)
 {
 	moon_free(context);
 }
 
-/*╢╢╫╗р╩╦Жпб╣дsocketиообнд*/
+/*Е┬⌡Е╩╨Д╦─Д╦╙Ф√╟Г └socketД╦┼Д╦▀Ф√┤*/
 PMS_SOCKET_CONTEXT create_new_socket_context()
 {
 	PMS_SOCKET_CONTEXT context = (PMS_SOCKET_CONTEXT)moon_malloc(sizeof(MS_SOCKET_CONTEXT));
@@ -34,7 +34,7 @@ PMS_SOCKET_CONTEXT create_new_socket_context()
 	return context;
 }
 
-/*йм╥еsocketиообнд*/
+/*И┤┼Ф■╬socketД╦┼Д╦▀Ф√┤*/
 void free_socket_context(PMS_SOCKET_CONTEXT context)
 {
 	int i = 0;

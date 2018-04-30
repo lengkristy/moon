@@ -1,9 +1,9 @@
 /****************************************************************************
-���ߣ�����Ȼ
-ʱ�䣺2017-8-3
-���ļ�����Ϊջ�����ʵ��
-ջ�����ԣ�
-	1���Ƚ����������ȳ�
+作者：代浩然
+时间：2017-8-3
+该文件定义为栈的相关实现
+栈的特性：
+	1、先进后出，后进先出
 ****************************************************************************/
 #pragma once
 #ifndef _STACK_H
@@ -12,66 +12,66 @@
 extern "C" {
 #endif
 
-//����ջ�ĳ�ʼ����С
+//定义栈的初始化大小
 #define STACK_INIT_SIZE 100
-//ջ�ռ���ֻ�У�ÿ�ε����Ĵ�С
+//栈空间慢只有，每次递增的大小
 #define STACK_INCREASE_SIZE 200
 
 /**
- * ����ջ�ڵ�
+ * 定义栈节点
  */
 typedef struct _Stack_Node{
-	void* data;//������
+	void* data;//数据域
 }Stack_Node;
 
 /**
- * ����ջ�ṹ
+ * 定义栈结构
  */
 typedef struct _Stack{
-	Stack_Node* node;//ջ��������
-	unsigned long base;//ջ��ָ��
-	unsigned long top;//ջ��ָ��
-	unsigned long size;//ջ��С
+	Stack_Node* node;//栈的数据域
+	unsigned long base;//栈底指针
+	unsigned long top;//栈顶指针
+	unsigned long size;//栈大小
 }Stack;
 
 /**
- * ���ܣ���ʼ��ջ
- * ����ֵ������ɹ����򷵻�ջ�ĵ�ַ�����ʧ�ܷ���NULL
+ * 功能：初始化栈
+ * 返回值：如果成功，则返回栈的地址，如果失败返回NULL
  */
 Stack* Stack_Init();
 
 /**
- * ���ܣ�������ѹջ
- * ������
- *		stack��ջָ��
- *		data����ѹ��ջ�����ݵ�ַ
+ * 功能：将数据压栈
+ * 参数：
+ *		stack：栈指针
+ *		data：被压入栈的数据地址
  */
 void Stack_Push(Stack* stack,void* data);
 
 /**
- * ���ܣ������ݵ���ջ
- * ������
- *		stack��ջָ��
- * ����ֵ�����ص����ݵĵ�ַ�����ջû�������򷵻�NULL
+ * 功能：将数据弹出栈
+ * 参数：
+ *		stack：栈指针
+ * 返回值：返回的数据的地址，如果栈没有数据则返回NULL
  */
 void* Stack_Pop(Stack* stack);
 
 /**
- * ���ܣ����ջ
- * ������
- *		stack��ջָ��
+ * 功能：清空栈
+ * 参数：
+ *		stack：栈指针
  */
 void Stack_Clear(Stack* stack);
 
 /**
- * ���ܣ��ͷ�ջ
- * ������
- *		stack��ջָ��
+ * 功能：释放栈
+ * 参数：
+ *		stack：栈指针
  */
 void Stack_Free(Stack* stack);
 
 /**
- * ���ܣ�ջ����
+ * 功能：栈测试
  */
 void Stack_Test();
 

@@ -58,3 +58,9 @@ Release/
 Moon/log/
 Moon/Debug
 Moon/Release
+
+#---------------------
+# ignore dirs for linux
+#---------------------
+linux_debug/
+linux_release/

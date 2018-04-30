@@ -1,8 +1,8 @@
 #include "ms_nt__iocp.h"
 #include "ms_socket_context.h"
 #include "../module/moon_char.h"
-#include <stdio.h>
 #include "../module/moon_string.h"
+#include <stdio.h>
 
 #ifdef MS_WINDOWS
 #include <wchar.h>
@@ -13,60 +13,60 @@
 extern "C" {
 #endif
 
-// Ã¿Ò»¸ö´¦ÀíÆ÷ÉÏ²úÉú¶àÉÙ¸öÏß³Ì(ÎªÁË×î´óÏŞ¶ÈµÄÌáÉı·şÎñÆ÷ĞÔÄÜ£¬Ïê¼ûÅäÌ×ÎÄµµ)
+// æ¯ä¸€ä¸ªå¤„ç†å™¨ä¸Šäº§ç”Ÿå¤šå°‘ä¸ªçº¿ç¨‹(ä¸ºäº†æœ€å¤§é™åº¦çš„æå‡æœåŠ¡å™¨æ€§èƒ½ï¼Œè¯¦è§é…å¥—æ–‡æ¡£)
 #define WORKER_THREADS_PER_PROCESSOR 2
-// Í¬Ê±Í¶µİµÄAcceptÇëÇóµÄÊıÁ¿(Õâ¸öÒª¸ù¾İÊµ¼ÊµÄÇé¿öÁé»îÉèÖÃ)
+// åŒæ—¶æŠ•é€’çš„Acceptè¯·æ±‚çš„æ•°é‡(è¿™ä¸ªè¦æ ¹æ®å®é™…çš„æƒ…å†µçµæ´»è®¾ç½®)
 #define MAX_POST_ACCEPT              10
-// ´«µİ¸øWorkerÏß³ÌµÄÍË³öĞÅºÅ
+// ä¼ é€’ç»™Workerçº¿ç¨‹çš„é€€å‡ºä¿¡å·
 #define EXIT_CODE                    NULL
 
 
-// ÊÍ·ÅÖ¸ÕëºÍ¾ä±ú×ÊÔ´µÄºê
+// é‡Šæ”¾æŒ‡é’ˆå’Œå¥æŸ„èµ„æºçš„å®
 
-// ÊÍ·ÅÖ¸Õëºê
+// é‡Šæ”¾æŒ‡é’ˆå®
 #define RELEASE(x)                      {if(x != NULL ){free(x);x=NULL;}}
-// ÊÍ·Å¾ä±úºê
+// é‡Šæ”¾å¥æŸ„å®
 #define RELEASE_HANDLE(x)               {if(x != NULL && x!=INVALID_HANDLE_VALUE){ CloseHandle(x);x = NULL;}}
-// ÊÍ·ÅSocketºê
+// é‡Šæ”¾Socketå®
 #define RELEASE_SOCKET(x)               {if(x !=INVALID_SOCKET) { closesocket(x);x=INVALID_SOCKET;}}
-//½øÈëÁÙ½çÇø
+//è¿›å…¥ä¸´ç•ŒåŒº
 #define _EnterCriticalSection(x) {if( x != NULL){EnterCriticalSection(&x->SockCritSec);}}
-//ÍË³öÁÙ½çÇø
+//é€€å‡ºä¸´ç•ŒåŒº
 #define _LeaveCriticalSection(x) {if( x != NULL){LeaveCriticalSection(&x->SockCritSec);}}
 
-static HANDLE	g_hShutdownEvent;// ÓÃÀ´Í¨ÖªÏß³ÌÏµÍ³ÍË³öµÄÊÂ¼ş£¬ÎªÁËÄÜ¹»¸üºÃµÄÍË³öÏß³Ì
-static HANDLE g_hIOCompletionPort;//Íê³É¶Ë¿ÚµÄ¾ä±ú
-static unsigned int g_nThreads;//Éú³ÉÏß³ÌµÄÊıÁ¿
-static HANDLE* g_phWorkerThreads;// ¹¤×÷ÕßÏß³ÌµÄ¾ä±úÖ¸Õë
-static PMS_SOCKET_CONTEXT g_pListenContext = NULL;//¼àÌıµÄÉÏÏÂÎÄ
-static LPFN_ACCEPTEX                g_lpfnAcceptEx;                // AcceptEx ºÍ GetAcceptExSockaddrs µÄº¯ÊıÖ¸Õë£¬ÓÃÓÚµ÷ÓÃÕâÁ½¸öÀ©Õ¹º¯Êı
+static HANDLE	g_hShutdownEvent;// ç”¨æ¥é€šçŸ¥çº¿ç¨‹ç³»ç»Ÿé€€å‡ºçš„äº‹ä»¶ï¼Œä¸ºäº†èƒ½å¤Ÿæ›´å¥½çš„é€€å‡ºçº¿ç¨‹
+static HANDLE g_hIOCompletionPort;//å®Œæˆç«¯å£çš„å¥æŸ„
+static unsigned int g_nThreads;//ç”Ÿæˆçº¿ç¨‹çš„æ•°é‡
+static HANDLE* g_phWorkerThreads;// å·¥ä½œè€…çº¿ç¨‹çš„å¥æŸ„æŒ‡é’ˆ
+static PMS_SOCKET_CONTEXT g_pListenContext = NULL;//ç›‘å¬çš„ä¸Šä¸‹æ–‡
+static LPFN_ACCEPTEX                g_lpfnAcceptEx;                // AcceptEx å’Œ GetAcceptExSockaddrs çš„å‡½æ•°æŒ‡é’ˆï¼Œç”¨äºè°ƒç”¨è¿™ä¸¤ä¸ªæ‰©å±•å‡½æ•°
 static LPFN_GETACCEPTEXSOCKADDRS    g_lpfnGetAcceptExSockAddrs; 
-static Array_List* g_pListMSClientSocketContext;//¿Í»§¶ËSocketµÄContextĞÅÏ¢
-static HANDLE g_hAliveThread;//ĞÄÌø¼ì²âÏß³Ì
+static Array_List* g_pListMSClientSocketContext;//å®¢æˆ·ç«¯Socketçš„Contextä¿¡æ¯
+static HANDLE g_hAliveThread;//å¿ƒè·³æ£€æµ‹çº¿ç¨‹
 
 
 
 /////////////////////////////////////////////////////////////////////
-// ÅĞ¶Ï¿Í»§¶ËSocketÊÇ·ñÒÑ¾­¶Ï¿ª£¬·ñÔòÔÚÒ»¸öÎŞĞ§µÄSocketÉÏÍ¶µİWSARecv²Ù×÷»á³öÏÖÒì³£
-// Ê¹ÓÃµÄ·½·¨ÊÇ³¢ÊÔÏòÕâ¸ösocket·¢ËÍÊı¾İ£¬ÅĞ¶ÏÕâ¸ösocketµ÷ÓÃµÄ·µ»ØÖµ
-// ÒòÎªÈç¹û¿Í»§¶ËÍøÂçÒì³£¶Ï¿ª(ÀıÈç¿Í»§¶Ë±ÀÀ£»òÕß°ÎµôÍøÏßµÈ)µÄÊ±ºò£¬·şÎñÆ÷¶ËÊÇÎŞ·¨ÊÕµ½¿Í»§¶Ë¶Ï¿ªµÄÍ¨ÖªµÄ
+// åˆ¤æ–­å®¢æˆ·ç«¯Socketæ˜¯å¦å·²ç»æ–­å¼€ï¼Œå¦åˆ™åœ¨ä¸€ä¸ªæ— æ•ˆçš„Socketä¸ŠæŠ•é€’WSARecvæ“ä½œä¼šå‡ºç°å¼‚å¸¸
+// ä½¿ç”¨çš„æ–¹æ³•æ˜¯å°è¯•å‘è¿™ä¸ªsocketå‘é€æ•°æ®ï¼Œåˆ¤æ–­è¿™ä¸ªsocketè°ƒç”¨çš„è¿”å›å€¼
+// å› ä¸ºå¦‚æœå®¢æˆ·ç«¯ç½‘ç»œå¼‚å¸¸æ–­å¼€(ä¾‹å¦‚å®¢æˆ·ç«¯å´©æºƒæˆ–è€…æ‹”æ‰ç½‘çº¿ç­‰)çš„æ—¶å€™ï¼ŒæœåŠ¡å™¨ç«¯æ˜¯æ— æ³•æ”¶åˆ°å®¢æˆ·ç«¯æ–­å¼€çš„é€šçŸ¥çš„
 
 bool isSocketAlive(SOCKET s)
 {
-	int nByteSent=send(s,"",0,0);//·¢ËÍÒ»¸öĞÄÌø°ü
+	int nByteSent=send(s,"",0,0);//å‘é€ä¸€ä¸ªå¿ƒè·³åŒ…
 	if (-1 == nByteSent) return false;
 	return true;
 }
 
 ///////////////////////////////////////////////////////////////////
-// ÏÔÊ¾²¢´¦ÀíÍê³É¶Ë¿ÚÉÏµÄ´íÎó
+// æ˜¾ç¤ºå¹¶å¤„ç†å®Œæˆç«¯å£ä¸Šçš„é”™è¯¯
 bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 {
 	char strMsg[256] = {0};
-	// Èç¹ûÊÇ³¬Ê±ÁË£¬¾ÍÔÙ¼ÌĞøµÈ°É  
+	// å¦‚æœæ˜¯è¶…æ—¶äº†ï¼Œå°±å†ç»§ç»­ç­‰å§  
 	if(WAIT_TIMEOUT == dwErr)  
 	{  	
-		// È·ÈÏ¿Í»§¶ËÊÇ·ñ»¹»î×Å...
+		// ç¡®è®¤å®¢æˆ·ç«¯æ˜¯å¦è¿˜æ´»ç€...
 		if( !isSocketAlive( pContext->m_socket) )
 		{
 			array_list_remove(g_pListMSClientSocketContext,pContext);
@@ -79,7 +79,7 @@ bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 			return true;
 		}
 	}
-	// ¿ÉÄÜÊÇ¿Í»§¶ËÒì³£ÍË³öÁË
+	// å¯èƒ½æ˜¯å®¢æˆ·ç«¯å¼‚å¸¸é€€å‡ºäº†
 	else if( ERROR_NETNAME_DELETED==dwErr )
 	{
 		array_list_remove(g_pListMSClientSocketContext,pContext);
@@ -94,11 +94,11 @@ bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 }
 
 /////////////////////////////////////////////////////
-// ½«¾ä±ú(Socket)°ó¶¨µ½Íê³É¶Ë¿ÚÖĞ
+// å°†å¥æŸ„(Socket)ç»‘å®šåˆ°å®Œæˆç«¯å£ä¸­
 bool associateWithIOCP( PMS_SOCKET_CONTEXT pContext )
 {
 	char strMsg[256] = {0};
-	// ½«ÓÃÓÚºÍ¿Í»§¶ËÍ¨ĞÅµÄSOCKET°ó¶¨µ½Íê³É¶Ë¿ÚÖĞ
+	// å°†ç”¨äºå’Œå®¢æˆ·ç«¯é€šä¿¡çš„SOCKETç»‘å®šåˆ°å®Œæˆç«¯å£ä¸­
 	HANDLE hTemp = CreateIoCompletionPort((HANDLE)pContext->m_socket, g_hIOCompletionPort, (DWORD)pContext, 0);
 
 	if (NULL == hTemp)
@@ -111,10 +111,10 @@ bool associateWithIOCP( PMS_SOCKET_CONTEXT pContext )
 }
 
 ////////////////////////////////////////////////////////////////////
-// Í¶µİ½ÓÊÕÊı¾İÇëÇó
+// æŠ•é€’æ¥æ”¶æ•°æ®è¯·æ±‚
 bool postRecv( PMS_IO_CONTEXT pIoContext )
 {
-	// ³õÊ¼»¯±äÁ¿
+	// åˆå§‹åŒ–å˜é‡
 	DWORD dwFlags = 0;
 	DWORD dwBytes = 0;
 	int nBytesRecv = 0;
@@ -125,10 +125,10 @@ bool postRecv( PMS_IO_CONTEXT pIoContext )
 	memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
 	pIoContext->m_OpType = RECV_POSTED;
 
-	// ³õÊ¼»¯Íê³Éºó£¬£¬Í¶µİWSARecvÇëÇó
+	// åˆå§‹åŒ–å®Œæˆåï¼Œï¼ŒæŠ•é€’WSARecvè¯·æ±‚
 	nBytesRecv = WSARecv( pIoContext->m_sockAccept, p_wbuf, 1, &dwBytes, &dwFlags, p_ol, NULL );
 
-	// Èç¹û·µ»ØÖµ´íÎó£¬²¢ÇÒ´íÎóµÄ´úÂë²¢·ÇÊÇPendingµÄ»°£¬ÄÇ¾ÍËµÃ÷Õâ¸öÖØµşÇëÇóÊ§°ÜÁË
+	// å¦‚æœè¿”å›å€¼é”™è¯¯ï¼Œå¹¶ä¸”é”™è¯¯çš„ä»£ç å¹¶éæ˜¯Pendingçš„è¯ï¼Œé‚£å°±è¯´æ˜è¿™ä¸ªé‡å è¯·æ±‚å¤±è´¥äº†
 	if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
 	{
 		sprintf(strMsg,"post first message error,error code:%d",WSAGetLastError());
@@ -140,21 +140,21 @@ bool postRecv( PMS_IO_CONTEXT pIoContext )
 
 //====================================================================================
 //
-//				    Í¶µİÍê³É¶Ë¿ÚÇëÇó
+//				    æŠ•é€’å®Œæˆç«¯å£è¯·æ±‚
 //
 //====================================================================================
 //////////////////////////////////////////////////////////////////
-// Í¶µİAcceptÇëÇó
+// æŠ•é€’Acceptè¯·æ±‚
 bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 {
-	// ×¼±¸²ÎÊı
+	// å‡†å¤‡å‚æ•°
 	DWORD dwBytes = 0;  
 	char strMsg[256] = {0};
 	WSABUF *p_wbuf   = &pAcceptIoContext->m_wsaBuf;
 	OVERLAPPED *p_ol = &pAcceptIoContext->m_Overlapped;
 	pAcceptIoContext->m_OpType = ACCEPT_POSTED;
 
-	// ÎªÒÔºóĞÂÁ¬ÈëµÄ¿Í»§¶ËÏÈ×¼±¸ºÃSocket( Õâ¸öÊÇÓë´«Í³accept×î´óµÄÇø±ğ ) 
+	// ä¸ºä»¥åæ–°è¿å…¥çš„å®¢æˆ·ç«¯å…ˆå‡†å¤‡å¥½Socket( è¿™ä¸ªæ˜¯ä¸ä¼ ç»Ÿacceptæœ€å¤§çš„åŒºåˆ« ) 
 	pAcceptIoContext->m_sockAccept  = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
 	if(INVALID_SOCKET==pAcceptIoContext->m_sockAccept)  
 	{  
@@ -163,7 +163,7 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 		return false;
 	} 
 
-	// Í¶µİAcceptEx
+	// æŠ•é€’AcceptEx
 	if(FALSE == g_lpfnAcceptEx( g_pListenContext->m_socket, pAcceptIoContext->m_sockAccept, p_wbuf->buf, p_wbuf->len - ((sizeof(SOCKADDR_IN)+16)*2),   
 		sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, &dwBytes, p_ol))  
 	{  
@@ -178,12 +178,12 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 }
 
 ////////////////////////////////////////////////////////////
-// ÔÚÓĞ¿Í»§¶ËÁ¬ÈëµÄÊ±ºò£¬½øĞĞ´¦Àí
-// Á÷³ÌÓĞµã¸´ÔÓ£¬ÄãÒªÊÇ¿´²»¶®µÄ»°£¬¾Í¿´ÅäÌ×µÄÎÄµµ°É....
-// Èç¹ûÄÜÀí½âÕâÀïµÄ»°£¬Íê³É¶Ë¿ÚµÄ»úÖÆÄã¾ÍÏû»¯ÁËÒ»´ó°ëÁË
+// åœ¨æœ‰å®¢æˆ·ç«¯è¿å…¥çš„æ—¶å€™ï¼Œè¿›è¡Œå¤„ç†
+// æµç¨‹æœ‰ç‚¹å¤æ‚ï¼Œä½ è¦æ˜¯çœ‹ä¸æ‡‚çš„è¯ï¼Œå°±çœ‹é…å¥—çš„æ–‡æ¡£å§....
+// å¦‚æœèƒ½ç†è§£è¿™é‡Œçš„è¯ï¼Œå®Œæˆç«¯å£çš„æœºåˆ¶ä½ å°±æ¶ˆåŒ–äº†ä¸€å¤§åŠäº†
 
-// ×ÜÖ®ÄãÒªÖªµÀ£¬´«ÈëµÄÊÇListenSocketµÄContext£¬ÎÒÃÇĞèÒª¸´ÖÆÒ»·İ³öÀ´¸øĞÂÁ¬ÈëµÄSocketÓÃ
-// Ô­À´µÄContext»¹ÊÇÒªÔÚÉÏÃæ¼ÌĞøÍ¶µİÏÂÒ»¸öAcceptÇëÇó
+// æ€»ä¹‹ä½ è¦çŸ¥é“ï¼Œä¼ å…¥çš„æ˜¯ListenSocketçš„Contextï¼Œæˆ‘ä»¬éœ€è¦å¤åˆ¶ä¸€ä»½å‡ºæ¥ç»™æ–°è¿å…¥çš„Socketç”¨
+// åŸæ¥çš„Contextè¿˜æ˜¯è¦åœ¨ä¸Šé¢ç»§ç»­æŠ•é€’ä¸‹ä¸€ä¸ªAcceptè¯·æ±‚
 //
 bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 {
@@ -197,23 +197,23 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	int len = 0;
 	
 	///////////////////////////////////////////////////////////////////////////
-	// 1. Ê×ÏÈÈ¡µÃÁ¬Èë¿Í»§¶ËµÄµØÖ·ĞÅÏ¢
-	// Õâ¸ö m_lpfnGetAcceptExSockAddrs ²»µÃÁË°¡~~~~~~
-	// ²»µ«¿ÉÒÔÈ¡µÃ¿Í»§¶ËºÍ±¾µØ¶ËµÄµØÖ·ĞÅÏ¢£¬»¹ÄÜË³±ãÈ¡³ö¿Í»§¶Ë·¢À´µÄµÚÒ»×éÊı¾İ£¬ÀÏÇ¿´óÁË...
+	// 1. é¦–å…ˆå–å¾—è¿å…¥å®¢æˆ·ç«¯çš„åœ°å€ä¿¡æ¯
+	// è¿™ä¸ª m_lpfnGetAcceptExSockAddrs ä¸å¾—äº†å•Š~~~~~~
+	// ä¸ä½†å¯ä»¥å–å¾—å®¢æˆ·ç«¯å’Œæœ¬åœ°ç«¯çš„åœ°å€ä¿¡æ¯ï¼Œè¿˜èƒ½é¡ºä¾¿å–å‡ºå®¢æˆ·ç«¯å‘æ¥çš„ç¬¬ä¸€ç»„æ•°æ®ï¼Œè€å¼ºå¤§äº†...
 	g_lpfnGetAcceptExSockAddrs(pIoContext->m_wsaBuf.buf, pIoContext->m_wsaBuf.len - ((sizeof(SOCKADDR_IN)+16)*2),  
 		sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, (LPSOCKADDR*)&LocalAddr, &localLen, (LPSOCKADDR*)&ClientAddr, &remoteLen);
-	//½âÎö¿Í»§¶ËµÚÒ»´Î´«À´µÄĞÅÏ¢
-	len = moon_ms_windows_utf8_to_unicode(pIoContext->m_szBuffer,clientMsg);//½«ÊÕµ½µÄutf-8µÄ×Ö½ÚĞò×ª»¯Îªunicode
+	//è§£æå®¢æˆ·ç«¯ç¬¬ä¸€æ¬¡ä¼ æ¥çš„ä¿¡æ¯
+	len = moon_ms_windows_utf8_to_unicode(pIoContext->m_szBuffer,clientMsg);//å°†æ”¶åˆ°çš„utf-8çš„å­—èŠ‚åºè½¬åŒ–ä¸ºunicode
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 2. ÕâÀïĞèÒª×¢Òâ£¬ÕâÀï´«ÈëµÄÕâ¸öÊÇListenSocketÉÏµÄContext£¬Õâ¸öContextÎÒÃÇ»¹ĞèÒªÓÃÓÚ¼àÌıÏÂÒ»¸öÁ¬½Ó
-	// ËùÒÔÎÒ»¹µÃÒª½«ListenSocketÉÏµÄContext¸´ÖÆ³öÀ´Ò»·İÎªĞÂÁ¬ÈëµÄSocketĞÂ½¨Ò»¸öSocketContext
+	// 2. è¿™é‡Œéœ€è¦æ³¨æ„ï¼Œè¿™é‡Œä¼ å…¥çš„è¿™ä¸ªæ˜¯ListenSocketä¸Šçš„Contextï¼Œè¿™ä¸ªContextæˆ‘ä»¬è¿˜éœ€è¦ç”¨äºç›‘å¬ä¸‹ä¸€ä¸ªè¿æ¥
+	// æ‰€ä»¥æˆ‘è¿˜å¾—è¦å°†ListenSocketä¸Šçš„Contextå¤åˆ¶å‡ºæ¥ä¸€ä»½ä¸ºæ–°è¿å…¥çš„Socketæ–°å»ºä¸€ä¸ªSocketContext
 
 	pNewSocketContext = create_new_socket_context();
 	pNewSocketContext->m_socket           = pIoContext->m_sockAccept;
 	memcpy(&(pNewSocketContext->m_client_addr), ClientAddr, sizeof(SOCKADDR_IN));
 
-	// ²ÎÊıÉèÖÃÍê±Ï£¬½«Õâ¸öSocketºÍÍê³É¶Ë¿Ú°ó¶¨(ÕâÒ²ÊÇÒ»¸ö¹Ø¼ü²½Öè)
+	// å‚æ•°è®¾ç½®å®Œæ¯•ï¼Œå°†è¿™ä¸ªSocketå’Œå®Œæˆç«¯å£ç»‘å®š(è¿™ä¹Ÿæ˜¯ä¸€ä¸ªå…³é”®æ­¥éª¤)
 	if( false==associateWithIOCP( pNewSocketContext ) )
 	{
 		RELEASE(pNewSocketContext);
@@ -221,14 +221,14 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	} 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////
-	// 3. ¼ÌĞø£¬½¨Á¢ÆäÏÂµÄIoContext£¬ÓÃÓÚÔÚÕâ¸öSocketÉÏÍ¶µİµÚÒ»¸öRecvÊı¾İÇëÇó
+	// 3. ç»§ç»­ï¼Œå»ºç«‹å…¶ä¸‹çš„IoContextï¼Œç”¨äºåœ¨è¿™ä¸ªSocketä¸ŠæŠ•é€’ç¬¬ä¸€ä¸ªRecvæ•°æ®è¯·æ±‚
 	pNewIoContext = create_new_io_context();
 	pNewIoContext->m_OpType       = RECV_POSTED;
 	pNewIoContext->m_sockAccept   = pNewSocketContext->m_socket;
-	// Èç¹ûBufferĞèÒª±£Áô£¬¾Í×Ô¼º¿½±´Ò»·İ³öÀ´
+	// å¦‚æœBufferéœ€è¦ä¿ç•™ï¼Œå°±è‡ªå·±æ‹·è´ä¸€ä»½å‡ºæ¥
 	//memcpy( pNewIoContext->m_szBuffer,pIoContext->m_szBuffer,MAX_BUFFER_LEN );
 
-	// °ó¶¨Íê±ÏÖ®ºó£¬¾Í¿ÉÒÔ¿ªÊ¼ÔÚÕâ¸öSocketÉÏÍ¶µİÍê³ÉÇëÇóÁË
+	// ç»‘å®šå®Œæ¯•ä¹‹åï¼Œå°±å¯ä»¥å¼€å§‹åœ¨è¿™ä¸ªSocketä¸ŠæŠ•é€’å®Œæˆè¯·æ±‚äº†
 	if( false==postRecv( pNewIoContext) )
 	{
 		array_list_remove(pNewSocketContext->m_pListIOContext,pNewIoContext);
@@ -238,32 +238,32 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-	// 4. Èç¹ûÍ¶µİ³É¹¦£¬ÄÇÃ´¾Í°ÑÕâ¸öÓĞĞ§µÄ¿Í»§¶ËĞÅÏ¢£¬¼ÓÈëµ½ContextListÖĞÈ¥(ĞèÒªÍ³Ò»¹ÜÀí£¬·½±ãÊÍ·Å×ÊÔ´)
+	// 4. å¦‚æœæŠ•é€’æˆåŠŸï¼Œé‚£ä¹ˆå°±æŠŠè¿™ä¸ªæœ‰æ•ˆçš„å®¢æˆ·ç«¯ä¿¡æ¯ï¼ŒåŠ å…¥åˆ°ContextListä¸­å»(éœ€è¦ç»Ÿä¸€ç®¡ç†ï¼Œæ–¹ä¾¿é‡Šæ”¾èµ„æº)
 	array_list_insert(g_pListMSClientSocketContext,pNewSocketContext,-1);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	// 5. Ê¹ÓÃÍê±ÏÖ®ºó£¬°ÑListen SocketµÄÄÇ¸öIoContextÖØÖÃ£¬È»ºó×¼±¸Í¶µİĞÂµÄAcceptEx
+	// 5. ä½¿ç”¨å®Œæ¯•ä¹‹åï¼ŒæŠŠListen Socketçš„é‚£ä¸ªIoContexté‡ç½®ï¼Œç„¶åå‡†å¤‡æŠ•é€’æ–°çš„AcceptEx
 	memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
 	return post_accept( pIoContext );
 }
 
 /////////////////////////////////////////////////////////////////
-// ÔÚÓĞ½ÓÊÕµÄÊı¾İµ½´ïµÄÊ±ºò£¬½øĞĞ´¦Àí
+// åœ¨æœ‰æ¥æ”¶çš„æ•°æ®åˆ°è¾¾çš„æ—¶å€™ï¼Œè¿›è¡Œå¤„ç†
 bool doRecv( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 {
-	// ÏÈ°ÑÉÏÒ»´ÎµÄÊı¾İÏÔÊ¾³öÏÖ£¬È»ºó¾ÍÖØÖÃ×´Ì¬£¬·¢³öÏÂÒ»¸öRecvÇëÇó
+	// å…ˆæŠŠä¸Šä¸€æ¬¡çš„æ•°æ®æ˜¾ç¤ºå‡ºç°ï¼Œç„¶åå°±é‡ç½®çŠ¶æ€ï¼Œå‘å‡ºä¸‹ä¸€ä¸ªRecvè¯·æ±‚
 	//SOCKADDR_IN* ClientAddr = &pSocketContext->m_client_addr;
-	//this->_ShowMessage( _T("ÊÕµ½  %s:%d ĞÅÏ¢£º%s"),inet_ntoa(ClientAddr->sin_addr), ntohs(ClientAddr->sin_port),pIoContext->m_wsaBuf.buf );
+	//this->_ShowMessage( _T("æ”¶åˆ°  %s:%d ä¿¡æ¯ï¼š%s"),inet_ntoa(ClientAddr->sin_addr), ntohs(ClientAddr->sin_port),pIoContext->m_wsaBuf.buf );
 
-	// È»ºó¿ªÊ¼Í¶µİÏÂÒ»¸öWSARecvÇëÇó
+	// ç„¶åå¼€å§‹æŠ•é€’ä¸‹ä¸€ä¸ªWSARecvè¯·æ±‚
 	return postRecv( pIoContext );
 }
 
 //////////////////////////////////////////////////////////////////////////
-// Í¶µİ·¢ËÍÊı¾İµÄÇëÇó
+// æŠ•é€’å‘é€æ•°æ®çš„è¯·æ±‚
 bool postSend(PMS_IO_CONTEXT pIoContext)
 {
-	// ³õÊ¼»¯±äÁ¿
+	// åˆå§‹åŒ–å˜é‡
 	DWORD dwFlags = 0;
 	DWORD dwBytes = 0;
 	int nBytesRecv = 0;
@@ -273,13 +273,13 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 	pIoContext->m_OpType = SEND_POSTED;
 	//memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
 	p_wbuf->len = strlen(p_wbuf->buf);
-	// ³õÊ¼»¯Íê³Éºó£¬£¬Í¶µİWSARecvÇëÇó
+	// åˆå§‹åŒ–å®Œæˆåï¼Œï¼ŒæŠ•é€’WSARecvè¯·æ±‚
 	nBytesRecv = WSASend( pIoContext->m_sockAccept, p_wbuf, 1, &dwBytes, dwFlags, p_ol, NULL );
 
-	// Èç¹û·µ»ØÖµ´íÎó£¬²¢ÇÒ´íÎóµÄ´úÂë²¢·ÇÊÇPendingµÄ»°£¬ÄÇ¾ÍËµÃ÷Õâ¸öÖØµşÇëÇóÊ§°ÜÁË
+	// å¦‚æœè¿”å›å€¼é”™è¯¯ï¼Œå¹¶ä¸”é”™è¯¯çš„ä»£ç å¹¶éæ˜¯Pendingçš„è¯ï¼Œé‚£å°±è¯´æ˜è¿™ä¸ªé‡å è¯·æ±‚å¤±è´¥äº†
 	if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
 	{
-		//this->_ShowMessage("Í¶µİµÚÒ»¸öWSARecvÊ§°Ü£¡");
+		//this->_ShowMessage("æŠ•é€’ç¬¬ä¸€ä¸ªWSARecvå¤±è´¥ï¼");
 		sprintf(strMsg,"post first message error,error code:%d",WSAGetLastError());
 		moon_write_error_log(strMsg);
 		return false;
@@ -288,15 +288,15 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 }
 
 //////////////////////////////////////////////////////////////////////////
-//ÔÚÓĞ·¢ËÍµÄÊı¾İµÄÊ±ºò½øĞĞ´¦Àí
+//åœ¨æœ‰å‘é€çš„æ•°æ®çš„æ—¶å€™è¿›è¡Œå¤„ç†
 bool doSend(PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext)
 {
 	return postSend(pIoContext);
 }
 
 ///////////////////////////////////////////////////////////////////
-// ¹¤×÷ÕßÏß³Ì£º  ÎªIOCPÇëÇó·şÎñµÄ¹¤×÷ÕßÏß³Ì
-//         Ò²¾ÍÊÇÃ¿µ±Íê³É¶Ë¿ÚÉÏ³öÏÖÁËÍê³ÉÊı¾İ°ü£¬¾Í½«Ö®È¡³öÀ´½øĞĞ´¦ÀíµÄÏß³Ì
+// å·¥ä½œè€…çº¿ç¨‹ï¼š  ä¸ºIOCPè¯·æ±‚æœåŠ¡çš„å·¥ä½œè€…çº¿ç¨‹
+//         ä¹Ÿå°±æ˜¯æ¯å½“å®Œæˆç«¯å£ä¸Šå‡ºç°äº†å®Œæˆæ•°æ®åŒ…ï¼Œå°±å°†ä¹‹å–å‡ºæ¥è¿›è¡Œå¤„ç†çš„çº¿ç¨‹
 ///////////////////////////////////////////////////////////////////
 DWORD static WINAPI worker_thread(LPVOID lpParam)
 {
@@ -304,7 +304,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 	PMS_SOCKET_CONTEXT   pSocketContext = NULL;
 	DWORD                dwBytesTransfered = 0;
 
-	// Ñ­»·´¦ÀíÇëÇó£¬ÖªµÀ½ÓÊÕµ½ShutdownĞÅÏ¢ÎªÖ¹
+	// å¾ªç¯å¤„ç†è¯·æ±‚ï¼ŒçŸ¥é“æ¥æ”¶åˆ°Shutdownä¿¡æ¯ä¸ºæ­¢
 	while (WAIT_OBJECT_0 != WaitForSingleObject(g_hShutdownEvent, 0))
 	{
 		BOOL bReturn = GetQueuedCompletionStatus(
@@ -317,7 +317,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 		{
 			_EnterCriticalSection(pSocketContext);
 		}
-		// Èç¹ûÊÕµ½µÄÊÇÍË³ö±êÖ¾£¬ÔòÖ±½ÓÍË³ö
+		// å¦‚æœæ”¶åˆ°çš„æ˜¯é€€å‡ºæ ‡å¿—ï¼Œåˆ™ç›´æ¥é€€å‡º
 		if ( EXIT_CODE==(DWORD)pSocketContext )
 		{
 			if (pSocketContext != NULL)
@@ -327,12 +327,12 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 			break;
 		}
 
-		// ÅĞ¶ÏÊÇ·ñ³öÏÖÁË´íÎó
+		// åˆ¤æ–­æ˜¯å¦å‡ºç°äº†é”™è¯¯
 		if( !bReturn )  
 		{  
 			DWORD dwErr = GetLastError();
 
-			// ÏÔÊ¾Ò»ÏÂÌáÊ¾ĞÅÏ¢
+			// æ˜¾ç¤ºä¸€ä¸‹æç¤ºä¿¡æ¯
 			if( !handleError( pSocketContext,dwErr ) )
 			{
 				_LeaveCriticalSection(pSocketContext);
@@ -343,13 +343,13 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 		}  
 		else  
 		{  
-			// ¶ÁÈ¡´«ÈëµÄ²ÎÊı
+			// è¯»å–ä¼ å…¥çš„å‚æ•°
 			MS_IO_CONTEXT* pIoContext = CONTAINING_RECORD(pOverlapped, MS_IO_CONTEXT, m_Overlapped);  
 
-			// ÅĞ¶ÏÊÇ·ñÓĞ¿Í»§¶Ë¶Ï¿ªÁË
+			// åˆ¤æ–­æ˜¯å¦æœ‰å®¢æˆ·ç«¯æ–­å¼€äº†
 			if((0 == dwBytesTransfered) && ( RECV_POSTED==pIoContext->m_OpType || SEND_POSTED==pIoContext->m_OpType))  
 			{  
-				// ÊÍ·Åµô¶ÔÓ¦µÄ×ÊÔ´
+				// é‡Šæ”¾æ‰å¯¹åº”çš„èµ„æº
 				array_list_remove(g_pListMSClientSocketContext,pSocketContext);
 				free_socket_context(pSocketContext);
 				pSocketContext = NULL;
@@ -363,7 +363,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					// Accept  
 				case ACCEPT_POSTED:
 					{ 
-						// ÎªÁËÔö¼Ó´úÂë¿É¶ÁĞÔ£¬ÕâÀïÓÃ×¨ÃÅµÄ_DoAcceptº¯Êı½øĞĞ´¦ÀíÁ¬ÈëÇëÇó
+						// ä¸ºäº†å¢åŠ ä»£ç å¯è¯»æ€§ï¼Œè¿™é‡Œç”¨ä¸“é—¨çš„_DoAcceptå‡½æ•°è¿›è¡Œå¤„ç†è¿å…¥è¯·æ±‚
 						doAccpet( pSocketContext, pIoContext );
 					}
 					break;
@@ -371,9 +371,9 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					// RECV
 				case RECV_POSTED:
 					{
-						// ÎªÁËÔö¼Ó´úÂë¿É¶ÁĞÔ£¬ÕâÀïÓÃ×¨ÃÅµÄ_DoRecvº¯Êı½øĞĞ´¦Àí½ÓÊÕÇëÇó
+						// ä¸ºäº†å¢åŠ ä»£ç å¯è¯»æ€§ï¼Œè¿™é‡Œç”¨ä¸“é—¨çš„_DoRecvå‡½æ•°è¿›è¡Œå¤„ç†æ¥æ”¶è¯·æ±‚
 						doRecv( pSocketContext,pIoContext );
-						//½ÓÊÕµ½ÏûÏ¢Ö®ºó¸ø¿Í»§¶Ë»Ø´«ÏûÏ¢
+						//æ¥æ”¶åˆ°æ¶ˆæ¯ä¹‹åç»™å®¢æˆ·ç«¯å›ä¼ æ¶ˆæ¯
 						strcpy(pIoContext->m_wsaBuf.buf,"server");
 						doSend(pSocketContext,pIoContext);
 					}
@@ -382,13 +382,13 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					// SEND
 				case SEND_POSTED:
 					{
-						//moon_write_info_log("¿ªÊ¼·¢ËÍÏûÏ¢:");
+						//moon_write_info_log("å¼€å§‹å‘é€æ¶ˆæ¯:");
 						//moon_write_info_log(pIoContext->m_szBuffer);
 					}
 					break;
 				default:
-					// ²»Ó¦¸ÃÖ´ĞĞµ½ÕâÀï
-					//TRACE(_T("_WorkThreadÖĞµÄ pIoContext->m_OpType ²ÎÊıÒì³£.\n"));
+					// ä¸åº”è¯¥æ‰§è¡Œåˆ°è¿™é‡Œ
+					//TRACE(_T("_WorkThreadä¸­çš„ pIoContext->m_OpType å‚æ•°å¼‚å¸¸.\n"));
 					break;
 				} //switch
 			}//if
@@ -400,7 +400,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 }
 
 /*****************************************************************
- *  ĞÄÌø°ü¼ì²âÏß³Ì
+ *  å¿ƒè·³åŒ…æ£€æµ‹çº¿ç¨‹
  *****************************************************************/
 DWORD static WINAPI alive_thread(LPVOID lpParam)
 {
@@ -425,14 +425,14 @@ DWORD static WINAPI alive_thread(LPVOID lpParam)
 }
 
 ////////////////////////////////////////////////////////////////////
-// ³õÊ¼»¯WinSock 2.2
+// åˆå§‹åŒ–WinSock 2.2
 bool static load_socket_lib()
 {    
 	WSADATA wsaData;
 	int nResult;
 	char strMsg[256] = {0};
 	nResult = WSAStartup(MAKEWORD(2,2), &wsaData);
-	// ´íÎó(Ò»°ã¶¼²»¿ÉÄÜ³öÏÖ)
+	// é”™è¯¯(ä¸€èˆ¬éƒ½ä¸å¯èƒ½å‡ºç°)
 	if (NO_ERROR != nResult)
 	{
 		sprintf(strMsg,"init winsock 2.2 falied,error code:%d",WSAGetLastError());
@@ -444,7 +444,7 @@ bool static load_socket_lib()
 }
 
 ///////////////////////////////////////////////////////////////////
-// »ñµÃ±¾»úÖĞ´¦ÀíÆ÷µÄÊıÁ¿
+// è·å¾—æœ¬æœºä¸­å¤„ç†å™¨çš„æ•°é‡
 int getNoOfProcessors()
 {
 	SYSTEM_INFO si;
@@ -455,13 +455,13 @@ int getNoOfProcessors()
 }
 
 ////////////////////////////////
-// ³õÊ¼»¯Íê³É¶Ë¿Ú
+// åˆå§‹åŒ–å®Œæˆç«¯å£
 bool ms_iocp_init()
 {
 	int i = 0;
 	DWORD nThreadID;
 	char strMsg[256] = {0};
-	// ½¨Á¢µÚÒ»¸öÍê³É¶Ë¿Ú
+	// å»ºç«‹ç¬¬ä¸€ä¸ªå®Œæˆç«¯å£
 	g_hIOCompletionPort = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0 );
 
 	if ( NULL == g_hIOCompletionPort)
@@ -471,13 +471,13 @@ bool ms_iocp_init()
 		return false;
 	}
 
-	// ¸ù¾İ±¾»úÖĞµÄ´¦ÀíÆ÷ÊıÁ¿£¬½¨Á¢¶ÔÓ¦µÄÏß³ÌÊı
+	// æ ¹æ®æœ¬æœºä¸­çš„å¤„ç†å™¨æ•°é‡ï¼Œå»ºç«‹å¯¹åº”çš„çº¿ç¨‹æ•°
 	g_nThreads = WORKER_THREADS_PER_PROCESSOR * getNoOfProcessors();
 
-	// Îª¹¤×÷ÕßÏß³Ì³õÊ¼»¯¾ä±ú
+	// ä¸ºå·¥ä½œè€…çº¿ç¨‹åˆå§‹åŒ–å¥æŸ„
 	g_phWorkerThreads = (HANDLE*)malloc(sizeof(HANDLE) * g_nThreads);
 
-	// ¸ù¾İ¼ÆËã³öÀ´µÄÊıÁ¿½¨Á¢¹¤×÷ÕßÏß³Ì
+	// æ ¹æ®è®¡ç®—å‡ºæ¥çš„æ•°é‡å»ºç«‹å·¥ä½œè€…çº¿ç¨‹
 	for (i=0; i < g_nThreads; i++)
 	{
 		g_phWorkerThreads[i] = CreateThread(0, 0, worker_thread, NULL, 0, &nThreadID);
@@ -487,14 +487,14 @@ bool ms_iocp_init()
 }
 
 ////////////////////////////////////////////////////////////
-//	×îºóÊÍ·ÅµôËùÓĞ×ÊÔ´
+//	æœ€åé‡Šæ”¾æ‰æ‰€æœ‰èµ„æº
 void dispose()
 {
 	int i = 0;
-	// ¹Ø±ÕÏµÍ³ÍË³öÊÂ¼ş¾ä±ú
+	// å…³é—­ç³»ç»Ÿé€€å‡ºäº‹ä»¶å¥æŸ„
 	RELEASE_HANDLE(g_hShutdownEvent);
 
-	// ÊÍ·Å¹¤×÷ÕßÏß³Ì¾ä±úÖ¸Õë
+	// é‡Šæ”¾å·¥ä½œè€…çº¿ç¨‹å¥æŸ„æŒ‡é’ˆ
 	for(i=0;i<g_nThreads;i++ )
 	{
 		RELEASE_HANDLE(g_phWorkerThreads[i]);
@@ -502,16 +502,16 @@ void dispose()
 
 	RELEASE(g_phWorkerThreads);
 
-	//ÊÍ·ÅĞÄÌø°üµÄÏß³Ì¾ä±ú
+	//é‡Šæ”¾å¿ƒè·³åŒ…çš„çº¿ç¨‹å¥æŸ„
 	RELEASE_HANDLE(g_hAliveThread);
 
-	// ¹Ø±ÕIOCP¾ä±ú
+	// å…³é—­IOCPå¥æŸ„
 	RELEASE_HANDLE(g_hIOCompletionPort);
 
-	// ¹Ø±Õ¼àÌıSocket
+	// å…³é—­ç›‘å¬Socket
 	free_socket_context(g_pListenContext);
 
-	//ÊÍ·Å¿Í»§¶ËÉÏÏÂÎÄ¼¯ºÏ
+	//é‡Šæ”¾å®¢æˆ·ç«¯ä¸Šä¸‹æ–‡é›†åˆ
 	for (i = 0; i < g_pListMSClientSocketContext->length;)
 	{
 		free_socket_context((PMS_SOCKET_CONTEXT)array_list_getAt(g_pListMSClientSocketContext,i));
@@ -521,10 +521,10 @@ void dispose()
 }
 
 /////////////////////////////////////////////////////////////////
-// ³õÊ¼»¯Socket
+// åˆå§‹åŒ–Socket
 bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 {
-	// AcceptEx ºÍ GetAcceptExSockaddrs µÄGUID£¬ÓÃÓÚµ¼³öº¯ÊıÖ¸Õë
+	// AcceptEx å’Œ GetAcceptExSockaddrs çš„GUIDï¼Œç”¨äºå¯¼å‡ºå‡½æ•°æŒ‡é’ˆ
 	GUID GuidAcceptEx = WSAID_ACCEPTEX;  
 	GUID GuidGetAcceptExSockAddrs = WSAID_GETACCEPTEXSOCKADDRS; 
 	char strMsg[256] = {0};
@@ -534,13 +534,13 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	int addrlen = 0;
 	DWORD dwBytes = 0; 
 	DWORD	Flags = 0;
-	// ·şÎñÆ÷µØÖ·ĞÅÏ¢£¬ÓÃÓÚ°ó¶¨Socket
+	// æœåŠ¡å™¨åœ°å€ä¿¡æ¯ï¼Œç”¨äºç»‘å®šSocket
 	struct sockaddr_in ServerAddress;
 
-	// Éú³ÉÓÃÓÚ¼àÌıµÄSocketµÄĞÅÏ¢
+	// ç”Ÿæˆç”¨äºç›‘å¬çš„Socketçš„ä¿¡æ¯
 	g_pListenContext = create_new_socket_context();
 
-	// ĞèÒªÊ¹ÓÃÖØµşIO£¬±ØĞëµÃÊ¹ÓÃWSASocketÀ´½¨Á¢Socket£¬²Å¿ÉÒÔÖ§³ÖÖØµşIO²Ù×÷
+	// éœ€è¦ä½¿ç”¨é‡å IOï¼Œå¿…é¡»å¾—ä½¿ç”¨WSASocketæ¥å»ºç«‹Socketï¼Œæ‰å¯ä»¥æ”¯æŒé‡å IOæ“ä½œ
 	g_pListenContext->m_socket = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
 	if (INVALID_SOCKET == g_pListenContext->m_socket) 
 	{
@@ -555,7 +555,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		memset(strMsg,0,256);
 	}
 
-	// ½«Listen Socket°ó¶¨ÖÁÍê³É¶Ë¿ÚÖĞ
+	// å°†Listen Socketç»‘å®šè‡³å®Œæˆç«¯å£ä¸­
 	if( NULL== CreateIoCompletionPort( (HANDLE)g_pListenContext->m_socket, g_hIOCompletionPort,(DWORD)g_pListenContext, 0))  
 	{  
 		sprintf(strMsg,"bind listen socket to io completion port failed,error code:%d",WSAGetLastError());
@@ -570,15 +570,15 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		memset(strMsg,0,256);
 	}
 
-	// Ìî³äµØÖ·ĞÅÏ¢
+	// å¡«å……åœ°å€ä¿¡æ¯
 	ZeroMemory((char *)&ServerAddress, sizeof(ServerAddress));
 	ServerAddress.sin_family = AF_INET;
-	// ÕâÀï¿ÉÒÔ°ó¶¨ÈÎºÎ¿ÉÓÃµÄIPµØÖ·£¬»òÕß°ó¶¨Ò»¸öÖ¸¶¨µÄIPµØÖ· 
+	// è¿™é‡Œå¯ä»¥ç»‘å®šä»»ä½•å¯ç”¨çš„IPåœ°å€ï¼Œæˆ–è€…ç»‘å®šä¸€ä¸ªæŒ‡å®šçš„IPåœ°å€ 
 	//ServerAddress.sin_addr.s_addr = htonl(INADDR_ANY);                      
 	ServerAddress.sin_addr.s_addr = inet_addr(p_global_server_config->server_ip);         
 	ServerAddress.sin_port = htons(p_global_server_config->server_port);                          
 
-	// °ó¶¨µØÖ·ºÍ¶Ë¿Ú
+	// ç»‘å®šåœ°å€å’Œç«¯å£
 	if (SOCKET_ERROR == bind(g_pListenContext->m_socket, (struct sockaddr *) &ServerAddress, sizeof(ServerAddress))) 
 	{
 		sprintf(strMsg,"bind() execute failed,error code:%d",WSAGetLastError());
@@ -587,7 +587,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		return false;
 	}
 
-	// ¿ªÊ¼½øĞĞ¼àÌı
+	// å¼€å§‹è¿›è¡Œç›‘å¬
 	if (SOCKET_ERROR == listen(g_pListenContext->m_socket,SOMAXCONN))
 	{
 		sprintf(strMsg,"listen() execute failed,error code:%d",WSAGetLastError());
@@ -596,9 +596,9 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		return false;
 	}
 
-	// Ê¹ÓÃAcceptExº¯Êı£¬ÒòÎªÕâ¸öÊÇÊôÓÚWinSock2¹æ·¶Ö®ÍâµÄÎ¢ÈíÁíÍâÌá¹©µÄÀ©Õ¹º¯Êı
-	// ËùÒÔĞèÒª¶îÍâ»ñÈ¡Ò»ÏÂº¯ÊıµÄÖ¸Õë£¬
-	// »ñÈ¡AcceptExº¯ÊıÖ¸Õë
+	// ä½¿ç”¨AcceptExå‡½æ•°ï¼Œå› ä¸ºè¿™ä¸ªæ˜¯å±äºWinSock2è§„èŒƒä¹‹å¤–çš„å¾®è½¯å¦å¤–æä¾›çš„æ‰©å±•å‡½æ•°
+	// æ‰€ä»¥éœ€è¦é¢å¤–è·å–ä¸€ä¸‹å‡½æ•°çš„æŒ‡é’ˆï¼Œ
+	// è·å–AcceptExå‡½æ•°æŒ‡é’ˆ
 	if(SOCKET_ERROR == WSAIoctl(
 		g_pListenContext->m_socket, 
 		SIO_GET_EXTENSION_FUNCTION_POINTER, 
@@ -616,7 +616,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		return false;  
 	}  
 
-	// »ñÈ¡GetAcceptExSockAddrsº¯ÊıÖ¸Õë£¬Ò²ÊÇÍ¬Àí
+	// è·å–GetAcceptExSockAddrså‡½æ•°æŒ‡é’ˆï¼Œä¹Ÿæ˜¯åŒç†
 	if(SOCKET_ERROR == WSAIoctl(
 		g_pListenContext->m_socket, 
 		SIO_GET_EXTENSION_FUNCTION_POINTER, 
@@ -635,21 +635,21 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	}  
 
 
-	// ÎªAcceptEx ×¼±¸²ÎÊı£¬È»ºóÍ¶µİAcceptEx I/OÇëÇó
+	// ä¸ºAcceptEx å‡†å¤‡å‚æ•°ï¼Œç„¶åæŠ•é€’AcceptEx I/Oè¯·æ±‚
 	for(i=0;i < MAX_POST_ACCEPT;i++ )
 	{
-		// ĞÂ½¨Ò»¸öIO_CONTEXT
+		// æ–°å»ºä¸€ä¸ªIO_CONTEXT
 		PMS_IO_CONTEXT pAcceptIoContext = create_new_io_context();
 		if( false==post_accept( pAcceptIoContext ) )
 		{
 			free_io_context(pAcceptIoContext);
 			return false;
 		}
-		//½«½ÓÊÕµÄIOÉÏÏÂÎÄ·ÅÈë¼àÌıÁĞ±í
+		//å°†æ¥æ”¶çš„IOä¸Šä¸‹æ–‡æ”¾å…¥ç›‘å¬åˆ—è¡¨
 		array_list_insert(g_pListenContext->m_pListIOContext,pAcceptIoContext,-1);
 	}
 
-	//Ê¹ÓÃµÚ¶şÖÖ½ÓÊÕ·½Ê½(×èÈû)
+	//ä½¿ç”¨ç¬¬äºŒç§æ¥æ”¶æ–¹å¼(é˜»å¡)
 	/*
 	while(WAIT_TIMEOUT == WaitForSingleObject(g_hShutdownEvent, 0))	//when m_killevent is set , server shutdown
 	{
@@ -663,7 +663,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 			moon_write_error_log(strMsg); 
 			return false;
 		}
-		if(!associateWithIOCP(pNewSocketContext))//½«¿Í»§¶Ësocket°ó¶¨µ½Íê³É¶Ë¿Ú
+		if(!associateWithIOCP(pNewSocketContext))//å°†å®¢æˆ·ç«¯socketç»‘å®šåˆ°å®Œæˆç«¯å£
 		{
 			free_socket_context(pNewSocketContext);
 			pNewSocketContext = NULL;
@@ -696,18 +696,18 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	return true;
 }
 
-bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*Æô¶¯IOCP·şÎñ*/
+bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*å¯åŠ¨IOCPæœåŠ¡*/
 {
 	DWORD nThreadID;
 	if(!load_socket_lib())
 	{
 		return false;
 	}
-	// ½¨Á¢ÏµÍ³ÍË³öµÄÊÂ¼şÍ¨Öª
+	// å»ºç«‹ç³»ç»Ÿé€€å‡ºçš„äº‹ä»¶é€šçŸ¥
 	g_hShutdownEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-	//³õÊ¼»¯¿Í»§¶Ë¼¯ºÏ
+	//åˆå§‹åŒ–å®¢æˆ·ç«¯é›†åˆ
 	g_pListMSClientSocketContext = array_list_init();
-	// ³õÊ¼»¯IOCP
+	// åˆå§‹åŒ–IOCP
 	if (false == ms_iocp_init())
 	{
 		moon_write_error_log("init ms_nt_iocp falied");
@@ -726,7 +726,7 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*Æô¶
 	{
 		moon_write_info_log("init ms_init_listen_socket finished");
 	}
-	//¿ªÆôĞÄÌø¼ì²âÏß³Ì
+	//å¼€å¯å¿ƒè·³æ£€æµ‹çº¿ç¨‹
 	g_hAliveThread = CreateThread(0, 0, alive_thread, NULL, 0, &nThreadID);
 	if (g_hAliveThread == NULL)
 	{
@@ -737,23 +737,23 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*Æô¶
 	return true;
 }
 
-void ms_iocp_server_stop()/*Í£Ö¹IOCP·şÎñ*/
+void ms_iocp_server_stop()/*åœæ­¢IOCPæœåŠ¡*/
 {
 	int i = 0;
 	if( g_pListenContext!=NULL && g_pListenContext->m_socket!=INVALID_SOCKET )
 	{
-		// ¼¤»î¹Ø±ÕÏûÏ¢Í¨Öª
+		// æ¿€æ´»å…³é—­æ¶ˆæ¯é€šçŸ¥
 		SetEvent(g_hShutdownEvent);
 		for (i = 0; i < g_nThreads; i++)
 		{
-			// Í¨ÖªËùÓĞµÄÍê³É¶Ë¿Ú²Ù×÷ÍË³ö
+			// é€šçŸ¥æ‰€æœ‰çš„å®Œæˆç«¯å£æ“ä½œé€€å‡º
 			PostQueuedCompletionStatus(g_hIOCompletionPort, 0, (DWORD)EXIT_CODE, NULL);
 		}
-		// µÈ´ıËùÓĞµÄ¿Í»§¶Ë×ÊÔ´ÍË³ö
+		// ç­‰å¾…æ‰€æœ‰çš„å®¢æˆ·ç«¯èµ„æºé€€å‡º
 		WaitForMultipleObjects(g_nThreads, g_phWorkerThreads, TRUE, INFINITE);
-		// µÈ´ıĞÄÌø¼ì²âÏß³ÌÍË³ö
+		// ç­‰å¾…å¿ƒè·³æ£€æµ‹çº¿ç¨‹é€€å‡º
 		WaitForSingleObject(g_hAliveThread,INFINITE);
-		// ÊÍ·ÅÆäËû×ÊÔ´
+		// é‡Šæ”¾å…¶ä»–èµ„æº
 		dispose();
 	}	
 }

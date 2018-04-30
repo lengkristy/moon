@@ -1,11 +1,11 @@
-#include "Queue.h"
+#include "queue.h"
 #include <stdlib.h>
 #include <malloc.h>
 /**
-	*  ËµÃ÷£º³õÊ¼»¯¶ÓÁĞ
-	*	²ÎÊı£º
-	*		queueIncreasedEvent£ºĞèÒª×¢²áµÄ¶ÓÁĞĞÂÔöÊÂ¼ş
-	*	·µ»ØÖµ£º³É¹¦Ôò·µ»Ø¶ÓÁĞµÄÖ¸Õë£¬Ê§°ÜÔò·µ»ØNULL
+	*  è¯´æ˜ï¼šåˆå§‹åŒ–é˜Ÿåˆ—
+	*	å‚æ•°ï¼š
+	*		queueIncreasedEventï¼šéœ€è¦æ³¨å†Œçš„é˜Ÿåˆ—æ–°å¢äº‹ä»¶
+	*	è¿”å›å€¼ï¼šæˆåŠŸåˆ™è¿”å›é˜Ÿåˆ—çš„æŒ‡é’ˆï¼Œå¤±è´¥åˆ™è¿”å›NULL
 	*/
 Queue* Queue_Init(QueueIncreased queueIncreasedEvent)
 {
@@ -23,23 +23,23 @@ Queue* Queue_Init(QueueIncreased queueIncreasedEvent)
 }
 
 /**
-	*  ËµÃ÷£º´Ó¶ÓÁĞµÄÍ·²¿Ìí¼Ó
-	*	²ÎÊı£º
-	*		queue£º¶ÓÁĞÖ¸Õë
-	*		data£ºÌí¼ÓµÄÊı¾İÓò
-	*	·µ»ØÖµ£ºÌí¼Ó³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø-1
+	*  è¯´æ˜ï¼šä»é˜Ÿåˆ—çš„å¤´éƒ¨æ·»åŠ 
+	*	å‚æ•°ï¼š
+	*		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	*		dataï¼šæ·»åŠ çš„æ•°æ®åŸŸ
+	*	è¿”å›å€¼ï¼šæ·»åŠ æˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›-1
 	*/
 int Queue_AddToHead(Queue* queue,void* data)
 {
 	QueueNode* node = NULL;
 	if(queue == NULL)
 		return -1;
-	//´´½¨½Úµã
+	//åˆ›å»ºèŠ‚ç‚¹
 	node = (QueueNode*)malloc(sizeof(QueueNode));
 	if(node == NULL)
 		return -1;
 	node->data = data;
-	//Èç¹ûÊÇµÚÒ»´ÎÌí¼Ó£¬Í·²¿ºÍÎ²²¿¶¼Ö¸Ïòµ±Ç°½Úµã
+	//å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡æ·»åŠ ï¼Œå¤´éƒ¨å’Œå°¾éƒ¨éƒ½æŒ‡å‘å½“å‰èŠ‚ç‚¹
 	if(queue->tail == NULL && queue->head == NULL)
 	{
 		queue->tail = node;
@@ -49,37 +49,37 @@ int Queue_AddToHead(Queue* queue,void* data)
 	}
 	else
 	{
-		//¿ªÊ¼´ÓÍ·²¿Ìí¼Ó
+		//å¼€å§‹ä»å¤´éƒ¨æ·»åŠ 
 		queue->head->prior = node;
 		node->next = queue->head;
 		node->prior = NULL;
 		queue->head = node;
 	}
 	queue->length++;
-	//»Øµ÷Ìí¼ÓÊÂ¼ş
+	//å›è°ƒæ·»åŠ äº‹ä»¶
 	if(queue->onQueueIncreased != NULL)
 		return queue->onQueueIncreased(queue,data);
 	return 0;
 }
 
 /**
-	*  ËµÃ÷£º´Ó¶ÓÁĞµÄÎ²²¿Ìí¼Ó
-	*	²ÎÊı£º
-	*		queue£º¶ÓÁĞÖ¸Õë
-	*		data£ºÌí¼ÓµÄÊı¾İÓò
-	*	·µ»ØÖµ£ºÌí¼Ó³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø-1
+	*  è¯´æ˜ï¼šä»é˜Ÿåˆ—çš„å°¾éƒ¨æ·»åŠ 
+	*	å‚æ•°ï¼š
+	*		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	*		dataï¼šæ·»åŠ çš„æ•°æ®åŸŸ
+	*	è¿”å›å€¼ï¼šæ·»åŠ æˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›-1
 	*/
 int Queue_AddToTail(Queue* queue,void* data)
 {
 	QueueNode* node = NULL;
 	if(queue == NULL)
 		return -1;
-	//´´½¨½Úµã
+	//åˆ›å»ºèŠ‚ç‚¹
 	node = (QueueNode*)malloc(sizeof(QueueNode));
 	if(node == NULL)
 		return -1;
 	node->data = data;
-	//Èç¹ûÊÇµÚÒ»´ÎÌí¼Ó£¬Í·²¿ºÍÎ²²¿¶¼Ö¸Ïòµ±Ç°½Úµã
+	//å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡æ·»åŠ ï¼Œå¤´éƒ¨å’Œå°¾éƒ¨éƒ½æŒ‡å‘å½“å‰èŠ‚ç‚¹
 	if(queue->tail == NULL && queue->head == NULL)
 	{
 		queue->tail = node;
@@ -89,24 +89,24 @@ int Queue_AddToTail(Queue* queue,void* data)
 	}
 	else
 	{
-		//¿ªÊ¼´ÓÎ²²¿Ìí¼Ó
+		//å¼€å§‹ä»å°¾éƒ¨æ·»åŠ 
 		queue->tail->next = node;
 		node->prior = queue->tail;
 		node->next = NULL;
 		queue->tail = node;
 	}
 	queue->length++;
-	//»Øµ÷Ìí¼ÓÊÂ¼ş
+	//å›è°ƒæ·»åŠ äº‹ä»¶
 	if(queue->onQueueIncreased != NULL)
 		return queue->onQueueIncreased(queue,data);
 	return 0;
 }
 
 /**
-	*  ËµÃ÷£º´Ó¶ÓÁĞµÄÍ·²¿È¡³öÊı¾İ
-	*	²ÎÊı£º
-	*		queue£º¶ÓÁĞÖ¸Õë
-	*	·µ»ØÖµ£º³É¹¦È¡³öÊı¾İ£¬Ê§°Ü·µ»ØNULL
+	*  è¯´æ˜ï¼šä»é˜Ÿåˆ—çš„å¤´éƒ¨å–å‡ºæ•°æ®
+	*	å‚æ•°ï¼š
+	*		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	*	è¿”å›å€¼ï¼šæˆåŠŸå–å‡ºæ•°æ®ï¼Œå¤±è´¥è¿”å›NULL
 	*/
 void* Queue_GetFromHead(Queue* queue)
 {
@@ -118,13 +118,13 @@ void* Queue_GetFromHead(Queue* queue)
 	}
 	node = queue->head;
 	queue->head = node->next;
-	if(queue->head != NULL)//Èç¹ûÈ¡³öµÄÍ·²¿²»Îª¿Õ£¬½«Í·²¿µÄÉÏÒ»¸ö½ÚµãÖÃÎªNULL
+	if(queue->head != NULL)//å¦‚æœå–å‡ºçš„å¤´éƒ¨ä¸ä¸ºç©ºï¼Œå°†å¤´éƒ¨çš„ä¸Šä¸€ä¸ªèŠ‚ç‚¹ç½®ä¸ºNULL
 	{
 		queue->head->prior = NULL;
 	}
 	else
 	{
-		//±íÊ¾¶ÓÁĞÒÑ¾­È¡ÍêÁË
+		//è¡¨ç¤ºé˜Ÿåˆ—å·²ç»å–å®Œäº†
 		queue->tail = NULL;
 		queue->head = NULL;
 	}
@@ -136,10 +136,10 @@ void* Queue_GetFromHead(Queue* queue)
 
 
 /**
-	*  ËµÃ÷£º´Ó¶ÓÁĞµÄÎ²²¿È¡³öÊı¾İ
-	*	²ÎÊı£º
-	*		queue£º¶ÓÁĞÖ¸Õë
-	*	·µ»ØÖµ£º³É¹¦È¡³öÊı¾İ£¬Ê§°Ü·µ»ØNULL
+	*  è¯´æ˜ï¼šä»é˜Ÿåˆ—çš„å°¾éƒ¨å–å‡ºæ•°æ®
+	*	å‚æ•°ï¼š
+	*		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	*	è¿”å›å€¼ï¼šæˆåŠŸå–å‡ºæ•°æ®ï¼Œå¤±è´¥è¿”å›NULL
 	*/
 void* Queue_GetFromTail(Queue* queue)
 {
@@ -151,13 +151,13 @@ void* Queue_GetFromTail(Queue* queue)
 	}
 	node = queue->tail;
 	queue->tail = node->prior;
-	if(queue->tail != NULL)//Èç¹ûÈ¡³öµÄÎ²²¿²»Îª¿Õ£¬½«Î²²¿µÄÏÂÒ»¸ö½ÚµãÖÃÎªNULL
+	if(queue->tail != NULL)//å¦‚æœå–å‡ºçš„å°¾éƒ¨ä¸ä¸ºç©ºï¼Œå°†å°¾éƒ¨çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ç½®ä¸ºNULL
 	{
 		queue->tail->next = NULL;
 	}
 	else
 	{
-		//±íÊ¾¶ÓÁĞÒÑ¾­È¡ÍêÁË
+		//è¡¨ç¤ºé˜Ÿåˆ—å·²ç»å–å®Œäº†
 		queue->tail = NULL;
 		queue->head = NULL;
 	}
@@ -168,10 +168,10 @@ void* Queue_GetFromTail(Queue* queue)
 }
 
 /**
-	*  ËµÃ÷£º¶ÓÁĞÊÍ·Å
-	*	²ÎÊı£º
-	*		queue£º¶ÓÁĞÖ¸Õë
-	*		isFreeData:ÊÇ·ñ×Ô¶¯ÊÍ·ÅdataÓò
+	*  è¯´æ˜ï¼šé˜Ÿåˆ—é‡Šæ”¾
+	*	å‚æ•°ï¼š
+	*		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	*		isFreeData:æ˜¯å¦è‡ªåŠ¨é‡Šæ”¾dataåŸŸ
 	*/
 void Queue_Free(Queue* queue,bool isFreeData)
 {
@@ -186,7 +186,7 @@ void Queue_Free(Queue* queue,bool isFreeData)
 
 }
 
-//¶ÓÁĞĞÂÔöÊÂ¼ş
+//é˜Ÿåˆ—æ–°å¢äº‹ä»¶
 int OnQueueIncreasedEvent(void* queue,void* data)
 {
 	Queue* q = (Queue*)queue;
@@ -194,7 +194,7 @@ int OnQueueIncreasedEvent(void* queue,void* data)
 	return 0;
 }
 
-//²âÊÔ
+//æµ‹è¯•
 void Queue_Test()
 {
 	void* data = NULL;
@@ -211,7 +211,7 @@ void Queue_Test()
 	{
 		p = (int *)data;
 		//printf("%d\t",*p);
-		data = Queue_GetFromHead(queue);//´ÓÍ·È¡
+		data = Queue_GetFromHead(queue);//ä»å¤´å–
 	}
 	//printf("\n");
 	Queue_Free(queue,true);
@@ -225,7 +225,7 @@ void Queue_Test()
 	{
 		p = (int *)data;
 		//printf("%d\t",*p);
-		data = Queue_GetFromTail(queue);//´ÓÍ·È¡
+		data = Queue_GetFromTail(queue);//ä»å¤´å–
 	}
 	//printf("\n");
 
@@ -238,7 +238,7 @@ void Queue_Test()
 	{
 		p = (int *)data;
 		//printf("%d\t",*p);
-		data = Queue_GetFromHead(queue);//´ÓÍ·È¡
+		data = Queue_GetFromHead(queue);//ä»å¤´å–
 	}
 	//printf("\n");
 	Queue_Free(queue,true);

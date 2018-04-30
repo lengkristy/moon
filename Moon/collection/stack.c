@@ -1,10 +1,10 @@
-#include "Stack.h"
+#include "stack.h"
 #include <stdlib.h>
 #include <malloc.h>
 
 /**
- * ¹¦ÄÜ£º³õÊ¼»¯Õ»
- * ·µ»ØÖµ£ºÈç¹û³É¹¦£¬Ôò·µ»ØÕ»µÄµØÖ·£¬Èç¹ûÊ§°Ü·µ»ØNULL
+ * åŠŸèƒ½ï¼šåˆå§‹åŒ–æ ˆ
+ * è¿”å›å€¼ï¼šå¦‚æœæˆåŠŸï¼Œåˆ™è¿”å›æ ˆçš„åœ°å€ï¼Œå¦‚æœå¤±è´¥è¿”å›NULL
  */
 Stack* Stack_Init()
 {
@@ -15,7 +15,7 @@ Stack* Stack_Init()
 	{
 		return NULL;
 	}
-	//·ÖÅäÕ»¿Õ¼ä
+	//åˆ†é…æ ˆç©ºé—´
 	stack->node = (Stack_Node*)malloc(STACK_INIT_SIZE * sizeof(Stack_Node));
 	if(stack->node == NULL)
 	{
@@ -25,7 +25,7 @@ Stack* Stack_Init()
 	stack->base = 0;
 	stack->top = stack->base;
 	stack->size = STACK_INIT_SIZE;
-	//½«Êı¾İÓòÖÃÎª¿Õ
+	//å°†æ•°æ®åŸŸç½®ä¸ºç©º
 	for(i = 0;i < stack->size;i++)
 	{
 		stack->node[i].data = NULL;
@@ -34,10 +34,10 @@ Stack* Stack_Init()
 }
 
 /**
- * ¹¦ÄÜ£º½«Êı¾İÑ¹Õ»
- * ²ÎÊı£º
- *		stack£ºÕ»Ö¸Õë
- *		data£º±»Ñ¹ÈëÕ»µÄÊı¾İµØÖ·
+ * åŠŸèƒ½ï¼šå°†æ•°æ®å‹æ ˆ
+ * å‚æ•°ï¼š
+ *		stackï¼šæ ˆæŒ‡é’ˆ
+ *		dataï¼šè¢«å‹å…¥æ ˆçš„æ•°æ®åœ°å€
  */
 void Stack_Push(Stack* stack,void* data)
 {
@@ -46,32 +46,32 @@ void Stack_Push(Stack* stack,void* data)
 	{
 		return;
 	}
-	//ÅĞ¶ÏÕ»¿Õ¼äÊÇ·ñ´æÂú
+	//åˆ¤æ–­æ ˆç©ºé—´æ˜¯å¦å­˜æ»¡
 	if(stack->top - stack->base + 1 == stack->size)
 	{
-		//ÖØĞÂ·ÖÅäÕ¼¿Õ¼ä
+		//é‡æ–°åˆ†é…å ç©ºé—´
 		stack->node = (Stack_Node*)realloc(stack->node,(stack->size + STACK_INCREASE_SIZE) * sizeof(Stack_Node));
 		if(stack->node == NULL)
 		{
 			return;
 		}
 		stack->size += STACK_INCREASE_SIZE;
-		//½«ÖØĞÂ·ÖÅäµÄÊı¾İÓòÖÃÎªNULL
+		//å°†é‡æ–°åˆ†é…çš„æ•°æ®åŸŸç½®ä¸ºNULL
 		for(i = stack->top + 1;i < stack->size;i++)
 		{
 			stack->node[i].data = NULL;
 		}
 	}
-	//¿ªÊ¼Ñ¹Õ»
+	//å¼€å§‹å‹æ ˆ
 	stack->node[stack->top].data = data;
 	stack->top++;
 }
 
 /**
- * ¹¦ÄÜ£º½«Êı¾İµ¯³öÕ»
- * ²ÎÊı£º
- *		stack£ºÕ»Ö¸Õë
- * ·µ»ØÖµ£º·µ»ØµÄÊı¾İµÄµØÖ·£¬Èç¹ûÕ»Ã»ÓĞÊı¾İÔò·µ»ØNULL
+ * åŠŸèƒ½ï¼šå°†æ•°æ®å¼¹å‡ºæ ˆ
+ * å‚æ•°ï¼š
+ *		stackï¼šæ ˆæŒ‡é’ˆ
+ * è¿”å›å€¼ï¼šè¿”å›çš„æ•°æ®çš„åœ°å€ï¼Œå¦‚æœæ ˆæ²¡æœ‰æ•°æ®åˆ™è¿”å›NULL
  */
 void* Stack_Pop(Stack* stack)
 {
@@ -80,18 +80,18 @@ void* Stack_Pop(Stack* stack)
 	{
 		return NULL;
 	}
-	if(stack->base == stack->top)//Ã»ÓĞÊı¾İ
+	if(stack->base == stack->top)//æ²¡æœ‰æ•°æ®
 		return NULL;
-	data = stack->node[stack->top - 1].data;//µ¯³öÕ»¶¥ÄÚÈİ
-	stack->node[stack->top].data = NULL;//Õ»¶¥Êı¾İÓòÖÃ¿Õ
-	stack->top--;//Õ»¶¥¼õ1
+	data = stack->node[stack->top - 1].data;//å¼¹å‡ºæ ˆé¡¶å†…å®¹
+	stack->node[stack->top].data = NULL;//æ ˆé¡¶æ•°æ®åŸŸç½®ç©º
+	stack->top--;//æ ˆé¡¶å‡1
 	return data;
 }
 
 /**
- * ¹¦ÄÜ£ºÇå¿ÕÕ»
- * ²ÎÊı£º
- *		stack£ºÕ»Ö¸Õë
+ * åŠŸèƒ½ï¼šæ¸…ç©ºæ ˆ
+ * å‚æ•°ï¼š
+ *		stackï¼šæ ˆæŒ‡é’ˆ
  */
 void Stack_Clear(Stack* stack)
 {
@@ -102,7 +102,7 @@ void Stack_Clear(Stack* stack)
 	}
 	for(i= stack->top - 1;i >= stack->base;i--)
 	{
-		if(i < 0)//Ë÷Òı²»ÄÜĞ¡ÓÚ0
+		if(i < 0)//ç´¢å¼•ä¸èƒ½å°äº0
 			break;
 		stack->node[i].data = NULL;
 	}
@@ -110,9 +110,9 @@ void Stack_Clear(Stack* stack)
 }
 
 /**
- * ¹¦ÄÜ£ºÊÍ·ÅÕ»
- * ²ÎÊı£º
- *		stack£ºÕ»Ö¸Õë
+ * åŠŸèƒ½ï¼šé‡Šæ”¾æ ˆ
+ * å‚æ•°ï¼š
+ *		stackï¼šæ ˆæŒ‡é’ˆ
  */
 void Stack_Free(Stack* stack)
 {
@@ -126,7 +126,7 @@ void Stack_Free(Stack* stack)
 }
 
 /**
- * ¹¦ÄÜ£ºÕ»²âÊÔ
+ * åŠŸèƒ½ï¼šæ ˆæµ‹è¯•
  */
 void Stack_Test()
 {
@@ -138,10 +138,10 @@ void Stack_Test()
 	Stack_Push(stack,&k);
 	Stack_Push(stack,&l);
 	p = (int*)Stack_Pop(stack);
-	//Çå¿ÕÕ»
+	//æ¸…ç©ºæ ˆ
 	Stack_Clear(stack);
 
-	//Ñ­»·Ñ¹Èë1000¸öÊı¾İ
+	//å¾ªç¯å‹å…¥1000ä¸ªæ•°æ®
 	for(i = 0;i < 1000;i++)
 	{
 		p = (int*)malloc(sizeof(int));
@@ -150,14 +150,14 @@ void Stack_Test()
 	}
 	p = (int*)Stack_Pop(stack);
 	Stack_Clear(stack);
-	//ÊÍ·ÅÊı¾İÄÚ´æ
+	//é‡Šæ”¾æ•°æ®å†…å­˜
 	for(i = 0;i < 1000;i++)
 	{
 		free((int*)Stack_Pop(stack));
 	}
-	//Çå¿ÕÕ»
+	//æ¸…ç©ºæ ˆ
 	Stack_Clear(stack);
-	//10½øÖÆ×ª8½øÖÆ²âÊÔ
+	//10è¿›åˆ¶è½¬8è¿›åˆ¶æµ‹è¯•
 	i = 2386;
 	while(i != 0 )
 	{
@@ -166,7 +166,7 @@ void Stack_Test()
 		Stack_Push(stack,p);
 		i = i / 8;
 	}
-	//ÒÀ´Îµ¯³öÕ»µÄÊı×Ö¾ÍÊÇ°Ë½øÖÆ
+	//ä¾æ¬¡å¼¹å‡ºæ ˆçš„æ•°å­—å°±æ˜¯å…«è¿›åˆ¶
 	while(stack->base != stack->top)
 	{
 		p = (int*)Stack_Pop(stack);
@@ -188,6 +188,6 @@ void Stack_Test()
 		}
 		free(p);
 	}
-	//iµÄÖµ¾ÍÊÇ2386µÄ°Ë½øÖÆ
+	//içš„å€¼å°±æ˜¯2386çš„å…«è¿›åˆ¶
 	Stack_Free(stack);
 }

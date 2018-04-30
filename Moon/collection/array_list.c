@@ -1,4 +1,4 @@
-#include "array_List.h"
+#include "array_list.h"
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
@@ -12,25 +12,25 @@ static HANDLE g_hMutex;
 #endif
 
 /**
- * ¹¦ÄÜ£º³õÊ¼»¯Á´±í
- * ·µ»ØÖµ£ºÈç¹û³É¹¦£¬Ôò·µ»ØÁ´±íµÄµØÖ·£¬Èç¹ûÊ§°Ü·µ»ØNULL
+ * åŠŸèƒ½ï¼šåˆå§‹åŒ–é“¾è¡¨
+ * è¿”å›å€¼ï¼šå¦‚æœæˆåŠŸï¼Œåˆ™è¿”å›é“¾è¡¨çš„åœ°å€ï¼Œå¦‚æœå¤±è´¥è¿”å›NULL
  */
 Array_List* array_list_init()
 {
 	int i = 0;
-	Array_List* pList = (Array_List*)malloc(sizeof(Array_List));//ÅäÖÃÁ´±í¿Õ¼ä
+	Array_List* pList = (Array_List*)malloc(sizeof(Array_List));//é…ç½®é“¾è¡¨ç©ºé—´
 	if(pList == NULL)
 	{
 		return NULL;
 	}
-	//·ÖÅäNode½Úµã
-	pList->node = (Array_Node*)malloc(ARRAY_LIST_INIT_SIZE * sizeof(Array_Node));//·ÖÅä´æ·ÅÊı¾İÓòµÄ¿Õ¼ä
+	//åˆ†é…NodeèŠ‚ç‚¹
+	pList->node = (Array_Node*)malloc(ARRAY_LIST_INIT_SIZE * sizeof(Array_Node));//åˆ†é…å­˜æ”¾æ•°æ®åŸŸçš„ç©ºé—´
 	if(pList->node == NULL)
 	{
 		free(pList);
 		return NULL;
 	}
-	//½«NodeµÄdataÓòÖÃÎª¿ÕÖÃ
+	//å°†Nodeçš„dataåŸŸç½®ä¸ºç©ºç½®
 	for(i = 0;i < ARRAY_LIST_INIT_SIZE;i++)
 	{
 		pList->node[i].data = NULL;
@@ -38,7 +38,7 @@ Array_List* array_list_init()
 	pList->length = 0;
 	pList->size = ARRAY_LIST_INIT_SIZE;
 
-	//³õÊ¼»¯»¥³âÌå
+	//åˆå§‹åŒ–äº’æ–¥ä½“
 #ifdef MS_WINDOWS
 	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(ARRAY_LIST_MUTEX));
 	if (g_hMutex == NULL)
@@ -51,78 +51,78 @@ Array_List* array_list_init()
 }
 
 /**
- * ¹¦ÄÜ£ºËæ»ú²åÈëÁ´±í
- * ²ÎÊı£º
- *		pList£ºÁ´±íµØÖ·
- *		pData£º²åÈëµÄÊı¾İ½Úµã
- *		index£ºÒª²åÈëµÄÎ»ÖÃ£¬Èç¹ûÎª0£¬ÔòÄ¬ÈÏ´ÓÁ´±íµÄ¿ªÊ¼´¦²åÈë£¬Èç¹ûÎª-1£¬ÔòÄ¬ÈÏ´ÓÁ´±íµÄ×îºó²åÈë
- * ·µ»ØÖµ£º³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø-1
+ * åŠŸèƒ½ï¼šéšæœºæ’å…¥é“¾è¡¨
+ * å‚æ•°ï¼š
+ *		pListï¼šé“¾è¡¨åœ°å€
+ *		pDataï¼šæ’å…¥çš„æ•°æ®èŠ‚ç‚¹
+ *		indexï¼šè¦æ’å…¥çš„ä½ç½®ï¼Œå¦‚æœä¸º0ï¼Œåˆ™é»˜è®¤ä»é“¾è¡¨çš„å¼€å§‹å¤„æ’å…¥ï¼Œå¦‚æœä¸º-1ï¼Œåˆ™é»˜è®¤ä»é“¾è¡¨çš„æœ€åæ’å…¥
+ * è¿”å›å€¼ï¼šæˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›-1
  */
 int array_list_insert(Array_List* pList,void* pData,long index)
 {
 	long i = 0;
-	unsigned long reallocSize = 0;//ÖØĞÂ·ÖÅä¿Õ¼äµÄ´óĞ¡
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	unsigned long reallocSize = 0;//é‡æ–°åˆ†é…ç©ºé—´çš„å¤§å°
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return -1;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 		return -1;
 	if(index < -1 || (index > pList->length && index != -1))
 	{
 		return -1;
 	}
-	//ÅĞ¶ÏÁ´±í¿Õ¼ä¹»²»¹»³¤
+	//åˆ¤æ–­é“¾è¡¨ç©ºé—´å¤Ÿä¸å¤Ÿé•¿
 	if(pList->length == pList->size - 1)
 	{
-		//ÖØĞÂ·ÖÅä¿Õ¼ä
+		//é‡æ–°åˆ†é…ç©ºé—´
 		reallocSize = pList->size + ARRAY_LIST_INCREASE_SIZE;
 		pList->node = (Array_Node*)realloc(pList->node,reallocSize * sizeof(Array_Node));
 		if(pList->node == NULL)
 		{
 			return -1;
 		}
-		//²¢ÇÒ½«ĞÂÔö½ÚµãµÄdataÓòÖÃÎª¿Õ
+		//å¹¶ä¸”å°†æ–°å¢èŠ‚ç‚¹çš„dataåŸŸç½®ä¸ºç©º
 		for(i = pList->length;i < reallocSize;i++)
 		{
 			pList->node[i].data = NULL;
 		}
 		pList->size = reallocSize;
 	}
-	//¿ªÊ¼²åÈë
-	if(index == -1)//´ÓÄ©Î²´¦²åÈë
+	//å¼€å§‹æ’å…¥
+	if(index == -1)//ä»æœ«å°¾å¤„æ’å…¥
 	{
 		pList->node[pList->length].data = pData;
-		pList->length++;//³¤¶È×ÔÔö1
+		pList->length++;//é•¿åº¦è‡ªå¢1
 		return 0;
 	}
-	else if(index == 0) //´Ó¿ªÊ¼´¦²åÈë
+	else if(index == 0) //ä»å¼€å§‹å¤„æ’å…¥
 	{
 		for(i = pList->length;i >0;i--)
 		{
 			pList->node[i] = pList->node[i - 1];
 		}
 		pList->node[0].data = pData;
-		pList->length++;//³¤¶È×ÔÔö1
+		pList->length++;//é•¿åº¦è‡ªå¢1
 		return 0;
 	}
-	else//Ö¸¶¨Î»ÖÃ²åÈë
+	else//æŒ‡å®šä½ç½®æ’å…¥
 	{
 		for(i = pList->length;i > index;i--)
 		{
 			pList->node[i] = pList->node[i - 1];
 		}
 		pList->node[i].data = pData;
-		pList->length++;//³¤¶È×ÔÔö1
+		pList->length++;//é•¿åº¦è‡ªå¢1
 		return 0;
 	}
 	//////////////////////////////////////////////////////////////////////////
@@ -134,38 +134,38 @@ int array_list_insert(Array_List* pList,void* pData,long index)
 }
 
 /**
- * ¹¦ÄÜ£ºÍ¨¹ıË÷ÒıÉ¾³ıÔªËØ£¬É¾³ıÔªËØÖ»ÊÇ½«dataÓòÖÃÎªNULL£¬²¢²»»áÊÍ·ÅdataÖ¸Õë£¬ÓÉµ÷ÓÃÕßÊÍ·Å
- * ²ÎÊı£º
- *		pList£ºÁ´±íµØÖ·
- *		index£ºÎ»ÖÃ
+ * åŠŸèƒ½ï¼šé€šè¿‡ç´¢å¼•åˆ é™¤å…ƒç´ ï¼Œåˆ é™¤å…ƒç´ åªæ˜¯å°†dataåŸŸç½®ä¸ºNULLï¼Œå¹¶ä¸ä¼šé‡Šæ”¾dataæŒ‡é’ˆï¼Œç”±è°ƒç”¨è€…é‡Šæ”¾
+ * å‚æ•°ï¼š
+ *		pListï¼šé“¾è¡¨åœ°å€
+ *		indexï¼šä½ç½®
  */
 void array_list_removeAt(Array_List* pList,unsigned long index)
 {
 	int i = 0;
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 		return;
 	if(index < 0 || index >= pList->length)
 		return;
-	for(i = index; i < pList->length;i++)//ÈÃÉ¾³ıµÄË÷ÒıºóµÄÔªËØÒÀ´ÎÍùÇ°ÒÆ
+	for(i = index; i < pList->length;i++)//è®©åˆ é™¤çš„ç´¢å¼•åçš„å…ƒç´ ä¾æ¬¡å¾€å‰ç§»
 	{
 		pList->node[i] = pList->node[i + 1];
 	}
-	//½«×îºóÒ»Î»ÖÃ¿Õ
+	//å°†æœ€åä¸€ä½ç½®ç©º
 	pList->node[pList->length - 1].data = NULL;
-	//³¤¶È¼õ1
+	//é•¿åº¦å‡1
 	pList->length--;
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
@@ -175,28 +175,28 @@ void array_list_removeAt(Array_List* pList,unsigned long index)
 }
 
 /**
- * ¹¦ÄÜ£ºÒÆ³ıÄ³¸öÔªËØ
- * ²ÎÊı£º
- *     pList£ºÁ´±íµØÖ·
- *	   pData£ºÔªËØÖ¸Õë
+ * åŠŸèƒ½ï¼šç§»é™¤æŸä¸ªå…ƒç´ 
+ * å‚æ•°ï¼š
+ *     pListï¼šé“¾è¡¨åœ°å€
+ *	   pDataï¼šå…ƒç´ æŒ‡é’ˆ
  */
 void array_list_remove(Array_List* pList,void* pData)
 {
 	int i = 0;
-	int removeIndex = -1;//ĞèÒª±»É¾³ıµÄÔªËØË÷Òı
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	int removeIndex = -1;//éœ€è¦è¢«åˆ é™¤çš„å…ƒç´ ç´¢å¼•
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	for (i = 0;i < pList->length;i++)
 	{
 		if(array_list_getAt(pList,i) == pData)
@@ -209,13 +209,13 @@ void array_list_remove(Array_List* pList,void* pData)
 	{
 		if(pList == NULL)
 			return;
-		for(i = removeIndex; i < pList->length;i++)//ÈÃÉ¾³ıµÄË÷ÒıºóµÄÔªËØÒÀ´ÎÍùÇ°ÒÆ
+		for(i = removeIndex; i < pList->length;i++)//è®©åˆ é™¤çš„ç´¢å¼•åçš„å…ƒç´ ä¾æ¬¡å¾€å‰ç§»
 		{
 			pList->node[i] = pList->node[i + 1];
 		}
-		//½«×îºóÒ»Î»ÖÃ¿Õ
+		//å°†æœ€åä¸€ä½ç½®ç©º
 		pList->node[pList->length - 1].data = NULL;
-		//³¤¶È¼õ1
+		//é•¿åº¦å‡1
 		pList->length--;
 	}
 	//////////////////////////////////////////////////////////////////////////
@@ -226,27 +226,27 @@ void array_list_remove(Array_List* pList,void* pData)
 }
 
 /**
- * ¹¦ÄÜ£º´ÓÄ³¸öÎ»ÖÃÈ¡³öÔªËØ
- * ²ÎÊı£º
- *		pList£ºÁ´±íµØÖ·
- *		index£ºÎ»ÖÃ
+ * åŠŸèƒ½ï¼šä»æŸä¸ªä½ç½®å–å‡ºå…ƒç´ 
+ * å‚æ•°ï¼š
+ *		pListï¼šé“¾è¡¨åœ°å€
+ *		indexï¼šä½ç½®
  */
 void* array_list_getAt(Array_List* pList,unsigned long index)
 {
 	void* pData = NULL;
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return NULL;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 	{
 		return NULL;
@@ -266,31 +266,31 @@ void* array_list_getAt(Array_List* pList,unsigned long index)
 }
 
 /**
- * ¹¦ÄÜ£ºÇå¿ÕÁ´±í
- * ²ÎÊı£º
- *	pList£ºÁ´±íµØÖ·
+ * åŠŸèƒ½ï¼šæ¸…ç©ºé“¾è¡¨
+ * å‚æ•°ï¼š
+ *	pListï¼šé“¾è¡¨åœ°å€
  */
 void array_list_clear(Array_List* pList)
 {
 	int i = 0;
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return NULL;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 	{
 		return;
 	}
-	//½«Êı¾İÓòÖÃÎª¿Õ
+	//å°†æ•°æ®åŸŸç½®ä¸ºç©º
 	for(i = 0;i < pList->length;i++)
 	{
 		if(pList->node[i].data != NULL)
@@ -308,15 +308,15 @@ void array_list_clear(Array_List* pList)
 }
 
 /**
- * ¹¦ÄÜ£ºÊÍ·ÅÁ´±í¿Õ¼ä£¬ÓÉ´´½¨µÄÏß³ÌÊÍ·Å
- * ²ÎÊı£º
- *	pList£ºÁ´±íµØÖ·
+ * åŠŸèƒ½ï¼šé‡Šæ”¾é“¾è¡¨ç©ºé—´ï¼Œç”±åˆ›å»ºçš„çº¿ç¨‹é‡Šæ”¾
+ * å‚æ•°ï¼š
+ *	pListï¼šé“¾è¡¨åœ°å€
  */
 void array_list_free(Array_List* pList)
 {
 	if(pList == NULL)
 		return;
-	//ÊÍ·Å½Úµã
+	//é‡Šæ”¾èŠ‚ç‚¹
 	if(pList->node != NULL)
 	{
 		free(pList->node);
@@ -327,36 +327,38 @@ void array_list_free(Array_List* pList)
 		free(pList);
 		pList = NULL;
 	}
+#ifdef MS_WINDOWS
 	if (g_hMutex != NULL)
 	{
 		CloseHandle(g_hMutex);
 		g_hMutex = NULL;
 	}
+#endif
 }
 
 /**
- * ¹¦ÄÜ£ºArray_List²âÊÔ
+ * åŠŸèƒ½ï¼šArray_Listæµ‹è¯•
  */
 void array_list_test()
 {
 	int i = 0;
 	int *p = NULL;
 	Array_List* list = array_list_init();
-	//¶¯Ì¬Ìí¼Ó1000¸öÖµ
+	//åŠ¨æ€æ·»åŠ 1000ä¸ªå€¼
 	for(i = 0;i < 1000;i++)
 	{
 		p = (int*) malloc(sizeof(int));
 		*p = i;
 		array_list_insert(list,p,-1);
 	}
-	//È¡³öµÚ500¸öÔªËØ
+	//å–å‡ºç¬¬500ä¸ªå…ƒç´ 
 	p = (int*)array_list_getAt(list,499);
-	//É¾³ıµÚ500¸öÔªËØ£¬É¾³ıÖ®ºó¼ÇµÃÊÍ·Å
+	//åˆ é™¤ç¬¬500ä¸ªå…ƒç´ ï¼Œåˆ é™¤ä¹‹åè®°å¾—é‡Šæ”¾
 	array_list_removeAt(list,499);
 	free(p);
-	//ÖØĞÂ»ñÈ¡µÚ500¸öÔªËØ
+	//é‡æ–°è·å–ç¬¬500ä¸ªå…ƒç´ 
 	p = (int*)array_list_getAt(list,499);
-	//¿ªÊ¼ÊÍ·Å¿Õ¼ä
+	//å¼€å§‹é‡Šæ”¾ç©ºé—´
 	for(i = 0;i<list->length;i++)
 	{
 		p = (int*)array_list_getAt(list,i);

@@ -1,5 +1,5 @@
 /************************************************************************/
-/* 使用微软IOCP端口复用通信模型                                         */
+/* 浣跨敤寰蒋IOCP绔彛澶嶇敤閫氫俊妯″瀷                                         */
 /************************************************************************/
 #pragma once
 #ifndef _MS_NT_IOCP
@@ -9,7 +9,7 @@
 #include "../module/module_log.h"
 
 #ifdef MS_WINDOWS
-// winsock 2 的头文件和库
+// winsock 2 鐨勫ご鏂囦欢鍜屽簱
 #include <winsock2.h>
 #include <MSWSock.h>
 #pragma comment(lib,"ws2_32.lib")
@@ -19,9 +19,9 @@
 extern "C" {
 #endif
 
-bool ms_iocp_server_start();/*启动IOCP服务*/
+bool ms_iocp_server_start();/*鍚姩IOCP鏈嶅姟*/
 
-void ms_iocp_server_stop();/*停止IOCP服务*/
+void ms_iocp_server_stop();/*鍋滄IOCP鏈嶅姟*/
 
 #ifdef __cplusplus
 }

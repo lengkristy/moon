@@ -1,7 +1,7 @@
 /*********************************************************************************
- *  ×÷Õß£º´úºÆÈ»
- *	Ê±¼ä£º2017-08-05
- *	ËµÃ÷£º¸ÃÎÄ¼þÎª¶ÓÁÐµÄÊµÏÖ£¬ÊµÏÖ·½Ê½ÊÇÁ´±íµÄË«Ïò¶ÓÁÐ£¬¿ÉÒÔ´ÓÁ´±íµÄÁ½¶Ë´æ£¬Ò²¿ÉÒÔ´ÓÁ´±íµÄÁ½¶ËÈ¡
+ *  ä½œè€…ï¼šä»£æµ©ç„¶
+ *	æ—¶é—´ï¼š2017-08-05
+ *	è¯´æ˜Žï¼šè¯¥æ–‡ä»¶ä¸ºé˜Ÿåˆ—çš„å®žçŽ°ï¼Œå®žçŽ°æ–¹å¼æ˜¯é“¾è¡¨çš„åŒå‘é˜Ÿåˆ—ï¼Œå¯ä»¥ä»Žé“¾è¡¨çš„ä¸¤ç«¯å­˜ï¼Œä¹Ÿå¯ä»¥ä»Žé“¾è¡¨çš„ä¸¤ç«¯å–
  *
  *
  *********************************************************************************/
@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-//¶¨ÒåboolÀàÐÍ
+//å®šä¹‰boolç±»åž‹
 #ifndef bool
 #define bool int
 #endif
@@ -25,85 +25,85 @@ extern "C" {
 	
 
 	/**
-	 *  ËµÃ÷£º¶¨Òå¶ÓÁÐÌí¼ÓµÄ»Øµ÷Í¨ÖªµÄº¯ÊýÖ¸ÕëÀàÐÍ
-	 *  ²ÎÊý£º
-	 *		queue£ºÐÂÔö¶ÓÁÐµÄ¶ÓÁÐÖ¸Õë
-	 *		data£º±»ÐÂÔöµÄÊý¾Ý
-	 *	·µ»ØÖµ£º´¦Àí³É¹¦Ôò·µ»Ø0£¬Ê§°ÜÔò·µ»Ø-1
+	 *  è¯´æ˜Žï¼šå®šä¹‰é˜Ÿåˆ—æ·»åŠ çš„å›žè°ƒé€šçŸ¥çš„å‡½æ•°æŒ‡é’ˆç±»åž‹
+	 *  å‚æ•°ï¼š
+	 *		queueï¼šæ–°å¢žé˜Ÿåˆ—çš„é˜Ÿåˆ—æŒ‡é’ˆ
+	 *		dataï¼šè¢«æ–°å¢žçš„æ•°æ®
+	 *	è¿”å›žå€¼ï¼šå¤„ç†æˆåŠŸåˆ™è¿”å›ž0ï¼Œå¤±è´¥åˆ™è¿”å›ž-1
 	 */
 	typedef int(*QueueIncreased)(void* queue,void* data);
 
-	//¶ÓÁÐ½Úµã
+	//é˜Ÿåˆ—èŠ‚ç‚¹
 	typedef struct _QueueNode{
-		void* data; //Êý¾ÝÓò
-		struct _QueueNode* next;//Ö¸ÏòÏÂÒ»¸ö½Úµã
-		struct _QueueNode* prior;//Ö¸ÏòÉÏÒ»¸ö½Úµã
+		void* data; //æ•°æ®åŸŸ
+		struct _QueueNode* next;//æŒ‡å‘ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
+		struct _QueueNode* prior;//æŒ‡å‘ä¸Šä¸€ä¸ªèŠ‚ç‚¹
 	}QueueNode;
 
-	//¶ÓÁÐµÄ½á¹¹Ìå
+	//é˜Ÿåˆ—çš„ç»“æž„ä½“
 	typedef struct _Queue{
-		QueueNode* head;//¶ÓÁÐµÄÍ·²¿
-		QueueNode* tail;//¶ÓÁÐµÄÎ²²¿
-		unsigned long length;//µ±Ç°¶ÓÁÐµÄ³¤¶È
-		QueueIncreased onQueueIncreased;//º¯ÊýÖ¸Õë
+		QueueNode* head;//é˜Ÿåˆ—çš„å¤´éƒ¨
+		QueueNode* tail;//é˜Ÿåˆ—çš„å°¾éƒ¨
+		unsigned long length;//å½“å‰é˜Ÿåˆ—çš„é•¿åº¦
+		QueueIncreased onQueueIncreased;//å‡½æ•°æŒ‡é’ˆ
 	}Queue;
 
 	
 
 	/**
-	 *  ËµÃ÷£º³õÊ¼»¯¶ÓÁÐ
-	 *	²ÎÊý£º
-	 *		queueIncreasedEvent£ºÐèÒª×¢²áµÄ¶ÓÁÐÐÂÔöÊÂ¼þ
-	 *	·µ»ØÖµ£º³É¹¦Ôò·µ»Ø¶ÓÁÐµÄÖ¸Õë£¬Ê§°ÜÔò·µ»ØNULL
+	 *  è¯´æ˜Žï¼šåˆå§‹åŒ–é˜Ÿåˆ—
+	 *	å‚æ•°ï¼š
+	 *		queueIncreasedEventï¼šéœ€è¦æ³¨å†Œçš„é˜Ÿåˆ—æ–°å¢žäº‹ä»¶
+	 *	è¿”å›žå€¼ï¼šæˆåŠŸåˆ™è¿”å›žé˜Ÿåˆ—çš„æŒ‡é’ˆï¼Œå¤±è´¥åˆ™è¿”å›žNULL
 	 */
 	Queue* Queue_Init(QueueIncreased queueIncreasedEvent);
 
 	/**
-	 *  ËµÃ÷£º´Ó¶ÓÁÐµÄÍ·²¿Ìí¼Ó
-	 *	²ÎÊý£º
-	 *		queue£º¶ÓÁÐÖ¸Õë
-	 *		data£ºÌí¼ÓµÄÊý¾ÝÓò
-	 *	·µ»ØÖµ£ºÌí¼Ó³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø-1
+	 *  è¯´æ˜Žï¼šä»Žé˜Ÿåˆ—çš„å¤´éƒ¨æ·»åŠ 
+	 *	å‚æ•°ï¼š
+	 *		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	 *		dataï¼šæ·»åŠ çš„æ•°æ®åŸŸ
+	 *	è¿”å›žå€¼ï¼šæ·»åŠ æˆåŠŸè¿”å›ž0ï¼Œå¤±è´¥è¿”å›ž-1
 	 */
 	int Queue_AddToHead(Queue* queue,void* data);
 
 	/**
-	 *  ËµÃ÷£º´Ó¶ÓÁÐµÄÎ²²¿Ìí¼Ó
-	 *	²ÎÊý£º
-	 *		queue£º¶ÓÁÐÖ¸Õë
-	 *		data£ºÌí¼ÓµÄÊý¾ÝÓò
-	 *	·µ»ØÖµ£ºÌí¼Ó³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø-1
+	 *  è¯´æ˜Žï¼šä»Žé˜Ÿåˆ—çš„å°¾éƒ¨æ·»åŠ 
+	 *	å‚æ•°ï¼š
+	 *		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	 *		dataï¼šæ·»åŠ çš„æ•°æ®åŸŸ
+	 *	è¿”å›žå€¼ï¼šæ·»åŠ æˆåŠŸè¿”å›ž0ï¼Œå¤±è´¥è¿”å›ž-1
 	 */
 	int Queue_AddToTail(Queue* queue,void* data);
 
 	/**
-	 *  ËµÃ÷£º´Ó¶ÓÁÐµÄÍ·²¿È¡³öÊý¾Ý
-	 *	²ÎÊý£º
-	 *		queue£º¶ÓÁÐÖ¸Õë
-	 *	·µ»ØÖµ£º³É¹¦È¡³öÊý¾Ý£¬Ê§°Ü·µ»ØNULL
+	 *  è¯´æ˜Žï¼šä»Žé˜Ÿåˆ—çš„å¤´éƒ¨å–å‡ºæ•°æ®
+	 *	å‚æ•°ï¼š
+	 *		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	 *	è¿”å›žå€¼ï¼šæˆåŠŸå–å‡ºæ•°æ®ï¼Œå¤±è´¥è¿”å›žNULL
 	 */
 	void* Queue_GetFromHead(Queue* queue);
 
 	/**
-	 *  ËµÃ÷£º´Ó¶ÓÁÐµÄÎ²²¿È¡³öÊý¾Ý
-	 *	²ÎÊý£º
-	 *		queue£º¶ÓÁÐÖ¸Õë
-	 *	·µ»ØÖµ£º³É¹¦È¡³öÊý¾Ý£¬Ê§°Ü·µ»ØNULL
+	 *  è¯´æ˜Žï¼šä»Žé˜Ÿåˆ—çš„å°¾éƒ¨å–å‡ºæ•°æ®
+	 *	å‚æ•°ï¼š
+	 *		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	 *	è¿”å›žå€¼ï¼šæˆåŠŸå–å‡ºæ•°æ®ï¼Œå¤±è´¥è¿”å›žNULL
 	 */
 	void* Queue_GetFromTail(Queue* queue);
 
 	/**
-	 *  ËµÃ÷£º¶ÓÁÐÊÍ·Å
-	 *	²ÎÊý£º
-	 *		queue£º¶ÓÁÐÖ¸Õë
-	 *		isFreeData:ÊÇ·ñ×Ô¶¯ÊÍ·ÅdataÓò
+	 *  è¯´æ˜Žï¼šé˜Ÿåˆ—é‡Šæ”¾
+	 *	å‚æ•°ï¼š
+	 *		queueï¼šé˜Ÿåˆ—æŒ‡é’ˆ
+	 *		isFreeData:æ˜¯å¦è‡ªåŠ¨é‡Šæ”¾dataåŸŸ
 	 */
 	void Queue_Free(Queue* queue,bool isFreeData);
 
-	//¶ÓÁÐÐÂÔöÊÂ¼þ
+	//é˜Ÿåˆ—æ–°å¢žäº‹ä»¶
 	int OnQueueIncreasedEvent(void* queue,void* data);
 
-	//²âÊÔ
+	//æµ‹è¯•
 	void Queue_Test();
 
 #ifdef __cplusplus

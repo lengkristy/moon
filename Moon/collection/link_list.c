@@ -10,8 +10,8 @@ static HANDLE g_hMutex;
 #endif
 
 /**
- * ¹¦ÄÜ£º³õÊ¼»¯Á´±í
- * ·µ»ØÖµ£ºÈç¹û³É¹¦£¬Ôò·µ»ØÁ´±íµÄµØÖ·£¬Èç¹ûÊ§°Ü·µ»ØNULL
+ * åŠŸèƒ½ï¼šåˆå§‹åŒ–é“¾è¡¨
+ * è¿”å›å€¼ï¼šå¦‚æœæˆåŠŸï¼Œåˆ™è¿”å›é“¾è¡¨çš„åœ°å€ï¼Œå¦‚æœå¤±è´¥è¿”å›NULL
  */
 Link_List* link_list_init()
 {
@@ -24,7 +24,7 @@ Link_List* link_list_init()
 	pList->length = 0;
 	pList->head = NULL;
 	pList->trail = NULL;
-	//³õÊ¼»¯»¥³âÌå
+	//åˆå§‹åŒ–äº’æ–¥ä½“
 #ifdef MS_WINDOWS
 	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(LINK_LIST_MUTEX));
 	if (g_hMutex == NULL)
@@ -37,36 +37,36 @@ Link_List* link_list_init()
 }
 
 /**
- * ¹¦ÄÜ£ºËæ»ú²åÈëÁ´±í
- * ²ÎÊı£º
- *		pList£ºÁ´±íµØÖ·
- *		pData£º²åÈëµÄÊı¾İ½Úµã
- *		index£ºÒª²åÈëµÄÎ»ÖÃ£¬Èç¹ûÎª0£¬ÔòÄ¬ÈÏ´ÓÁ´±íµÄ¿ªÊ¼´¦²åÈë£¬Èç¹ûÎª-1£¬ÔòÄ¬ÈÏ´ÓÁ´±íµÄ×îºó²åÈë
- * ·µ»ØÖµ£º³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø-1
+ * åŠŸèƒ½ï¼šéšæœºæ’å…¥é“¾è¡¨
+ * å‚æ•°ï¼š
+ *		pListï¼šé“¾è¡¨åœ°å€
+ *		pDataï¼šæ’å…¥çš„æ•°æ®èŠ‚ç‚¹
+ *		indexï¼šè¦æ’å…¥çš„ä½ç½®ï¼Œå¦‚æœä¸º0ï¼Œåˆ™é»˜è®¤ä»é“¾è¡¨çš„å¼€å§‹å¤„æ’å…¥ï¼Œå¦‚æœä¸º-1ï¼Œåˆ™é»˜è®¤ä»é“¾è¡¨çš„æœ€åæ’å…¥
+ * è¿”å›å€¼ï¼šæˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›-1
  */
 int link_list_insert(Link_List* pList,void* pData,long index)
 {
 	long i = 0;
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return -1;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 		return -1;
 	if(index < -1 || (index > pList->length && index != -1))
 	{
 		return -1;
 	}
-	//ÅĞ¶ÏÊÇ·ñÊÇÊ×´Î²åÈë
+	//åˆ¤æ–­æ˜¯å¦æ˜¯é¦–æ¬¡æ’å…¥
 	if(pList->length == 0)
 	{
 		Link_Node* pNode = (Link_Node*)malloc(sizeof(Link_Node));
@@ -82,45 +82,45 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 	}
 	else
 	{
-		if(-1 == index)//´ÓÄ©Î²´¦²åÈë
+		if(-1 == index)//ä»æœ«å°¾å¤„æ’å…¥
 		{
-			//´´½¨½Úµã
+			//åˆ›å»ºèŠ‚ç‚¹
 			Link_Node* pNode = (Link_Node*)malloc(sizeof(Link_Node));
 			if(pNode == NULL)
 				return -1;
 			pNode->data = pData;
 			pNode->nextNode = NULL;
 			pNode->priorNode = pList->trail;
-			//½«½Úµã¼Óµ½Ä©Î²´¦
+			//å°†èŠ‚ç‚¹åŠ åˆ°æœ«å°¾å¤„
 			pList->trail->nextNode = pNode;
 			pList->trail = pNode;
 			pList->length++;
 		}
-		else if(0 == index) //´Ó¿ªÊ¼´¦²åÈë
+		else if(0 == index) //ä»å¼€å§‹å¤„æ’å…¥
 		{
-			//´´½¨½Úµã
+			//åˆ›å»ºèŠ‚ç‚¹
 			Link_Node* pNode = (Link_Node*)malloc(sizeof(Link_Node));
 			if(pNode == NULL)
 				return -1;
 			pNode->data = pData;
 			pNode->nextNode = pList->head;
 			pNode->priorNode = NULL;
-			//½«½Úµã¼ÓÔØµ½Í·²¿
+			//å°†èŠ‚ç‚¹åŠ è½½åˆ°å¤´éƒ¨
 			pList->head->priorNode = pNode;
 			pList->head = pNode;
 			pList->length++;
 			return 0;
 		}
-		else//Ö¸¶¨Î»ÖÃ²åÈë
+		else//æŒ‡å®šä½ç½®æ’å…¥
 		{
-			//ºóÆÚ¿ÉÒÔÊ¹ÓÃ¿ìËÙ²éÕÒËã·¨ÓÅ»¯
+			//åæœŸå¯ä»¥ä½¿ç”¨å¿«é€ŸæŸ¥æ‰¾ç®—æ³•ä¼˜åŒ–
 			Link_Node* pNode = pList->head;
 			i=0;
 			while(pNode != NULL)
 			{
-				if(index == i)//²éÕÒµ½Òª²åÈëµÄÎ»ÖÃ½Úµã
+				if(index == i)//æŸ¥æ‰¾åˆ°è¦æ’å…¥çš„ä½ç½®èŠ‚ç‚¹
 				{
-					//´´½¨½Úµã
+					//åˆ›å»ºèŠ‚ç‚¹
 					Link_Node* pCurrentNode = (Link_Node*)malloc(sizeof(Link_Node));
 					if(pCurrentNode == NULL)
 						return -1;
@@ -146,29 +146,29 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 }
 
 /**
- * ¹¦ÄÜ£º´ÓÄ³¸öÎ»ÖÃÈ¡³öÔªËØ
- * ²ÎÊı£º
- *		pList£ºÁ´±íµØÖ·
- *		index£ºÎ»ÖÃ
- * ·µ»ØÖµ£º·µ»ØÊı¾İÌåÖ¸Õë
+ * åŠŸèƒ½ï¼šä»æŸä¸ªä½ç½®å–å‡ºå…ƒç´ 
+ * å‚æ•°ï¼š
+ *		pListï¼šé“¾è¡¨åœ°å€
+ *		indexï¼šä½ç½®
+ * è¿”å›å€¼ï¼šè¿”å›æ•°æ®ä½“æŒ‡é’ˆ
  */
 void* link_list_getAt(Link_List* pList,unsigned long index)
 {
 	int i = 0;
 	Link_Node* pNode = NULL;
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return NULL;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 	{
 		return NULL;
@@ -193,28 +193,28 @@ void* link_list_getAt(Link_List* pList,unsigned long index)
 }
 
 /**
- * ¹¦ÄÜ£ºÍ¨¹ıË÷ÒıÉ¾³ıÔªËØ£¬É¾³ıÔªËØÖ»ÊÇ½«dataÓòÖÃÎªNULL£¬²¢²»»áÊÍ·ÅdataÖ¸Õë£¬ÓÉµ÷ÓÃÕßÊÍ·Å
- * ²ÎÊı£º
- *		pList£ºÁ´±íµØÖ·
- *		index£ºÎ»ÖÃ
+ * åŠŸèƒ½ï¼šé€šè¿‡ç´¢å¼•åˆ é™¤å…ƒç´ ï¼Œåˆ é™¤å…ƒç´ åªæ˜¯å°†dataåŸŸç½®ä¸ºNULLï¼Œå¹¶ä¸ä¼šé‡Šæ”¾dataæŒ‡é’ˆï¼Œç”±è°ƒç”¨è€…é‡Šæ”¾
+ * å‚æ•°ï¼š
+ *		pListï¼šé“¾è¡¨åœ°å€
+ *		indexï¼šä½ç½®
  */
 void link_list_removeAt(Link_List* pList,unsigned long index)
 {
 	int i = 0;
 	Link_Node* pNode = NULL;
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return NULL;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 	{
 		return;
@@ -225,28 +225,28 @@ void link_list_removeAt(Link_List* pList,unsigned long index)
 	{
 		if(i == index)
 		{
-			//ÕÒµ½½Úµã£¬¿ªÊ¼É¾³ı
-			if(pNode->priorNode == NULL) //±íÊ¾Á´±íÍ·²¿½Úµã
+			//æ‰¾åˆ°èŠ‚ç‚¹ï¼Œå¼€å§‹åˆ é™¤
+			if(pNode->priorNode == NULL) //è¡¨ç¤ºé“¾è¡¨å¤´éƒ¨èŠ‚ç‚¹
 			{
 				Link_Node* head = pList->head;
 				pList->head = head->nextNode;
 				pList->head->priorNode = NULL;
-				free(head);//ÊÍ·Å½Úµã
+				free(head);//é‡Šæ”¾èŠ‚ç‚¹
 				pList->length--;
 			}
-			else if(pNode->nextNode == NULL)//±íÊ¾Á´±íÎ²²¿½Úµã
+			else if(pNode->nextNode == NULL)//è¡¨ç¤ºé“¾è¡¨å°¾éƒ¨èŠ‚ç‚¹
 			{
 				Link_Node* trial = pList->trail;
 				pList->trail = trial->priorNode;
 				pList->trail->nextNode = NULL;
-				free(trial);//ÊÍ·Å½Úµã
+				free(trial);//é‡Šæ”¾èŠ‚ç‚¹
 				pList->length--;
 			}
 			else
 			{
-				//µ±Ç°½ÚµãµÄÉÏÒ»¸ö½ÚµãµÄÏÂÒ»¸ö½ÚµãÖ¸Ïòµ±Ç°½ÚµãµÄÏÂÒ»¸ö½Úµã
+				//å½“å‰èŠ‚ç‚¹çš„ä¸Šä¸€ä¸ªèŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹æŒ‡å‘å½“å‰èŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
 				pNode->priorNode->nextNode = pNode->nextNode;
-				//µ±Ç°½ÚµãµÄÏÂÒ»¸ö½ÚµãµÄÉÏÒ»¸ö½ÚµãÖ¸Ïòµ±Ç°½ÚµãµÄÉÏÒ»¸ö½Úµã
+				//å½“å‰èŠ‚ç‚¹çš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„ä¸Šä¸€ä¸ªèŠ‚ç‚¹æŒ‡å‘å½“å‰èŠ‚ç‚¹çš„ä¸Šä¸€ä¸ªèŠ‚ç‚¹
 				pNode->nextNode->priorNode = pNode->priorNode;
 				free(pNode);
 				pList->length--;
@@ -264,32 +264,32 @@ void link_list_removeAt(Link_List* pList,unsigned long index)
 }
 
 /**
- * ¹¦ÄÜ£ºÇå¿ÕÁ´±í
- * ²ÎÊı£º
- *	pList£ºÁ´±íµØÖ·
+ * åŠŸèƒ½ï¼šæ¸…ç©ºé“¾è¡¨
+ * å‚æ•°ï¼š
+ *	pListï¼šé“¾è¡¨åœ°å€
  */
 void link_list_clear(Link_List* pList)
 {
-	//½«Êı¾İÓòÖÃÎª¿Õ
+	//å°†æ•°æ®åŸŸç½®ä¸ºç©º
 	Link_Node* pNode = NULL;
-	//ĞèÒª×öÏß³ÌÍ¬²½
+	//éœ€è¦åšçº¿ç¨‹åŒæ­¥
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return NULL;
 	}
-	//WaitforsingleObject½«µÈ´ıÖ¸¶¨µÄÒ»¸ömutex£¬Ö±ÖÁ»ñÈ¡µ½ÓµÓĞÈ¨
-	//Í¨¹ı»¥³âËø±£Ö¤³ı·ÇÊä³ö¹¤×÷È«²¿Íê³É£¬·ñÔòÆäËûÏß³ÌÎŞ·¨Êä³ö¡£
+	//WaitforsingleObjectå°†ç­‰å¾…æŒ‡å®šçš„ä¸€ä¸ªmutexï¼Œç›´è‡³è·å–åˆ°æ‹¥æœ‰æƒ
+	//é€šè¿‡äº’æ–¥é”ä¿è¯é™¤éè¾“å‡ºå·¥ä½œå…¨éƒ¨å®Œæˆï¼Œå¦åˆ™å…¶ä»–çº¿ç¨‹æ— æ³•è¾“å‡ºã€‚
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//ÁÙ½çÇø
+	//ä¸´ç•ŒåŒº
 	if(pList == NULL)
 	{
 		return;
 	}
-	//´ÓÎ²²¿¿ªÊ¼ÊÍ·Å
+	//ä»å°¾éƒ¨å¼€å§‹é‡Šæ”¾
 	pNode = pList->trail;
 	while(pNode != NULL)
 	{
@@ -309,9 +309,9 @@ void link_list_clear(Link_List* pList)
 }
 
 /**
- * ¹¦ÄÜ£ºÊÍ·ÅÁ´±í¿Õ¼ä
- * ²ÎÊı£º
- *	pList£ºÁ´±íµØÖ·
+ * åŠŸèƒ½ï¼šé‡Šæ”¾é“¾è¡¨ç©ºé—´
+ * å‚æ•°ï¼š
+ *	pListï¼šé“¾è¡¨åœ°å€
  */
 void link_list_free(Link_List* pList)
 {
@@ -320,7 +320,7 @@ void link_list_free(Link_List* pList)
 	{
 		return;
 	}
-	//´ÓÎ²²¿¿ªÊ¼ÊÍ·Å
+	//ä»å°¾éƒ¨å¼€å§‹é‡Šæ”¾
 	pNode = pList->trail;
 	while(pNode != NULL)
 	{
@@ -333,37 +333,39 @@ void link_list_free(Link_List* pList)
 	pList->trail = NULL;
 	free(pList);
 	pList = NULL;
+#ifdef MS_WINDOWS
 	if (g_hMutex != NULL)
 	{
 		CloseHandle(g_hMutex);
 		g_hMutex = NULL;
 	}
+#endif
 }
 
 
 /**
- * ¹¦ÄÜ£ºLink_List²âÊÔ
+ * åŠŸèƒ½ï¼šLink_Listæµ‹è¯•
  */
 void link_list_test()
 {
 	int i = 0;
 	int *p = NULL;
 	Link_List* list = link_list_init();
-	//¶¯Ì¬Ìí¼Ó1000¸öÖµ
+	//åŠ¨æ€æ·»åŠ 1000ä¸ªå€¼
 	for(i = 0;i < 1000;i++)
 	{
 		p = (int*) malloc(sizeof(int));
 		*p = i;
 		link_list_insert(list,p,-1);
 	}
-	//È¡³öµÚ500¸öÔªËØ
+	//å–å‡ºç¬¬500ä¸ªå…ƒç´ 
 	p = (int*)link_list_getAt(list,499);
-	//É¾³ıµÚ500¸öÔªËØ£¬É¾³ıÖ®ºó¼ÇµÃÊÍ·Å
+	//åˆ é™¤ç¬¬500ä¸ªå…ƒç´ ï¼Œåˆ é™¤ä¹‹åè®°å¾—é‡Šæ”¾
 	link_list_removeAt(list,499);
 	free(p);
-	//ÖØĞÂ»ñÈ¡µÚ500¸öÔªËØ
+	//é‡æ–°è·å–ç¬¬500ä¸ªå…ƒç´ 
 	p = (int*)link_list_getAt(list,499);
-	//¿ªÊ¼ÊÍ·Å¿Õ¼ä
+	//å¼€å§‹é‡Šæ”¾ç©ºé—´
 	for(i = 0;i<list->length;i++)
 	{
 		p = (int*)link_list_getAt(list,i);

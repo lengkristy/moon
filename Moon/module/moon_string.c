@@ -19,45 +19,45 @@ unsigned long moon_get_string_length(const char* str)
 	return --length;
 }
 
-void moon_trim(char *strIn, char *strOut)//È¥³ı×Ö·û´®Ê×Î»¿Õ¸ñ
+void moon_trim(char *strIn, char *strOut)//å»é™¤å­—ç¬¦ä¸²é¦–ä½ç©ºæ ¼
 {
-	char *start, *end, *temp;//¶¨ÒåÈ¥³ı¿Õ¸ñºó×Ö·û´®µÄÍ·Î²Ö¸ÕëºÍ±éÀúÖ¸Õë
+	char *start, *end, *temp;//å®šä¹‰å»é™¤ç©ºæ ¼åå­—ç¬¦ä¸²çš„å¤´å°¾æŒ‡é’ˆå’Œéå†æŒ‡é’ˆ
 	temp = strIn;
 	while (*temp == ' '){
 	        ++temp;
 	}
-	start = temp; //ÇóµÃÍ·Ö¸Õë
-	temp = strIn + moon_get_string_length(strIn) - 1; //µÃµ½Ô­×Ö·û´®×îºóÒ»¸ö×Ö·ûµÄÖ¸Õë(²»ÊÇ'\0')
+	start = temp; //æ±‚å¾—å¤´æŒ‡é’ˆ
+	temp = strIn + moon_get_string_length(strIn) - 1; //å¾—åˆ°åŸå­—ç¬¦ä¸²æœ€åä¸€ä¸ªå­—ç¬¦çš„æŒ‡é’ˆ(ä¸æ˜¯'\0')
 	while (*temp == ' '){
 	    --temp;
 	}
-	end = temp; //ÇóµÃÎ²Ö¸Õë
+	end = temp; //æ±‚å¾—å°¾æŒ‡é’ˆ
 	for(strIn = start; strIn <= end; ){
 	    *strOut++ = *strIn++;
 	}
 	*strOut = '\0';
 }
 
-void moon_trim_line(char *strIn, char *strOut)//È¥µôÊ×Î²»»ĞĞ
+void moon_trim_line(char *strIn, char *strOut)//å»æ‰é¦–å°¾æ¢è¡Œ
 {
-	char *start, *end, *temp;//¶¨ÒåÈ¥³ı¿Õ¸ñºó×Ö·û´®µÄÍ·Î²Ö¸ÕëºÍ±éÀúÖ¸Õë
+	char *start, *end, *temp;//å®šä¹‰å»é™¤ç©ºæ ¼åå­—ç¬¦ä¸²çš„å¤´å°¾æŒ‡é’ˆå’Œéå†æŒ‡é’ˆ
 	temp = strIn;
 	while (*temp == '\n'){
 		++temp;
 	}
-	start = temp; //ÇóµÃÍ·Ö¸Õë
-	temp = strIn + moon_get_string_length(strIn) - 1; //µÃµ½Ô­×Ö·û´®×îºóÒ»¸ö×Ö·ûµÄÖ¸Õë(²»ÊÇ'\0')
+	start = temp; //æ±‚å¾—å¤´æŒ‡é’ˆ
+	temp = strIn + moon_get_string_length(strIn) - 1; //å¾—åˆ°åŸå­—ç¬¦ä¸²æœ€åä¸€ä¸ªå­—ç¬¦çš„æŒ‡é’ˆ(ä¸æ˜¯'\0')
 	while (*temp == '\n'){
 		--temp;
 	}
-	end = temp; //ÇóµÃÎ²Ö¸Õë
+	end = temp; //æ±‚å¾—å°¾æŒ‡é’ˆ
 	for(strIn = start; strIn <= end; ){
 		*strOut++ = *strIn++;
 	}
 	*strOut = '\0';
 }
 
-bool moon_string_parse_to_int(const char* str,unsigned int* outInt)/*½«×Ö·û´®×ª³Éunsigned int,Èç¹ûÊ§°Ü·µ»Øfalse£¬³É¹¦·µ»Øtrue*/
+bool moon_string_parse_to_int(const char* str,unsigned int* outInt)/*å°†å­—ç¬¦ä¸²è½¬æˆunsigned int,å¦‚æœå¤±è´¥è¿”å›falseï¼ŒæˆåŠŸè¿”å›true*/
 {
 	bool bFlag = true;
 	int length = 0;
@@ -66,10 +66,10 @@ bool moon_string_parse_to_int(const char* str,unsigned int* outInt)/*½«×Ö·û´®×ª³
 	{
 		return false;
 	}
-	length = moon_get_string_length(str);//»ñÈ¡×Ö·û´®³¤¶È
+	length = moon_get_string_length(str);//è·å–å­—ç¬¦ä¸²é•¿åº¦
 	for (i = 0;i < length;i++)
 	{
-		if (str[i] < 48 || str[i] > 57) //·ÇÊı×Ö×Ö·ûÖ±½Ó·µ»Øfalse
+		if (str[i] < 48 || str[i] > 57) //éæ•°å­—å­—ç¬¦ç›´æ¥è¿”å›false
 		{
 			return false;
 		}
@@ -117,7 +117,7 @@ bool moon_string_parse_to_int(const char* str,unsigned int* outInt)/*½«×Ö·û´®×ª³
 	return bFlag;
 }
 
-bool stringIsEmpty(char* str)//ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªNULL
+bool stringIsEmpty(char* str)//åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºNULL
 {
 	if(str == NULL)
 		return true;
@@ -127,7 +127,7 @@ bool stringIsEmpty(char* str)//ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªNULL
 		return false;
 }
 #ifdef MS_WINDOWS
-int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)//½«ascii×ªµ½utf8,³É¹¦·µ»ØÊµ¼Ê×ª»»µÄ×Ö½ÚÊı£¬Ê§°Ü·µ»Ø-1
+int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)//å°†asciiè½¬åˆ°utf8,æˆåŠŸè¿”å›å®é™…è½¬æ¢çš„å­—èŠ‚æ•°ï¼Œå¤±è´¥è¿”å›-1
 {
 	int convertSize = 0;
 	wchar_t* unicodeStr = NULL;
@@ -141,19 +141,19 @@ int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)//½«asci
 		return 0;
 	}
 	unicodeStr = moon_malloc(widesize);
-	//½«ascii×ª³Éunicode
+	//å°†asciiè½¬æˆunicode
 	convertSize = moon_ms_windows_ascii_to_unicode(asciiStr,unicodeStr);
 	if (convertSize == -1)
 	{
 		return convertSize;
 	}
-	//ÔÙ½«unicode×ª³Éutf8
+	//å†å°†unicodeè½¬æˆutf8
 	convertSize = moon_ms_windows_unicode_to_utf8(unicodeStr,outUTF8);
 	moon_free(unicodeStr);
 	return convertSize;
 }
 
-int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)//½«ascii×ªµ½unicode,³É¹¦·µ»ØÊµ¼Ê×ª»»µÄ×Ö½ÚÊı£¬Ê§°Ü·µ»Ø-1
+int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)//å°†asciiè½¬åˆ°unicode,æˆåŠŸè¿”å›å®é™…è½¬æ¢çš„å­—èŠ‚æ•°ï¼Œå¤±è´¥è¿”å›-1
 {
 	int widesize = MultiByteToWideChar(CP_ACP,0,asciiStr,-1,NULL,0);
 	int convertlength = 0;
@@ -174,7 +174,7 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)//
 	return convertlength;
 }
 
-int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8)//½«unicode×ªµ½utf8,³É¹¦·µ»ØÊµ¼Ê×ª»»µÄ×Ö½ÚÊı£¬Ê§°Ü·µ»Ø-1
+int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8)//å°†unicodeè½¬åˆ°utf8,æˆåŠŸè¿”å›å®é™…è½¬æ¢çš„å­—èŠ‚æ•°ï¼Œå¤±è´¥è¿”å›-1
 {
 	int utf8size = WideCharToMultiByte(CP_UTF8,0,unicodeStr,-1,NULL,0,NULL,NULL);
 	int convertSize = 0;
@@ -191,7 +191,7 @@ int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8)/
 	return convertSize;
 }
 
-int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)//½«unicode×ªµ½ascii,³É¹¦·µ»ØÊµ¼Ê×ª»»µÄ×Ö½ÚÊı£¬Ê§°Ü·µ»Ø-1
+int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)//å°†unicodeè½¬åˆ°ascii,æˆåŠŸè¿”å›å®é™…è½¬æ¢çš„å­—èŠ‚æ•°ï¼Œå¤±è´¥è¿”å›-1
 {
 	int convertSize = 0;
 	int asciiSize = WideCharToMultiByte(CP_ACP,0,unicodeStr,-1,NULL,0,NULL,NULL);
@@ -207,7 +207,7 @@ int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
 	}
 	return convertSize;
 }
-int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnicode)//½«utf8×ªµ½unicode,³É¹¦·µ»ØÊµ¼Ê×ª»»µÄ×Ö½ÚÊı£¬Ê§°Ü·µ»Ø-1
+int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnicode)//å°†utf8è½¬åˆ°unicode,æˆåŠŸè¿”å›å®é™…è½¬æ¢çš„å­—èŠ‚æ•°ï¼Œå¤±è´¥è¿”å›-1
 {
 	int convertSize = 0;
 	int unicodeSize = MultiByteToWideChar(CP_UTF8,0,utf8Str,-1,NULL,0);
@@ -224,7 +224,7 @@ int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnico
 	return convertSize;
 }
 
-int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)//½«utf8×ªµ½unicode,³É¹¦·µ»ØÊµ¼Ê×ª»»µÄ×Ö½ÚÊı£¬Ê§°Ü·µ»Ø-1
+int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)//å°†utf8è½¬åˆ°unicode,æˆåŠŸè¿”å›å®é™…è½¬æ¢çš„å­—èŠ‚æ•°ï¼Œå¤±è´¥è¿”å›-1
 {
 	int convertSize = 0;
 	wchar_t* unicodeStr = NULL;
@@ -251,10 +251,10 @@ int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)//½«ut
 #endif
 
 /************************************************************************/
-/* ½«×Ö·û´®Ğ¡Ğ´×ª»»³É´óĞ´£¬Èç¹û                                         */
-/*   ²ÎÊı£ºsrcStr:Ô­×Ö·û´®												*/
-/*		   pOutCapital:×ª»»ºóµÄ×Ö·û´®									*/
-/*	·µ»ØÖµ£º·µ»ØÊµ¼Ê×ª»»×ÖÄ¸µÄ¸öÊı										*/
+/* å°†å­—ç¬¦ä¸²å°å†™è½¬æ¢æˆå¤§å†™ï¼Œå¦‚æœ                                         */
+/*   å‚æ•°ï¼šsrcStr:åŸå­—ç¬¦ä¸²												*/
+/*		   pOutCapital:è½¬æ¢åçš„å­—ç¬¦ä¸²									*/
+/*	è¿”å›å€¼ï¼šè¿”å›å®é™…è½¬æ¢å­—æ¯çš„ä¸ªæ•°										*/
 /************************************************************************/
 int moon_to_capital(char* srcStr,char* pOutCapital)
 {
