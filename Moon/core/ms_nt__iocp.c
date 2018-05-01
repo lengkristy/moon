@@ -13,60 +13,56 @@
 extern "C" {
 #endif
 
-// 每一个处理器上产生多少个线程(为了最大限度的提升服务器性能，详见配套文档)
+//how many threads are generated on each cpu processor.(To maximize server performance)
 #define WORKER_THREADS_PER_PROCESSOR 2
-// 同时投递的Accept请求的数量(这个要根据实际的情况灵活设置)
+//The number of Accept requests at the same time
 #define MAX_POST_ACCEPT              10
-// 传递给Worker线程的退出信号
+// The exit signal passed to the Worker thread.
 #define EXIT_CODE                    NULL
 
 
-// 释放指针和句柄资源的宏
-
-// 释放指针宏
+// the macro definition of release pointer
 #define RELEASE(x)                      {if(x != NULL ){free(x);x=NULL;}}
-// 释放句柄宏
+// the macro definition of release handle
 #define RELEASE_HANDLE(x)               {if(x != NULL && x!=INVALID_HANDLE_VALUE){ CloseHandle(x);x = NULL;}}
-// 释放Socket宏
+// the macro definition of release socket
 #define RELEASE_SOCKET(x)               {if(x !=INVALID_SOCKET) { closesocket(x);x=INVALID_SOCKET;}}
-//进入临界区
+//Enter critical region
 #define _EnterCriticalSection(x) {if( x != NULL){EnterCriticalSection(&x->SockCritSec);}}
-//退出临界区
+//exit critical region
 #define _LeaveCriticalSection(x) {if( x != NULL){LeaveCriticalSection(&x->SockCritSec);}}
 
-static HANDLE	g_hShutdownEvent;// 用来通知线程系统退出的事件，为了能够更好的退出线程
-static HANDLE g_hIOCompletionPort;//完成端口的句柄
-static unsigned int g_nThreads;//生成线程的数量
-static HANDLE* g_phWorkerThreads;// 工作者线程的句柄指针
-static PMS_SOCKET_CONTEXT g_pListenContext = NULL;//监听的上下文
-static LPFN_ACCEPTEX                g_lpfnAcceptEx;                // AcceptEx 和 GetAcceptExSockaddrs 的函数指针，用于调用这两个扩展函数
+static HANDLE	g_hShutdownEvent;// the event of notifies the thread system to exit, in order to better exit the thread.
+static HANDLE g_hIOCompletionPort;//the handle of iocp
+static unsigned int g_nThreads;//the count of thread
+static HANDLE* g_phWorkerThreads;// the handle pointer of work thread
+static PMS_SOCKET_CONTEXT g_pListenContext = NULL;//listen context
+static LPFN_ACCEPTEX                g_lpfnAcceptEx;// the functions pointer of AcceptEx and GetAcceptExSockaddrs，in order to invoke them
 static LPFN_GETACCEPTEXSOCKADDRS    g_lpfnGetAcceptExSockAddrs; 
-static Array_List* g_pListMSClientSocketContext;//客户端Socket的Context信息
-static HANDLE g_hAliveThread;//心跳检测线程
+static Array_List* g_pListMSClientSocketContext;//the context of client socket
+static HANDLE g_hAliveThread;//heartbeat detection thread
 
 
 
-/////////////////////////////////////////////////////////////////////
-// 判断客户端Socket是否已经断开，否则在一个无效的Socket上投递WSARecv操作会出现异常
-// 使用的方法是尝试向这个socket发送数据，判断这个socket调用的返回值
-// 因为如果客户端网络异常断开(例如客户端崩溃或者拔掉网线等)的时候，服务器端是无法收到客户端断开的通知的
-
+/**
+ * Heartbeat packet detection
+ */
 bool isSocketAlive(SOCKET s)
 {
-	int nByteSent=send(s,"",0,0);//发送一个心跳包
+	int nByteSent=send(s,"",0,0);//send a package
 	if (-1 == nByteSent) return false;
 	return true;
 }
 
 ///////////////////////////////////////////////////////////////////
-// 显示并处理完成端口上的错误
+// handles errors on the completion port.
 bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 {
 	char strMsg[256] = {0};
-	// 如果是超时了，就再继续等吧  
+	//time out error
 	if(WAIT_TIMEOUT == dwErr)  
 	{  	
-		// 确认客户端是否还活着...
+		//Whether the client links
 		if( !isSocketAlive( pContext->m_socket) )
 		{
 			array_list_remove(g_pListMSClientSocketContext,pContext);
@@ -79,7 +75,7 @@ bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 			return true;
 		}
 	}
-	// 可能是客户端异常退出了
+	// The client aborted.
 	else if( ERROR_NETNAME_DELETED==dwErr )
 	{
 		array_list_remove(g_pListMSClientSocketContext,pContext);
@@ -94,11 +90,11 @@ bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 }
 
 /////////////////////////////////////////////////////
-// 将句柄(Socket)绑定到完成端口中
+// Bind the handle (Socket) to the completion port.
 bool associateWithIOCP( PMS_SOCKET_CONTEXT pContext )
 {
 	char strMsg[256] = {0};
-	// 将用于和客户端通信的SOCKET绑定到完成端口中
+	// The SOCKET used to communicate with the client is bound to the completion port.
 	HANDLE hTemp = CreateIoCompletionPort((HANDLE)pContext->m_socket, g_hIOCompletionPort, (DWORD)pContext, 0);
 
 	if (NULL == hTemp)
@@ -111,10 +107,9 @@ bool associateWithIOCP( PMS_SOCKET_CONTEXT pContext )
 }
 
 ////////////////////////////////////////////////////////////////////
-// 投递接收数据请求
+// post the received data request.
 bool postRecv( PMS_IO_CONTEXT pIoContext )
 {
-	// 初始化变量
 	DWORD dwFlags = 0;
 	DWORD dwBytes = 0;
 	int nBytesRecv = 0;
@@ -125,10 +120,10 @@ bool postRecv( PMS_IO_CONTEXT pIoContext )
 	memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
 	pIoContext->m_OpType = RECV_POSTED;
 
-	// 初始化完成后，，投递WSARecv请求
+	//After the initialization is complete, the WSARecv request is delivered.
 	nBytesRecv = WSARecv( pIoContext->m_sockAccept, p_wbuf, 1, &dwBytes, &dwFlags, p_ol, NULL );
 
-	// 如果返回值错误，并且错误的代码并非是Pending的话，那就说明这个重叠请求失败了
+	//If the return value error and the error code is not Pending, then this overlapping request fails.
 	if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
 	{
 		sprintf(strMsg,"post first message error,error code:%d",WSAGetLastError());
@@ -140,21 +135,20 @@ bool postRecv( PMS_IO_CONTEXT pIoContext )
 
 //====================================================================================
 //
-//				    投递完成端口请求
+//				    Post completion port request.
 //
 //====================================================================================
 //////////////////////////////////////////////////////////////////
-// 投递Accept请求
+// post an Accept request
 bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 {
-	// 准备参数
 	DWORD dwBytes = 0;  
 	char strMsg[256] = {0};
 	WSABUF *p_wbuf   = &pAcceptIoContext->m_wsaBuf;
 	OVERLAPPED *p_ol = &pAcceptIoContext->m_Overlapped;
 	pAcceptIoContext->m_OpType = ACCEPT_POSTED;
 
-	// 为以后新连入的客户端先准备好Socket( 这个是与传统accept最大的区别 ) 
+	//Prepare the Socket for the new incoming client (this is the biggest difference from the traditional accept)
 	pAcceptIoContext->m_sockAccept  = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, WSA_FLAG_OVERLAPPED);
 	if(INVALID_SOCKET==pAcceptIoContext->m_sockAccept)  
 	{  
@@ -163,7 +157,7 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 		return false;
 	} 
 
-	// 投递AcceptEx
+	// post AcceptEx
 	if(FALSE == g_lpfnAcceptEx( g_pListenContext->m_socket, pAcceptIoContext->m_sockAccept, p_wbuf->buf, p_wbuf->len - ((sizeof(SOCKADDR_IN)+16)*2),   
 		sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, &dwBytes, p_ol))  
 	{  
@@ -178,12 +172,7 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 }
 
 ////////////////////////////////////////////////////////////
-// 在有客户端连入的时候，进行处理
-// 流程有点复杂，你要是看不懂的话，就看配套的文档吧....
-// 如果能理解这里的话，完成端口的机制你就消化了一大半了
-
-// 总之你要知道，传入的是ListenSocket的Context，我们需要复制一份出来给新连入的Socket用
-// 原来的Context还是要在上面继续投递下一个Accept请求
+// Processing when the client is connected.
 //
 bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 {
@@ -197,23 +186,22 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	int len = 0;
 	
 	///////////////////////////////////////////////////////////////////////////
-	// 1. 首先取得连入客户端的地址信息
-	// 这个 m_lpfnGetAcceptExSockAddrs 不得了啊~~~~~~
-	// 不但可以取得客户端和本地端的地址信息，还能顺便取出客户端发来的第一组数据，老强大了...
+	// 1. First obtain the address information of the client.
+	// Not only can you get the client and local address information, but also the first set of data sent by the client.
 	g_lpfnGetAcceptExSockAddrs(pIoContext->m_wsaBuf.buf, pIoContext->m_wsaBuf.len - ((sizeof(SOCKADDR_IN)+16)*2),  
 		sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, (LPSOCKADDR*)&LocalAddr, &localLen, (LPSOCKADDR*)&ClientAddr, &remoteLen);
-	//解析客户端第一次传来的信息
+	//Parsing the first message from the client.
 	len = moon_ms_windows_utf8_to_unicode(pIoContext->m_szBuffer,clientMsg);//将收到的utf-8的字节序转化为unicode
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 2. 这里需要注意，这里传入的这个是ListenSocket上的Context，这个Context我们还需要用于监听下一个连接
-	// 所以我还得要将ListenSocket上的Context复制出来一份为新连入的Socket新建一个SocketContext
+	// 2.So, notice here, this is the Context in the listening socket, and this Context we also need to use to listen for the next connection.
+	// I have to copy the Context on the listening Socket to create a new SocketContext for the new Socket.
 
 	pNewSocketContext = create_new_socket_context();
 	pNewSocketContext->m_socket           = pIoContext->m_sockAccept;
 	memcpy(&(pNewSocketContext->m_client_addr), ClientAddr, sizeof(SOCKADDR_IN));
 
-	// 参数设置完毕，将这个Socket和完成端口绑定(这也是一个关键步骤)
+	// After the parameters are set, the Socket is bound to the completion port.
 	if( false==associateWithIOCP( pNewSocketContext ) )
 	{
 		RELEASE(pNewSocketContext);
@@ -221,14 +209,14 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	} 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////
-	// 3. 继续，建立其下的IoContext，用于在这个Socket上投递第一个Recv数据请求
+	// 3. The IoContext is established to deliver the first Recv data request on this Socket.
 	pNewIoContext = create_new_io_context();
 	pNewIoContext->m_OpType       = RECV_POSTED;
 	pNewIoContext->m_sockAccept   = pNewSocketContext->m_socket;
-	// 如果Buffer需要保留，就自己拷贝一份出来
+
 	//memcpy( pNewIoContext->m_szBuffer,pIoContext->m_szBuffer,MAX_BUFFER_LEN );
 
-	// 绑定完毕之后，就可以开始在这个Socket上投递完成请求了
+	// Once the binding is complete, you can begin to deliver the completed request on this Socket.
 	if( false==postRecv( pNewIoContext) )
 	{
 		array_list_remove(pNewSocketContext->m_pListIOContext,pNewIoContext);
@@ -238,32 +226,32 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-	// 4. 如果投递成功，那么就把这个有效的客户端信息，加入到ContextList中去(需要统一管理，方便释放资源)
+	// 4. If the delivery is successful, then add this valid client information to the ContextList
+	//    (which requires unified management and easy release of resources)
 	array_list_insert(g_pListMSClientSocketContext,pNewSocketContext,-1);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-	// 5. 使用完毕之后，把Listen Socket的那个IoContext重置，然后准备投递新的AcceptEx
+	// 5. After use, reset the IoContext of the Listen Socket, and then prepare to deliver the new AcceptEx.
 	memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
 	return post_accept( pIoContext );
 }
 
 /////////////////////////////////////////////////////////////////
-// 在有接收的数据到达的时候，进行处理
+// When the received data arrives, it is processed.
 bool doRecv( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 {
-	// 先把上一次的数据显示出现，然后就重置状态，发出下一个Recv请求
+	// First display the last data, then reset the state and issue the next Recv request.
 	//SOCKADDR_IN* ClientAddr = &pSocketContext->m_client_addr;
-	//this->_ShowMessage( _T("收到  %s:%d 信息：%s"),inet_ntoa(ClientAddr->sin_addr), ntohs(ClientAddr->sin_port),pIoContext->m_wsaBuf.buf );
+	//this->_ShowMessage( _T("receive  %s:%d message：%s"),inet_ntoa(ClientAddr->sin_addr), ntohs(ClientAddr->sin_port),pIoContext->m_wsaBuf.buf );
 
-	// 然后开始投递下一个WSARecv请求
+	// Then start delivering the next WSARecv request
 	return postRecv( pIoContext );
 }
 
 //////////////////////////////////////////////////////////////////////////
-// 投递发送数据的请求
+// post a request for sending data.
 bool postSend(PMS_IO_CONTEXT pIoContext)
 {
-	// 初始化变量
 	DWORD dwFlags = 0;
 	DWORD dwBytes = 0;
 	int nBytesRecv = 0;
@@ -273,13 +261,12 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 	pIoContext->m_OpType = SEND_POSTED;
 	//memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
 	p_wbuf->len = strlen(p_wbuf->buf);
-	// 初始化完成后，，投递WSARecv请求
+	// After the initialization is complete, the request for sending the data is sent to the WSARecv request.
 	nBytesRecv = WSASend( pIoContext->m_sockAccept, p_wbuf, 1, &dwBytes, dwFlags, p_ol, NULL );
 
-	// 如果返回值错误，并且错误的代码并非是Pending的话，那就说明这个重叠请求失败了
+	// If the return value error and the error code is not Pending, then this overlapping request fails.
 	if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
 	{
-		//this->_ShowMessage("投递第一个WSARecv失败！");
 		sprintf(strMsg,"post first message error,error code:%d",WSAGetLastError());
 		moon_write_error_log(strMsg);
 		return false;
@@ -288,15 +275,15 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 }
 
 //////////////////////////////////////////////////////////////////////////
-//在有发送的数据的时候进行处理
+//Processing when data is sent.
 bool doSend(PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext)
 {
 	return postSend(pIoContext);
 }
 
 ///////////////////////////////////////////////////////////////////
-// 工作者线程：  为IOCP请求服务的工作者线程
-//         也就是每当完成端口上出现了完成数据包，就将之取出来进行处理的线程
+// work thread：  Worker threads for the IOCP request service
+// That is, whenever a packet is completed on the completion port, it is taken out and processed.
 ///////////////////////////////////////////////////////////////////
 DWORD static WINAPI worker_thread(LPVOID lpParam)
 {
@@ -304,7 +291,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 	PMS_SOCKET_CONTEXT   pSocketContext = NULL;
 	DWORD                dwBytesTransfered = 0;
 
-	// 循环处理请求，知道接收到Shutdown信息为止
+	// The loop processes the request until the Shutdown information is received.
 	while (WAIT_OBJECT_0 != WaitForSingleObject(g_hShutdownEvent, 0))
 	{
 		BOOL bReturn = GetQueuedCompletionStatus(
@@ -317,7 +304,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 		{
 			_EnterCriticalSection(pSocketContext);
 		}
-		// 如果收到的是退出标志，则直接退出
+		//If you receive an exit sign, exit directly.
 		if ( EXIT_CODE==(DWORD)pSocketContext )
 		{
 			if (pSocketContext != NULL)
@@ -327,12 +314,10 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 			break;
 		}
 
-		// 判断是否出现了错误
+		// There was a mistake
 		if( !bReturn )  
 		{  
 			DWORD dwErr = GetLastError();
-
-			// 显示一下提示信息
 			if( !handleError( pSocketContext,dwErr ) )
 			{
 				_LeaveCriticalSection(pSocketContext);
@@ -343,13 +328,13 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 		}  
 		else  
 		{  
-			// 读取传入的参数
+			// Read the incoming parameters.
 			MS_IO_CONTEXT* pIoContext = CONTAINING_RECORD(pOverlapped, MS_IO_CONTEXT, m_Overlapped);  
 
-			// 判断是否有客户端断开了
+			// Is the client disconnected?
 			if((0 == dwBytesTransfered) && ( RECV_POSTED==pIoContext->m_OpType || SEND_POSTED==pIoContext->m_OpType))  
 			{  
-				// 释放掉对应的资源
+				// release client resource
 				array_list_remove(g_pListMSClientSocketContext,pSocketContext);
 				free_socket_context(pSocketContext);
 				pSocketContext = NULL;
@@ -363,7 +348,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					// Accept  
 				case ACCEPT_POSTED:
 					{ 
-						// 为了增加代码可读性，这里用专门的_DoAccept函数进行处理连入请求
+						// To increase the readability of your code,use the special _DoAccept function to process the incoming requests.
 						doAccpet( pSocketContext, pIoContext );
 					}
 					break;
@@ -371,9 +356,9 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					// RECV
 				case RECV_POSTED:
 					{
-						// 为了增加代码可读性，这里用专门的_DoRecv函数进行处理接收请求
+						// In order to increase the readability of the code, a special _DoRecv function is used to process the receive request.
 						doRecv( pSocketContext,pIoContext );
-						//接收到消息之后给客户端回传消息
+						//The message is sent back to the client after receiving the message.
 						strcpy(pIoContext->m_wsaBuf.buf,"server");
 						doSend(pSocketContext,pIoContext);
 					}
@@ -382,13 +367,13 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					// SEND
 				case SEND_POSTED:
 					{
-						//moon_write_info_log("开始发送消息:");
+						//moon_write_info_log("start send message:");
 						//moon_write_info_log(pIoContext->m_szBuffer);
 					}
 					break;
 				default:
-					// 不应该执行到这里
-					//TRACE(_T("_WorkThread中的 pIoContext->m_OpType 参数异常.\n"));
+					// It shouldn't be done here.
+					//TRACE(_T("_WorkThread中的 pIoContext->m_OpType exception.\n"));
 					break;
 				} //switch
 			}//if
@@ -400,7 +385,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 }
 
 /*****************************************************************
- *  心跳包检测线程
+ *  Heartbeat packet detection thread.
  *****************************************************************/
 DWORD static WINAPI alive_thread(LPVOID lpParam)
 {
@@ -425,14 +410,14 @@ DWORD static WINAPI alive_thread(LPVOID lpParam)
 }
 
 ////////////////////////////////////////////////////////////////////
-// 初始化WinSock 2.2
+// init WinSock 2.2
 bool static load_socket_lib()
 {    
 	WSADATA wsaData;
 	int nResult;
 	char strMsg[256] = {0};
 	nResult = WSAStartup(MAKEWORD(2,2), &wsaData);
-	// 错误(一般都不可能出现)
+
 	if (NO_ERROR != nResult)
 	{
 		sprintf(strMsg,"init winsock 2.2 falied,error code:%d",WSAGetLastError());
@@ -444,7 +429,7 @@ bool static load_socket_lib()
 }
 
 ///////////////////////////////////////////////////////////////////
-// 获得本机中处理器的数量
+// Gets the number of processors in the machine.
 int getNoOfProcessors()
 {
 	SYSTEM_INFO si;
@@ -455,13 +440,13 @@ int getNoOfProcessors()
 }
 
 ////////////////////////////////
-// 初始化完成端口
+// Initialize the completion port.
 bool ms_iocp_init()
 {
 	int i = 0;
 	DWORD nThreadID;
 	char strMsg[256] = {0};
-	// 建立第一个完成端口
+	// Build the first completion port.
 	g_hIOCompletionPort = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0 );
 
 	if ( NULL == g_hIOCompletionPort)
@@ -471,13 +456,13 @@ bool ms_iocp_init()
 		return false;
 	}
 
-	// 根据本机中的处理器数量，建立对应的线程数
+	// According to the number of processors in the machine, the corresponding number of threads is established.
 	g_nThreads = WORKER_THREADS_PER_PROCESSOR * getNoOfProcessors();
 
-	// 为工作者线程初始化句柄
+	// Initializes the handle for the worker thread.
 	g_phWorkerThreads = (HANDLE*)malloc(sizeof(HANDLE) * g_nThreads);
 
-	// 根据计算出来的数量建立工作者线程
+	// Create worker threads based on the number of calculations.
 	for (i=0; i < g_nThreads; i++)
 	{
 		g_phWorkerThreads[i] = CreateThread(0, 0, worker_thread, NULL, 0, &nThreadID);
@@ -487,14 +472,14 @@ bool ms_iocp_init()
 }
 
 ////////////////////////////////////////////////////////////
-//	最后释放掉所有资源
+//	Finally, all resources are released.
 void dispose()
 {
 	int i = 0;
-	// 关闭系统退出事件句柄
+	// Close the system to exit the event handle.
 	RELEASE_HANDLE(g_hShutdownEvent);
 
-	// 释放工作者线程句柄指针
+	// Release the worker thread handle pointer.
 	for(i=0;i<g_nThreads;i++ )
 	{
 		RELEASE_HANDLE(g_phWorkerThreads[i]);
@@ -502,16 +487,16 @@ void dispose()
 
 	RELEASE(g_phWorkerThreads);
 
-	//释放心跳包的线程句柄
+	//The thread handle that releases the heartbeat packet.
 	RELEASE_HANDLE(g_hAliveThread);
 
-	// 关闭IOCP句柄
+	// Close the IOCP handle.
 	RELEASE_HANDLE(g_hIOCompletionPort);
 
-	// 关闭监听Socket
+	// Close listening Socket
 	free_socket_context(g_pListenContext);
 
-	//释放客户端上下文集合
+	//Releases the client context collection
 	for (i = 0; i < g_pListMSClientSocketContext->length;)
 	{
 		free_socket_context((PMS_SOCKET_CONTEXT)array_list_getAt(g_pListMSClientSocketContext,i));
@@ -521,10 +506,10 @@ void dispose()
 }
 
 /////////////////////////////////////////////////////////////////
-// 初始化Socket
+// init Socket
 bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 {
-	// AcceptEx 和 GetAcceptExSockaddrs 的GUID，用于导出函数指针
+	// The GUID of AcceptEx and GetAcceptExSockaddrs for exporting function Pointers.
 	GUID GuidAcceptEx = WSAID_ACCEPTEX;  
 	GUID GuidGetAcceptExSockAddrs = WSAID_GETACCEPTEXSOCKADDRS; 
 	char strMsg[256] = {0};
@@ -534,13 +519,13 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	int addrlen = 0;
 	DWORD dwBytes = 0; 
 	DWORD	Flags = 0;
-	// 服务器地址信息，用于绑定Socket
+	// Server address information for binding sockets.
 	struct sockaddr_in ServerAddress;
 
-	// 生成用于监听的Socket的信息
+	// Generate the information for the Socket used for listening.
 	g_pListenContext = create_new_socket_context();
 
-	// 需要使用重叠IO，必须得使用WSASocket来建立Socket，才可以支持重叠IO操作
+	// Overlapped IO is required, and you must use WSASocket to set up sockets to support overlapping IO operations.
 	g_pListenContext->m_socket = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
 	if (INVALID_SOCKET == g_pListenContext->m_socket) 
 	{
@@ -555,7 +540,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		memset(strMsg,0,256);
 	}
 
-	// 将Listen Socket绑定至完成端口中
+	// Bind the Listen Socket to the completion port.
 	if( NULL== CreateIoCompletionPort( (HANDLE)g_pListenContext->m_socket, g_hIOCompletionPort,(DWORD)g_pListenContext, 0))  
 	{  
 		sprintf(strMsg,"bind listen socket to io completion port failed,error code:%d",WSAGetLastError());
@@ -570,15 +555,15 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		memset(strMsg,0,256);
 	}
 
-	// 填充地址信息
+	// Fill address information
 	ZeroMemory((char *)&ServerAddress, sizeof(ServerAddress));
 	ServerAddress.sin_family = AF_INET;
-	// 这里可以绑定任何可用的IP地址，或者绑定一个指定的IP地址 
+	// You can bind any available IP address, or bind a specified IP address.
 	//ServerAddress.sin_addr.s_addr = htonl(INADDR_ANY);                      
 	ServerAddress.sin_addr.s_addr = inet_addr(p_global_server_config->server_ip);         
 	ServerAddress.sin_port = htons(p_global_server_config->server_port);                          
 
-	// 绑定地址和端口
+	// Bind the address and port.
 	if (SOCKET_ERROR == bind(g_pListenContext->m_socket, (struct sockaddr *) &ServerAddress, sizeof(ServerAddress))) 
 	{
 		sprintf(strMsg,"bind() execute failed,error code:%d",WSAGetLastError());
@@ -587,7 +572,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		return false;
 	}
 
-	// 开始进行监听
+	// Start listening
 	if (SOCKET_ERROR == listen(g_pListenContext->m_socket,SOMAXCONN))
 	{
 		sprintf(strMsg,"listen() execute failed,error code:%d",WSAGetLastError());
@@ -596,9 +581,8 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		return false;
 	}
 
-	// 使用AcceptEx函数，因为这个是属于WinSock2规范之外的微软另外提供的扩展函数
-	// 所以需要额外获取一下函数的指针，
-	// 获取AcceptEx函数指针
+	// The AcceptEx function is used because this is an extension function provided by Microsoft outside of the WinSock2 specification.
+	// So you need to get a little bit of a pointer to the function,Gets the AcceptEx function pointer.
 	if(SOCKET_ERROR == WSAIoctl(
 		g_pListenContext->m_socket, 
 		SIO_GET_EXTENSION_FUNCTION_POINTER, 
@@ -616,7 +600,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 		return false;  
 	}  
 
-	// 获取GetAcceptExSockAddrs函数指针，也是同理
+	// The same is true for GetAcceptExSockAddrs function Pointers.
 	if(SOCKET_ERROR == WSAIoctl(
 		g_pListenContext->m_socket, 
 		SIO_GET_EXTENSION_FUNCTION_POINTER, 
@@ -635,7 +619,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	}  
 
 
-	// 为AcceptEx 准备参数，然后投递AcceptEx I/O请求
+	// Prepare the parameters for the AcceptEx and deliver the AcceptEx I/O request.
 	for(i=0;i < MAX_POST_ACCEPT;i++ )
 	{
 		// 新建一个IO_CONTEXT
@@ -645,11 +629,11 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 			free_io_context(pAcceptIoContext);
 			return false;
 		}
-		//将接收的IO上下文放入监听列表
+		//Put the received IO context into the listening list.
 		array_list_insert(g_pListenContext->m_pListIOContext,pAcceptIoContext,-1);
 	}
 
-	//使用第二种接收方式(阻塞)
+	//Using a second mode of reception (blocking)
 	/*
 	while(WAIT_TIMEOUT == WaitForSingleObject(g_hShutdownEvent, 0))	//when m_killevent is set , server shutdown
 	{
@@ -703,11 +687,11 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*启
 	{
 		return false;
 	}
-	// 建立系统退出的事件通知
+	// Establish notification of event notification of system exit.
 	g_hShutdownEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-	//初始化客户端集合
+	//Initialize the client collection.
 	g_pListMSClientSocketContext = array_list_init();
-	// 初始化IOCP
+	// init IOCP
 	if (false == ms_iocp_init())
 	{
 		moon_write_error_log("init ms_nt_iocp falied");
@@ -726,7 +710,7 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*启
 	{
 		moon_write_info_log("init ms_init_listen_socket finished");
 	}
-	//开启心跳检测线程
+	//Open the heartbeat detection thread.
 	g_hAliveThread = CreateThread(0, 0, alive_thread, NULL, 0, &nThreadID);
 	if (g_hAliveThread == NULL)
 	{
@@ -737,23 +721,26 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*启
 	return true;
 }
 
-void ms_iocp_server_stop()/*停止IOCP服务*/
+/**
+ * stop iocp service
+ */
+void ms_iocp_server_stop()
 {
 	int i = 0;
 	if( g_pListenContext!=NULL && g_pListenContext->m_socket!=INVALID_SOCKET )
 	{
-		// 激活关闭消息通知
+		// Activate the shutdown message notification.
 		SetEvent(g_hShutdownEvent);
 		for (i = 0; i < g_nThreads; i++)
 		{
-			// 通知所有的完成端口操作退出
+			// Notifies all completion port operations to exit.
 			PostQueuedCompletionStatus(g_hIOCompletionPort, 0, (DWORD)EXIT_CODE, NULL);
 		}
-		// 等待所有的客户端资源退出
+		// Wait for all client resources to exit
 		WaitForMultipleObjects(g_nThreads, g_phWorkerThreads, TRUE, INFINITE);
-		// 等待心跳检测线程退出
+		// Wait for the heartbeat detection thread to exit.
 		WaitForSingleObject(g_hAliveThread,INFINITE);
-		// 释放其他资源
+		// Release other resources
 		dispose();
 	}	
 }

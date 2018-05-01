@@ -1,16 +1,8 @@
-/****************************************************************************
-作者：代浩然
-时间：2017-8-2
-该文件定义为线性链表相关的实现
-线性链表的特性：
-	1、在内存中的存放地址是连续的
-优点：
-	1、由于地址的连续性，所以CPU的pc指针寻址的地址空间的范围不会太大，所以随机访问链表的速度非常快，遍历的速度非常快，释放空间也比较快
-缺点：
-	2、也正是地址的连续性，所以当每次随机插入的时候都要进行链表剩余空间的检查，如果空间不够，然后又要重新分配内存，
-	   如果随机插入的位置后面有元素，需要把该位置的元素都要依次往后挪一位，然后在当前位置进行插入，所以这样就造成
-	   速度非常慢
-****************************************************************************/
+/**************************************************************************
+ * This file is implemented as a array list.
+ * coding by: haoran dai
+ * time:2017-8-2
+ **************************************************************************/
 #pragma once
 #ifndef _ARRAY_LIST_H
 #define _ARRAY_LIST_H
@@ -19,80 +11,91 @@
 extern "C" {
 #endif
 
-//链表初始化大小
+//the initial size of array list
 #define ARRAY_LIST_INIT_SIZE 100
-//链表存满每次增加的大小
+//the size of each increment when list is filled
 #define ARRAY_LIST_INCREASE_SIZE 200
 
-//定义节点
+//define node
 typedef struct _Array_Node{
-	void* data;//数据域
+	void* data;//data filed
 }Array_Node;
 
-//定义链表结构
+//the struct of array list
 typedef struct _Array_List{
-	Array_Node *node;//数据域
-	unsigned long length;//链表的当前长度
-	unsigned long size;//链表的整体大小
+	Array_Node *node;//node
+	unsigned long length;//the current storage length of array list
+	unsigned long size;//the overall size of array list,
 }Array_List;
 
 /**
- * 功能：初始化链表
- * 返回值：如果成功，则返回链表的地址，如果失败返回NULL
+ * function desc:
+ * 		init list
+ * return:
+ * 		if success return the list address，and return NULL if failed
  */
 Array_List* array_list_init();
 
 /**
- * 功能：随机插入链表
- * 参数：
- *		pList：链表地址
- *		pData：插入的数据节点
- *		index：要插入的位置，如果为0，则默认从链表的开始处插入，如果为-1，则默认从链表的最后插入
- * 返回值：成功返回0，失败返回-1
+ * function desc:
+ * 		Insert the list randomly
+ * params:
+ *		pList:list address point.
+ *		pData:the data to be inserted.
+ *		index:the position to be inserted,If 0,default is inserted from the start of the list;
+ 			  if -1,default is inserted from the end of the list.
+ * return:
+ * 		Success returns 0, failure returns -1.
  */
 int array_list_insert(Array_List* pList,void* pData,long index);
 
 /**
- * 功能：从某个位置取出元素
- * 参数：
- *		pList：链表地址
- *		index：位置
- * 返回值：返回数据体指针
+ * function desc:
+ * 		extract the element by index.
+ * params:
+ *		pList:the address of list
+ *		index:location index
  */
 void* array_list_getAt(Array_List* pList,unsigned long index);
 
 /**
- * 功能：通过索引删除元素，删除元素只是将data域置为NULL，并不会释放data指针，由调用者释放
- * 参数：
- *		pList：链表地址
- *		index：位置
+ * function desc:
+ * 		deletes the element by index.the deleted element simply sets the data domain to NULL,
+ * 		the data pointer is not released,it released by the caller，or creator.
+ * params:
+ *		pList:the adress of list
+ *		index:location index
  */
 void array_list_removeAt(Array_List* pList,unsigned long index);
 
 /**
- * 功能：移除某个元素
- * 参数：
- *     pList：链表地址
- *	   pData：元素指针
+ * function desc:
+ * 		delete one element
+ * param:
+ *     pList:the address of list
+ *	   pData:element address point
  */
 void array_list_remove(Array_List* pList,void* pData);
 
 /**
- * 功能：清空链表
- * 参数：
- *	pList：链表地址
+ * function desc:
+ * 		To empty the list
+ * params:
+ *	pList:the address of list
  */
 void array_list_clear(Array_List* pList);
 
 /**
- * 功能：释放链表空间
- * 参数：
- *	pList：链表地址
+ * function desc:
+ * 		release list
+ * params:
+ *	pList:the address of list
  */
 void array_list_free(Array_List* pList);
 
 /**
- * 功能：Array测试
+ * function desc:
+ * 		Array_List test
  */
 void array_list_test();
 

@@ -43,7 +43,9 @@ void moon_file_print(const char* log)//write file log,thread sync
 	time_t rawtime; 
 	struct tm * timeinfo; 
 	char strTime[255] = {0};
-
+	if(pFile == NULL){/*file is NULL,and return*/
+		return;
+	}
 //thread synchronous
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LOG_MUTEX));
@@ -78,10 +80,10 @@ void moon_file_print(const char* log)//write file log,thread sync
 bool moon_log_init()
 {
 	bool bFlag = true;
-	if( NULL == (pFile = fopen(MOON_LOG_FILE_PATH, "a+")))
-	{
+	pFile = fopen(MOON_LOG_FILE_PATH, "a+");
+	//pFile = fopen("/home/lengyue/workspace/cpp_work/moon/linux_debug/log/moon.log", "a+");
+	if(NULL == pFile)
 		return false;
-	}
 	//create windows mutexes object
 #ifdef MS_WINDOWS
 	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(LOG_MUTEX));
@@ -90,7 +92,7 @@ bool moon_log_init()
 		return false;
 	}
 #endif
-	
+	moon_write_info_log("init log environment finished");
 	return bFlag;
 }
 

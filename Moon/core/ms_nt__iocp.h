@@ -1,6 +1,8 @@
-/************************************************************************/
-/* 使用微软IOCP端口复用通信模型                                         */
-/************************************************************************/
+/************************************************************************
+ * this file using Microsoft IOCP port multiplexing communication model. 
+ * coding by: haoran dai
+ * time:2018-5-1 16:23                               
+ ***********************************************************************/
 #pragma once
 #ifndef _MS_NT_IOCP
 #define _MS_NT_IOCP
@@ -9,7 +11,6 @@
 #include "../module/module_log.h"
 
 #ifdef MS_WINDOWS
-// winsock 2 的头文件和库
 #include <winsock2.h>
 #include <MSWSock.h>
 #pragma comment(lib,"ws2_32.lib")
@@ -19,9 +20,19 @@
 extern "C" {
 #endif
 
-bool ms_iocp_server_start();/*启动IOCP服务*/
+/**
+ * function desc:
+ *      start IOCP service
+ * return:
+ *      success return true,failed return false 
+ */
+bool ms_iocp_server_start();
 
-void ms_iocp_server_stop();/*停止IOCP服务*/
+/**
+ * function desc:
+ *      stop IOCP service
+ */
+void ms_iocp_server_stop();
 
 #ifdef __cplusplus
 }

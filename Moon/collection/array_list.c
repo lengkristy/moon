@@ -12,25 +12,27 @@ static HANDLE g_hMutex;
 #endif
 
 /**
- * 功能：初始化链表
- * 返回值：如果成功，则返回链表的地址，如果失败返回NULL
+ * function desc:
+ * 		init list
+ * return:
+ * 		if success return the list address，and return NULL if failed
  */
 Array_List* array_list_init()
 {
 	int i = 0;
-	Array_List* pList = (Array_List*)malloc(sizeof(Array_List));//配置链表空间
+	Array_List* pList = (Array_List*)malloc(sizeof(Array_List));//Allocate the list address space
 	if(pList == NULL)
 	{
 		return NULL;
 	}
-	//分配Node节点
-	pList->node = (Array_Node*)malloc(ARRAY_LIST_INIT_SIZE * sizeof(Array_Node));//分配存放数据域的空间
+	//create node
+	pList->node = (Array_Node*)malloc(ARRAY_LIST_INIT_SIZE * sizeof(Array_Node));
 	if(pList->node == NULL)
 	{
 		free(pList);
 		return NULL;
 	}
-	//将Node的data域置为空置
+	//the data set null of every node
 	for(i = 0;i < ARRAY_LIST_INIT_SIZE;i++)
 	{
 		pList->node[i].data = NULL;
@@ -38,7 +40,7 @@ Array_List* array_list_init()
 	pList->length = 0;
 	pList->size = ARRAY_LIST_INIT_SIZE;
 
-	//初始化互斥体
+	//init mutexes
 #ifdef MS_WINDOWS
 	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(ARRAY_LIST_MUTEX));
 	if (g_hMutex == NULL)
@@ -51,78 +53,80 @@ Array_List* array_list_init()
 }
 
 /**
- * 功能：随机插入链表
- * 参数：
- *		pList：链表地址
- *		pData：插入的数据节点
- *		index：要插入的位置，如果为0，则默认从链表的开始处插入，如果为-1，则默认从链表的最后插入
- * 返回值：成功返回0，失败返回-1
+ * function desc:
+ * 		Insert the list randomly
+ * params:
+ *		pList:list address point.
+ *		pData:the data to be inserted.
+ *		index:the position to be inserted,If 0,default is inserted from the start of the list;
+ 			  if -1,default is inserted from the end of the list.
+ * return:
+ * 		Success returns 0, failure returns -1.
  */
 int array_list_insert(Array_List* pList,void* pData,long index)
 {
 	long i = 0;
-	unsigned long reallocSize = 0;//重新分配空间的大小
-	//需要做线程同步
+	unsigned long reallocSize = 0;//redistribute the space size.
+	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return -1;
 	}
-	//WaitforsingleObject将等待指定的一个mutex，直至获取到拥有权
-	//通过互斥锁保证除非输出工作全部完成，否则其他线程无法输出。
+	//get mutexes object
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//临界区
+	//critical region
 	if(pList == NULL)
 		return -1;
 	if(index < -1 || (index > pList->length && index != -1))
 	{
 		return -1;
 	}
-	//判断链表空间够不够长
+	//if the pre-allocated list space is used up,and it will be redistributed.
 	if(pList->length == pList->size - 1)
 	{
-		//重新分配空间
+		//redistribute space
 		reallocSize = pList->size + ARRAY_LIST_INCREASE_SIZE;
 		pList->node = (Array_Node*)realloc(pList->node,reallocSize * sizeof(Array_Node));
 		if(pList->node == NULL)
 		{
 			return -1;
 		}
-		//并且将新增节点的data域置为空
+		//set data is NULL of the new node
 		for(i = pList->length;i < reallocSize;i++)
 		{
 			pList->node[i].data = NULL;
 		}
 		pList->size = reallocSize;
 	}
-	//开始插入
-	if(index == -1)//从末尾处插入
+	//start insert data
+	if(index == -1)//insert from end
 	{
 		pList->node[pList->length].data = pData;
-		pList->length++;//长度自增1
+		pList->length++;//length self-increasing 1 of list
 		return 0;
 	}
-	else if(index == 0) //从开始处插入
+	else if(index == 0) //insert from start
 	{
 		for(i = pList->length;i >0;i--)
 		{
 			pList->node[i] = pList->node[i - 1];
 		}
 		pList->node[0].data = pData;
-		pList->length++;//长度自增1
+		pList->length++;//length self-increasing 1 of list
 		return 0;
 	}
-	else//指定位置插入
+	else//the specified location is inserted.
 	{
 		for(i = pList->length;i > index;i--)
 		{
 			pList->node[i] = pList->node[i - 1];
 		}
 		pList->node[i].data = pData;
-		pList->length++;//长度自增1
+		pList->length++;//length self-increasing 1 of list
 		return 0;
 	}
 	//////////////////////////////////////////////////////////////////////////
@@ -134,38 +138,38 @@ int array_list_insert(Array_List* pList,void* pData,long index)
 }
 
 /**
- * 功能：通过索引删除元素，删除元素只是将data域置为NULL，并不会释放data指针，由调用者释放
- * 参数：
- *		pList：链表地址
- *		index：位置
+ * function desc:
+ * 		deletes the element by index.the deleted element simply sets the data domain to NULL,
+ * 		the data pointer is not released,it released by the caller，or creator.
+ * params:
+ *		pList:the adress of list
+ *		index:location index
  */
 void array_list_removeAt(Array_List* pList,unsigned long index)
 {
 	int i = 0;
-	//需要做线程同步
+	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return;
 	}
-	//WaitforsingleObject将等待指定的一个mutex，直至获取到拥有权
-	//通过互斥锁保证除非输出工作全部完成，否则其他线程无法输出。
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//临界区
+	//critical region
 	if(pList == NULL)
 		return;
 	if(index < 0 || index >= pList->length)
 		return;
-	for(i = index; i < pList->length;i++)//让删除的索引后的元素依次往前移
+	for(i = index; i < pList->length;i++)//after deleting the element，let the rest of the elements move forward.
 	{
 		pList->node[i] = pList->node[i + 1];
 	}
-	//将最后一位置空
+	//NULL to be set the data domain of the last element.
 	pList->node[pList->length - 1].data = NULL;
-	//长度减1
+	//length minus 1
 	pList->length--;
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
@@ -175,28 +179,27 @@ void array_list_removeAt(Array_List* pList,unsigned long index)
 }
 
 /**
- * 功能：移除某个元素
- * 参数：
- *     pList：链表地址
- *	   pData：元素指针
+ * function desc:
+ * 		delete one element
+ * param:
+ *     pList:the address of list
+ *	   pData:element address point
  */
 void array_list_remove(Array_List* pList,void* pData)
 {
 	int i = 0;
-	int removeIndex = -1;//需要被删除的元素索引
-	//需要做线程同步
+	int removeIndex = -1;//the index of to be delete element
+	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return;
 	}
-	//WaitforsingleObject将等待指定的一个mutex，直至获取到拥有权
-	//通过互斥锁保证除非输出工作全部完成，否则其他线程无法输出。
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//临界区
+	//critical region
 	for (i = 0;i < pList->length;i++)
 	{
 		if(array_list_getAt(pList,i) == pData)
@@ -209,13 +212,13 @@ void array_list_remove(Array_List* pList,void* pData)
 	{
 		if(pList == NULL)
 			return;
-		for(i = removeIndex; i < pList->length;i++)//让删除的索引后的元素依次往前移
+		for(i = removeIndex; i < pList->length;i++)//after deleting the element，let the rest of the elements move forward.
 		{
 			pList->node[i] = pList->node[i + 1];
 		}
-		//将最后一位置空
+		//NULL to be set the data domain of the last element.
 		pList->node[pList->length - 1].data = NULL;
-		//长度减1
+		//length minus 1
 		pList->length--;
 	}
 	//////////////////////////////////////////////////////////////////////////
@@ -226,27 +229,26 @@ void array_list_remove(Array_List* pList,void* pData)
 }
 
 /**
- * 功能：从某个位置取出元素
- * 参数：
- *		pList：链表地址
- *		index：位置
+ * function desc:
+ * 		extract the element by index.
+ * params:
+ *		pList:the address of list
+ *		index:location index
  */
 void* array_list_getAt(Array_List* pList,unsigned long index)
 {
 	void* pData = NULL;
-	//需要做线程同步
+	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return NULL;
 	}
-	//WaitforsingleObject将等待指定的一个mutex，直至获取到拥有权
-	//通过互斥锁保证除非输出工作全部完成，否则其他线程无法输出。
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//临界区
+	//critical region
 	if(pList == NULL)
 	{
 		return NULL;
@@ -266,31 +268,30 @@ void* array_list_getAt(Array_List* pList,unsigned long index)
 }
 
 /**
- * 功能：清空链表
- * 参数：
- *	pList：链表地址
+ * function desc:
+ * 		To empty the list
+ * params:
+ *	pList:the address of list
  */
 void array_list_clear(Array_List* pList)
 {
 	int i = 0;
-	//需要做线程同步
+	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
 	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
 	if(hMutex == NULL)
 	{
 		return NULL;
 	}
-	//WaitforsingleObject将等待指定的一个mutex，直至获取到拥有权
-	//通过互斥锁保证除非输出工作全部完成，否则其他线程无法输出。
 	WaitForSingleObject(hMutex, 1000);
 #endif
 	//////////////////////////////////////////////////////////////////////////
-	//临界区
+	//critical region
 	if(pList == NULL)
 	{
 		return;
 	}
-	//将数据域置为空
+	//NULL to be set the data domain 
 	for(i = 0;i < pList->length;i++)
 	{
 		if(pList->node[i].data != NULL)
@@ -308,15 +309,25 @@ void array_list_clear(Array_List* pList)
 }
 
 /**
- * 功能：释放链表空间，由创建的线程释放
- * 参数：
- *	pList：链表地址
+ * function desc:
+ * 		release list
+ * params:
+ *	pList:the address of list
  */
 void array_list_free(Array_List* pList)
 {
+//thread synchronization under windows platform
+#ifdef MS_WINDOWS
+	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
+	if(hMutex == NULL)
+	{
+		return NULL;
+	}
+	WaitForSingleObject(hMutex, 1000);
+#endif
 	if(pList == NULL)
 		return;
-	//释放节点
+	//release node
 	if(pList->node != NULL)
 	{
 		free(pList->node);
@@ -337,28 +348,24 @@ void array_list_free(Array_List* pList)
 }
 
 /**
- * 功能：Array_List测试
+ * function desc:
+ * 		Array_List test
  */
 void array_list_test()
 {
 	int i = 0;
 	int *p = NULL;
 	Array_List* list = array_list_init();
-	//动态添加1000个值
 	for(i = 0;i < 1000;i++)
 	{
 		p = (int*) malloc(sizeof(int));
 		*p = i;
 		array_list_insert(list,p,-1);
 	}
-	//取出第500个元素
 	p = (int*)array_list_getAt(list,499);
-	//删除第500个元素，删除之后记得释放
 	array_list_removeAt(list,499);
 	free(p);
-	//重新获取第500个元素
 	p = (int*)array_list_getAt(list,499);
-	//开始释放空间
 	for(i = 0;i<list->length;i++)
 	{
 		p = (int*)array_list_getAt(list,i);

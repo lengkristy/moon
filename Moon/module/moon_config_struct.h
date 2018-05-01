@@ -1,5 +1,5 @@
 /************************************************************************/
-/* ¸ÃÄ£¿éÏµÍ³Ê¹ÓÃÅäÖÃµÄ½á¹¹                                             */
+/* è¯¥æ¨¡å—ç³»ç»Ÿä½¿ç”¨é…ç½®çš„ç»“æ„                                             */
 /************************************************************************/
 #pragma once
 #ifndef _MOON_CONFIG_STRUCT_H
@@ -10,19 +10,20 @@ extern "C" {
 #endif
 
 /************************************************************************/
-/* ¶¨Òå·şÎñÆ÷ÅäÖÃµÄ½á¹¹                                                 */
+/* å®šä¹‰æœåŠ¡å™¨é…ç½®çš„ç»“æ„                                                 */
 /************************************************************************/
 typedef struct _Moon_Server_Config{
-	char moon_manager_domain[1024];//MoonManagerÓòÃûµØÖ·
-	unsigned int client_count;//¿Í»§¶ËµÄÊıÁ¿£¨µ¥Ì¨·şÎñÆ÷ÔÊĞí×î´ó¿Í»§¶ËÁ¬½ÓÊıÁ¿£©
-	char server_ip[16];//·şÎñÆ÷IP
-	unsigned int server_port;//·şÎñÆ÷¶Ë¿Ú
-	unsigned int http_port;//http·şÎñËùÓÃ¶Ë¿Ú
-	char server_node_name[255];//·şÎñÆ÷½ÚµãÃû³Æ
-	char log_level_debug;//ÊÇ·ñÅäÖÃdebugÈÕÖ¾
-	char log_level_info;//ÊÇ·ñÅäÖÃinfoÈÕÖ¾
-	char log_level_warnning;//ÊÇ·ñÅäÖÃwarnningÈÕÖ¾
-	char log_level_error;//ÊÇ·ñÅäÖÃerrorÈÕÖ¾
+	char moon_manager_domain[1024];//MoonManageråŸŸååœ°å€
+	unsigned int client_count;//å®¢æˆ·ç«¯çš„æ•°é‡ï¼ˆå•å°æœåŠ¡å™¨å…è®¸æœ€å¤§å®¢æˆ·ç«¯è¿æ¥æ•°é‡ï¼‰
+	char server_ip[16];//æœåŠ¡å™¨IP
+	unsigned int server_port;//æœåŠ¡å™¨ç«¯å£
+	unsigned int http_port;//httpæœåŠ¡æ‰€ç”¨ç«¯å£
+	char server_node_name[255];//æœåŠ¡å™¨èŠ‚ç‚¹åç§°
+	char log_level_debug;//æ˜¯å¦é…ç½®debugæ—¥å¿—
+	char log_level_info;//æ˜¯å¦é…ç½®infoæ—¥å¿—
+	char log_level_warnning;//æ˜¯å¦é…ç½®warnningæ—¥å¿—
+	char log_level_error;//æ˜¯å¦é…ç½®erroræ—¥å¿—
+	char moon_work_path[1024];//moon server work path
 }Moon_Server_Config;
 
 #ifdef __cplusplus
