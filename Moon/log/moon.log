@@ -4674,3 +4674,20 @@
 2018/4/29 9:20:36 info->moon http service started
 2018/4/29 9:21:27 debug->current request url path:\
 2018/4/29 9:22:11 debug->http request is not get or head method.close ok.
+2018/5/1 22:25:34 info->init log environment finished
+2018/5/1 22:25:34 info->starting server,please waiting...
+2018/5/1 22:25:34 info->load config
+2018/5/1 22:25:34 info->The read main configuration is as follows:
+2018/5/1 22:25:34 info->server_ip:127.0.0.1
+2018/5/1 22:25:34 info->server_port:8890
+2018/5/1 22:25:34 info->http_server_port:8088
+2018/5/1 22:25:34 info->server_node_name:node_one
+2018/5/1 22:25:34 info->client_count:1000
+2018/5/1 22:25:34 info->moon_manager_domain:http://127.0.0.1:8080
+2018/5/1 22:25:34 info->start ms_nt_iocp server...
+2018/5/1 22:25:34 info->init ms_nt_iocp finished
+2018/5/1 22:25:35 info->init socket success
+2018/5/1 22:25:35 info->listen socket binding success
+2018/5/1 22:25:35 info->init ms_init_listen_socket finished
+2018/5/1 22:25:35 info->ms_nt_iocp server has start
+2018/5/1 22:25:35 info->moon http service started

@@ -1,110 +1,18 @@
-﻿生成启动时间为 2018/4/29 9:24:33。
-     1>项目“C:\Users\lengyue\Desktop\通信服务器的设计\源代码\Moon\Moon\Moon.vcxproj”在节点 2 上(build 个目标)。
+﻿生成启动时间为 2018/5/1 22:25:45。
+     1>项目“H:\通信服务器的设计\源代码\moon\Moon\Moon.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
-         正在对“Release\Moon.unsuccessfulbuild”执行 Touch 任务。
+         正在创建“Release\Moon.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt module\moon_http_service.c module\moon_thread_pool.c
-         moon_http_service.c
-     1>module\moon_http_service.c(38): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(38): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(54): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(54): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(58): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(58): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(62): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(62): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(81): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(81): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(82): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(82): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(83): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(83): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(84): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(84): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(85): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(85): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(86): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(86): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(87): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(87): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(88): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(88): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(100): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(100): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(101): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(101): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(102): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(102): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(103): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(103): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(105): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(105): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(106): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(106): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(107): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(107): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(108): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(108): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(110): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(110): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(111): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(111): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(134): warning C4995: “strcat”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(134): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(136): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234) : 参见“fopen”的声明
-     1>module\moon_http_service.c(151): warning C4995: “strcpy”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(151): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(155): warning C4995: “strcpy”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(155): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(159): warning C4995: “strcpy”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(159): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     1>module\moon_http_service.c(170): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(170): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(235): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(235): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(287): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(287): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(301): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(246) : 参见“stricmp”的声明
-     1>module\moon_http_service.c(376): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(376): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(388): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(388): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(395): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(395): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(415): warning C4995: “sprintf”: 名称被标记为 #pragma deprecated
-     1>module\moon_http_service.c(415): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>module\moon_http_service.c(424): warning C4113: “void (__stdcall *)(PTP_CALLBACK_INSTANCE,PVOID,PTP_WORK)”和“PTP_SIMPLE_CALLBACK”的参数列表不同
-         moon_thread_pool.c
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
-         stdafx.cpp
+         所有输出均为最新。
+         所有输出均为最新。
        ResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\Moon.res" Moon.rc 
+         所有输出均为最新。
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\lengyue\Desktop\通信服务器的设计\源代码\Moon\Release\Moon.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\Moon.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\lengyue\Desktop\通信服务器的设计\源代码\Moon\Release\Moon.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\lengyue\Desktop\通信服务器的设计\源代码\Moon\Release\Moon.lib" /MACHINE:X86 Release\Moon.res
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\通信服务器的设计\源代码\moon\Release\Moon.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\Moon.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"H:\通信服务器的设计\源代码\moon\Release\Moon.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\通信服务器的设计\源代码\moon\Release\Moon.lib" /MACHINE:X86 Release\Moon.res
          Release\get_opt.obj
          Release\moon_main.obj
          Release\array_list.obj
          Release\link_list.obj
-         Release\queue.obj
-         Release\stack.obj
          Release\ms_nt__iocp.obj
          Release\ms_socket_context.obj
          Release\server.obj
@@ -118,18 +26,18 @@
          Release\moon.obj
          Release\stdafx.obj
          正在生成代码
-     1>c:\users\lengyue\desktop\通信服务器的设计\源代码\moon\moon\module\module_cfg.c(184): warning C4715: “getValue”: 不是所有的控件路径都返回值
-     1>c:\users\lengyue\desktop\通信服务器的设计\源代码\moon\moon\module\moon_http_service.c(469): warning C4716: “end_http_service”: 必须返回一个值
-     1>c:\users\lengyue\desktop\通信服务器的设计\源代码\moon\moon\module\moon_http_service.c(454): warning C4715: “lauch_http_service”: 不是所有的控件路径都返回值
+     1>h:\通信服务器的设计\源代码\moon\moon\module\module_cfg.c(184): warning C4715: “getValue”: 不是所有的控件路径都返回值
+     1>h:\通信服务器的设计\源代码\moon\moon\module\moon_http_service.c(469): warning C4716: “end_http_service”: 必须返回一个值
+     1>h:\通信服务器的设计\源代码\moon\moon\module\moon_http_service.c(454): warning C4715: “lauch_http_service”: 不是所有的控件路径都返回值
          已完成代码的生成
-         Moon.vcxproj -> C:\Users\lengyue\Desktop\通信服务器的设计\源代码\Moon\Release\Moon.exe
+         Moon.vcxproj -> H:\通信服务器的设计\源代码\moon\Release\Moon.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\lengyue\Desktop\通信服务器的设计\源代码\Moon\Release\Moon.exe;#1" /manifest Release\Moon.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"H:\通信服务器的设计\源代码\moon\Release\Moon.exe;#1" /manifest Release\Moon.exe.intermediate.manifest
        FinalizeBuildStatus:
          正在删除文件“Release\Moon.unsuccessfulbuild”。
          正在对“Release\Moon.lastbuildstate”执行 Touch 任务。
-     1>已完成生成项目“C:\Users\lengyue\Desktop\通信服务器的设计\源代码\Moon\Moon\Moon.vcxproj”(build 个目标)的操作。
+     1>已完成生成项目“H:\通信服务器的设计\源代码\moon\Moon\Moon.vcxproj”(build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:01.43
+已用时间 00:00:00.49

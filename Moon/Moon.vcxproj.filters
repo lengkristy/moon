@@ -120,12 +120,6 @@
     <ClInclude Include="collection\link_list.h">
       <Filter>头文件\collection</Filter>
     </ClInclude>
-    <ClInclude Include="collection\queue.h">
-      <Filter>头文件\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="collection\stack.h">
-      <Filter>头文件\collection</Filter>
-    </ClInclude>
     <ClInclude Include="core\ms_nt__iocp.h">
       <Filter>头文件\core</Filter>
     </ClInclude>
@@ -180,12 +174,6 @@
       <Filter>源文件\collection</Filter>
     </ClCompile>
     <ClCompile Include="collection\link_list.c">
-      <Filter>源文件\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\queue.c">
-      <Filter>源文件\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="collection\stack.c">
       <Filter>源文件\collection</Filter>
     </ClCompile>
     <ClCompile Include="core\ms_nt__iocp.c">

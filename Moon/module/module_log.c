@@ -39,7 +39,9 @@ void moon_console_print(const char *log) //overwrite printf function with line f
 /*write file log*/
 void moon_file_print(const char* log)//write file log,thread sync
 {
-
+#ifdef MS_WINDOWS
+	HANDLE hMutex = NULL;
+#endif
 	time_t rawtime; 
 	struct tm * timeinfo; 
 	char strTime[255] = {0};
@@ -48,7 +50,7 @@ void moon_file_print(const char* log)//write file log,thread sync
 	}
 //thread synchronous
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LOG_MUTEX));
+	hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LOG_MUTEX));
 	if(hMutex == NULL)
 	{
 		moon_console_print("can not OpenMutex");
