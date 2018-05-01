@@ -6,7 +6,7 @@
 extern "C" {
 #endif
 
-/*创建新的IO上下文*/
+/*Create a new IO context*/
 PMS_IO_CONTEXT create_new_io_context()
 {
 	PMS_IO_CONTEXT context = (MS_IO_CONTEXT*)moon_malloc(sizeof(MS_IO_CONTEXT));
@@ -19,13 +19,13 @@ PMS_IO_CONTEXT create_new_io_context()
 	return context;
 }
 
-/*释放IO上下文*/
+/*Release IO context*/
 void free_io_context(PMS_IO_CONTEXT context)
 {
 	moon_free(context);
 }
 
-/*创建一个新的socket上下文*/
+/*Create a new socket context.*/
 PMS_SOCKET_CONTEXT create_new_socket_context()
 {
 	PMS_SOCKET_CONTEXT context = (PMS_SOCKET_CONTEXT)moon_malloc(sizeof(MS_SOCKET_CONTEXT));
@@ -34,7 +34,7 @@ PMS_SOCKET_CONTEXT create_new_socket_context()
 	return context;
 }
 
-/*释放socket上下文*/
+/*Release the socket context.*/
 void free_socket_context(PMS_SOCKET_CONTEXT context)
 {
 	int i = 0;

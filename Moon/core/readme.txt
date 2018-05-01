@@ -1,1 +1,1 @@
-the dictionary is about communication --本文件夹下面存放的是通信相关代码
+the dictionary is about communication
