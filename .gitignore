@@ -64,3 +64,4 @@ Moon/Release
 #---------------------
 linux_debug/
 linux_release/
+.vscode/
