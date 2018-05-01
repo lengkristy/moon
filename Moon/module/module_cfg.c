@@ -13,16 +13,16 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	char val[1024] = {0};
 	char tmpVal[1024] = {0};
 	unsigned int keyLength = moon_get_string_length(key);
-	moon_trim(&(keyAndValue[keyLength]),tmpVal);//去掉key,去掉空格
-	moon_trim(&(tmpVal[1]),val);//去掉=
+	moon_trim(&(keyAndValue[keyLength]),tmpVal);//
+	moon_trim(&(tmpVal[1]),val);//
 	if (strcmp("server_ip",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
 		moon_trim_line(tmpVal,val);
-		//判断是否为空
+		//
 		if(stringIsEmpty(val))
 		{
 			moon_write_error_log("server ip is null");
@@ -32,7 +32,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("server_port",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -49,7 +49,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("http_port",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -66,7 +66,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("server_node_name",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -80,7 +80,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("moon_manager_domain",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -94,7 +94,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("client_count",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -111,7 +111,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("log_level_debug",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -129,7 +129,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("log_level_info",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -147,7 +147,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("log_level_warnning",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -165,7 +165,7 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 	}
 	else if(strcmp("log_level_error",key) == 0)
 	{
-		//去掉首尾换行
+		//
 		memset(tmpVal,0,1024);
 		memcpy(tmpVal,val,1024);
 		memset(val,0,1024);
@@ -202,7 +202,7 @@ bool load_config(Moon_Server_Config* pConf)//load configuration file
 	lineConfig = (char*)moon_malloc(MOON_CONF_FILE_SIZE);
 	while(fgets(confFileStream, MOON_CONF_FILE_SIZE, cfgFile) != NULL)/*read line*/
 	{
-		//过滤#注释 或者空行
+		//
 		moon_trim(confFileStream,lineConfig);
 		if('#' == lineConfig[0] || '\n' == lineConfig[0])
 		{
@@ -227,7 +227,7 @@ bool load_config(Moon_Server_Config* pConf)//load configuration file
 			}
 			iKey++;
 		}
-		//将缓存置空
+		//
 		memset(confFileStream,0,MOON_CONF_FILE_SIZE);
 		memset(lineConfig,0,MOON_CONF_FILE_SIZE);
 	}
@@ -236,7 +236,7 @@ bool load_config(Moon_Server_Config* pConf)//load configuration file
 	fclose(cfgFile);
 	//////////////////////////////////////////////////////////////////////////log
 	moon_write_info_log("The read main configuration is as follows:");
-	//判断是否为空
+	//
 	if(stringIsEmpty(pConf->server_ip))
 	{
 		moon_write_error_log("server ip is null");
