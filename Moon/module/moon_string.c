@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-unsigned long moon_get_string_length(const char* str)
+unsigned long moon_get_string_length(const char* str)/*get string length,with out '\0'*/
 {
 	unsigned long length = 0;
 	if (NULL == str)
@@ -19,45 +19,53 @@ unsigned long moon_get_string_length(const char* str)
 	return --length;
 }
 
-void moon_trim(char *strIn, char *strOut)//去除字符串首位空格
+//Remove the beginning and end Spaces of the string.
+void moon_trim(char *strIn, char *strOut)
 {
-	char *start, *end, *temp;//定义去除空格后字符串的头尾指针和遍历指针
+	char *start, *end, *temp;//
 	temp = strIn;
 	while (*temp == ' '){
 	        ++temp;
 	}
-	start = temp; //求得头指针
-	temp = strIn + moon_get_string_length(strIn) - 1; //得到原字符串最后一个字符的指针(不是'\0')
+	start = temp; //
+	temp = strIn + moon_get_string_length(strIn) - 1; //
 	while (*temp == ' '){
 	    --temp;
 	}
-	end = temp; //求得尾指针
+	end = temp; //
 	for(strIn = start; strIn <= end; ){
 	    *strOut++ = *strIn++;
 	}
 	*strOut = '\0';
 }
 
-void moon_trim_line(char *strIn, char *strOut)//去掉首尾换行
+//Get rid of the beginning and end new lines of the string.
+void moon_trim_line(char *strIn, char *strOut)
 {
-	char *start, *end, *temp;//定义去除空格后字符串的头尾指针和遍历指针
+	char *start, *end, *temp;
 	temp = strIn;
 	while (*temp == '\n'){
 		++temp;
 	}
-	start = temp; //求得头指针
-	temp = strIn + moon_get_string_length(strIn) - 1; //得到原字符串最后一个字符的指针(不是'\0')
+	start = temp; 
+	temp = strIn + moon_get_string_length(strIn) - 1; //
 	while (*temp == '\n'){
 		--temp;
 	}
-	end = temp; //求得尾指针
+	end = temp; //
 	for(strIn = start; strIn <= end; ){
 		*strOut++ = *strIn++;
 	}
 	*strOut = '\0';
 }
 
-bool moon_string_parse_to_int(const char* str,unsigned int* outInt)/*将字符串转成unsigned int,如果失败返回false，成功返回true*/
+/**
+ * function desc:
+ *      Convert the string to unsigned int
+ * return:
+ *      success return true,failed return false
+ */
+bool moon_string_parse_to_int(const char* str,unsigned int* outInt)
 {
 	bool bFlag = true;
 	int length = 0;
@@ -66,10 +74,10 @@ bool moon_string_parse_to_int(const char* str,unsigned int* outInt)/*将字符�
 	{
 		return false;
 	}
-	length = moon_get_string_length(str);//获取字符串长度
+	length = moon_get_string_length(str);//get string length
 	for (i = 0;i < length;i++)
 	{
-		if (str[i] < 48 || str[i] > 57) //非数字字符直接返回false
+		if (str[i] < 48 || str[i] > 57) //return false if it's not digital
 		{
 			return false;
 		}
@@ -127,7 +135,16 @@ bool stringIsEmpty(char* str)//判断字符串是否为NULL
 		return false;
 }
 #ifdef MS_WINDOWS
-int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)//将ascii转到utf8,成功返回实际转换的字节数，失败返回-1
+/**
+ * function desc:
+ *      Turn the ASCII string to the utf8 string.
+ * params:
+ *      asciiStr:ASCII string
+ *      outUTF8:the converted utf-8 string
+ * return:
+ *      success returns the number of bytes that are actually converted,failure returns -1
+ */
+int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)
 {
 	int convertSize = 0;
 	wchar_t* unicodeStr = NULL;
@@ -141,19 +158,28 @@ int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)//将asc
 		return 0;
 	}
 	unicodeStr = moon_malloc(widesize);
-	//将ascii转成unicode
+	//ascii to unicode
 	convertSize = moon_ms_windows_ascii_to_unicode(asciiStr,unicodeStr);
 	if (convertSize == -1)
 	{
 		return convertSize;
 	}
-	//再将unicode转成utf8
+	//unicode to utf8
 	convertSize = moon_ms_windows_unicode_to_utf8(unicodeStr,outUTF8);
 	moon_free(unicodeStr);
 	return convertSize;
 }
 
-int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)//将ascii转到unicode,成功返回实际转换的字节数，失败返回-1
+/**
+ * function desc:
+ *      turn the ascii string to the unicode string.
+ * params:
+ *      asciiStr:ASCII string
+ *      outUnicode:the converted unicode string
+ * return:
+ *      success returns the number of bytes that are actually converted,failure returns -1
+ */
+int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)
 {
 	int widesize = MultiByteToWideChar(CP_ACP,0,asciiStr,-1,NULL,0);
 	int convertlength = 0;
@@ -174,7 +200,16 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)//
 	return convertlength;
 }
 
-int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8)//将unicode转到utf8,成功返回实际转换的字节数，失败返回-1
+/**
+ * function desc:
+ *      turn the unicode string to the utf8 string.
+ * params:
+ *      unicodeStr:unicode string
+ *      outUTF8:the converted utf8 string
+ * return:
+ *      success returns the number of bytes that are actually converted,failure returns -1
+ */
+int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8)
 {
 	int utf8size = WideCharToMultiByte(CP_UTF8,0,unicodeStr,-1,NULL,0,NULL,NULL);
 	int convertSize = 0;
@@ -191,7 +226,16 @@ int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8)/
 	return convertSize;
 }
 
-int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)//将unicode转到ascii,成功返回实际转换的字节数，失败返回-1
+/**
+ * function desc:
+ *      turn the unicode string to ascii string.
+ * params:
+ *      unicodeStr:unicode string
+ *      outAscii:the converted ascii string
+ * return:
+ *      success returns the number of bytes that are actually converted,failure returns -1
+ */
+int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
 {
 	int convertSize = 0;
 	int asciiSize = WideCharToMultiByte(CP_ACP,0,unicodeStr,-1,NULL,0,NULL,NULL);
@@ -207,7 +251,17 @@ int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
 	}
 	return convertSize;
 }
-int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnicode)//将utf8转到unicode,成功返回实际转换的字节数，失败返回-1
+
+/**
+ * function desc:
+ *      turn the utf8 string to unicode string.
+ * params:
+ *      utf8Str:utf8 string
+ *      outUnicode:the converted unicode string
+ * return:
+ *      success returns the number of bytes that are actually converted,failure returns -1
+ */
+int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnicode)
 {
 	int convertSize = 0;
 	int unicodeSize = MultiByteToWideChar(CP_UTF8,0,utf8Str,-1,NULL,0);
@@ -224,7 +278,16 @@ int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnico
 	return convertSize;
 }
 
-int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)//将utf8转到unicode,成功返回实际转换的字节数，失败返回-1
+/**
+ * function desc:
+ *      turn utf8 string to ascii string
+ * params:
+ *      utf8Str:utf8 string
+ *      outAscii:the converted ascii string
+ * return:
+ *      success returns the number of bytes that are actually converted,failure returns -1
+ */
+int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)
 {
 	int convertSize = 0;
 	wchar_t* unicodeStr = NULL;
@@ -250,12 +313,15 @@ int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)//将u
 
 #endif
 
-/************************************************************************/
-/* 将字符串小写转换成大写，如果                                         */
-/*   参数：srcStr:原字符串												*/
-/*		   pOutCapital:转换后的字符串									*/
-/*	返回值：返回实际转换字母的个数										*/
-/************************************************************************/
+/**
+ * function desc:
+ *      Converts string lowercase to uppercase
+ * params:
+ *      srcStr:The original string
+ *      pOutCapital:The converted string.
+ * return:
+ *      Returns the number of actual converted letters.
+ */
 int moon_to_capital(char* srcStr,char* pOutCapital)
 {
 	int count = 0;
