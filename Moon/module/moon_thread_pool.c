@@ -1,7 +1,7 @@
 #include "../cfg/environment.h"
 #include "moon_thread_pool.h"
 #include "moon_config_struct.h"
-#include "moon_malloc.h"
+#include "moon_memory_pool.h"
 #ifdef MS_WINDOWS
 #include <Windows.h>
 #endif
@@ -9,13 +9,17 @@
 extern "C" {
 #endif
 
-	extern Moon_Server_Config* p_global_server_config;//服务配置全局变量
+	extern Moon_Server_Config* p_global_server_config;//global configuration
 
-	/************************************************************************/
-	/* 创建线程池                                                           */
-	/*    参数:size   线程池大小											*/
-	/*	  返回值：创建成功返回线程数组地址，创建失败返回NULL    			*/
-	/************************************************************************/
+	/**
+	 * function desc:
+	 * 		create thread pool
+	 * params:
+	 * 		size:thread pool size
+	 * 		pFunc:thread function
+	 * return:
+	 * 		success return thread pool address,failed return NULL
+	 */
 	Array_List* moon_create_thread_pool(int size,
 #ifdef MS_WINDOWS
 		LPTHREAD_START_ROUTINE pFunc,

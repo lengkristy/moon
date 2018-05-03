@@ -4,7 +4,7 @@
 #ifdef MS_WINDOWS
 #include <windows.h>
 #endif
-#include "moon_malloc.h"
+#include "moon_memory_pool.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -168,7 +168,15 @@ int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)
 	convertSize = moon_ms_windows_unicode_to_utf8(unicodeStr,outUTF8);
 	moon_free(unicodeStr);
 	return convertSize;
-}
+}/**
+ * function desc:
+ *      Converts string lowercase to uppercase
+ * params:
+ *      srcStr:The original string
+ *      pOutCapital:The converted string.
+ * return:
+ *      Returns the number of actual converted letters.
+ */
 
 /**
  * function desc:
@@ -189,7 +197,15 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)
 	}
 	if (widesize == 0)
 	{
-		return 0;
+		return 0;/**
+ * function desc:
+ *      Converts string lowercase to uppercase
+ * params:
+ *      srcStr:The original string
+ *      pOutCapital:The converted string.
+ * return:
+ *      Returns the number of actual converted letters.
+ */
 	}
 	convertlength = MultiByteToWideChar(CP_ACP,0,asciiStr,-1,outUnicode,widesize);
 	if (widesize != convertlength)

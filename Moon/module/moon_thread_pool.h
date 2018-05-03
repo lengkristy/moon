@@ -26,12 +26,15 @@ extern "C" {
 #endif
 	}Moon_Thread;
 	
-	/************************************************************************/
-	/* 创建线程池                                                           */
-	/*    参数:size   线程池大小											*/
-	/*		   pFunc  线程开始函数											*/
-	/*	  返回值：创建成功返回线程数组地址，创建失败返回NULL    			*/
-	/************************************************************************/
+	/**
+	 * function desc:
+	 * 		create thread pool
+	 * params:
+	 * 		size:thread pool size
+	 * 		pFunc:thread function
+	 * return:
+	 * 		success return thread pool address,failed return NULL
+	 */
 	Array_List* moon_create_thread_pool(int size,
 #ifdef MS_WINDOWS
 		LPTHREAD_START_ROUTINE pFunc,
@@ -39,17 +42,22 @@ extern "C" {
 		void* param
 		);
 
-	/************************************************************************/
-	/* 获取可使用的线程                                                     */
-	/*	参数：pThread  线程池的指针											*/
-	/*	返回值：成功返回一个可用的线程结构，失败返回NULL					*/
-	/************************************************************************/
+	/**
+	 * function desc:
+	 * 		Gets the available thread.
+	 * params:
+	 * 		pThread:thread pool address
+	 * return:
+	 * 		success return thread struct,failed return NULL
+	 */
 	Moon_Thread moon_get_usable_thread(Array_List* pThread);
-
-	/************************************************************************/
-	/* 释放线程池                                                           */
-	/*	参数：pThread  线程池指针											*/
-	/************************************************************************/
+	
+	/**
+	 * function desc:
+	 * 		release thread pool
+	 * params:
+	 * 		pThread:thread pool address
+	 */
 	void moon_destory_thread_pool(Array_List* pThread);
 #ifdef __cplusplus
 }

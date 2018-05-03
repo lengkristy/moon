@@ -4,7 +4,7 @@
 #include "moon_thread_pool.h"
 #include "module_log.h"
 #include "moon_string.h"
-#include "moon_malloc.h"
+#include "moon_memory_pool.h"
 #include <stdio.h>
 #ifdef MS_WINDOWS
 #include <direct.h>
