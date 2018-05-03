@@ -55,9 +55,9 @@ target/
 build/  
 Debug/  
 Release/
-Moon/log/
 Moon/Debug/
 Moon/Release/
+Moon/log/
 
 #---------------------
 # ignore dirs for linux
