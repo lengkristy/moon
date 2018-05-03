@@ -105,9 +105,6 @@
     <ClInclude Include="module\moon_config_struct.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
-    <ClInclude Include="module\moon_malloc.h">
-      <Filter>头文件\module</Filter>
-    </ClInclude>
     <ClInclude Include="module\moon_string.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
@@ -138,6 +135,9 @@
     <ClInclude Include="module\moon_thread_pool.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
+    <ClInclude Include="module\moon_memory_pool.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -164,9 +164,6 @@
     <ClCompile Include="module\moon_config_struct.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
-    <ClCompile Include="module\moon_malloc.c">
-      <Filter>源文件\module</Filter>
-    </ClCompile>
     <ClCompile Include="module\moon_string.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
@@ -186,6 +183,9 @@
       <Filter>源文件\module</Filter>
     </ClCompile>
     <ClCompile Include="module\moon_thread_pool.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_memory_pool.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
   </ItemGroup>
