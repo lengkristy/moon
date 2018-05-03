@@ -1,5 +1,7 @@
 /************************************************************************
- * this file contain moon memery manage
+ * 
+ * file desc:
+ *      this file contain moon memery manage.
  * coding by: haoran dai
  * time:2018-5-1 21:56                               
  ***********************************************************************/
