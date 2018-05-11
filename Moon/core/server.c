@@ -18,10 +18,7 @@ bool b_config_load_finish = false;//config has inited
 /************************************************************************/
 void moon_start()
 {
-	char path[1024] = {0};
 	moon_write_info_log("init log environment");
-	//get moon current work path
-	getcwd(path , 1024);
 	//init log
 	if(!moon_log_init())
 	{

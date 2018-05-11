@@ -82,7 +82,17 @@ void moon_file_print(const char* log)//write file log,thread sync
 bool moon_log_init()
 {
 	bool bFlag = true;
-	pFile = fopen(MOON_LOG_FILE_PATH, "a+");
+	char path[1024] = {0};
+#ifdef LINUX
+	//get moon current work path
+	getcwd(path , 1024);
+	strcat(path,"/");
+	strcat(path,MOON_LOG_FILE_PATH);
+#endif
+#ifdef MS_WINDOWS
+	strcpy(path,MOON_LOG_FILE_PATH);
+#endif
+	pFile = fopen(path, "a+");
 	//pFile = fopen("/home/lengyue/workspace/cpp_work/moon/linux_debug/log/moon.log", "a+");
 	if(NULL == pFile)
 		return false;

@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
 #include "module_cfg.h"
 #include "module_log.h"
+#include "moon_file.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -191,15 +194,26 @@ bool load_config(Moon_Server_Config* pConf)//load configuration file
 	char keyValue[1024] = {0};
 	char* confFileStream = NULL;
 	char* lineConfig = NULL;
+	char path[1024] = {0};
 	moon_write_info_log("load config");
-	
-	if( NULL == (cfgFile = fopen(MOON_SERVER_CONF_FILE, "r")))
+#ifdef LINUX
+	//get moon current work path
+	getcwd(path , 1024);
+	strcat(path,"/");
+	strcat(path,MOON_SERVER_CONF_FILE);
+#endif
+#ifdef MS_WINDOWS
+	strcpy(path,MOON_SERVER_CONF_FILE);
+#endif
+	if( NULL == (cfgFile = fopen(path, "r")))
 	{
 		moon_write_error_log("can not open config file");
 		return false;
 	}
 	confFileStream = (char*)moon_malloc(MOON_CONF_FILE_SIZE);
 	lineConfig = (char*)moon_malloc(MOON_CONF_FILE_SIZE);
+	moon_file m_file;
+	moon_open_file_for_read(&m_file,path);
 	while(fgets(confFileStream, MOON_CONF_FILE_SIZE, cfgFile) != NULL)/*read line*/
 	{
 		//
