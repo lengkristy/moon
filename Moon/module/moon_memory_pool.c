@@ -1,6 +1,7 @@
 #include "../cfg/environment.h"
 #include "../collection/array_list.h"
 #include <malloc.h>
+#include <string.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -69,6 +70,15 @@ void moon_free(void* memory)/*free point*/
 void moom_memory_pool_destory()
 {
 
+}
+
+void moon_memory_zero(void* memory,unsigned int num_bytes)/*memory zero*/
+{
+	if(memory == NULL)
+	{
+		return;
+	}
+	memset(memory,0,num_bytes);
 }
 
 #ifdef __cplusplus

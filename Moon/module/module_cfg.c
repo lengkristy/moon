@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include <string.h>
 #include "module_cfg.h"
 #include "module_log.h"
 #include "moon_file.h"
@@ -211,9 +210,20 @@ bool load_config(Moon_Server_Config* pConf)//load configuration file
 		return false;
 	}
 	confFileStream = (char*)moon_malloc(MOON_CONF_FILE_SIZE);
+	if(confFileStream == NULL)
+	{
+		moon_write_error_log("create memory faild");
+		return false;
+	}
+	moon_memory_zero(confFileStream,MOON_CONF_FILE_SIZE);
+	memset(confFileStream,0,MOON_CONF_FILE_SIZE);
 	lineConfig = (char*)moon_malloc(MOON_CONF_FILE_SIZE);
-	moon_file m_file;
-	moon_open_file_for_read(&m_file,path);
+	if(lineConfig == NULL)
+	{
+		moon_write_error_log("create memory faild");
+		return false;
+	}
+	moon_memory_zero(lineConfig,MOON_CONF_FILE_SIZE);
 	while(fgets(confFileStream, MOON_CONF_FILE_SIZE, cfgFile) != NULL)/*read line*/
 	{
 		//

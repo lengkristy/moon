@@ -39,7 +39,18 @@ typedef struct _moon_file{
  * return:
  *      sucess return true and p_moon_file return the pointer of _moon_file struct,failed return false and p_moon_file is null
  */
-bool moon_open_file_for_read(moon_file_ptr p_moon_file,char* file_path_name);
+bool moon_open_file_for_read(moon_file_ptr p_moon_file,char* p_file_path_name);
+
+/**
+ * function desc:
+ *      Read a row of data from a file.
+ * params:
+ *      p_moon_file:the pointer of _moon_file struct
+ *      out_data:the data for read
+ * return:
+ *      Returns the length actually read,return -1 if read to the end.
+ */
+int moon_read_line(moon_file_ptr p_moon_file,_out_ char* out_data);
 
 /**
  * function desc:

@@ -17,6 +17,8 @@ extern void* moon_malloc(unsigned int num_bytes);/*allocate memory*/
 
 extern void moon_free(void* memory);/*free point*/
 
+extern void moon_memory_zero(void* memory,unsigned int num_bytes);/*memory zero*/
+
 #ifdef __cplusplus
 }
 #endif
