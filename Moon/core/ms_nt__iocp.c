@@ -396,7 +396,7 @@ DWORD static WINAPI alive_thread(LPVOID lpParam)
 		for (i = 0;i < g_pListMSClientSocketContext->length;i++)
 		{
 			pSocketContext = (MS_SOCKET_CONTEXT*)array_list_getAt(g_pListMSClientSocketContext,i);
-			if(!isSocketAlive(pSocketContext->m_socket))
+			if(pSocketContext != NULL && !isSocketAlive(pSocketContext->m_socket))
 			{
 				array_list_remove(g_pListMSClientSocketContext,pSocketContext);
 				pSocketContext = NULL;

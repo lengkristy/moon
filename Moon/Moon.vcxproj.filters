@@ -138,6 +138,12 @@
     <ClInclude Include="module\moon_memory_pool.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
+    <ClInclude Include="msg\moon_msg.h">
+      <Filter>头文件\msg</Filter>
+    </ClInclude>
+    <ClInclude Include="module\cJSON.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -186,6 +192,12 @@
       <Filter>源文件\module</Filter>
     </ClCompile>
     <ClCompile Include="module\moon_memory_pool.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="msg\moon_msg.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\cJSON.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
   </ItemGroup>
