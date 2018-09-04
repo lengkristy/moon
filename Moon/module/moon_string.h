@@ -51,6 +51,24 @@ bool stringIsEmpty(char* str);
  */
 int moon_to_capital(char* srcStr,char* pOutCapital);
 
+/**
+ * function desc:
+ *      get moon_char length
+ * params:
+ *      str:the moon_char string
+ * return:
+ *      return length
+ */
+int moon_char_length(const moon_char* str);
+
+/**
+ * function desc:
+ *	create 32bit uuid
+ * params:
+ *	p_out_uuid:return uuid
+ */
+void moon_create_32uuid(_out_ moon_char* p_out_uuid);
+
 #ifdef MS_WINDOWS
 /**
  * function desc:
@@ -61,7 +79,7 @@ int moon_to_capital(char* srcStr,char* pOutCapital);
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8);
+int moon_ms_windows_ascii_to_utf8(const char* asciiStr,char* outUTF8);
 
 /**
  * function desc:
@@ -83,7 +101,7 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode);
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8);
+int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,char* outUTF8);
 
 /**
  * function desc:
@@ -105,7 +123,7 @@ int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnicode);
+int moon_ms_windows_utf8_to_unicode(const char* utf8Str,moon_char* outUnicode);
 
 /**
  * function desc:

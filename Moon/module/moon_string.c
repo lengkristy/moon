@@ -6,6 +6,7 @@
 #endif
 #include "moon_memory_pool.h"
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -144,7 +145,7 @@ bool stringIsEmpty(char* str)//判断字符串是否为NULL
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_ascii_to_utf8(const char* asciiStr,wchar_t* outUTF8)
+int moon_ms_windows_ascii_to_utf8(const char* asciiStr,char* outUTF8)
 {
 	int convertSize = 0;
 	wchar_t* unicodeStr = NULL;
@@ -209,7 +210,7 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,wchar_t* outUTF8)
+int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,char* outUTF8)
 {
 	int utf8size = WideCharToMultiByte(CP_UTF8,0,unicodeStr,-1,NULL,0,NULL,NULL);
 	int convertSize = 0;
@@ -261,7 +262,7 @@ int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_utf8_to_unicode(const moon_char* utf8Str,moon_char* outUnicode)
+int moon_ms_windows_utf8_to_unicode(const char* utf8Str,moon_char* outUnicode)
 {
 	int convertSize = 0;
 	int unicodeSize = MultiByteToWideChar(CP_UTF8,0,utf8Str,-1,NULL,0);
@@ -340,6 +341,70 @@ int moon_to_capital(char* srcStr,char* pOutCapital)
 		}
 	}
 	return count;
+}
+
+/**
+ * function desc:
+ *      get moon_char length
+ * params:
+ *      str:the moon_char string
+ * return:
+ *      return length
+ */
+int moon_char_length(const moon_char* str)
+{
+	int len = 0;
+#ifdef MS_WINDOWS
+	len = wcslen(str);
+#endif
+	return len;
+}
+
+/**
+ * function desc:
+ *	create 32bit uuid
+ * params:
+ *	p_out_uuid:return uuid
+ */
+void moon_create_32uuid(_out_ moon_char* p_out_uuid)
+{
+	const char *c = "89ab";
+	char buf[40] = {0};
+	char *p = buf;
+	int n;  
+
+	for( n = 0; n < 16; ++n )  
+	{  
+		int b = rand()%255;  
+
+		switch( n )  
+		{  
+		case 6:  
+			sprintf(  
+				p,  
+				"4%x",  
+				b%15 );  
+			break;  
+		case 8:  
+			sprintf(  
+				p,  
+				"%c%x",  
+				c[rand()%strlen( c )],  
+				b%15 );  
+			break;  
+		default:  
+			sprintf(  
+				p,  
+				"%02x",  
+				b );  
+			break;  
+		}  
+
+		p += 2;
+	}  
+	*p = 0;
+
+	char_to_moon_char(buf,p_out_uuid);
 }
 
 #ifdef __cplusplus

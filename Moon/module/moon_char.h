@@ -19,6 +19,25 @@ extern "C" {
 	typedef wchar_t moon_char;
 #endif
 
+/**
+ * moon char copy
+ */
+void moon_char_copy(moon_char* destStr,const moon_char* sourceStr);
+
+/**
+ * moon char concat
+ */
+void moon_char_concat(moon_char* destStr,const moon_char* sourceStr);
+
+/**
+ * function desc:
+ *  make char string to moon char string
+ * params:
+ *	sourceStr:char string
+ *	destStr:out moon char string
+ */
+void char_to_moon_char(const char* sourceStr,_out_ moon_char* destStr);
+
 #ifdef __cplusplus
 }
 #endif

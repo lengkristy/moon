@@ -194,10 +194,13 @@
     <ClCompile Include="module\moon_memory_pool.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
-    <ClCompile Include="msg\moon_msg.c">
+    <ClCompile Include="module\cJSON.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
-    <ClCompile Include="module\cJSON.c">
+    <ClCompile Include="msg\moon_msg.c">
+      <Filter>源文件\msg</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_char.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
   </ItemGroup>

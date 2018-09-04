@@ -2,6 +2,7 @@
 #include "ms_socket_context.h"
 #include "../module/moon_char.h"
 #include "../module/moon_string.h"
+#include "../msg/moon_msg.h"
 #include <stdio.h>
 
 #ifdef MS_WINDOWS
@@ -184,6 +185,7 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	int remoteLen = sizeof(SOCKADDR_IN), localLen = sizeof(SOCKADDR_IN);
 	moon_char clientMsg[MAX_BUFFER_LEN] = {0};
 	int len = 0;
+	Message* p_msg = NULL;
 	
 	///////////////////////////////////////////////////////////////////////////
 	// 1. First obtain the address information of the client.
@@ -192,6 +194,13 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 		sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, (LPSOCKADDR*)&LocalAddr, &localLen, (LPSOCKADDR*)&ClientAddr, &remoteLen);
 	//Parsing the first message from the client.
 	len = moon_ms_windows_utf8_to_unicode(pIoContext->m_szBuffer,clientMsg);//将收到的utf-8的字节序转化为unicode
+	//parse message
+	p_msg = parse_msg(clientMsg);
+	create_message_id(clientMsg);
+
+	free_msg(p_msg);
+
+	p_msg = NULL;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 2.So, notice here, this is the Context in the listening socket, and this Context we also need to use to listen for the next connection.
