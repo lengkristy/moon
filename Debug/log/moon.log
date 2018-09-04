@@ -1,0 +1,62 @@
+2018/8/29 21:11:44 info->init log environment finished
+2018/8/29 21:11:44 info->starting server,please waiting...
+2018/8/29 21:11:44 info->load config
+2018/8/29 21:11:44 info->The read main configuration is as follows:
+2018/8/29 21:11:44 info->server_ip:127.0.0.1
+2018/8/29 21:11:44 info->server_port:8890
+2018/8/29 21:11:44 info->http_server_port:8088
+2018/8/29 21:11:44 info->server_node_name:node_one
+2018/8/29 21:11:44 info->client_count:1000
+2018/8/29 21:11:44 info->moon_manager_domain:http://127.0.0.1:8080
+2018/8/29 21:11:44 info->start ms_nt_iocp server...
+2018/8/29 21:11:44 info->init ms_nt_iocp finished
+2018/8/29 21:11:44 info->init socket success
+2018/8/29 21:11:44 info->listen socket binding success
+2018/8/29 21:11:44 info->init ms_init_listen_socket finished
+2018/8/29 21:11:44 info->ms_nt_iocp server has start
+2018/8/29 21:11:44 info->moon http service started
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:57 info->the worker thread exit
+2018/8/29 21:11:58 info->alive thread exit
+2018/8/29 21:11:58 info->close http server
+2018/8/29 21:36:44 info->init log environment finished
+2018/8/29 21:36:44 info->starting server,please waiting...
+2018/8/29 21:36:44 info->load config
+2018/8/29 21:36:44 info->The read main configuration is as follows:
+2018/8/29 21:36:44 info->server_ip:127.0.0.1
+2018/8/29 21:36:44 info->server_port:8890
+2018/8/29 21:36:44 info->http_server_port:8088
+2018/8/29 21:36:44 info->server_node_name:node_one
+2018/8/29 21:36:44 info->client_count:1000
+2018/8/29 21:36:44 info->moon_manager_domain:http://127.0.0.1:8080
+2018/8/29 21:36:44 info->start ms_nt_iocp server...
+2018/8/29 21:36:44 info->init ms_nt_iocp finished
+2018/8/29 21:36:44 info->init socket success
+2018/8/29 21:36:44 info->listen socket binding success
+2018/8/29 21:36:44 info->init ms_init_listen_socket finished
+2018/8/29 21:36:44 info->ms_nt_iocp server has start
+2018/8/29 21:36:44 info->moon http service started
+2018/8/29 22:1:33 info->init log environment finished
+2018/8/29 22:1:33 info->starting server,please waiting...
+2018/8/29 22:1:33 info->load config
+2018/8/29 22:1:33 info->The read main configuration is as follows:
+2018/8/29 22:1:33 info->server_ip:127.0.0.1
+2018/8/29 22:1:33 info->server_port:8890
+2018/8/29 22:1:33 info->http_server_port:8088
+2018/8/29 22:1:33 info->server_node_name:node_one
+2018/8/29 22:1:33 info->client_count:1000
+2018/8/29 22:1:33 info->moon_manager_domain:http://127.0.0.1:8080
+2018/8/29 22:1:33 info->start ms_nt_iocp server...
+2018/8/29 22:1:33 info->init ms_nt_iocp finished
+2018/8/29 22:1:33 info->init socket success
+2018/8/29 22:1:33 info->listen socket binding success
+2018/8/29 22:1:33 info->init ms_init_listen_socket finished
+2018/8/29 22:1:33 info->ms_nt_iocp server has start
+2018/8/29 22:1:33 info->moon http service started
+2018/8/29 22:4:4 debug->http request is not get or head method.close ok.
