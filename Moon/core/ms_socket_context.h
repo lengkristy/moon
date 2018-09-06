@@ -8,6 +8,7 @@
 #define _MS_SOCKET_CONTEXT
 #include "../collection/array_list.h"
 #include "../cfg/environment.h"
+#include "../module/moon_client.h"
 
 #ifdef MS_WINDOWS
 #include <winsock2.h>
@@ -65,6 +66,7 @@ typedef struct _MS_SOCKET_CONTEXT
 	unsigned int m_client_port;// Port for each client.						
 	char m_client_id[255];//Client ID(unique ID)
 	Array_List* m_pListIOContext;//// The context data for the client network operation, which means that for each client Socket, it is possible to deliver multiple IO requests simultaneously.
+	ClientEnvironment* mp_client_environment;//client running environment
 }MS_SOCKET_CONTEXT,*PMS_SOCKET_CONTEXT;
 
 

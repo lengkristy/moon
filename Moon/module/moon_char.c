@@ -1,4 +1,5 @@
 #include "moon_char.h"
+#include "moon_string.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,6 +36,18 @@ void char_to_moon_char(const char* sourceStr,_out_ moon_char* destStr)
 {
 #ifdef MS_WINDOWS //windows platform
 	moon_ms_windows_ascii_to_unicode(sourceStr,destStr);
+#endif
+}
+
+/**
+ * @desc make moon char to char string
+ * @param source_str:moon char string
+ * @param dest_str:char string after convertting
+ **/
+void moon_char_to_char(const moon_char* source_str,_out_ char* dest_str)
+{
+#ifdef MS_WINDOWS //windows platform
+	moon_ms_windows_unicode_to_ascii(source_str,dest_str);
 #endif
 }
 

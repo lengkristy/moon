@@ -8,6 +8,7 @@
 #include "moon_protocol.h"
 #include "../module/moon_char.h"
 #include "../cfg/environment.h"
+#include "../module/moon_client.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,6 +73,33 @@ void free_msg(Message* p_message);
  *	out_msg_id:return message id
  */
 void create_message_id(_out_ moon_char* out_msg_id);
+
+
+/**
+ * @desc parse client running environment message
+ * @param msgData:message body
+ * @return if success return ClientEnvironment struct pointer,otherwise return NULL
+ **/
+ClientEnvironment* parse_client_running_environment(moon_char* msgData);
+
+/**
+ * @desc parse client login id
+ * @param msgData:message body
+ * @param out_client_login_id:return client id
+ **/
+void parse_login_id(moon_char* msgData,_out_ char* out_client_login_id);
+
+/**
+ * @desc create a login-successful message json data
+ * @param out_login_suc_msg:return json data
+ **/
+void create_client_login_success_msg(_out_ moon_char* out_login_suc_msg);
+
+/**
+ * @desc create a login-failed message json data
+ * @param out_login_failed_msg:return json data
+ **/
+void create_client_login_failed_msg(char* err_msg,_out_ moon_char* out_login_failed_msg);
 
 #ifdef __cplusplus
 }

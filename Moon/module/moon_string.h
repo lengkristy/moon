@@ -101,7 +101,7 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode);
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_unicode_to_utf8(const wchar_t* unicodeStr,char* outUTF8);
+int moon_ms_windows_unicode_to_utf8(const moon_char* unicodeStr,char* outUTF8);
 
 /**
  * function desc:

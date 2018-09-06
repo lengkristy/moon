@@ -100,7 +100,7 @@ extern "C" {
 		sprintf(pOutContent,"<html xmlns=http://www.w3.org/1999/xhtml>");
 		strcat(pOutContent,"<head><title>moon http server</title></head>");
 		strcat(pOutContent,"<body bgcolor='#3299CC'>");
-		strcat(pOutContent,"<div align='center'><h1>Moon Server Info</h1></div>");
+		strcat(pOutContent,"<div align='center'><h1>Moon Server Node Info</h1></div>");
 		memset(tmpHtml,0,1024);
 		sprintf(tmpHtml,"<div><image style='width:100px;height:100px;' src='http://%s:%d/image/748x578.jpg?platform=b'/></div>",p_global_server_config->server_ip,p_global_server_config->http_port);
 		strcat(pOutContent,tmpHtml);

@@ -144,6 +144,9 @@
     <ClInclude Include="module\cJSON.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
+    <ClInclude Include="module\moon_client.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -201,6 +204,9 @@
       <Filter>源文件\msg</Filter>
     </ClCompile>
     <ClCompile Include="module\moon_char.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_client.c">
       <Filter>源文件\module</Filter>
     </ClCompile>
   </ItemGroup>

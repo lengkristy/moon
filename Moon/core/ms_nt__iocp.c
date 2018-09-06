@@ -44,6 +44,81 @@ static Array_List* g_pListMSClientSocketContext;//the context of client socket
 static HANDLE g_hAliveThread;//heartbeat detection thread
 
 
+/**
+ * @desc deal with client message
+ * @param p_msg:the Message struct pointer
+ **/
+void client_login_handle(PMS_IO_CONTEXT pIoContext,Message* p_msg)
+{
+	char client_login_id[32] = {0};
+	moon_char ret_json_data[512] = {0};
+	char utf8_ret_json_data[512] = {0};
+	MS_IO_CONTEXT msio;
+	if (p_msg == NULL)
+	{
+		return;
+	}
+	switch (p_msg->p_message_head->sub_msg_num)
+	{
+	case SYS_SUB_PROTOCOL_LOGIN_FIRST://client first login
+		{
+			parse_login_id(p_msg->p_message_body->p_content,client_login_id);
+			if (stringIsEmpty(client_login_id))
+			{
+				//client login id is null,and send a login-faild message to client
+				memset(ret_json_data,0,512);
+				memset(utf8_ret_json_data,0,512);
+				create_client_login_failed_msg("client login id is not null",ret_json_data);
+				moon_ms_windows_unicode_to_utf8(ret_json_data,utf8_ret_json_data);
+				msio.m_OpType = SEND_POSTED;
+				memset(&(msio.m_Overlapped), 0, sizeof(msio.m_Overlapped)); 
+				msio.m_sockAccept = pIoContext->m_sockAccept;
+				msio.m_wsaBuf.buf = utf8_ret_json_data;
+				strcpy(msio.m_wsaBuf.buf,utf8_ret_json_data);
+				msio.m_wsaBuf.len = strlen(utf8_ret_json_data);
+				doSend(NULL,&msio);
+			}
+			//verify login-id is valid
+			
+			//send login-successful
+			memset(ret_json_data,0,512);
+			memset(utf8_ret_json_data,0,512);
+			create_client_login_success_msg(ret_json_data);
+			moon_ms_windows_unicode_to_utf8(ret_json_data,utf8_ret_json_data);
+			msio.m_OpType = SEND_POSTED;
+			memset(&(msio.m_Overlapped), 0, sizeof(msio.m_Overlapped)); 
+			msio.m_sockAccept = pIoContext->m_sockAccept;
+			msio.m_wsaBuf.buf = utf8_ret_json_data;
+			strcpy(msio.m_wsaBuf.buf,utf8_ret_json_data);
+			msio.m_wsaBuf.len = strlen(utf8_ret_json_data);
+			doSend(NULL,&msio);
+			
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+/**
+ * @desc deal with network message
+ * @param p_msg:the Message struct pointer
+ **/
+void msg_handle(PMS_IO_CONTEXT pIoContext,Message* p_msg)
+{
+	if (p_msg == NULL)
+	{
+		return;
+	}
+	switch (p_msg->p_message_head->main_msg_num)
+	{
+	case SYS_MAIN_PROTOCOL_LOGIN: //login message
+		client_login_handle(pIoContext,p_msg);
+		break;
+	default:
+		break;
+	}
+}
 
 /**
  * Heartbeat packet detection
@@ -127,7 +202,7 @@ bool postRecv( PMS_IO_CONTEXT pIoContext )
 	//If the return value error and the error code is not Pending, then this overlapping request fails.
 	if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
 	{
-		sprintf(strMsg,"post first message error,error code:%d",WSAGetLastError());
+		sprintf(strMsg,"post message error,error code:%d",WSAGetLastError());
 		moon_write_error_log(strMsg);
 		return false;
 	}
@@ -186,6 +261,7 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	moon_char clientMsg[MAX_BUFFER_LEN] = {0};
 	int len = 0;
 	Message* p_msg = NULL;
+	ClientEnvironment* p_client_env = NULL;
 	
 	///////////////////////////////////////////////////////////////////////////
 	// 1. First obtain the address information of the client.
@@ -196,10 +272,31 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	len = moon_ms_windows_utf8_to_unicode(pIoContext->m_szBuffer,clientMsg);//将收到的utf-8的字节序转化为unicode
 	//parse message
 	p_msg = parse_msg(clientMsg);
-	create_message_id(clientMsg);
-
+	//the first message is about client running environment,if not this,the server will refuse
+	if (p_msg == NULL)
+	{
+		//close client socket
+		closesocket(pIoContext->m_sockAccept);
+		free_msg(p_msg);
+		return false;
+	}
+	if (!p_msg->p_message_head->main_msg_num == SYS_MAIN_PROTOCOL_CONNECT_INIT) //not environment message
+	{
+		//close client socket
+		closesocket(pIoContext->m_sockAccept);
+		free_msg(p_msg);
+		return false;
+	}
+	//parse client running environment
+	p_client_env = parse_client_running_environment(p_msg->p_message_body->p_content);
+	if (p_client_env = NULL)
+	{
+		//close client socket
+		closesocket(pIoContext->m_sockAccept);
+		free_msg(p_msg);
+		return false;
+	}
 	free_msg(p_msg);
-
 	p_msg = NULL;
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -208,6 +305,7 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 
 	pNewSocketContext = create_new_socket_context();
 	pNewSocketContext->m_socket           = pIoContext->m_sockAccept;
+	pNewSocketContext->mp_client_environment = p_client_env;
 	memcpy(&(pNewSocketContext->m_client_addr), ClientAddr, sizeof(SOCKADDR_IN));
 
 	// After the parameters are set, the Socket is bound to the completion port.
@@ -238,6 +336,7 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	// 4. If the delivery is successful, then add this valid client information to the ContextList
 	//    (which requires unified management and easy release of resources)
 	array_list_insert(g_pListMSClientSocketContext,pNewSocketContext,-1);
+	array_list_insert(pNewSocketContext->m_pListIOContext,pNewIoContext,-1);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	// 5. After use, reset the IoContext of the Listen Socket, and then prepare to deliver the new AcceptEx.
@@ -254,7 +353,36 @@ bool doRecv( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	//this->_ShowMessage( _T("receive  %s:%d message：%s"),inet_ntoa(ClientAddr->sin_addr), ntohs(ClientAddr->sin_port),pIoContext->m_wsaBuf.buf );
 
 	// Then start delivering the next WSARecv request
-	return postRecv( pIoContext );
+	
+	//recv message
+	WSABUF buf;
+	char *p_utf8_msg = pIoContext->m_wsaBuf.buf;
+	moon_char* client_msg = NULL;
+	int len = 0;
+	unsigned long size = 0;
+	Message* p_msg = NULL;
+	size = pIoContext->m_wsaBuf.len + 2;
+	client_msg = (moon_char*)moon_malloc(size);
+	if (client_msg == NULL)
+	{
+		return postRecv( pIoContext );
+	}
+	memset(client_msg,0,size);
+	len = moon_ms_windows_utf8_to_unicode(p_utf8_msg,client_msg);//将收到的utf-8的字节序转化为moon_char
+	p_msg = parse_msg(client_msg);
+	if (p_msg == NULL)
+	{
+		postRecv(pIoContext);
+	}
+	//deal with message
+	msg_handle(pIoContext,p_msg);
+	free_msg(p_msg);
+	p_msg = NULL;
+	moon_free(client_msg);
+	client_msg = NULL;
+
+	//
+	return postRecv(pIoContext);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -276,7 +404,7 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 	// If the return value error and the error code is not Pending, then this overlapping request fails.
 	if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
 	{
-		sprintf(strMsg,"post first message error,error code:%d",WSAGetLastError());
+		sprintf(strMsg,"post message error,error code:%d",WSAGetLastError());
 		moon_write_error_log(strMsg);
 		return false;
 	}
@@ -367,17 +495,17 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					{
 						// In order to increase the readability of the code, a special _DoRecv function is used to process the receive request.
 						doRecv( pSocketContext,pIoContext );
-						//The message is sent back to the client after receiving the message.
-						strcpy(pIoContext->m_wsaBuf.buf,"server");
-						doSend(pSocketContext,pIoContext);
+						//make Io buf null
+						memset(pIoContext->m_wsaBuf.buf,0,pIoContext->m_wsaBuf.len);
+						pIoContext->m_wsaBuf.len = 0;
 					}
 					break;
 
 					// SEND
 				case SEND_POSTED:
 					{
-						//moon_write_info_log("start send message:");
-						//moon_write_info_log(pIoContext->m_szBuffer);
+						moon_write_info_log("start send message:");
+						moon_write_info_log(pIoContext->m_wsaBuf.buf);
 					}
 					break;
 				default:
