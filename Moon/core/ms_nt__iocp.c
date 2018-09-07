@@ -8,6 +8,7 @@
 #ifdef MS_WINDOWS
 #include <wchar.h>
 #endif
+#include "../module/moon_memory_pool.h"
 
 #ifdef MS_WINDOWS
 #ifdef __cplusplus
@@ -53,7 +54,8 @@ void client_login_handle(PMS_IO_CONTEXT pIoContext,Message* p_msg)
 	char client_login_id[32] = {0};
 	moon_char ret_json_data[512] = {0};
 	char utf8_ret_json_data[512] = {0};
-	MS_IO_CONTEXT msio;
+	//MS_IO_CONTEXT *p_msio;
+	int i = 0;
 	if (p_msg == NULL)
 	{
 		return;
@@ -65,34 +67,39 @@ void client_login_handle(PMS_IO_CONTEXT pIoContext,Message* p_msg)
 			parse_login_id(p_msg->p_message_body->p_content,client_login_id);
 			if (stringIsEmpty(client_login_id))
 			{
+				//p_msio = (MS_IO_CONTEXT*)moon_malloc(sizeof(MS_IO_CONTEXT));
 				//client login id is null,and send a login-faild message to client
 				memset(ret_json_data,0,512);
 				memset(utf8_ret_json_data,0,512);
 				create_client_login_failed_msg("client login id is not null",ret_json_data);
 				moon_ms_windows_unicode_to_utf8(ret_json_data,utf8_ret_json_data);
-				msio.m_OpType = SEND_POSTED;
-				memset(&(msio.m_Overlapped), 0, sizeof(msio.m_Overlapped)); 
-				msio.m_sockAccept = pIoContext->m_sockAccept;
-				msio.m_wsaBuf.buf = utf8_ret_json_data;
-				strcpy(msio.m_wsaBuf.buf,utf8_ret_json_data);
-				msio.m_wsaBuf.len = strlen(utf8_ret_json_data);
-				doSend(NULL,&msio);
+				/*p_msio->m_OpType = RECV_POSTED;
+				memset(&(p_msio->m_Overlapped), 0, sizeof(OVERLAPPED));
+				p_msio->m_sockAccept = pIoContext->m_sockAccept;
+				p_msio->m_wsaBuf.buf = utf8_ret_json_data;
+				strcpy(p_msio->m_szBuffer,utf8_ret_json_data);
+				p_msio->m_wsaBuf.len = strlen(utf8_ret_json_data);
+				doSend(p_msio);
+				moon_free(p_msio);
+				p_msio = NULL;*/
+				ms_iocp_send(pIoContext->m_sockAccept,utf8_ret_json_data,strlen(utf8_ret_json_data));
+				return;
 			}
 			//verify login-id is valid
-			
-			//send login-successful
+			//send login-successful message
+			//p_msio = (MS_IO_CONTEXT*)moon_malloc(sizeof(MS_IO_CONTEXT));
 			memset(ret_json_data,0,512);
 			memset(utf8_ret_json_data,0,512);
 			create_client_login_success_msg(ret_json_data);
 			moon_ms_windows_unicode_to_utf8(ret_json_data,utf8_ret_json_data);
-			msio.m_OpType = SEND_POSTED;
-			memset(&(msio.m_Overlapped), 0, sizeof(msio.m_Overlapped)); 
-			msio.m_sockAccept = pIoContext->m_sockAccept;
-			msio.m_wsaBuf.buf = utf8_ret_json_data;
-			strcpy(msio.m_wsaBuf.buf,utf8_ret_json_data);
-			msio.m_wsaBuf.len = strlen(utf8_ret_json_data);
-			doSend(NULL,&msio);
-			
+			/*p_msio->m_OpType = SEND_POSTED;
+			memset(&(p_msio->m_Overlapped), 0, sizeof(OVERLAPPED)); 
+			p_msio->m_sockAccept = pIoContext->m_sockAccept;
+			p_msio->m_wsaBuf.buf = utf8_ret_json_data;
+			strcpy(p_msio->m_szBuffer,utf8_ret_json_data);
+			p_msio->m_wsaBuf.len = strlen(utf8_ret_json_data);
+			doSend(p_msio);*/
+			ms_iocp_send(pIoContext->m_sockAccept,utf8_ret_json_data,strlen(utf8_ret_json_data));
 		}
 		break;
 	default:
@@ -250,7 +257,7 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 ////////////////////////////////////////////////////////////
 // Processing when the client is connected.
 //
-bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
+bool doAccpet(PMS_IO_CONTEXT pIoContext )
 {
 	
 	SOCKADDR_IN* ClientAddr = NULL;
@@ -263,6 +270,8 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 	Message* p_msg = NULL;
 	ClientEnvironment* p_client_env = NULL;
 	
+	moon_write_debug_log("new connect is comming");
+
 	///////////////////////////////////////////////////////////////////////////
 	// 1. First obtain the address information of the client.
 	// Not only can you get the client and local address information, but also the first set of data sent by the client.
@@ -346,7 +355,7 @@ bool doAccpet( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
 
 /////////////////////////////////////////////////////////////////
 // When the received data arrives, it is processed.
-bool doRecv( PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext )
+bool doRecv(PMS_IO_CONTEXT pIoContext)
 {
 	// First display the last data, then reset the state and issue the next Recv request.
 	//SOCKADDR_IN* ClientAddr = &pSocketContext->m_client_addr;
@@ -413,7 +422,7 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 
 //////////////////////////////////////////////////////////////////////////
 //Processing when data is sent.
-bool doSend(PMS_SOCKET_CONTEXT pSocketContext, PMS_IO_CONTEXT pIoContext)
+bool doSend(PMS_IO_CONTEXT pIoContext)
 {
 	return postSend(pIoContext);
 }
@@ -486,7 +495,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 				case ACCEPT_POSTED:
 					{ 
 						// To increase the readability of your code,use the special _DoAccept function to process the incoming requests.
-						doAccpet( pSocketContext, pIoContext );
+						doAccpet(pIoContext);
 					}
 					break;
 
@@ -494,7 +503,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 				case RECV_POSTED:
 					{
 						// In order to increase the readability of the code, a special _DoRecv function is used to process the receive request.
-						doRecv( pSocketContext,pIoContext );
+						doRecv(pIoContext);
 						//make Io buf null
 						memset(pIoContext->m_wsaBuf.buf,0,pIoContext->m_wsaBuf.len);
 						pIoContext->m_wsaBuf.len = 0;
@@ -650,8 +659,9 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	GUID GuidAcceptEx = WSAID_ACCEPTEX;  
 	GUID GuidGetAcceptExSockAddrs = WSAID_GETACCEPTEXSOCKADDRS; 
 	char strMsg[256] = {0};
-	PMS_SOCKET_CONTEXT pNewSocketContext = NULL;
-	PMS_IO_CONTEXT pNewIoContext = NULL;
+	//PMS_SOCKET_CONTEXT pNewSocketContext = NULL;
+	//PMS_IO_CONTEXT pNewIoContext = NULL;
+	PMS_IO_CONTEXT pAcceptIoContext = NULL;
 	int i = 0 ;
 	int addrlen = 0;
 	DWORD dwBytes = 0; 
@@ -760,7 +770,7 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	for(i=0;i < MAX_POST_ACCEPT;i++ )
 	{
 		// 新建一个IO_CONTEXT
-		PMS_IO_CONTEXT pAcceptIoContext = create_new_io_context();
+		pAcceptIoContext = create_new_io_context();
 		if( false==post_accept( pAcceptIoContext ) )
 		{
 			free_io_context(pAcceptIoContext);
@@ -880,6 +890,24 @@ void ms_iocp_server_stop()
 		// Release other resources
 		dispose();
 	}	
+}
+
+/**
+ * @desc iocp send data to client
+ * @param socket:client socket
+ * @param send_buf:the data of will sent
+ * @param len:the data length
+ * @return the sent-data length
+ **/
+int ms_iocp_send(SOCKET socket,char * send_buf,int len)
+{
+	PMS_IO_CONTEXT pio = (PMS_IO_CONTEXT)moon_malloc(sizeof(MS_IO_CONTEXT));
+	pio->m_OpType = SEND_POSTED;
+	pio->m_sockAccept = socket;
+	pio->m_wsaBuf.buf = send_buf;
+	pio->m_wsaBuf.len = len;
+	postSend(pio);
+	//moon_free(pio);
 }
 #ifdef __cplusplus
 }

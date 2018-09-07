@@ -34,6 +34,15 @@ bool ms_iocp_server_start();
  */
 void ms_iocp_server_stop();
 
+/**
+ * @desc iocp send data to client
+ * @param socket:client socket
+ * @param send_buf:the data of will sent
+ * @param len:the data length
+ * @return the sent-data length
+ **/
+int ms_iocp_send(SOCKET socket,char * send_buf,int len);
+
 #ifdef __cplusplus
 }
 #endif

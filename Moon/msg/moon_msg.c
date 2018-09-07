@@ -67,13 +67,13 @@ Message* parse_msg(moon_char* str_message)
 		if (head != NULL)
 		{
 			item = cJSON_GetObjectItem(head,"msg_id");
-			if (item != NULL)
+			if (item != NULL && !stringIsEmpty(item->valuestring))
 			{
 				char_to_moon_char(item->valuestring,msg_id);
 				moon_char_copy(p_message->p_message_head->msg_id,msg_id);
 			}
 			item = cJSON_GetObjectItem(head,"main_msg_num");
-			if (item != NULL)
+			if (item != NULL )
 			{
 				p_message->p_message_head->main_msg_num = item->valueint;
 			}
@@ -87,7 +87,7 @@ Message* parse_msg(moon_char* str_message)
 		if (body != NULL)
 		{
 			item = cJSON_GetObjectItem(body,"content");
-			if (item != NULL)
+			if (item != NULL && !stringIsEmpty(item->valuestring))
 			{
 				msg_body_length = moon_get_string_length(item->valuestring);
 				p_str_body = (char*)moon_malloc(msg_body_length + 1);

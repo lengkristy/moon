@@ -60,3 +60,2497 @@
 2018/8/29 22:1:33 info->ms_nt_iocp server has start
 2018/8/29 22:1:33 info->moon http service started
 2018/8/29 22:4:4 debug->http request is not get or head method.close ok.
+2018/9/7 11:15:3 info->init log environment finished
+2018/9/7 11:15:3 info->starting server,please waiting...
+2018/9/7 11:15:3 info->load config
+2018/9/7 11:15:3 info->The read main configuration is as follows:
+2018/9/7 11:15:3 info->server_ip:127.0.0.1
+2018/9/7 11:15:3 info->server_port:8890
+2018/9/7 11:15:3 info->http_server_port:8088
+2018/9/7 11:15:3 info->server_node_name:node_one
+2018/9/7 11:15:3 info->client_count:1000
+2018/9/7 11:15:3 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 11:15:3 info->start ms_nt_iocp server...
+2018/9/7 11:15:3 info->init ms_nt_iocp finished
+2018/9/7 11:15:3 info->init socket success
+2018/9/7 11:15:3 info->listen socket binding success
+2018/9/7 11:15:3 info->init ms_init_listen_socket finished
+2018/9/7 11:15:3 info->ms_nt_iocp server has start
+2018/9/7 11:15:3 info->moon http service started
+2018/9/7 11:15:12 info->start send message:
+2018/9/7 11:15:12 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:15:12 info->start send message:
+2018/9/7 11:15:12 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:16:43 info->init log environment finished
+2018/9/7 11:16:43 info->starting server,please waiting...
+2018/9/7 11:16:43 info->load config
+2018/9/7 11:16:43 info->The read main configuration is as follows:
+2018/9/7 11:16:43 info->server_ip:127.0.0.1
+2018/9/7 11:16:43 info->server_port:8890
+2018/9/7 11:16:43 info->http_server_port:8088
+2018/9/7 11:16:43 info->server_node_name:node_one
+2018/9/7 11:16:43 info->client_count:1000
+2018/9/7 11:16:43 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 11:16:43 info->start ms_nt_iocp server...
+2018/9/7 11:16:43 info->init ms_nt_iocp finished
+2018/9/7 11:16:43 info->init socket success
+2018/9/7 11:16:43 info->listen socket binding success
+2018/9/7 11:16:43 info->init ms_init_listen_socket finished
+2018/9/7 11:16:43 info->ms_nt_iocp server has start
+2018/9/7 11:16:43 info->moon http service started
+2018/9/7 11:16:58 info->start send message:
+2018/9/7 11:16:58 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:16:58 info->start send message:
+2018/9/7 11:16:58 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:25:9 info->init log environment finished
+2018/9/7 11:25:9 info->starting server,please waiting...
+2018/9/7 11:25:9 info->load config
+2018/9/7 11:25:9 info->The read main configuration is as follows:
+2018/9/7 11:25:9 info->server_ip:127.0.0.1
+2018/9/7 11:25:9 info->server_port:8890
+2018/9/7 11:25:9 info->http_server_port:8088
+2018/9/7 11:25:9 info->server_node_name:node_one
+2018/9/7 11:25:9 info->client_count:1000
+2018/9/7 11:25:9 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 11:25:9 info->start ms_nt_iocp server...
+2018/9/7 11:25:9 info->init ms_nt_iocp finished
+2018/9/7 11:25:9 info->init socket success
+2018/9/7 11:25:9 info->listen socket binding success
+2018/9/7 11:25:9 info->init ms_init_listen_socket finished
+2018/9/7 11:25:9 info->ms_nt_iocp server has start
+2018/9/7 11:25:9 info->moon http service started
+2018/9/7 11:25:12 info->start send message:
+2018/9/7 11:25:12 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:25:12 info->start send message:
+2018/9/7 11:25:12 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 11:25:19 info->start send message:
+2018/9/7 11:25:19 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 11:25:19 info->start send message:
+2018/9/7 11:25:19 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:28:11 info->init log environment finished
+2018/9/7 11:28:11 info->starting server,please waiting...
+2018/9/7 11:28:11 info->load config
+2018/9/7 11:28:11 info->The read main configuration is as follows:
+2018/9/7 11:28:11 info->server_ip:127.0.0.1
+2018/9/7 11:28:11 info->server_port:8890
+2018/9/7 11:28:11 info->http_server_port:8088
+2018/9/7 11:28:11 info->server_node_name:node_one
+2018/9/7 11:28:11 info->client_count:1000
+2018/9/7 11:28:11 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 11:28:11 info->start ms_nt_iocp server...
+2018/9/7 11:28:11 info->init ms_nt_iocp finished
+2018/9/7 11:28:11 info->init socket success
+2018/9/7 11:28:11 info->listen socket binding success
+2018/9/7 11:28:11 info->init ms_init_listen_socket finished
+2018/9/7 11:28:11 info->ms_nt_iocp server has start
+2018/9/7 11:28:11 info->moon http service started
+2018/9/7 11:28:57 info->start send message:
+2018/9/7 11:28:57 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 11:28:57 info->start send message:
+2018/9/7 11:28:57 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:30:29 info->start send message:
+2018/9/7 11:30:29 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 11:30:29 info->start send message:
+2018/9/7 11:30:29 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:4 info->init log environment finished
+2018/9/7 11:32:4 info->starting server,please waiting...
+2018/9/7 11:32:4 info->load config
+2018/9/7 11:32:4 info->The read main configuration is as follows:
+2018/9/7 11:32:4 info->server_ip:127.0.0.1
+2018/9/7 11:32:4 info->server_port:8890
+2018/9/7 11:32:4 info->http_server_port:8088
+2018/9/7 11:32:4 info->server_node_name:node_one
+2018/9/7 11:32:4 info->client_count:1000
+2018/9/7 11:32:4 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 11:32:4 info->start ms_nt_iocp server...
+2018/9/7 11:32:4 info->init ms_nt_iocp finished
+2018/9/7 11:32:4 info->init socket success
+2018/9/7 11:32:4 info->listen socket binding success
+2018/9/7 11:32:4 info->init ms_init_listen_socket finished
+2018/9/7 11:32:4 info->ms_nt_iocp server has start
+2018/9/7 11:32:4 info->moon http service started
+2018/9/7 11:32:6 info->start send message:
+2018/9/7 11:32:6 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:6 info->start send message:
+2018/9/7 11:32:6 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:6 info->start send message:
+2018/9/7 11:32:6 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:6 info->start send message:
+2018/9/7 11:32:6 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:6 info->start send message:
+2018/9/7 11:32:6 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:32:32 info->start send message:
+2018/9/7 11:32:32 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"login successful"}}
+2018/9/7 11:33:17 info->init log environment finished
+2018/9/7 11:33:17 info->starting server,please waiting...
+2018/9/7 11:33:17 info->load config
+2018/9/7 11:33:17 info->The read main configuration is as follows:
+2018/9/7 11:33:17 info->server_ip:127.0.0.1
+2018/9/7 11:33:17 info->server_port:8890
+2018/9/7 11:33:17 info->http_server_port:8088
+2018/9/7 11:33:17 info->server_node_name:node_one
+2018/9/7 11:33:17 info->client_count:1000
+2018/9/7 11:33:17 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 11:33:17 info->start ms_nt_iocp server...
+2018/9/7 11:33:17 info->init ms_nt_iocp finished
+2018/9/7 11:33:17 info->init socket success
+2018/9/7 11:33:17 info->listen socket binding success
+2018/9/7 11:33:17 info->init ms_init_listen_socket finished
+2018/9/7 11:33:17 info->ms_nt_iocp server has start
+2018/9/7 11:33:17 info->moon http service started
+2018/9/7 11:33:56 error->post message error,error code:10054
+2018/9/7 11:33:56 error->post message error,error code:10054
+2018/9/7 11:33:57 error->post message error,error code:10054
+2018/9/7 11:33:57 error->post message error,error code:10054
+2018/9/7 11:33:58 error->post message error,error code:10054
+2018/9/7 11:34:4 error->post message error,error code:10054
+2018/9/7 11:34:5 error->post message error,error code:10054
+2018/9/7 11:34:5 error->post message error,error code:10054
+2018/9/7 11:38:30 info->init log environment finished
+2018/9/7 11:38:30 info->starting server,please waiting...
+2018/9/7 11:38:30 info->load config
+2018/9/7 11:38:30 info->The read main configuration is as follows:
+2018/9/7 11:38:30 info->server_ip:127.0.0.1
+2018/9/7 11:38:30 info->server_port:8890
+2018/9/7 11:38:30 info->http_server_port:8088
+2018/9/7 11:38:30 info->server_node_name:node_one
+2018/9/7 11:38:30 info->client_count:1000
+2018/9/7 11:38:30 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 11:38:30 info->start ms_nt_iocp server...
+2018/9/7 11:38:30 info->init ms_nt_iocp finished
+2018/9/7 11:38:30 info->init socket success
+2018/9/7 11:38:30 info->listen socket binding success
+2018/9/7 11:38:30 info->init ms_init_listen_socket finished
+2018/9/7 11:38:30 info->ms_nt_iocp server has start
+2018/9/7 11:38:30 info->moon http service started
+2018/9/7 12:7:52 info->init log environment finished
+2018/9/7 12:7:52 info->starting server,please waiting...
+2018/9/7 12:7:52 info->load config
+2018/9/7 12:7:52 info->The read main configuration is as follows:
+2018/9/7 12:7:52 info->server_ip:127.0.0.1
+2018/9/7 12:7:52 info->server_port:8890
+2018/9/7 12:7:52 info->http_server_port:8088
+2018/9/7 12:7:52 info->server_node_name:node_one
+2018/9/7 12:7:52 info->client_count:1000
+2018/9/7 12:7:52 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 12:7:52 info->start ms_nt_iocp server...
+2018/9/7 12:7:52 info->init ms_nt_iocp finished
+2018/9/7 12:7:52 info->init socket success
+2018/9/7 12:7:52 info->listen socket binding success
+2018/9/7 12:7:52 info->init ms_init_listen_socket finished
+2018/9/7 12:7:52 info->ms_nt_iocp server has start
+2018/9/7 12:7:52 info->moon http service started
+2018/9/7 12:8:50 info->init log environment finished
+2018/9/7 12:8:50 info->starting server,please waiting...
+2018/9/7 12:8:50 info->load config
+2018/9/7 12:8:50 info->The read main configuration is as follows:
+2018/9/7 12:8:50 info->server_ip:127.0.0.1
+2018/9/7 12:8:50 info->server_port:8890
+2018/9/7 12:8:50 info->http_server_port:8088
+2018/9/7 12:8:50 info->server_node_name:node_one
+2018/9/7 12:8:50 info->client_count:1000
+2018/9/7 12:8:50 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 12:8:50 info->start ms_nt_iocp server...
+2018/9/7 12:8:50 info->init ms_nt_iocp finished
+2018/9/7 12:8:50 info->init socket success
+2018/9/7 12:8:50 info->listen socket binding success
+2018/9/7 12:8:50 info->init ms_init_listen_socket finished
+2018/9/7 12:8:50 info->ms_nt_iocp server has start
+2018/9/7 12:8:50 info->moon http service started
+2018/9/7 12:9:36 info->init log environment finished
+2018/9/7 12:9:36 info->starting server,please waiting...
+2018/9/7 12:9:36 info->load config
+2018/9/7 12:9:36 info->The read main configuration is as follows:
+2018/9/7 12:9:36 info->server_ip:127.0.0.1
+2018/9/7 12:9:36 info->server_port:8890
+2018/9/7 12:9:36 info->http_server_port:8088
+2018/9/7 12:9:36 info->server_node_name:node_one
+2018/9/7 12:9:36 info->client_count:1000
+2018/9/7 12:9:36 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 12:9:36 info->start ms_nt_iocp server...
+2018/9/7 12:9:36 info->init ms_nt_iocp finished
+2018/9/7 12:9:36 info->init socket success
+2018/9/7 12:9:36 info->listen socket binding success
+2018/9/7 12:9:36 info->init ms_init_listen_socket finished
+2018/9/7 12:9:36 info->ms_nt_iocp server has start
+2018/9/7 12:9:36 info->moon http service started
+2018/9/7 12:10:36 info->init log environment finished
+2018/9/7 12:10:36 info->starting server,please waiting...
+2018/9/7 12:10:36 info->load config
+2018/9/7 12:10:36 info->The read main configuration is as follows:
+2018/9/7 12:10:36 info->server_ip:127.0.0.1
+2018/9/7 12:10:36 info->server_port:8890
+2018/9/7 12:10:36 info->http_server_port:8088
+2018/9/7 12:10:36 info->server_node_name:node_one
+2018/9/7 12:10:36 info->client_count:1000
+2018/9/7 12:10:36 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 12:10:36 info->start ms_nt_iocp server...
+2018/9/7 12:10:36 info->init ms_nt_iocp finished
+2018/9/7 12:10:36 info->init socket success
+2018/9/7 12:10:36 info->listen socket binding success
+2018/9/7 12:10:36 info->init ms_init_listen_socket finished
+2018/9/7 12:10:36 info->ms_nt_iocp server has start
+2018/9/7 12:10:36 info->moon http service started
+2018/9/7 13:20:7 info->init log environment finished
+2018/9/7 13:20:7 info->starting server,please waiting...
+2018/9/7 13:20:7 info->load config
+2018/9/7 13:20:7 info->The read main configuration is as follows:
+2018/9/7 13:20:7 info->server_ip:127.0.0.1
+2018/9/7 13:20:7 info->server_port:8890
+2018/9/7 13:20:7 info->http_server_port:8088
+2018/9/7 13:20:7 info->server_node_name:node_one
+2018/9/7 13:20:7 info->client_count:1000
+2018/9/7 13:20:7 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:20:7 info->start ms_nt_iocp server...
+2018/9/7 13:20:7 info->init ms_nt_iocp finished
+2018/9/7 13:20:7 info->init socket success
+2018/9/7 13:20:7 info->listen socket binding success
+2018/9/7 13:20:7 info->init ms_init_listen_socket finished
+2018/9/7 13:20:7 info->ms_nt_iocp server has start
+2018/9/7 13:20:7 info->moon http service started
+2018/9/7 13:25:26 info->init log environment finished
+2018/9/7 13:25:26 info->starting server,please waiting...
+2018/9/7 13:25:26 info->load config
+2018/9/7 13:25:26 info->The read main configuration is as follows:
+2018/9/7 13:25:26 info->server_ip:127.0.0.1
+2018/9/7 13:25:26 info->server_port:8890
+2018/9/7 13:25:26 info->http_server_port:8088
+2018/9/7 13:25:26 info->server_node_name:node_one
+2018/9/7 13:25:26 info->client_count:1000
+2018/9/7 13:25:26 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:25:26 info->start ms_nt_iocp server...
+2018/9/7 13:25:26 info->init ms_nt_iocp finished
+2018/9/7 13:25:26 info->init socket success
+2018/9/7 13:25:26 info->listen socket binding success
+2018/9/7 13:25:31 info->init ms_init_listen_socket finished
+2018/9/7 13:25:31 info->ms_nt_iocp server has start
+2018/9/7 13:25:31 info->moon http service started
+2018/9/7 13:31:21 info->init log environment finished
+2018/9/7 13:31:21 info->starting server,please waiting...
+2018/9/7 13:31:21 info->load config
+2018/9/7 13:31:21 info->The read main configuration is as follows:
+2018/9/7 13:31:21 info->server_ip:127.0.0.1
+2018/9/7 13:31:21 info->server_port:8890
+2018/9/7 13:31:21 info->http_server_port:8088
+2018/9/7 13:31:21 info->server_node_name:node_one
+2018/9/7 13:31:21 info->client_count:1000
+2018/9/7 13:31:21 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:31:21 info->start ms_nt_iocp server...
+2018/9/7 13:31:21 info->init ms_nt_iocp finished
+2018/9/7 13:31:21 info->init socket success
+2018/9/7 13:31:21 info->listen socket binding success
+2018/9/7 13:31:21 info->init ms_init_listen_socket finished
+2018/9/7 13:31:21 info->ms_nt_iocp server has start
+2018/9/7 13:31:21 info->moon http service started
+2018/9/7 13:32:47 info->init log environment finished
+2018/9/7 13:32:47 info->starting server,please waiting...
+2018/9/7 13:32:47 info->load config
+2018/9/7 13:32:47 info->The read main configuration is as follows:
+2018/9/7 13:32:47 info->server_ip:127.0.0.1
+2018/9/7 13:32:47 info->server_port:8890
+2018/9/7 13:32:47 info->http_server_port:8088
+2018/9/7 13:32:47 info->server_node_name:node_one
+2018/9/7 13:32:47 info->client_count:1000
+2018/9/7 13:32:47 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:32:47 info->start ms_nt_iocp server...
+2018/9/7 13:32:47 info->init ms_nt_iocp finished
+2018/9/7 13:32:47 info->init socket success
+2018/9/7 13:32:47 info->listen socket binding success
+2018/9/7 13:32:47 info->init ms_init_listen_socket finished
+2018/9/7 13:32:47 info->ms_nt_iocp server has start
+2018/9/7 13:32:47 info->moon http service started
+2018/9/7 13:38:2 info->init log environment finished
+2018/9/7 13:38:2 info->starting server,please waiting...
+2018/9/7 13:38:2 info->load config
+2018/9/7 13:38:2 info->The read main configuration is as follows:
+2018/9/7 13:38:2 info->server_ip:127.0.0.1
+2018/9/7 13:38:2 info->server_port:8890
+2018/9/7 13:38:2 info->http_server_port:8088
+2018/9/7 13:38:2 info->server_node_name:node_one
+2018/9/7 13:38:2 info->client_count:1000
+2018/9/7 13:38:2 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:38:2 info->start ms_nt_iocp server...
+2018/9/7 13:38:2 info->init ms_nt_iocp finished
+2018/9/7 13:38:2 info->init socket success
+2018/9/7 13:38:2 info->listen socket binding success
+2018/9/7 13:38:2 info->init ms_init_listen_socket finished
+2018/9/7 13:38:2 info->ms_nt_iocp server has start
+2018/9/7 13:38:2 info->moon http service started
+2018/9/7 13:38:42 error->post message error,error code:10054
+2018/9/7 13:38:43 error->post message error,error code:10054
+2018/9/7 13:38:44 error->post message error,error code:10054
+2018/9/7 13:38:45 error->post message error,error code:10054
+2018/9/7 13:38:46 error->post message error,error code:10054
+2018/9/7 13:38:47 error->post message error,error code:10054
+2018/9/7 13:38:48 error->post message error,error code:10054
+2018/9/7 13:38:49 error->post message error,error code:10054
+2018/9/7 13:38:50 error->post message error,error code:10054
+2018/9/7 13:39:26 info->init log environment finished
+2018/9/7 13:39:26 info->starting server,please waiting...
+2018/9/7 13:39:26 info->load config
+2018/9/7 13:39:26 info->The read main configuration is as follows:
+2018/9/7 13:39:26 info->server_ip:127.0.0.1
+2018/9/7 13:39:26 info->server_port:8890
+2018/9/7 13:39:26 info->http_server_port:8088
+2018/9/7 13:39:26 info->server_node_name:node_one
+2018/9/7 13:39:26 info->client_count:1000
+2018/9/7 13:39:26 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:39:26 info->start ms_nt_iocp server...
+2018/9/7 13:39:26 info->init ms_nt_iocp finished
+2018/9/7 13:39:26 info->init socket success
+2018/9/7 13:39:26 info->listen socket binding success
+2018/9/7 13:39:26 info->init ms_init_listen_socket finished
+2018/9/7 13:39:26 info->ms_nt_iocp server has start
+2018/9/7 13:39:26 info->moon http service started
+2018/9/7 13:39:44 error->post message error,error code:10054
+2018/9/7 13:39:45 error->post message error,error code:10054
+2018/9/7 13:39:45 error->post message error,error code:10054
+2018/9/7 13:39:45 error->post message error,error code:10054
+2018/9/7 13:39:46 error->post message error,error code:10054
+2018/9/7 13:39:46 error->post message error,error code:10054
+2018/9/7 13:39:46 error->post message error,error code:10054
+2018/9/7 13:39:47 error->post message error,error code:10054
+2018/9/7 13:39:48 error->post message error,error code:10054
+2018/9/7 13:39:49 error->post message error,error code:10054
+2018/9/7 13:39:50 error->post message error,error code:10054
+2018/9/7 13:39:51 error->post message error,error code:10054
+2018/9/7 13:39:52 error->post message error,error code:10054
+2018/9/7 13:40:11 info->init log environment finished
+2018/9/7 13:40:11 info->starting server,please waiting...
+2018/9/7 13:40:11 info->load config
+2018/9/7 13:40:11 info->The read main configuration is as follows:
+2018/9/7 13:40:11 info->server_ip:127.0.0.1
+2018/9/7 13:40:11 info->server_port:8890
+2018/9/7 13:40:11 info->http_server_port:8088
+2018/9/7 13:40:11 info->server_node_name:node_one
+2018/9/7 13:40:11 info->client_count:1000
+2018/9/7 13:40:11 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:40:11 info->start ms_nt_iocp server...
+2018/9/7 13:40:11 info->init ms_nt_iocp finished
+2018/9/7 13:40:11 info->init socket success
+2018/9/7 13:40:11 info->listen socket binding success
+2018/9/7 13:40:11 info->init ms_init_listen_socket finished
+2018/9/7 13:40:11 info->ms_nt_iocp server has start
+2018/9/7 13:40:11 info->moon http service started
+2018/9/7 13:41:48 error->post message error,error code:10054
+2018/9/7 13:41:49 error->post message error,error code:10054
+2018/9/7 13:41:49 error->post message error,error code:10054
+2018/9/7 13:41:49 error->post message error,error code:10054
+2018/9/7 13:41:50 error->post message error,error code:10054
+2018/9/7 13:41:50 error->post message error,error code:10054
+2018/9/7 13:41:50 error->post message error,error code:10054
+2018/9/7 13:41:51 error->post message error,error code:10054
+2018/9/7 13:41:52 error->post message error,error code:10054
+2018/9/7 13:41:53 error->post message error,error code:10054
+2018/9/7 13:41:54 error->post message error,error code:10054
+2018/9/7 13:41:55 error->post message error,error code:10054
+2018/9/7 13:41:56 error->post message error,error code:10054
+2018/9/7 13:43:58 info->init log environment finished
+2018/9/7 13:43:58 info->starting server,please waiting...
+2018/9/7 13:43:58 info->load config
+2018/9/7 13:43:58 info->The read main configuration is as follows:
+2018/9/7 13:43:58 info->server_ip:127.0.0.1
+2018/9/7 13:43:58 info->server_port:8890
+2018/9/7 13:43:58 info->http_server_port:8088
+2018/9/7 13:43:58 info->server_node_name:node_one
+2018/9/7 13:43:58 info->client_count:1000
+2018/9/7 13:43:58 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:43:58 info->start ms_nt_iocp server...
+2018/9/7 13:43:58 info->init ms_nt_iocp finished
+2018/9/7 13:43:58 info->init socket success
+2018/9/7 13:43:58 info->listen socket binding success
+2018/9/7 13:43:58 info->init ms_init_listen_socket finished
+2018/9/7 13:43:58 info->ms_nt_iocp server has start
+2018/9/7 13:43:58 info->moon http service started
+2018/9/7 13:44:31 info->init log environment finished
+2018/9/7 13:44:31 info->starting server,please waiting...
+2018/9/7 13:44:31 info->load config
+2018/9/7 13:44:31 info->The read main configuration is as follows:
+2018/9/7 13:44:31 info->server_ip:127.0.0.1
+2018/9/7 13:44:31 info->server_port:8890
+2018/9/7 13:44:31 info->http_server_port:8088
+2018/9/7 13:44:31 info->server_node_name:node_one
+2018/9/7 13:44:31 info->client_count:1000
+2018/9/7 13:44:31 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:44:31 info->start ms_nt_iocp server...
+2018/9/7 13:44:31 info->init ms_nt_iocp finished
+2018/9/7 13:44:31 info->init socket success
+2018/9/7 13:44:31 info->listen socket binding success
+2018/9/7 13:44:31 info->init ms_init_listen_socket finished
+2018/9/7 13:44:31 info->ms_nt_iocp server has start
+2018/9/7 13:44:31 info->moon http service started
+2018/9/7 13:44:56 info->init log environment finished
+2018/9/7 13:44:56 info->starting server,please waiting...
+2018/9/7 13:44:56 info->load config
+2018/9/7 13:44:56 info->The read main configuration is as follows:
+2018/9/7 13:44:56 info->server_ip:127.0.0.1
+2018/9/7 13:44:56 info->server_port:8890
+2018/9/7 13:44:56 info->http_server_port:8088
+2018/9/7 13:44:56 info->server_node_name:node_one
+2018/9/7 13:44:56 info->client_count:1000
+2018/9/7 13:44:56 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:44:56 info->start ms_nt_iocp server...
+2018/9/7 13:44:56 info->init ms_nt_iocp finished
+2018/9/7 13:44:56 info->init socket success
+2018/9/7 13:44:56 info->listen socket binding success
+2018/9/7 13:44:56 info->init ms_init_listen_socket finished
+2018/9/7 13:44:56 info->ms_nt_iocp server has start
+2018/9/7 13:44:56 info->moon http service started
+2018/9/7 13:45:30 info->init log environment finished
+2018/9/7 13:45:30 info->starting server,please waiting...
+2018/9/7 13:45:30 info->load config
+2018/9/7 13:45:30 info->The read main configuration is as follows:
+2018/9/7 13:45:30 info->server_ip:127.0.0.1
+2018/9/7 13:45:30 info->server_port:8890
+2018/9/7 13:45:30 info->http_server_port:8088
+2018/9/7 13:45:30 info->server_node_name:node_one
+2018/9/7 13:45:30 info->client_count:1000
+2018/9/7 13:45:30 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:45:30 info->start ms_nt_iocp server...
+2018/9/7 13:45:30 info->init ms_nt_iocp finished
+2018/9/7 13:45:30 info->init socket success
+2018/9/7 13:45:30 info->listen socket binding success
+2018/9/7 13:45:30 info->init ms_init_listen_socket finished
+2018/9/7 13:45:30 info->ms_nt_iocp server has start
+2018/9/7 13:45:30 info->moon http service started
+2018/9/7 13:46:28 info->init log environment finished
+2018/9/7 13:46:28 info->starting server,please waiting...
+2018/9/7 13:46:28 info->load config
+2018/9/7 13:46:28 info->The read main configuration is as follows:
+2018/9/7 13:46:28 info->server_ip:127.0.0.1
+2018/9/7 13:46:28 info->server_port:8890
+2018/9/7 13:46:28 info->http_server_port:8088
+2018/9/7 13:46:28 info->server_node_name:node_one
+2018/9/7 13:46:28 info->client_count:1000
+2018/9/7 13:46:28 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:46:28 info->start ms_nt_iocp server...
+2018/9/7 13:46:28 info->init ms_nt_iocp finished
+2018/9/7 13:46:28 info->init socket success
+2018/9/7 13:46:28 info->listen socket binding success
+2018/9/7 13:46:28 info->init ms_init_listen_socket finished
+2018/9/7 13:46:28 info->ms_nt_iocp server has start
+2018/9/7 13:46:28 info->moon http service started
+2018/9/7 13:47:27 info->init log environment finished
+2018/9/7 13:47:27 info->starting server,please waiting...
+2018/9/7 13:47:27 info->load config
+2018/9/7 13:47:27 info->The read main configuration is as follows:
+2018/9/7 13:47:27 info->server_ip:127.0.0.1
+2018/9/7 13:47:27 info->server_port:8890
+2018/9/7 13:47:27 info->http_server_port:8088
+2018/9/7 13:47:27 info->server_node_name:node_one
+2018/9/7 13:47:27 info->client_count:1000
+2018/9/7 13:47:27 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:47:27 info->start ms_nt_iocp server...
+2018/9/7 13:47:27 info->init ms_nt_iocp finished
+2018/9/7 13:47:27 info->init socket success
+2018/9/7 13:47:27 info->listen socket binding success
+2018/9/7 13:47:27 info->init ms_init_listen_socket finished
+2018/9/7 13:47:27 info->ms_nt_iocp server has start
+2018/9/7 13:47:27 info->moon http service started
+2018/9/7 13:48:2 error->post message error,error code:10054
+2018/9/7 13:48:2 error->post message error,error code:10054
+2018/9/7 13:48:2 error->post message error,error code:10054
+2018/9/7 13:48:3 error->post message error,error code:10054
+2018/9/7 13:48:4 error->post message error,error code:10054
+2018/9/7 13:48:25 info->init log environment finished
+2018/9/7 13:48:25 info->starting server,please waiting...
+2018/9/7 13:48:25 info->load config
+2018/9/7 13:48:25 info->The read main configuration is as follows:
+2018/9/7 13:48:25 info->server_ip:127.0.0.1
+2018/9/7 13:48:25 info->server_port:8890
+2018/9/7 13:48:25 info->http_server_port:8088
+2018/9/7 13:48:25 info->server_node_name:node_one
+2018/9/7 13:48:25 info->client_count:1000
+2018/9/7 13:48:25 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:48:25 info->start ms_nt_iocp server...
+2018/9/7 13:48:25 info->init ms_nt_iocp finished
+2018/9/7 13:48:25 info->init socket success
+2018/9/7 13:48:25 info->listen socket binding success
+2018/9/7 13:48:25 info->init ms_init_listen_socket finished
+2018/9/7 13:48:25 info->ms_nt_iocp server has start
+2018/9/7 13:48:25 info->moon http service started
+2018/9/7 13:50:1 info->init log environment finished
+2018/9/7 13:50:1 info->starting server,please waiting...
+2018/9/7 13:50:1 info->load config
+2018/9/7 13:50:1 info->The read main configuration is as follows:
+2018/9/7 13:50:1 info->server_ip:127.0.0.1
+2018/9/7 13:50:1 info->server_port:8890
+2018/9/7 13:50:1 info->http_server_port:8088
+2018/9/7 13:50:1 info->server_node_name:node_one
+2018/9/7 13:50:1 info->client_count:1000
+2018/9/7 13:50:1 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:50:1 info->start ms_nt_iocp server...
+2018/9/7 13:50:1 info->init ms_nt_iocp finished
+2018/9/7 13:50:1 info->init socket success
+2018/9/7 13:50:1 info->listen socket binding success
+2018/9/7 13:50:1 info->init ms_init_listen_socket finished
+2018/9/7 13:50:1 info->ms_nt_iocp server has start
+2018/9/7 13:50:1 info->moon http service started
+2018/9/7 13:50:8 error->new connect is comming
+2018/9/7 13:50:10 error->new connect is comming
+2018/9/7 13:50:12 error->new connect is comming
+2018/9/7 13:50:14 error->new connect is comming
+2018/9/7 13:50:16 error->new connect is comming
+2018/9/7 13:50:18 error->new connect is comming
+2018/9/7 13:50:20 error->new connect is comming
+2018/9/7 13:50:22 error->new connect is comming
+2018/9/7 13:50:24 error->new connect is comming
+2018/9/7 13:50:26 error->new connect is comming
+2018/9/7 13:50:28 error->new connect is comming
+2018/9/7 13:50:41 error->new connect is comming
+2018/9/7 13:50:43 error->new connect is comming
+2018/9/7 13:50:45 error->new connect is comming
+2018/9/7 13:50:47 error->new connect is comming
+2018/9/7 13:50:49 error->new connect is comming
+2018/9/7 13:50:51 error->new connect is comming
+2018/9/7 13:50:53 error->new connect is comming
+2018/9/7 13:50:55 error->new connect is comming
+2018/9/7 13:50:57 error->new connect is comming
+2018/9/7 13:51:45 info->init log environment finished
+2018/9/7 13:51:45 info->starting server,please waiting...
+2018/9/7 13:51:45 info->load config
+2018/9/7 13:51:45 info->The read main configuration is as follows:
+2018/9/7 13:51:45 info->server_ip:127.0.0.1
+2018/9/7 13:51:45 info->server_port:8890
+2018/9/7 13:51:45 info->http_server_port:8088
+2018/9/7 13:51:45 info->server_node_name:node_one
+2018/9/7 13:51:45 info->client_count:1000
+2018/9/7 13:51:45 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 13:51:45 info->start ms_nt_iocp server...
+2018/9/7 13:51:45 info->init ms_nt_iocp finished
+2018/9/7 13:51:45 info->init socket success
+2018/9/7 13:51:45 info->listen socket binding success
+2018/9/7 13:51:45 info->init ms_init_listen_socket finished
+2018/9/7 13:51:45 info->ms_nt_iocp server has start
+2018/9/7 13:51:45 info->moon http service started
+2018/9/7 13:51:51 error->new connect is comming
+2018/9/7 13:51:53 error->new connect is comming
+2018/9/7 13:51:55 error->new connect is comming
+2018/9/7 13:51:57 error->new connect is comming
+2018/9/7 13:51:59 error->new connect is comming
+2018/9/7 13:52:1 error->new connect is comming
+2018/9/7 13:52:3 error->new connect is comming
+2018/9/7 13:52:5 error->new connect is comming
+2018/9/7 13:52:7 error->new connect is comming
+2018/9/7 13:52:9 error->new connect is comming
+2018/9/7 13:52:11 error->new connect is comming
+2018/9/7 13:52:13 error->new connect is comming
+2018/9/7 13:52:15 error->new connect is comming
+2018/9/7 13:52:17 error->new connect is comming
+2018/9/7 13:52:19 error->new connect is comming
+2018/9/7 13:52:21 error->new connect is comming
+2018/9/7 13:52:23 error->new connect is comming
+2018/9/7 13:52:25 error->new connect is comming
+2018/9/7 13:52:27 error->new connect is comming
+2018/9/7 13:52:29 error->new connect is comming
+2018/9/7 13:52:31 error->new connect is comming
+2018/9/7 13:52:33 error->new connect is comming
+2018/9/7 13:52:35 error->new connect is comming
+2018/9/7 13:52:37 error->new connect is comming
+2018/9/7 13:52:39 error->new connect is comming
+2018/9/7 13:52:41 error->new connect is comming
+2018/9/7 13:52:43 error->new connect is comming
+2018/9/7 13:52:45 error->new connect is comming
+2018/9/7 13:52:47 error->new connect is comming
+2018/9/7 13:52:49 error->new connect is comming
+2018/9/7 13:52:51 error->new connect is comming
+2018/9/7 13:52:53 error->new connect is comming
+2018/9/7 13:52:55 error->new connect is comming
+2018/9/7 13:52:57 error->new connect is comming
+2018/9/7 13:52:59 error->new connect is comming
+2018/9/7 13:53:1 error->new connect is comming
+2018/9/7 13:53:3 error->new connect is comming
+2018/9/7 13:53:5 error->new connect is comming
+2018/9/7 13:53:7 error->new connect is comming
+2018/9/7 13:53:9 error->new connect is comming
+2018/9/7 13:53:11 error->new connect is comming
+2018/9/7 13:53:13 error->new connect is comming
+2018/9/7 13:53:15 error->new connect is comming
+2018/9/7 13:53:21 error->new connect is comming
+2018/9/7 13:53:23 error->new connect is comming
+2018/9/7 13:53:25 error->new connect is comming
+2018/9/7 13:53:27 error->new connect is comming
+2018/9/7 13:53:29 error->new connect is comming
+2018/9/7 13:53:31 error->new connect is comming
+2018/9/7 13:53:33 error->new connect is comming
+2018/9/7 13:53:35 error->new connect is comming
+2018/9/7 13:53:37 error->new connect is comming
+2018/9/7 13:53:39 error->new connect is comming
+2018/9/7 13:53:41 error->new connect is comming
+2018/9/7 13:53:43 error->new connect is comming
+2018/9/7 13:53:45 error->new connect is comming
+2018/9/7 13:53:47 error->new connect is comming
+2018/9/7 13:53:49 error->new connect is comming
+2018/9/7 13:53:51 error->new connect is comming
+2018/9/7 13:53:53 error->new connect is comming
+2018/9/7 13:53:55 error->new connect is comming
+2018/9/7 13:53:57 error->new connect is comming
+2018/9/7 13:53:59 error->new connect is comming
+2018/9/7 13:54:1 error->new connect is comming
+2018/9/7 13:54:3 error->new connect is comming
+2018/9/7 13:54:5 error->new connect is comming
+2018/9/7 13:54:7 error->new connect is comming
+2018/9/7 13:54:9 error->new connect is comming
+2018/9/7 13:54:11 error->new connect is comming
+2018/9/7 13:54:13 error->new connect is comming
+2018/9/7 13:54:15 error->new connect is comming
+2018/9/7 13:54:17 error->new connect is comming
+2018/9/7 13:54:19 error->new connect is comming
+2018/9/7 13:54:21 error->new connect is comming
+2018/9/7 13:54:23 error->new connect is comming
+2018/9/7 13:54:25 error->new connect is comming
+2018/9/7 13:54:27 error->new connect is comming
+2018/9/7 13:54:29 error->new connect is comming
+2018/9/7 13:54:31 error->new connect is comming
+2018/9/7 13:54:33 error->new connect is comming
+2018/9/7 13:54:35 error->new connect is comming
+2018/9/7 13:54:37 error->new connect is comming
+2018/9/7 13:54:39 error->new connect is comming
+2018/9/7 13:54:41 error->new connect is comming
+2018/9/7 13:54:43 error->new connect is comming
+2018/9/7 13:54:45 error->new connect is comming
+2018/9/7 13:54:47 error->new connect is comming
+2018/9/7 13:54:49 error->new connect is comming
+2018/9/7 13:54:51 error->new connect is comming
+2018/9/7 13:54:53 error->new connect is comming
+2018/9/7 13:54:55 error->new connect is comming
+2018/9/7 13:54:57 error->new connect is comming
+2018/9/7 13:54:59 error->new connect is comming
+2018/9/7 13:55:1 error->new connect is comming
+2018/9/7 13:55:3 error->new connect is comming
+2018/9/7 13:55:5 error->new connect is comming
+2018/9/7 13:55:7 error->new connect is comming
+2018/9/7 13:55:9 error->new connect is comming
+2018/9/7 13:55:11 error->new connect is comming
+2018/9/7 13:55:13 error->new connect is comming
+2018/9/7 13:55:15 error->new connect is comming
+2018/9/7 14:0:43 error->new connect is comming
+2018/9/7 14:0:43 error->post message error,error code:10054
+2018/9/7 14:0:45 error->new connect is comming
+2018/9/7 14:0:45 error->post message error,error code:10054
+2018/9/7 14:0:46 error->new connect is comming
+2018/9/7 14:0:46 error->post message error,error code:10054
+2018/9/7 14:0:47 error->new connect is comming
+2018/9/7 14:0:47 error->post message error,error code:10054
+2018/9/7 14:0:48 error->new connect is comming
+2018/9/7 14:0:48 error->post message error,error code:10054
+2018/9/7 14:0:49 error->new connect is comming
+2018/9/7 14:0:49 error->post message error,error code:10054
+2018/9/7 14:0:50 error->new connect is comming
+2018/9/7 14:0:50 error->post message error,error code:10054
+2018/9/7 14:0:51 error->new connect is comming
+2018/9/7 14:0:51 error->post message error,error code:10054
+2018/9/7 14:0:52 error->new connect is comming
+2018/9/7 14:0:52 error->post message error,error code:10054
+2018/9/7 14:0:53 error->new connect is comming
+2018/9/7 14:0:53 error->post message error,error code:10054
+2018/9/7 14:35:36 info->init log environment finished
+2018/9/7 14:35:36 info->starting server,please waiting...
+2018/9/7 14:35:36 info->load config
+2018/9/7 14:35:36 info->The read main configuration is as follows:
+2018/9/7 14:35:36 info->server_ip:127.0.0.1
+2018/9/7 14:35:36 info->server_port:8890
+2018/9/7 14:35:36 info->http_server_port:8088
+2018/9/7 14:35:36 info->server_node_name:node_one
+2018/9/7 14:35:36 info->client_count:1000
+2018/9/7 14:35:36 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:35:36 info->start ms_nt_iocp server...
+2018/9/7 14:35:36 info->init ms_nt_iocp finished
+2018/9/7 14:35:36 info->init socket success
+2018/9/7 14:35:36 info->listen socket binding success
+2018/9/7 14:35:36 info->init ms_init_listen_socket finished
+2018/9/7 14:35:36 info->ms_nt_iocp server has start
+2018/9/7 14:35:36 info->moon http service started
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:3 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:36:4 debug->http request is not get or head method.close ok.
+2018/9/7 14:37:21 info->init log environment finished
+2018/9/7 14:37:21 info->starting server,please waiting...
+2018/9/7 14:37:21 info->load config
+2018/9/7 14:37:21 info->The read main configuration is as follows:
+2018/9/7 14:37:21 info->server_ip:127.0.0.1
+2018/9/7 14:37:21 info->server_port:8890
+2018/9/7 14:37:21 info->http_server_port:8088
+2018/9/7 14:37:21 info->server_node_name:node_one
+2018/9/7 14:37:21 info->client_count:1000
+2018/9/7 14:37:21 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:37:21 info->start ms_nt_iocp server...
+2018/9/7 14:37:21 info->init ms_nt_iocp finished
+2018/9/7 14:37:21 info->init socket success
+2018/9/7 14:37:21 info->listen socket binding success
+2018/9/7 14:37:21 info->init ms_init_listen_socket finished
+2018/9/7 14:37:21 info->ms_nt_iocp server has start
+2018/9/7 14:37:21 info->moon http service started
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:25 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:27 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:29 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:31 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:33 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:35 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:37 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:39 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:41 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:43 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:45 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:47 error->new connect is comming
+2018/9/7 14:37:49 error->new connect is comming
+2018/9/7 14:37:49 error->new connect is comming
+2018/9/7 14:37:49 error->new connect is comming
+2018/9/7 14:37:49 error->new connect is comming
+2018/9/7 14:39:23 info->init log environment finished
+2018/9/7 14:39:23 info->starting server,please waiting...
+2018/9/7 14:39:23 info->load config
+2018/9/7 14:39:23 info->The read main configuration is as follows:
+2018/9/7 14:39:23 info->server_ip:127.0.0.1
+2018/9/7 14:39:23 info->server_port:8890
+2018/9/7 14:39:23 info->http_server_port:8088
+2018/9/7 14:39:23 info->server_node_name:node_one
+2018/9/7 14:39:23 info->client_count:1000
+2018/9/7 14:39:23 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:39:23 info->start ms_nt_iocp server...
+2018/9/7 14:39:23 info->init ms_nt_iocp finished
+2018/9/7 14:39:23 info->init socket success
+2018/9/7 14:39:23 info->listen socket binding success
+2018/9/7 14:39:23 info->init ms_init_listen_socket finished
+2018/9/7 14:39:23 info->ms_nt_iocp server has start
+2018/9/7 14:39:23 info->moon http service started
+2018/9/7 14:39:29 error->new connect is comming
+2018/9/7 14:39:29 info->start send message:
+2018/9/7 14:40:31 info->init log environment finished
+2018/9/7 14:40:31 info->starting server,please waiting...
+2018/9/7 14:40:31 info->load config
+2018/9/7 14:40:31 info->The read main configuration is as follows:
+2018/9/7 14:40:31 info->server_ip:127.0.0.1
+2018/9/7 14:40:31 info->server_port:8890
+2018/9/7 14:40:31 info->http_server_port:8088
+2018/9/7 14:40:31 info->server_node_name:node_one
+2018/9/7 14:40:31 info->client_count:1000
+2018/9/7 14:40:31 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:40:31 info->start ms_nt_iocp server...
+2018/9/7 14:40:31 info->init ms_nt_iocp finished
+2018/9/7 14:40:31 info->init socket success
+2018/9/7 14:40:31 info->listen socket binding success
+2018/9/7 14:40:31 info->init ms_init_listen_socket finished
+2018/9/7 14:40:31 info->ms_nt_iocp server has start
+2018/9/7 14:40:31 info->moon http service started
+2018/9/7 14:40:36 error->new connect is comming
+2018/9/7 14:40:37 error->new connect is comming
+2018/9/7 14:40:37 error->new connect is comming
+2018/9/7 14:40:37 error->new connect is comming
+2018/9/7 14:40:37 error->new connect is comming
+2018/9/7 14:40:37 error->new connect is comming
+2018/9/7 14:40:37 error->new connect is comming
+2018/9/7 14:40:37 error->new connect is comming
+2018/9/7 14:40:38 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:41 error->new connect is comming
+2018/9/7 14:40:43 error->new connect is comming
+2018/9/7 14:40:44 error->new connect is comming
+2018/9/7 14:42:24 info->init log environment finished
+2018/9/7 14:42:24 info->starting server,please waiting...
+2018/9/7 14:42:24 info->load config
+2018/9/7 14:42:24 info->The read main configuration is as follows:
+2018/9/7 14:42:24 info->server_ip:127.0.0.1
+2018/9/7 14:42:24 info->server_port:8890
+2018/9/7 14:42:24 info->http_server_port:8088
+2018/9/7 14:42:24 info->server_node_name:node_one
+2018/9/7 14:42:24 info->client_count:1000
+2018/9/7 14:42:24 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:42:24 info->start ms_nt_iocp server...
+2018/9/7 14:42:24 info->init ms_nt_iocp finished
+2018/9/7 14:42:24 info->init socket success
+2018/9/7 14:42:24 info->listen socket binding success
+2018/9/7 14:42:24 info->init ms_init_listen_socket finished
+2018/9/7 14:42:24 info->ms_nt_iocp server has start
+2018/9/7 14:42:24 info->moon http service started
+2018/9/7 14:42:32 error->new connect is comming
+2018/9/7 14:42:32 info->start send message:
+2018/9/7 14:43:47 info->init log environment finished
+2018/9/7 14:43:47 info->starting server,please waiting...
+2018/9/7 14:43:47 info->load config
+2018/9/7 14:43:47 info->The read main configuration is as follows:
+2018/9/7 14:43:47 info->server_ip:127.0.0.1
+2018/9/7 14:43:47 info->server_port:8890
+2018/9/7 14:43:47 info->http_server_port:8088
+2018/9/7 14:43:47 info->server_node_name:node_one
+2018/9/7 14:43:47 info->client_count:1000
+2018/9/7 14:43:47 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:43:47 info->start ms_nt_iocp server...
+2018/9/7 14:43:47 info->init ms_nt_iocp finished
+2018/9/7 14:43:47 info->init socket success
+2018/9/7 14:43:47 info->listen socket binding success
+2018/9/7 14:43:47 info->init ms_init_listen_socket finished
+2018/9/7 14:43:47 info->ms_nt_iocp server has start
+2018/9/7 14:43:47 info->moon http service started
+2018/9/7 14:43:53 error->new connect is comming
+2018/9/7 14:43:55 error->new connect is comming
+2018/9/7 14:43:55 error->new connect is comming
+2018/9/7 14:43:55 error->new connect is comming
+2018/9/7 14:43:56 error->new connect is comming
+2018/9/7 14:43:56 error->new connect is comming
+2018/9/7 14:43:56 error->new connect is comming
+2018/9/7 14:43:56 error->new connect is comming
+2018/9/7 14:43:56 error->new connect is comming
+2018/9/7 14:43:57 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:1 error->new connect is comming
+2018/9/7 14:44:3 error->new connect is comming
+2018/9/7 14:44:3 error->new connect is comming
+2018/9/7 14:44:3 error->new connect is comming
+2018/9/7 14:44:29 info->init log environment finished
+2018/9/7 14:44:29 info->starting server,please waiting...
+2018/9/7 14:44:29 info->load config
+2018/9/7 14:44:29 info->The read main configuration is as follows:
+2018/9/7 14:44:29 info->server_ip:127.0.0.1
+2018/9/7 14:44:29 info->server_port:8890
+2018/9/7 14:44:29 info->http_server_port:8088
+2018/9/7 14:44:29 info->server_node_name:node_one
+2018/9/7 14:44:29 info->client_count:1000
+2018/9/7 14:44:29 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:44:29 info->start ms_nt_iocp server...
+2018/9/7 14:44:29 info->init ms_nt_iocp finished
+2018/9/7 14:44:29 info->init socket success
+2018/9/7 14:44:29 info->listen socket binding success
+2018/9/7 14:44:29 info->init ms_init_listen_socket finished
+2018/9/7 14:44:29 info->ms_nt_iocp server has start
+2018/9/7 14:44:29 info->moon http service started
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:39 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:41 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:43 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:45 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:49 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:51 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:53 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:55 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:44:57 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:1 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:3 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:5 error->new connect is comming
+2018/9/7 14:45:7 error->new connect is comming
+2018/9/7 14:45:7 error->post message error,error code:10054
+2018/9/7 14:45:7 error->new connect is comming
+2018/9/7 14:45:7 error->post message error,error code:10054
+2018/9/7 14:45:55 info->init log environment finished
+2018/9/7 14:45:55 info->starting server,please waiting...
+2018/9/7 14:45:55 info->load config
+2018/9/7 14:45:55 info->The read main configuration is as follows:
+2018/9/7 14:45:55 info->server_ip:127.0.0.1
+2018/9/7 14:45:55 info->server_port:8890
+2018/9/7 14:45:55 info->http_server_port:8088
+2018/9/7 14:45:55 info->server_node_name:node_one
+2018/9/7 14:45:55 info->client_count:1000
+2018/9/7 14:45:55 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 14:45:55 info->start ms_nt_iocp server...
+2018/9/7 14:45:55 info->init ms_nt_iocp finished
+2018/9/7 14:45:55 info->init socket success
+2018/9/7 14:45:55 info->listen socket binding success
+2018/9/7 14:45:55 info->init ms_init_listen_socket finished
+2018/9/7 14:45:55 info->ms_nt_iocp server has start
+2018/9/7 14:45:55 info->moon http service started
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:2 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:4 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:6 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:8 debug->new connect is comming
+2018/9/7 14:46:10 debug->new connect is comming
+2018/9/7 14:46:10 error->post message error,error code:10054
+2018/9/7 14:46:10 debug->new connect is comming
+2018/9/7 14:46:10 error->post message error,error code:10054
+2018/9/7 15:30:7 info->init log environment finished
+2018/9/7 15:30:7 info->starting server,please waiting...
+2018/9/7 15:30:7 info->load config
+2018/9/7 15:30:7 info->The read main configuration is as follows:
+2018/9/7 15:30:7 info->server_ip:127.0.0.1
+2018/9/7 15:30:7 info->server_port:8890
+2018/9/7 15:30:7 info->http_server_port:8088
+2018/9/7 15:30:7 info->server_node_name:node_one
+2018/9/7 15:30:7 info->client_count:1000
+2018/9/7 15:30:7 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 15:30:7 info->start ms_nt_iocp server...
+2018/9/7 15:30:7 info->init ms_nt_iocp finished
+2018/9/7 15:30:7 info->init socket success
+2018/9/7 15:30:7 info->listen socket binding success
+2018/9/7 15:30:7 info->init ms_init_listen_socket finished
+2018/9/7 15:30:7 info->ms_nt_iocp server has start
+2018/9/7 15:30:7 info->moon http service started
+2018/9/7 15:35:59 debug->new connect is comming
+2018/9/7 15:36:50 debug->new connect is comming
+2018/9/7 15:42:20 info->init log environment finished
+2018/9/7 15:42:20 info->starting server,please waiting...
+2018/9/7 15:42:20 info->load config
+2018/9/7 15:42:20 info->The read main configuration is as follows:
+2018/9/7 15:42:20 info->server_ip:127.0.0.1
+2018/9/7 15:42:20 info->server_port:8890
+2018/9/7 15:42:20 info->http_server_port:8088
+2018/9/7 15:42:20 info->server_node_name:node_one
+2018/9/7 15:42:20 info->client_count:1000
+2018/9/7 15:42:20 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 15:42:20 info->start ms_nt_iocp server...
+2018/9/7 15:42:20 info->init ms_nt_iocp finished
+2018/9/7 15:42:20 info->init socket success
+2018/9/7 15:42:20 info->listen socket binding success
+2018/9/7 15:42:20 info->init ms_init_listen_socket finished
+2018/9/7 15:42:20 info->ms_nt_iocp server has start
+2018/9/7 15:42:20 info->moon http service started
+2018/9/7 15:42:40 debug->new connect is comming
+2018/9/7 16:25:40 info->init log environment finished
+2018/9/7 16:25:40 info->starting server,please waiting...
+2018/9/7 16:25:40 info->load config
+2018/9/7 16:25:40 info->The read main configuration is as follows:
+2018/9/7 16:25:40 info->server_ip:127.0.0.1
+2018/9/7 16:25:40 info->server_port:8890
+2018/9/7 16:25:40 info->http_server_port:8088
+2018/9/7 16:25:40 info->server_node_name:node_one
+2018/9/7 16:25:40 info->client_count:1000
+2018/9/7 16:25:40 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 16:25:40 info->start ms_nt_iocp server...
+2018/9/7 16:25:40 info->init ms_nt_iocp finished
+2018/9/7 16:25:40 info->init socket success
+2018/9/7 16:25:40 info->listen socket binding success
+2018/9/7 16:25:40 info->init ms_init_listen_socket finished
+2018/9/7 16:25:40 info->ms_nt_iocp server has start
+2018/9/7 16:25:40 info->moon http service started
+2018/9/7 16:26:5 debug->new connect is comming
+2018/9/7 16:26:5 info->start send message:
+2018/9/7 16:26:5 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:7 debug->new connect is comming
+2018/9/7 16:26:9 debug->new connect is comming
+2018/9/7 16:26:11 debug->new connect is comming
+2018/9/7 16:26:13 debug->new connect is comming
+2018/9/7 16:26:15 debug->new connect is comming
+2018/9/7 16:26:17 debug->new connect is comming
+2018/9/7 16:26:19 info->start send message:
+2018/9/7 16:26:19 debug->new connect is comming
+2018/9/7 16:26:19 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:21 debug->new connect is comming
+2018/9/7 16:26:21 info->start send message:
+2018/9/7 16:26:21 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:23 debug->new connect is comming
+2018/9/7 16:26:25 info->start send message:
+2018/9/7 16:26:25 debug->new connect is comming
+2018/9/7 16:26:25 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:27 debug->new connect is comming
+2018/9/7 16:26:27 info->start send message:
+2018/9/7 16:26:27 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:29 debug->new connect is comming
+2018/9/7 16:26:31 info->start send message:
+2018/9/7 16:26:31 debug->new connect is comming
+2018/9/7 16:26:31 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:33 info->start send message:
+2018/9/7 16:26:33 debug->new connect is comming
+2018/9/7 16:26:33 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:35 debug->new connect is comming
+2018/9/7 16:26:37 debug->new connect is comming
+2018/9/7 16:26:37 info->start send message:
+2018/9/7 16:26:37 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:39 debug->new connect is comming
+2018/9/7 16:26:41 debug->new connect is comming
+2018/9/7 16:26:43 info->start send message:
+2018/9/7 16:26:43 debug->new connect is comming
+2018/9/7 16:26:43 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:45 debug->new connect is comming
+2018/9/7 16:26:47 debug->new connect is comming
+2018/9/7 16:26:49 info->start send message:
+2018/9/7 16:26:49 debug->new connect is comming
+2018/9/7 16:26:49 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:26:51 debug->new connect is comming
+2018/9/7 16:26:53 debug->new connect is comming
+2018/9/7 16:26:55 debug->new connect is comming
+2018/9/7 16:26:57 debug->new connect is comming
+2018/9/7 16:26:59 debug->new connect is comming
+2018/9/7 16:27:1 debug->new connect is comming
+2018/9/7 16:27:3 debug->new connect is comming
+2018/9/7 16:27:5 debug->new connect is comming
+2018/9/7 16:27:7 debug->new connect is comming
+2018/9/7 16:27:9 debug->new connect is comming
+2018/9/7 16:27:11 debug->new connect is comming
+2018/9/7 16:27:13 debug->new connect is comming
+2018/9/7 16:27:15 debug->new connect is comming
+2018/9/7 16:27:17 debug->new connect is comming
+2018/9/7 16:27:19 debug->new connect is comming
+2018/9/7 16:27:21 debug->new connect is comming
+2018/9/7 16:27:23 debug->new connect is comming
+2018/9/7 16:27:25 debug->new connect is comming
+2018/9/7 16:27:27 debug->new connect is comming
+2018/9/7 16:27:29 debug->new connect is comming
+2018/9/7 16:27:31 debug->new connect is comming
+2018/9/7 16:27:33 debug->new connect is comming
+2018/9/7 16:27:35 debug->new connect is comming
+2018/9/7 16:27:37 debug->new connect is comming
+2018/9/7 16:27:39 debug->new connect is comming
+2018/9/7 16:27:41 debug->new connect is comming
+2018/9/7 16:27:43 debug->new connect is comming
+2018/9/7 16:27:45 debug->new connect is comming
+2018/9/7 16:27:47 debug->new connect is comming
+2018/9/7 16:27:49 debug->new connect is comming
+2018/9/7 16:27:51 debug->new connect is comming
+2018/9/7 16:27:53 debug->new connect is comming
+2018/9/7 16:27:55 debug->new connect is comming
+2018/9/7 16:27:57 debug->new connect is comming
+2018/9/7 16:27:59 debug->new connect is comming
+2018/9/7 16:28:1 debug->new connect is comming
+2018/9/7 16:28:3 debug->new connect is comming
+2018/9/7 16:28:5 debug->new connect is comming
+2018/9/7 16:28:7 debug->new connect is comming
+2018/9/7 16:28:9 debug->new connect is comming
+2018/9/7 16:28:11 debug->new connect is comming
+2018/9/7 16:28:13 debug->new connect is comming
+2018/9/7 16:28:15 debug->new connect is comming
+2018/9/7 16:28:17 debug->new connect is comming
+2018/9/7 16:28:19 debug->new connect is comming
+2018/9/7 16:28:21 debug->new connect is comming
+2018/9/7 16:28:23 debug->new connect is comming
+2018/9/7 16:28:25 debug->new connect is comming
+2018/9/7 16:28:27 debug->new connect is comming
+2018/9/7 16:28:29 debug->new connect is comming
+2018/9/7 16:28:31 debug->new connect is comming
+2018/9/7 16:28:33 debug->new connect is comming
+2018/9/7 16:28:35 debug->new connect is comming
+2018/9/7 16:28:37 debug->new connect is comming
+2018/9/7 16:28:39 debug->new connect is comming
+2018/9/7 16:28:41 debug->new connect is comming
+2018/9/7 16:28:43 debug->new connect is comming
+2018/9/7 16:28:45 debug->new connect is comming
+2018/9/7 16:28:47 debug->new connect is comming
+2018/9/7 16:28:49 debug->new connect is comming
+2018/9/7 16:28:51 debug->new connect is comming
+2018/9/7 16:28:53 debug->new connect is comming
+2018/9/7 16:28:55 debug->new connect is comming
+2018/9/7 16:28:57 debug->new connect is comming
+2018/9/7 16:28:59 debug->new connect is comming
+2018/9/7 16:29:1 debug->new connect is comming
+2018/9/7 16:29:3 debug->new connect is comming
+2018/9/7 16:29:5 debug->new connect is comming
+2018/9/7 16:29:7 debug->new connect is comming
+2018/9/7 16:29:33 info->init log environment finished
+2018/9/7 16:29:33 info->starting server,please waiting...
+2018/9/7 16:29:33 info->load config
+2018/9/7 16:29:33 info->The read main configuration is as follows:
+2018/9/7 16:29:33 info->server_ip:127.0.0.1
+2018/9/7 16:29:33 info->server_port:8890
+2018/9/7 16:29:33 info->http_server_port:8088
+2018/9/7 16:29:33 info->server_node_name:node_one
+2018/9/7 16:29:33 info->client_count:1000
+2018/9/7 16:29:33 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 16:29:33 info->start ms_nt_iocp server...
+2018/9/7 16:29:33 info->init ms_nt_iocp finished
+2018/9/7 16:29:33 info->init socket success
+2018/9/7 16:29:33 info->listen socket binding success
+2018/9/7 16:29:33 info->init ms_init_listen_socket finished
+2018/9/7 16:29:33 info->ms_nt_iocp server has start
+2018/9/7 16:29:33 info->moon http service started
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:38 info->start send message:
+2018/9/7 16:29:38 info->start send message:
+2018/9/7 16:29:38 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:29:38 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:38 info->start send message:
+2018/9/7 16:29:38 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:38 info->start send message:
+2018/9/7 16:29:38 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:38 info->start send message:
+2018/9/7 16:29:38 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:38 info->start send message:
+2018/9/7 16:29:38 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:38 info->start send message:
+2018/9/7 16:29:38 info->{"message_head":{"msg_id":"node_one-8bd0a15a50634a3296a8e9f98072408d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:29:38 debug->new connect is comming
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:40 info->start send message:
+2018/9/7 16:29:40 info->
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:40 info->start send message:
+2018/9/7 16:29:40 info->
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:40 info->start send message:
+2018/9/7 16:29:40 info->
+2018/9/7 16:29:40 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:42 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:44 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:46 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:48 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:50 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:52 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:54 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:56 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:29:58 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:0 debug->new connect is comming
+2018/9/7 16:30:2 debug->new connect is comming
+2018/9/7 16:30:2 debug->new connect is comming
+2018/9/7 16:30:2 debug->new connect is comming
+2018/9/7 16:30:2 debug->new connect is comming
+2018/9/7 16:30:51 info->init log environment finished
+2018/9/7 16:30:51 info->starting server,please waiting...
+2018/9/7 16:30:51 info->load config
+2018/9/7 16:30:51 info->The read main configuration is as follows:
+2018/9/7 16:30:51 info->server_ip:127.0.0.1
+2018/9/7 16:30:51 info->server_port:8890
+2018/9/7 16:30:51 info->http_server_port:8088
+2018/9/7 16:30:51 info->server_node_name:node_one
+2018/9/7 16:30:51 info->client_count:1000
+2018/9/7 16:30:51 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 16:30:51 info->start ms_nt_iocp server...
+2018/9/7 16:30:51 info->init ms_nt_iocp finished
+2018/9/7 16:30:51 info->init socket success
+2018/9/7 16:30:51 info->listen socket binding success
+2018/9/7 16:30:51 info->init ms_init_listen_socket finished
+2018/9/7 16:30:51 info->ms_nt_iocp server has start
+2018/9/7 16:30:51 info->moon http service started
+2018/9/7 16:31:1 debug->new connect is comming
+2018/9/7 16:31:1 debug->new connect is comming
+2018/9/7 16:31:1 debug->new connect is comming
+2018/9/7 16:31:1 debug->new connect is comming
+2018/9/7 16:31:1 info->start send message:
+2018/9/7 16:35:5 info->init log environment finished
+2018/9/7 16:35:5 info->starting server,please waiting...
+2018/9/7 16:35:5 info->load config
+2018/9/7 16:35:5 info->The read main configuration is as follows:
+2018/9/7 16:35:5 info->server_ip:127.0.0.1
+2018/9/7 16:35:5 info->server_port:8890
+2018/9/7 16:35:5 info->http_server_port:8088
+2018/9/7 16:35:5 info->server_node_name:node_one
+2018/9/7 16:35:5 info->client_count:1000
+2018/9/7 16:35:5 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 16:35:5 info->start ms_nt_iocp server...
+2018/9/7 16:35:5 info->init ms_nt_iocp finished
+2018/9/7 16:35:5 info->init socket success
+2018/9/7 16:35:5 info->listen socket binding success
+2018/9/7 16:35:5 info->init ms_init_listen_socket finished
+2018/9/7 16:35:5 info->ms_nt_iocp server has start
+2018/9/7 16:35:5 info->moon http service started
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:11 error->post message error,error code:6
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:11 error->post message error,error code:6
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:11 error->post message error,error code:6
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:11 error->post message error,error code:6
+2018/9/7 16:35:11 error->post message error,error code:6
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:11 error->post message error,error code:6
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:11 error->post message error,error code:6
+2018/9/7 16:35:11 debug->new connect is comming
+2018/9/7 16:35:13 error->post message error,error code:6
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:13 error->post message error,error code:6
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:13 error->post message error,error code:6
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:13 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:15 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:17 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:19 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:21 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:23 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:25 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:27 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:29 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:31 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:33 debug->new connect is comming
+2018/9/7 16:35:40 debug->new connect is comming
+2018/9/7 16:35:40 debug->new connect is comming
+2018/9/7 16:35:40 debug->new connect is comming
+2018/9/7 16:35:40 debug->new connect is comming
+2018/9/7 16:36:35 info->init log environment finished
+2018/9/7 16:36:35 info->starting server,please waiting...
+2018/9/7 16:36:35 info->load config
+2018/9/7 16:36:35 info->The read main configuration is as follows:
+2018/9/7 16:36:35 info->server_ip:127.0.0.1
+2018/9/7 16:36:35 info->server_port:8890
+2018/9/7 16:36:35 info->http_server_port:8088
+2018/9/7 16:36:35 info->server_node_name:node_one
+2018/9/7 16:36:35 info->client_count:1000
+2018/9/7 16:36:35 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 16:36:35 info->start ms_nt_iocp server...
+2018/9/7 16:36:35 info->init ms_nt_iocp finished
+2018/9/7 16:36:35 info->init socket success
+2018/9/7 16:36:35 info->listen socket binding success
+2018/9/7 16:36:35 info->init ms_init_listen_socket finished
+2018/9/7 16:36:35 info->ms_nt_iocp server has start
+2018/9/7 16:36:35 info->moon http service started
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:49 info->start send message:
+2018/9/7 16:36:49 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:49 info->start send message:
+2018/9/7 16:36:49 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:49 info->start send message:
+2018/9/7 16:36:49 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:49 info->start send message:
+2018/9/7 16:36:49 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:49 info->start send message:
+2018/9/7 16:36:49 info->{"message_head":{"msg_id":"node_one-8bd0a15a50634a3296a8e9f98072408d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:49 info->start send message:
+2018/9/7 16:36:49 info->{"message_head":{"msg_id":"node_one-6e79eca12b7249929d76352aeaddf305","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:49 info->start send message:
+2018/9/7 16:36:49 info->{"message_head":{"msg_id":"node_one-314e09f0cf0b48c99b95ca96db0212fc","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:36:49 debug->new connect is comming
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:51 info->start send message:
+2018/9/7 16:36:51 info->
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:51 info->start send message:
+2018/9/7 16:36:51 info->
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:51 info->start send message:
+2018/9/7 16:36:51 info->
+2018/9/7 16:36:51 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:53 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:55 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:57 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:36:59 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:1 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:3 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:5 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:7 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:9 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:11 debug->new connect is comming
+2018/9/7 16:37:13 debug->new connect is comming
+2018/9/7 16:37:13 debug->new connect is comming
+2018/9/7 16:37:13 debug->new connect is comming
+2018/9/7 16:37:13 debug->new connect is comming
+2018/9/7 16:38:43 info->init log environment finished
+2018/9/7 16:38:43 info->starting server,please waiting...
+2018/9/7 16:38:43 info->load config
+2018/9/7 16:38:43 info->The read main configuration is as follows:
+2018/9/7 16:38:43 info->server_ip:127.0.0.1
+2018/9/7 16:38:43 info->server_port:8890
+2018/9/7 16:38:43 info->http_server_port:8088
+2018/9/7 16:38:43 info->server_node_name:node_one
+2018/9/7 16:38:43 info->client_count:1000
+2018/9/7 16:38:43 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 16:38:43 info->start ms_nt_iocp server...
+2018/9/7 16:38:43 info->init ms_nt_iocp finished
+2018/9/7 16:38:43 info->init socket success
+2018/9/7 16:38:43 info->listen socket binding success
+2018/9/7 16:38:43 info->init ms_init_listen_socket finished
+2018/9/7 16:38:43 info->ms_nt_iocp server has start
+2018/9/7 16:38:43 info->moon http service started
+2018/9/7 16:38:53 debug->new connect is comming
+2018/9/7 16:38:53 info->start send message:
+2018/9/7 16:38:53 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:38:56 debug->new connect is comming
+2018/9/7 16:38:56 info->start send message:
+2018/9/7 16:38:56 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:38:59 debug->new connect is comming
+2018/9/7 16:38:59 info->start send message:
+2018/9/7 16:38:59 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:2 debug->new connect is comming
+2018/9/7 16:39:2 info->start send message:
+2018/9/7 16:39:2 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:5 debug->new connect is comming
+2018/9/7 16:39:5 info->start send message:
+2018/9/7 16:39:5 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:8 debug->new connect is comming
+2018/9/7 16:39:8 info->start send message:
+2018/9/7 16:39:8 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:11 debug->new connect is comming
+2018/9/7 16:39:11 info->start send message:
+2018/9/7 16:39:11 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:14 debug->new connect is comming
+2018/9/7 16:39:14 info->start send message:
+2018/9/7 16:39:14 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:17 debug->new connect is comming
+2018/9/7 16:39:17 info->start send message:
+2018/9/7 16:39:17 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:20 debug->new connect is comming
+2018/9/7 16:39:20 info->start send message:
+2018/9/7 16:39:20 info->{"message_head":{"msg_id":"node_one-8bd0a15a50634a3296a8e9f98072408d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:23 debug->new connect is comming
+2018/9/7 16:39:23 info->start send message:
+2018/9/7 16:39:23 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:26 debug->new connect is comming
+2018/9/7 16:39:26 info->start send message:
+2018/9/7 16:39:26 info->{"message_head":{"msg_id":"node_one-6e79eca12b7249929d76352aeaddf305","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:29 debug->new connect is comming
+2018/9/7 16:39:29 info->start send message:
+2018/9/7 16:39:29 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:32 debug->new connect is comming
+2018/9/7 16:39:32 info->start send message:
+2018/9/7 16:39:32 info->{"message_head":{"msg_id":"node_one-314e09f0cf0b48c99b95ca96db0212fc","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:35 debug->new connect is comming
+2018/9/7 16:39:35 info->start send message:
+2018/9/7 16:39:35 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:38 debug->new connect is comming
+2018/9/7 16:39:38 info->start send message:
+2018/9/7 16:39:38 info->{"message_head":{"msg_id":"node_one-c0101eec15aa42c3b44341826f31c473","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:41 debug->new connect is comming
+2018/9/7 16:39:41 info->start send message:
+2018/9/7 16:39:41 info->{"message_head":{"msg_id":"node_one-8bd0a15a50634a3296a8e9f98072408d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:44 debug->new connect is comming
+2018/9/7 16:39:44 info->start send message:
+2018/9/7 16:39:44 info->{"message_head":{"msg_id":"node_one-fc659d759d2f43b7954f44fbe42fd3dd","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:47 debug->new connect is comming
+2018/9/7 16:39:47 info->start send message:
+2018/9/7 16:39:47 info->{"message_head":{"msg_id":"node_one-6e79eca12b7249929d76352aeaddf305","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:50 debug->new connect is comming
+2018/9/7 16:39:50 info->start send message:
+2018/9/7 16:39:50 info->{"message_head":{"msg_id":"node_one-195d6287ce9345468e89806c37d8207d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:53 debug->new connect is comming
+2018/9/7 16:39:53 info->start send message:
+2018/9/7 16:39:53 info->{"message_head":{"msg_id":"node_one-314e09f0cf0b48c99b95ca96db0212fc","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:56 debug->new connect is comming
+2018/9/7 16:39:56 info->start send message:
+2018/9/7 16:39:56 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:39:59 debug->new connect is comming
+2018/9/7 16:39:59 info->start send message:
+2018/9/7 16:39:59 info->{"message_head":{"msg_id":"node_one-c0101eec15aa42c3b44341826f31c473","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:2 debug->new connect is comming
+2018/9/7 16:40:2 info->start send message:
+2018/9/7 16:40:2 info->{"message_head":{"msg_id":"node_one-da16d49e67a84dd4a6f2764f1ddd416f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:5 debug->new connect is comming
+2018/9/7 16:40:5 info->start send message:
+2018/9/7 16:40:5 info->{"message_head":{"msg_id":"node_one-fc659d759d2f43b7954f44fbe42fd3dd","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:8 debug->new connect is comming
+2018/9/7 16:40:8 info->start send message:
+2018/9/7 16:40:8 info->{"message_head":{"msg_id":"node_one-c895c7bf67d54e2b99c73e8755213fb2","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:11 debug->new connect is comming
+2018/9/7 16:40:11 info->start send message:
+2018/9/7 16:40:11 info->{"message_head":{"msg_id":"node_one-195d6287ce9345468e89806c37d8207d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:14 debug->new connect is comming
+2018/9/7 16:40:14 info->start send message:
+2018/9/7 16:40:14 info->{"message_head":{"msg_id":"node_one-39f44435d2c643b4abecd18fd67f48a2","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:17 debug->new connect is comming
+2018/9/7 16:40:17 info->start send message:
+2018/9/7 16:40:17 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:20 debug->new connect is comming
+2018/9/7 16:40:20 info->start send message:
+2018/9/7 16:40:20 info->{"message_head":{"msg_id":"node_one-b234add1554d4847801f2489542fa5b7","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:23 debug->new connect is comming
+2018/9/7 16:40:23 info->start send message:
+2018/9/7 16:40:23 info->{"message_head":{"msg_id":"node_one-da16d49e67a84dd4a6f2764f1ddd416f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:26 debug->new connect is comming
+2018/9/7 16:40:26 info->start send message:
+2018/9/7 16:40:26 info->{"message_head":{"msg_id":"node_one-ce61290580224c81967b7a244c59f2ab","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:29 debug->new connect is comming
+2018/9/7 16:40:29 info->start send message:
+2018/9/7 16:40:29 info->{"message_head":{"msg_id":"node_one-c895c7bf67d54e2b99c73e8755213fb2","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:32 debug->new connect is comming
+2018/9/7 16:40:32 info->start send message:
+2018/9/7 16:40:32 info->{"message_head":{"msg_id":"node_one-61a4e60232d7435e8b8d63d2679d82d4","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:35 debug->new connect is comming
+2018/9/7 16:40:35 info->start send message:
+2018/9/7 16:40:35 info->{"message_head":{"msg_id":"node_one-39f44435d2c643b4abecd18fd67f48a2","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:38 debug->new connect is comming
+2018/9/7 16:40:38 info->start send message:
+2018/9/7 16:40:38 info->{"message_head":{"msg_id":"node_one-553a3d392a8e4259996856db49840564","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:41 debug->new connect is comming
+2018/9/7 16:40:41 info->start send message:
+2018/9/7 16:40:41 info->{"message_head":{"msg_id":"node_one-b234add1554d4847801f2489542fa5b7","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:44 debug->new connect is comming
+2018/9/7 16:40:44 info->start send message:
+2018/9/7 16:40:44 info->{"message_head":{"msg_id":"node_one-77e52e4d37d24db7bed6f170226d61e7","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:47 debug->new connect is comming
+2018/9/7 16:40:47 info->start send message:
+2018/9/7 16:40:47 info->{"message_head":{"msg_id":"node_one-ce61290580224c81967b7a244c59f2ab","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:50 debug->new connect is comming
+2018/9/7 16:40:50 info->start send message:
+2018/9/7 16:40:50 info->{"message_head":{"msg_id":"node_one-c7c1f5ed10ec4a08b7ea09e2ce10b017","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:53 debug->new connect is comming
+2018/9/7 16:40:53 info->start send message:
+2018/9/7 16:40:53 info->{"message_head":{"msg_id":"node_one-61a4e60232d7435e8b8d63d2679d82d4","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:56 debug->new connect is comming
+2018/9/7 16:40:56 info->start send message:
+2018/9/7 16:40:56 info->{"message_head":{"msg_id":"node_one-e9824ba3936242238810b2babbe240f6","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:40:59 debug->new connect is comming
+2018/9/7 16:40:59 info->start send message:
+2018/9/7 16:40:59 info->{"message_head":{"msg_id":"node_one-8bd0a15a50634a3296a8e9f98072408d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:2 debug->new connect is comming
+2018/9/7 16:41:2 info->start send message:
+2018/9/7 16:41:2 info->{"message_head":{"msg_id":"node_one-4df479b432d04b3b8eaea88690b99bf9","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:5 debug->new connect is comming
+2018/9/7 16:41:5 info->start send message:
+2018/9/7 16:41:5 info->{"message_head":{"msg_id":"node_one-6e79eca12b7249929d76352aeaddf305","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:8 debug->new connect is comming
+2018/9/7 16:41:8 info->start send message:
+2018/9/7 16:41:8 info->{"message_head":{"msg_id":"node_one-b5998be380f847d7b30237d44f864509","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:11 debug->new connect is comming
+2018/9/7 16:41:11 info->start send message:
+2018/9/7 16:41:11 info->{"message_head":{"msg_id":"node_one-314e09f0cf0b48c99b95ca96db0212fc","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:14 debug->new connect is comming
+2018/9/7 16:41:14 info->start send message:
+2018/9/7 16:41:14 info->{"message_head":{"msg_id":"node_one-77930e67145c477b928ce9766bd72a41","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:17 debug->new connect is comming
+2018/9/7 16:41:17 info->start send message:
+2018/9/7 16:41:17 info->{"message_head":{"msg_id":"node_one-c0101eec15aa42c3b44341826f31c473","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:20 debug->new connect is comming
+2018/9/7 16:41:20 info->start send message:
+2018/9/7 16:41:20 info->{"message_head":{"msg_id":"node_one-8fe8d413b64b4d8b8d389c9493a5351e","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:23 debug->new connect is comming
+2018/9/7 16:41:23 info->start send message:
+2018/9/7 16:41:23 info->{"message_head":{"msg_id":"node_one-fc659d759d2f43b7954f44fbe42fd3dd","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:26 debug->new connect is comming
+2018/9/7 16:41:26 info->start send message:
+2018/9/7 16:41:26 info->{"message_head":{"msg_id":"node_one-1a4d8e89b03b4a3e9577f564ebe94c05","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:29 debug->new connect is comming
+2018/9/7 16:41:29 info->start send message:
+2018/9/7 16:41:29 info->{"message_head":{"msg_id":"node_one-195d6287ce9345468e89806c37d8207d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:32 debug->new connect is comming
+2018/9/7 16:41:32 info->start send message:
+2018/9/7 16:41:32 info->{"message_head":{"msg_id":"node_one-553a3d392a8e4259996856db49840564","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:35 debug->new connect is comming
+2018/9/7 16:41:35 info->start send message:
+2018/9/7 16:41:35 info->{"message_head":{"msg_id":"node_one-5becc237063343f983799035d6998f0f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:38 debug->new connect is comming
+2018/9/7 16:41:38 info->start send message:
+2018/9/7 16:41:38 info->{"message_head":{"msg_id":"node_one-77e52e4d37d24db7bed6f170226d61e7","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:41 debug->new connect is comming
+2018/9/7 16:41:41 info->start send message:
+2018/9/7 16:41:41 info->{"message_head":{"msg_id":"node_one-da16d49e67a84dd4a6f2764f1ddd416f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:44 debug->new connect is comming
+2018/9/7 16:41:44 info->start send message:
+2018/9/7 16:41:44 info->{"message_head":{"msg_id":"node_one-c7c1f5ed10ec4a08b7ea09e2ce10b017","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:47 debug->new connect is comming
+2018/9/7 16:41:47 info->start send message:
+2018/9/7 16:41:47 info->{"message_head":{"msg_id":"node_one-c895c7bf67d54e2b99c73e8755213fb2","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:50 debug->new connect is comming
+2018/9/7 16:41:50 info->start send message:
+2018/9/7 16:41:50 info->{"message_head":{"msg_id":"node_one-e9824ba3936242238810b2babbe240f6","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:53 debug->new connect is comming
+2018/9/7 16:41:53 info->start send message:
+2018/9/7 16:41:53 info->{"message_head":{"msg_id":"node_one-39f44435d2c643b4abecd18fd67f48a2","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:56 debug->new connect is comming
+2018/9/7 16:41:56 info->start send message:
+2018/9/7 16:41:56 info->{"message_head":{"msg_id":"node_one-4df479b432d04b3b8eaea88690b99bf9","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:41:59 debug->new connect is comming
+2018/9/7 16:41:59 info->start send message:
+2018/9/7 16:41:59 info->{"message_head":{"msg_id":"node_one-b234add1554d4847801f2489542fa5b7","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:2 debug->new connect is comming
+2018/9/7 16:42:2 info->start send message:
+2018/9/7 16:42:2 info->{"message_head":{"msg_id":"node_one-b5998be380f847d7b30237d44f864509","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:5 debug->new connect is comming
+2018/9/7 16:42:5 info->start send message:
+2018/9/7 16:42:5 info->{"message_head":{"msg_id":"node_one-ce61290580224c81967b7a244c59f2ab","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:8 debug->new connect is comming
+2018/9/7 16:42:8 info->start send message:
+2018/9/7 16:42:8 info->{"message_head":{"msg_id":"node_one-77930e67145c477b928ce9766bd72a41","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:11 debug->new connect is comming
+2018/9/7 16:42:11 info->start send message:
+2018/9/7 16:42:11 info->{"message_head":{"msg_id":"node_one-61a4e60232d7435e8b8d63d2679d82d4","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:14 debug->new connect is comming
+2018/9/7 16:42:14 info->start send message:
+2018/9/7 16:42:14 info->{"message_head":{"msg_id":"node_one-8fe8d413b64b4d8b8d389c9493a5351e","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:17 debug->new connect is comming
+2018/9/7 16:42:17 info->start send message:
+2018/9/7 16:42:17 info->{"message_head":{"msg_id":"node_one-553a3d392a8e4259996856db49840564","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:20 debug->new connect is comming
+2018/9/7 16:42:20 info->start send message:
+2018/9/7 16:42:20 info->{"message_head":{"msg_id":"node_one-1a4d8e89b03b4a3e9577f564ebe94c05","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:23 debug->new connect is comming
+2018/9/7 16:42:23 info->start send message:
+2018/9/7 16:42:23 info->{"message_head":{"msg_id":"node_one-77e52e4d37d24db7bed6f170226d61e7","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:26 debug->new connect is comming
+2018/9/7 16:42:26 info->start send message:
+2018/9/7 16:42:26 info->{"message_head":{"msg_id":"node_one-1a4d91378cb34acc9e3813da251f1a58","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:29 debug->new connect is comming
+2018/9/7 16:42:29 info->start send message:
+2018/9/7 16:42:29 info->{"message_head":{"msg_id":"node_one-c7c1f5ed10ec4a08b7ea09e2ce10b017","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:32 debug->new connect is comming
+2018/9/7 16:42:32 info->start send message:
+2018/9/7 16:42:32 info->{"message_head":{"msg_id":"node_one-9988effd9fd147fa8c8d55a728aa8d89","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:35 debug->new connect is comming
+2018/9/7 16:42:35 info->start send message:
+2018/9/7 16:42:35 info->{"message_head":{"msg_id":"node_one-e9824ba3936242238810b2babbe240f6","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:38 debug->new connect is comming
+2018/9/7 16:42:38 info->start send message:
+2018/9/7 16:42:38 info->{"message_head":{"msg_id":"node_one-3a3f1809e80140acac4b7f1335b2d711","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:41 debug->new connect is comming
+2018/9/7 16:42:41 info->start send message:
+2018/9/7 16:42:41 info->{"message_head":{"msg_id":"node_one-4df479b432d04b3b8eaea88690b99bf9","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:44 debug->new connect is comming
+2018/9/7 16:42:44 info->start send message:
+2018/9/7 16:42:44 info->{"message_head":{"msg_id":"node_one-ac7b74a701fa45f4aad3b9b5c4ab242f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:47 debug->new connect is comming
+2018/9/7 16:42:47 info->start send message:
+2018/9/7 16:42:47 info->{"message_head":{"msg_id":"node_one-b5998be380f847d7b30237d44f864509","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:50 debug->new connect is comming
+2018/9/7 16:42:50 info->start send message:
+2018/9/7 16:42:50 info->{"message_head":{"msg_id":"node_one-f364d286625845c4922d7658eecd0202","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:53 debug->new connect is comming
+2018/9/7 16:42:53 info->start send message:
+2018/9/7 16:42:53 info->{"message_head":{"msg_id":"node_one-77930e67145c477b928ce9766bd72a41","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:56 debug->new connect is comming
+2018/9/7 16:42:56 info->start send message:
+2018/9/7 16:42:56 info->{"message_head":{"msg_id":"node_one-b43040080ae84e669861a69bb4f3f363","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:42:59 debug->new connect is comming
+2018/9/7 16:42:59 info->start send message:
+2018/9/7 16:42:59 info->{"message_head":{"msg_id":"node_one-8fe8d413b64b4d8b8d389c9493a5351e","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:2 debug->new connect is comming
+2018/9/7 16:43:2 info->start send message:
+2018/9/7 16:43:2 info->{"message_head":{"msg_id":"node_one-19a5019055e24c199d9c0b60b16f610c","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:5 debug->new connect is comming
+2018/9/7 16:43:5 info->start send message:
+2018/9/7 16:43:5 info->{"message_head":{"msg_id":"node_one-1a4d8e89b03b4a3e9577f564ebe94c05","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:8 debug->new connect is comming
+2018/9/7 16:43:8 info->start send message:
+2018/9/7 16:43:8 info->{"message_head":{"msg_id":"node_one-429a2492112542de9647c69f04e6b807","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:11 debug->new connect is comming
+2018/9/7 16:43:11 info->start send message:
+2018/9/7 16:43:11 info->{"message_head":{"msg_id":"node_one-1a4d91378cb34acc9e3813da251f1a58","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:14 debug->new connect is comming
+2018/9/7 16:43:14 info->start send message:
+2018/9/7 16:43:14 info->{"message_head":{"msg_id":"node_one-6f1444840e9a498e975c9e39bc92a07a","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:17 debug->new connect is comming
+2018/9/7 16:43:17 info->start send message:
+2018/9/7 16:43:17 info->{"message_head":{"msg_id":"node_one-9988effd9fd147fa8c8d55a728aa8d89","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:20 debug->new connect is comming
+2018/9/7 16:43:20 info->start send message:
+2018/9/7 16:43:20 info->{"message_head":{"msg_id":"node_one-9955bcb7d427412eb0e6a114603ba0a3","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:23 debug->new connect is comming
+2018/9/7 16:43:23 info->start send message:
+2018/9/7 16:43:23 info->{"message_head":{"msg_id":"node_one-1a4d91378cb34acc9e3813da251f1a58","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:26 debug->new connect is comming
+2018/9/7 16:43:26 info->start send message:
+2018/9/7 16:43:26 info->{"message_head":{"msg_id":"node_one-873a5e06d0ef420e96e7cd4d5d472d85","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:29 debug->new connect is comming
+2018/9/7 16:43:29 info->start send message:
+2018/9/7 16:43:29 info->{"message_head":{"msg_id":"node_one-9988effd9fd147fa8c8d55a728aa8d89","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:32 debug->new connect is comming
+2018/9/7 16:43:32 info->start send message:
+2018/9/7 16:43:32 info->{"message_head":{"msg_id":"node_one-42dc7889f24747188853f6b25f856eb6","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:35 debug->new connect is comming
+2018/9/7 16:43:35 info->start send message:
+2018/9/7 16:43:35 info->{"message_head":{"msg_id":"node_one-3a3f1809e80140acac4b7f1335b2d711","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:38 debug->new connect is comming
+2018/9/7 16:43:38 info->start send message:
+2018/9/7 16:43:38 info->{"message_head":{"msg_id":"node_one-4464fc8e3e5f4e74807ddc7527eb64e4","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:41 debug->new connect is comming
+2018/9/7 16:43:41 info->start send message:
+2018/9/7 16:43:41 info->{"message_head":{"msg_id":"node_one-ac7b74a701fa45f4aad3b9b5c4ab242f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:44 debug->new connect is comming
+2018/9/7 16:43:44 info->start send message:
+2018/9/7 16:43:44 info->{"message_head":{"msg_id":"node_one-bd24dc7226504ee380c4c6043cd0de84","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:47 debug->new connect is comming
+2018/9/7 16:43:47 info->start send message:
+2018/9/7 16:43:47 info->{"message_head":{"msg_id":"node_one-f364d286625845c4922d7658eecd0202","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 16:43:50 debug->new connect is comming
+2018/9/7 16:43:50 info->start send message:
+2018/9/7 16:43:50 info->{"message_head":{"msg_id":"node_one-d1e73d075cd84e82a3c9d4460d351645","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:1:8 info->init log environment finished
+2018/9/7 17:1:8 info->starting server,please waiting...
+2018/9/7 17:1:8 info->load config
+2018/9/7 17:1:8 info->The read main configuration is as follows:
+2018/9/7 17:1:8 info->server_ip:127.0.0.1
+2018/9/7 17:1:8 info->server_port:8890
+2018/9/7 17:1:8 info->http_server_port:8088
+2018/9/7 17:1:8 info->server_node_name:node_one
+2018/9/7 17:1:8 info->client_count:1000
+2018/9/7 17:1:8 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:1:8 info->start ms_nt_iocp server...
+2018/9/7 17:1:8 info->init ms_nt_iocp finished
+2018/9/7 17:1:8 info->init socket success
+2018/9/7 17:1:8 info->listen socket binding success
+2018/9/7 17:1:8 info->init ms_init_listen_socket finished
+2018/9/7 17:1:8 info->ms_nt_iocp server has start
+2018/9/7 17:1:8 info->moon http service started
+2018/9/7 17:1:18 debug->new connect is comming
+2018/9/7 17:1:18 info->start send message:
+2018/9/7 17:1:18 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:1:21 debug->new connect is comming
+2018/9/7 17:1:21 info->start send message:
+2018/9/7 17:1:21 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:1:24 debug->new connect is comming
+2018/9/7 17:1:24 info->start send message:
+2018/9/7 17:1:24 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:4:23 info->init log environment finished
+2018/9/7 17:4:23 info->starting server,please waiting...
+2018/9/7 17:4:23 info->load config
+2018/9/7 17:4:23 info->The read main configuration is as follows:
+2018/9/7 17:4:23 info->server_ip:127.0.0.1
+2018/9/7 17:4:23 info->server_port:8890
+2018/9/7 17:4:23 info->http_server_port:8088
+2018/9/7 17:4:23 info->server_node_name:node_one
+2018/9/7 17:4:23 info->client_count:1000
+2018/9/7 17:4:23 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:4:23 info->start ms_nt_iocp server...
+2018/9/7 17:4:23 info->init ms_nt_iocp finished
+2018/9/7 17:4:23 info->init socket success
+2018/9/7 17:4:23 info->listen socket binding success
+2018/9/7 17:4:23 info->init ms_init_listen_socket finished
+2018/9/7 17:4:23 info->ms_nt_iocp server has start
+2018/9/7 17:4:23 info->moon http service started
+2018/9/7 17:4:32 debug->new connect is comming
+2018/9/7 17:7:51 info->init log environment finished
+2018/9/7 17:7:51 info->starting server,please waiting...
+2018/9/7 17:7:51 info->load config
+2018/9/7 17:7:51 info->The read main configuration is as follows:
+2018/9/7 17:7:51 info->server_ip:127.0.0.1
+2018/9/7 17:7:51 info->server_port:8890
+2018/9/7 17:7:51 info->http_server_port:8088
+2018/9/7 17:7:51 info->server_node_name:node_one
+2018/9/7 17:7:51 info->client_count:1000
+2018/9/7 17:7:51 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:7:51 info->start ms_nt_iocp server...
+2018/9/7 17:7:51 info->init ms_nt_iocp finished
+2018/9/7 17:7:51 info->init socket success
+2018/9/7 17:7:51 info->listen socket binding success
+2018/9/7 17:7:51 info->init ms_init_listen_socket finished
+2018/9/7 17:7:51 info->ms_nt_iocp server has start
+2018/9/7 17:7:51 info->moon http service started
+2018/9/7 17:8:4 debug->new connect is comming
+2018/9/7 17:8:4 info->start send message:
+2018/9/7 17:8:49 info->init log environment finished
+2018/9/7 17:8:49 info->starting server,please waiting...
+2018/9/7 17:8:49 info->load config
+2018/9/7 17:8:49 info->The read main configuration is as follows:
+2018/9/7 17:8:49 info->server_ip:127.0.0.1
+2018/9/7 17:8:49 info->server_port:8890
+2018/9/7 17:8:49 info->http_server_port:8088
+2018/9/7 17:8:49 info->server_node_name:node_one
+2018/9/7 17:8:49 info->client_count:1000
+2018/9/7 17:8:49 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:8:49 info->start ms_nt_iocp server...
+2018/9/7 17:8:49 info->init ms_nt_iocp finished
+2018/9/7 17:8:49 info->init socket success
+2018/9/7 17:8:49 info->listen socket binding success
+2018/9/7 17:8:49 info->init ms_init_listen_socket finished
+2018/9/7 17:8:49 info->ms_nt_iocp server has start
+2018/9/7 17:8:49 info->moon http service started
+2018/9/7 17:9:18 debug->new connect is comming
+2018/9/7 17:9:18 info->start send message:
+2018/9/7 17:9:18 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:9:19 debug->new connect is comming
+2018/9/7 17:10:22 info->init log environment finished
+2018/9/7 17:10:22 info->starting server,please waiting...
+2018/9/7 17:10:22 info->load config
+2018/9/7 17:10:22 info->The read main configuration is as follows:
+2018/9/7 17:10:22 info->server_ip:127.0.0.1
+2018/9/7 17:10:22 info->server_port:8890
+2018/9/7 17:10:22 info->http_server_port:8088
+2018/9/7 17:10:22 info->server_node_name:node_one
+2018/9/7 17:10:22 info->client_count:1000
+2018/9/7 17:10:22 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:10:22 info->start ms_nt_iocp server...
+2018/9/7 17:10:22 info->init ms_nt_iocp finished
+2018/9/7 17:10:22 info->init socket success
+2018/9/7 17:10:22 info->listen socket binding success
+2018/9/7 17:10:22 info->init ms_init_listen_socket finished
+2018/9/7 17:10:22 info->ms_nt_iocp server has start
+2018/9/7 17:10:22 info->moon http service started
+2018/9/7 17:10:30 debug->new connect is comming
+2018/9/7 17:10:30 info->start send message:
+2018/9/7 17:10:30 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:10:30 debug->new connect is comming
+2018/9/7 17:10:30 info->start send message:
+2018/9/7 17:10:30 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:10:31 debug->new connect is comming
+2018/9/7 17:10:31 info->start send message:
+2018/9/7 17:10:31 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:10:32 debug->new connect is comming
+2018/9/7 17:10:32 info->start send message:
+2018/9/7 17:10:55 info->init log environment finished
+2018/9/7 17:10:55 info->starting server,please waiting...
+2018/9/7 17:10:55 info->load config
+2018/9/7 17:10:55 info->The read main configuration is as follows:
+2018/9/7 17:10:55 info->server_ip:127.0.0.1
+2018/9/7 17:10:55 info->server_port:8890
+2018/9/7 17:10:55 info->http_server_port:8088
+2018/9/7 17:10:55 info->server_node_name:node_one
+2018/9/7 17:10:55 info->client_count:1000
+2018/9/7 17:10:55 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:10:55 info->start ms_nt_iocp server...
+2018/9/7 17:10:55 info->init ms_nt_iocp finished
+2018/9/7 17:10:55 info->init socket success
+2018/9/7 17:10:55 info->listen socket binding success
+2018/9/7 17:10:55 info->init ms_init_listen_socket finished
+2018/9/7 17:10:55 info->ms_nt_iocp server has start
+2018/9/7 17:10:55 info->moon http service started
+2018/9/7 17:11:5 debug->new connect is comming
+2018/9/7 17:11:5 info->start send message:
+2018/9/7 17:11:5 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:11:7 debug->new connect is comming
+2018/9/7 17:12:17 info->init log environment finished
+2018/9/7 17:12:17 info->starting server,please waiting...
+2018/9/7 17:12:17 info->load config
+2018/9/7 17:12:17 info->The read main configuration is as follows:
+2018/9/7 17:12:17 info->server_ip:127.0.0.1
+2018/9/7 17:12:17 info->server_port:8890
+2018/9/7 17:12:17 info->http_server_port:8088
+2018/9/7 17:12:17 info->server_node_name:node_one
+2018/9/7 17:12:17 info->client_count:1000
+2018/9/7 17:12:17 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:12:17 info->start ms_nt_iocp server...
+2018/9/7 17:12:17 info->init ms_nt_iocp finished
+2018/9/7 17:12:17 info->init socket success
+2018/9/7 17:12:17 info->listen socket binding success
+2018/9/7 17:12:17 info->init ms_init_listen_socket finished
+2018/9/7 17:12:17 info->ms_nt_iocp server has start
+2018/9/7 17:12:17 info->moon http service started
+2018/9/7 17:12:23 debug->new connect is comming
+2018/9/7 17:12:23 info->start send message:
+2018/9/7 17:12:23 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:26 debug->new connect is comming
+2018/9/7 17:12:26 info->start send message:
+2018/9/7 17:12:26 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:29 debug->new connect is comming
+2018/9/7 17:12:29 info->start send message:
+2018/9/7 17:12:29 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:32 debug->new connect is comming
+2018/9/7 17:12:32 info->start send message:
+2018/9/7 17:12:32 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:35 debug->new connect is comming
+2018/9/7 17:12:35 info->start send message:
+2018/9/7 17:12:35 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:38 debug->new connect is comming
+2018/9/7 17:12:38 info->start send message:
+2018/9/7 17:12:38 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:41 debug->new connect is comming
+2018/9/7 17:12:41 info->start send message:
+2018/9/7 17:12:41 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:44 debug->new connect is comming
+2018/9/7 17:12:44 info->start send message:
+2018/9/7 17:12:44 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:47 debug->new connect is comming
+2018/9/7 17:12:47 info->start send message:
+2018/9/7 17:12:47 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:50 debug->new connect is comming
+2018/9/7 17:12:50 info->start send message:
+2018/9/7 17:12:50 info->{"message_head":{"msg_id":"node_one-8bd0a15a50634a3296a8e9f98072408d","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:53 debug->new connect is comming
+2018/9/7 17:12:53 info->start send message:
+2018/9/7 17:12:53 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:56 debug->new connect is comming
+2018/9/7 17:12:56 info->start send message:
+2018/9/7 17:12:56 info->{"message_head":{"msg_id":"node_one-6e79eca12b7249929d76352aeaddf305","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:12:59 debug->new connect is comming
+2018/9/7 17:12:59 info->start send message:
+2018/9/7 17:12:59 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:13:12 info->init log environment finished
+2018/9/7 17:13:12 info->starting server,please waiting...
+2018/9/7 17:13:12 info->load config
+2018/9/7 17:13:12 info->The read main configuration is as follows:
+2018/9/7 17:13:12 info->server_ip:127.0.0.1
+2018/9/7 17:13:12 info->server_port:8890
+2018/9/7 17:13:12 info->http_server_port:8088
+2018/9/7 17:13:12 info->server_node_name:node_one
+2018/9/7 17:13:12 info->client_count:1000
+2018/9/7 17:13:12 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:13:12 info->start ms_nt_iocp server...
+2018/9/7 17:13:12 info->init ms_nt_iocp finished
+2018/9/7 17:13:12 info->init socket success
+2018/9/7 17:13:12 info->listen socket binding success
+2018/9/7 17:13:12 info->init ms_init_listen_socket finished
+2018/9/7 17:13:12 info->ms_nt_iocp server has start
+2018/9/7 17:13:12 info->moon http service started
+2018/9/7 17:13:28 debug->new connect is comming
+2018/9/7 17:13:28 info->start send message:
+2018/9/7 17:13:28 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:13:28 debug->new connect is comming
+2018/9/7 17:13:28 info->start send message:
+2018/9/7 17:13:28 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:13:29 debug->new connect is comming
+2018/9/7 17:13:29 info->start send message:
+2018/9/7 17:13:29 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:13:30 debug->new connect is comming
+2018/9/7 17:14:32 info->init log environment finished
+2018/9/7 17:14:32 info->starting server,please waiting...
+2018/9/7 17:14:32 info->load config
+2018/9/7 17:14:32 info->The read main configuration is as follows:
+2018/9/7 17:14:32 info->server_ip:127.0.0.1
+2018/9/7 17:14:32 info->server_port:8890
+2018/9/7 17:14:32 info->http_server_port:8088
+2018/9/7 17:14:32 info->server_node_name:node_one
+2018/9/7 17:14:32 info->client_count:1000
+2018/9/7 17:14:32 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:14:32 info->start ms_nt_iocp server...
+2018/9/7 17:14:32 info->init ms_nt_iocp finished
+2018/9/7 17:14:32 info->init socket success
+2018/9/7 17:14:32 info->listen socket binding success
+2018/9/7 17:14:32 info->init ms_init_listen_socket finished
+2018/9/7 17:14:32 info->ms_nt_iocp server has start
+2018/9/7 17:14:32 info->moon http service started
+2018/9/7 17:14:39 debug->new connect is comming
+2018/9/7 17:14:39 info->start send message:
+2018/9/7 17:14:39 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:14:41 debug->new connect is comming
+2018/9/7 17:14:41 info->start send message:
+2018/9/7 17:14:41 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:14:43 debug->new connect is comming
+2018/9/7 17:14:43 info->start send message:
+2018/9/7 17:14:43 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:14:45 debug->new connect is comming
+2018/9/7 17:14:45 info->start send message:
+2018/9/7 17:14:45 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:14:47 debug->new connect is comming
+2018/9/7 17:14:47 info->start send message:
+2018/9/7 17:14:47 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:14:49 debug->new connect is comming
+2018/9/7 17:14:49 info->start send message:
+2018/9/7 17:14:49 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:14:51 debug->new connect is comming
+2018/9/7 17:14:51 info->start send message:
+2018/9/7 17:14:51 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:14:53 debug->new connect is comming
+2018/9/7 17:14:55 debug->new connect is comming
+2018/9/7 17:14:57 debug->new connect is comming
+2018/9/7 17:14:59 info->start send message:
+2018/9/7 17:14:59 debug->new connect is comming
+2018/9/7 17:14:59 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:1 debug->new connect is comming
+2018/9/7 17:15:3 debug->new connect is comming
+2018/9/7 17:15:5 debug->new connect is comming
+2018/9/7 17:15:5 info->start send message:
+2018/9/7 17:15:5 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:7 debug->new connect is comming
+2018/9/7 17:15:9 info->start send message:
+2018/9/7 17:15:9 debug->new connect is comming
+2018/9/7 17:15:9 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:11 info->start send message:
+2018/9/7 17:15:11 debug->new connect is comming
+2018/9/7 17:15:11 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:13 debug->new connect is comming
+2018/9/7 17:15:15 debug->new connect is comming
+2018/9/7 17:15:15 info->start send message:
+2018/9/7 17:15:15 info->{"message_head":{"msg_id":"node_one-5416a722cdcc4860924e4a603dcbee2f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:17 debug->new connect is comming
+2018/9/7 17:15:17 info->start send message:
+2018/9/7 17:15:17 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:19 debug->new connect is comming
+2018/9/7 17:15:21 info->start send message:
+2018/9/7 17:15:21 debug->new connect is comming
+2018/9/7 17:15:21 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:23 info->start send message:
+2018/9/7 17:15:23 debug->new connect is comming
+2018/9/7 17:15:23 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:25 debug->new connect is comming
+2018/9/7 17:15:27 debug->new connect is comming
+2018/9/7 17:15:27 info->start send message:
+2018/9/7 17:15:27 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:29 debug->new connect is comming
+2018/9/7 17:15:31 debug->new connect is comming
+2018/9/7 17:15:33 info->start send message:
+2018/9/7 17:15:33 debug->new connect is comming
+2018/9/7 17:15:33 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:35 debug->new connect is comming
+2018/9/7 17:15:37 debug->new connect is comming
+2018/9/7 17:15:39 info->start send message:
+2018/9/7 17:15:39 debug->new connect is comming
+2018/9/7 17:15:39 info->{"message_head":{"msg_id":"node_one-681675936d3546f48de6053921107311","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:15:41 debug->new connect is comming
+2018/9/7 17:15:43 debug->new connect is comming
+2018/9/7 17:15:45 debug->new connect is comming
+2018/9/7 17:15:47 debug->new connect is comming
+2018/9/7 17:15:49 debug->new connect is comming
+2018/9/7 17:15:51 debug->new connect is comming
+2018/9/7 17:15:53 debug->new connect is comming
+2018/9/7 17:15:55 debug->new connect is comming
+2018/9/7 17:15:57 debug->new connect is comming
+2018/9/7 17:15:59 debug->new connect is comming
+2018/9/7 17:16:1 debug->new connect is comming
+2018/9/7 17:16:1 error->post message error,error code:10054
+2018/9/7 17:16:2 debug->new connect is comming
+2018/9/7 17:16:2 error->post message error,error code:10054
+2018/9/7 17:16:3 debug->new connect is comming
+2018/9/7 17:16:3 error->post message error,error code:10054
+2018/9/7 17:16:4 debug->new connect is comming
+2018/9/7 17:16:4 error->post message error,error code:10054
+2018/9/7 17:16:5 debug->new connect is comming
+2018/9/7 17:16:5 error->post message error,error code:10054
+2018/9/7 17:16:6 debug->new connect is comming
+2018/9/7 17:16:6 error->post message error,error code:10054
+2018/9/7 17:16:7 debug->new connect is comming
+2018/9/7 17:16:7 error->post message error,error code:10054
+2018/9/7 17:16:8 debug->new connect is comming
+2018/9/7 17:16:8 error->post message error,error code:10054
+2018/9/7 17:16:9 debug->new connect is comming
+2018/9/7 17:16:9 error->post message error,error code:10054
+2018/9/7 17:16:33 info->init log environment finished
+2018/9/7 17:16:33 info->starting server,please waiting...
+2018/9/7 17:16:33 info->load config
+2018/9/7 17:16:33 info->The read main configuration is as follows:
+2018/9/7 17:16:33 info->server_ip:127.0.0.1
+2018/9/7 17:16:33 info->server_port:8890
+2018/9/7 17:16:33 info->http_server_port:8088
+2018/9/7 17:16:33 info->server_node_name:node_one
+2018/9/7 17:16:33 info->client_count:1000
+2018/9/7 17:16:33 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:16:33 info->start ms_nt_iocp server...
+2018/9/7 17:16:33 info->init ms_nt_iocp finished
+2018/9/7 17:16:33 info->init socket success
+2018/9/7 17:16:33 info->listen socket binding success
+2018/9/7 17:16:33 info->init ms_init_listen_socket finished
+2018/9/7 17:16:33 info->ms_nt_iocp server has start
+2018/9/7 17:16:33 info->moon http service started
+2018/9/7 17:16:41 debug->new connect is comming
+2018/9/7 17:16:41 info->start send message:
+2018/9/7 17:16:41 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:16:44 debug->new connect is comming
+2018/9/7 17:16:44 info->start send message:
+2018/9/7 17:16:44 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2018/9/7 17:31:37 info->init log environment finished
+2018/9/7 17:31:37 info->starting server,please waiting...
+2018/9/7 17:31:37 info->load config
+2018/9/7 17:31:37 info->The read main configuration is as follows:
+2018/9/7 17:31:37 info->server_ip:127.0.0.1
+2018/9/7 17:31:37 info->server_port:8890
+2018/9/7 17:31:37 info->http_server_port:8088
+2018/9/7 17:31:37 info->server_node_name:node_one
+2018/9/7 17:31:37 info->client_count:1000
+2018/9/7 17:31:37 info->moon_manager_domain:http://127.0.0.1:8080
+2018/9/7 17:31:37 info->start ms_nt_iocp server...
+2018/9/7 17:31:37 info->init ms_nt_iocp finished
+2018/9/7 17:31:37 info->init socket success
+2018/9/7 17:31:37 info->listen socket binding success
+2018/9/7 17:31:37 info->init ms_init_listen_socket finished
+2018/9/7 17:31:37 info->ms_nt_iocp server has start
+2018/9/7 17:31:37 info->moon http service started
