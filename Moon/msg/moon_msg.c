@@ -14,7 +14,7 @@ extern Moon_Server_Config* p_global_server_config;//global configuration struct
 
 /**
  * function desc:
- *	parse the message on the network
+ *	parse the message head on the network
  * params:
  *	str_message:the message string of json,like 
     {
@@ -30,7 +30,7 @@ extern Moon_Server_Config* p_global_server_config;//global configuration struct
  * return:
  *	if success return the pointer of Message struct,otherwise return null
  */
-Message* parse_msg(moon_char* str_message)
+Message* parse_msg_head(moon_char* str_message)
 {
 	cJSON * root = NULL;
 	Message* p_message = NULL;
@@ -40,13 +40,12 @@ Message* parse_msg(moon_char* str_message)
 	int len = 0;
 	moon_char msg_id[50] = {0};
 	cJSON *head = NULL;
-	cJSON *body = NULL;
+	//cJSON *body = NULL;
 	cJSON *item = NULL;
-	char* p_str_body = NULL;
-	moon_char *p_msg_body = NULL;
-	int msg_body_length = 0;
+	//char* p_str_body = NULL;
+	//moon_char *p_msg_body = NULL;
+	//int msg_body_length = 0;
 	ascii_msg = (char*)moon_malloc(size * sizeof(char));
-	memset(ascii_msg,0,size);
 	len = moon_ms_windows_unicode_to_ascii(str_message,ascii_msg);
 	root = cJSON_Parse(ascii_msg);
 	if (root == NULL)
@@ -83,8 +82,8 @@ Message* parse_msg(moon_char* str_message)
 				p_message->p_message_head->sub_msg_num = item->valueint;
 			}
 		}
-		body = cJSON_GetObjectItem(root,"message_body");
-		if (body != NULL)
+		//body = cJSON_GetObjectItem(root,"message_body");
+		/*if (body != NULL)
 		{
 			item = cJSON_GetObjectItem(body,"content");
 			if (item != NULL && !stringIsEmpty(item->valuestring))
@@ -99,7 +98,7 @@ Message* parse_msg(moon_char* str_message)
 				p_message->p_message_body->p_content = p_msg_body;
 				moon_free(p_str_body);
 			}
-		}
+		}*/
 	}
 	cJSON_Delete(root);
 	moon_free(ascii_msg);
@@ -169,6 +168,7 @@ ClientEnvironment* parse_client_running_environment(moon_char* msgData)
 {
 	ClientEnvironment* p_client_env = NULL;
 	cJSON * root = NULL;
+	cJSON * body = NULL;
 	cJSON * item = NULL;
 	char* ascii_msg;
 	int msg_body_length = 0;
@@ -185,24 +185,34 @@ ClientEnvironment* parse_client_running_environment(moon_char* msgData)
 	}
 	if (root->type == cJSON_Object)
 	{
+		body = cJSON_GetObjectItem(root,"message_body");
+		if(body == NULL)
+		{
+			return NULL;
+		}
+		body = cJSON_GetObjectItem(body,"content");
+		if(body == NULL)
+		{
+			return NULL;
+		}
 		p_client_env = (ClientEnvironment*)moon_malloc(sizeof(ClientEnvironment));
 		memset(p_client_env,0,sizeof(ClientEnvironment));
-		item = cJSON_GetObjectItem(root,"client_sdk_version");
+		item = cJSON_GetObjectItem(body,"client_sdk_version");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
 			strcpy(p_client_env->client_sdk_version,item->valuestring);
 		}
-		item = cJSON_GetObjectItem(root,"client_platform");
+		item = cJSON_GetObjectItem(body,"client_platform");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
 			strcpy(p_client_env->client_platform,item->valuestring);
 		}
-		item = cJSON_GetObjectItem(root,"opra_system_version");
+		item = cJSON_GetObjectItem(body,"opra_system_version");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
 			strcpy(p_client_env->opra_system_version,item->valuestring);
 		}
-		item = cJSON_GetObjectItem(root,"connect_sdk_token");
+		item = cJSON_GetObjectItem(body,"connect_sdk_token");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
 			strcpy(p_client_env->connect_sdk_token,item->valuestring);

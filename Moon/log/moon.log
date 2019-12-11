@@ -2554,3 +2554,1108 @@
 2018/9/7 17:31:37 info->init ms_init_listen_socket finished
 2018/9/7 17:31:37 info->ms_nt_iocp server has start
 2018/9/7 17:31:37 info->moon http service started
+2019/7/18 19:4:9 info->init log environment finished
+2019/7/18 19:4:9 info->starting server,please waiting...
+2019/7/18 19:4:9 info->load config
+2019/7/18 19:4:9 info->The read main configuration is as follows:
+2019/7/18 19:4:9 info->server_ip:127.0.0.1
+2019/7/18 19:4:9 info->server_port:8890
+2019/7/18 19:4:9 info->http_server_port:8088
+2019/7/18 19:4:9 info->server_node_name:node_one
+2019/7/18 19:4:9 info->client_count:1000
+2019/7/18 19:4:9 info->moon_manager_domain:http://127.0.0.1:8080
+2019/7/18 19:4:9 info->start ms_nt_iocp server...
+2019/7/18 19:4:9 info->init ms_nt_iocp finished
+2019/7/18 19:4:9 info->init socket success
+2019/7/18 19:4:9 info->listen socket binding success
+2019/7/18 19:4:9 info->init ms_init_listen_socket finished
+2019/7/18 19:4:9 info->ms_nt_iocp server has start
+2019/7/18 19:4:9 info->moon http service started
+2019/12/10 15:13:1 info->init log environment finished
+2019/12/10 15:13:1 info->starting server,please waiting...
+2019/12/10 15:13:1 info->load config
+2019/12/10 15:13:1 info->The read main configuration is as follows:
+2019/12/10 15:13:1 info->server_ip:127.0.0.1
+2019/12/10 15:13:1 info->server_port:8890
+2019/12/10 15:13:1 info->http_server_port:8088
+2019/12/10 15:13:1 info->server_node_name:node_one
+2019/12/10 15:13:1 info->client_count:1000
+2019/12/10 15:13:1 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:13:1 info->start ms_nt_iocp server...
+2019/12/10 15:13:1 info->init ms_nt_iocp finished
+2019/12/10 15:13:1 info->init socket success
+2019/12/10 15:13:1 info->listen socket binding success
+2019/12/10 15:13:1 info->init ms_init_listen_socket finished
+2019/12/10 15:13:1 info->ms_nt_iocp server has start
+2019/12/10 15:13:1 info->moon http service started
+2019/12/10 15:14:0 debug->current request url path:\
+2019/12/10 15:16:3 info->init log environment finished
+2019/12/10 15:16:3 info->starting server,please waiting...
+2019/12/10 15:16:3 info->load config
+2019/12/10 15:16:3 info->The read main configuration is as follows:
+2019/12/10 15:16:3 info->server_ip:127.0.0.1
+2019/12/10 15:16:3 info->server_port:8890
+2019/12/10 15:16:3 info->http_server_port:8088
+2019/12/10 15:16:3 info->server_node_name:node_one
+2019/12/10 15:16:3 info->client_count:1000
+2019/12/10 15:16:3 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:16:3 info->start ms_nt_iocp server...
+2019/12/10 15:16:3 info->init ms_nt_iocp finished
+2019/12/10 15:16:3 info->init socket success
+2019/12/10 15:16:3 info->listen socket binding success
+2019/12/10 15:16:3 info->init ms_init_listen_socket finished
+2019/12/10 15:16:3 info->ms_nt_iocp server has start
+2019/12/10 15:16:3 info->moon http service started
+2019/12/10 15:18:25 debug->http request is not get or head method.close ok.
+2019/12/10 15:18:35 info->init log environment finished
+2019/12/10 15:18:35 info->starting server,please waiting...
+2019/12/10 15:18:35 info->load config
+2019/12/10 15:18:35 info->The read main configuration is as follows:
+2019/12/10 15:18:35 info->server_ip:127.0.0.1
+2019/12/10 15:18:35 info->server_port:8890
+2019/12/10 15:18:35 info->http_server_port:8088
+2019/12/10 15:18:35 info->server_node_name:node_one
+2019/12/10 15:18:35 info->client_count:1000
+2019/12/10 15:18:35 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:18:35 info->start ms_nt_iocp server...
+2019/12/10 15:18:35 info->init ms_nt_iocp finished
+2019/12/10 15:18:35 info->init socket success
+2019/12/10 15:18:35 info->listen socket binding success
+2019/12/10 15:18:35 info->init ms_init_listen_socket finished
+2019/12/10 15:18:35 info->ms_nt_iocp server has start
+2019/12/10 15:18:35 info->moon http service started
+2019/12/10 15:20:20 debug->http request is not get or head method.close ok.
+2019/12/10 15:20:38 info->init log environment finished
+2019/12/10 15:20:38 info->starting server,please waiting...
+2019/12/10 15:20:38 info->load config
+2019/12/10 15:20:38 info->The read main configuration is as follows:
+2019/12/10 15:20:38 info->server_ip:127.0.0.1
+2019/12/10 15:20:38 info->server_port:8890
+2019/12/10 15:20:38 info->http_server_port:8088
+2019/12/10 15:20:38 info->server_node_name:node_one
+2019/12/10 15:20:38 info->client_count:1000
+2019/12/10 15:20:38 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:20:38 info->start ms_nt_iocp server...
+2019/12/10 15:20:38 info->init ms_nt_iocp finished
+2019/12/10 15:20:38 info->init socket success
+2019/12/10 15:20:38 info->listen socket binding success
+2019/12/10 15:20:38 info->init ms_init_listen_socket finished
+2019/12/10 15:20:38 info->ms_nt_iocp server has start
+2019/12/10 15:20:38 info->moon http service started
+2019/12/10 15:20:52 debug->current request url path:\
+2019/12/10 15:20:59 info->init log environment finished
+2019/12/10 15:20:59 info->starting server,please waiting...
+2019/12/10 15:20:59 info->load config
+2019/12/10 15:20:59 info->The read main configuration is as follows:
+2019/12/10 15:20:59 info->server_ip:127.0.0.1
+2019/12/10 15:20:59 info->server_port:8890
+2019/12/10 15:20:59 info->http_server_port:8088
+2019/12/10 15:20:59 info->server_node_name:node_one
+2019/12/10 15:20:59 info->client_count:1000
+2019/12/10 15:20:59 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:20:59 info->start ms_nt_iocp server...
+2019/12/10 15:20:59 info->init ms_nt_iocp finished
+2019/12/10 15:20:59 info->init socket success
+2019/12/10 15:20:59 info->listen socket binding success
+2019/12/10 15:20:59 info->init ms_init_listen_socket finished
+2019/12/10 15:20:59 info->ms_nt_iocp server has start
+2019/12/10 15:20:59 info->moon http service started
+2019/12/10 15:22:23 debug->http request is not get or head method.close ok.
+2019/12/10 15:30:6 info->init log environment finished
+2019/12/10 15:30:6 info->starting server,please waiting...
+2019/12/10 15:30:6 info->load config
+2019/12/10 15:30:6 info->The read main configuration is as follows:
+2019/12/10 15:30:6 info->server_ip:127.0.0.1
+2019/12/10 15:30:6 info->server_port:8890
+2019/12/10 15:30:6 info->http_server_port:8088
+2019/12/10 15:30:6 info->server_node_name:node_one
+2019/12/10 15:30:6 info->client_count:1000
+2019/12/10 15:30:6 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:30:6 info->start ms_nt_iocp server...
+2019/12/10 15:30:6 info->init ms_nt_iocp finished
+2019/12/10 15:30:6 info->init socket success
+2019/12/10 15:30:6 info->listen socket binding success
+2019/12/10 15:30:6 info->init ms_init_listen_socket finished
+2019/12/10 15:30:6 info->ms_nt_iocp server has start
+2019/12/10 15:30:6 info->moon http service started
+2019/12/10 15:30:19 debug->current request url path:\
+2019/12/10 15:30:19 debug->current request url path:\
+2019/12/10 15:32:11 info->init log environment finished
+2019/12/10 15:32:11 info->starting server,please waiting...
+2019/12/10 15:32:11 info->load config
+2019/12/10 15:32:11 info->The read main configuration is as follows:
+2019/12/10 15:32:11 info->server_ip:127.0.0.1
+2019/12/10 15:32:11 info->server_port:8890
+2019/12/10 15:32:11 info->http_server_port:8088
+2019/12/10 15:32:11 info->server_node_name:node_one
+2019/12/10 15:32:11 info->client_count:1000
+2019/12/10 15:32:11 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:32:11 info->start ms_nt_iocp server...
+2019/12/10 15:32:11 info->init ms_nt_iocp finished
+2019/12/10 15:32:11 info->init socket success
+2019/12/10 15:32:11 info->listen socket binding success
+2019/12/10 15:32:11 info->init ms_init_listen_socket finished
+2019/12/10 15:32:11 info->ms_nt_iocp server has start
+2019/12/10 15:32:11 info->moon http service started
+2019/12/10 15:32:20 debug->current request url path:\
+2019/12/10 15:32:42 debug->current request url path:\
+2019/12/10 15:32:50 debug->http request is not get or head method.close ok.
+2019/12/10 15:35:25 info->init log environment finished
+2019/12/10 15:35:25 info->starting server,please waiting...
+2019/12/10 15:35:25 info->load config
+2019/12/10 15:35:25 info->The read main configuration is as follows:
+2019/12/10 15:35:25 info->server_ip:127.0.0.1
+2019/12/10 15:35:25 info->server_port:8890
+2019/12/10 15:35:25 info->http_server_port:8088
+2019/12/10 15:35:25 info->server_node_name:node_one
+2019/12/10 15:35:25 info->client_count:1000
+2019/12/10 15:35:25 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:35:25 info->start ms_nt_iocp server...
+2019/12/10 15:35:25 info->init ms_nt_iocp finished
+2019/12/10 15:35:25 info->init socket success
+2019/12/10 15:35:25 info->listen socket binding success
+2019/12/10 15:35:25 info->init ms_init_listen_socket finished
+2019/12/10 15:35:25 info->ms_nt_iocp server has start
+2019/12/10 15:35:25 info->moon http service started
+2019/12/10 15:35:31 debug->current request url path:\
+2019/12/10 15:38:16 info->init log environment finished
+2019/12/10 15:38:16 info->starting server,please waiting...
+2019/12/10 15:38:16 info->load config
+2019/12/10 15:38:16 info->The read main configuration is as follows:
+2019/12/10 15:38:16 info->server_ip:127.0.0.1
+2019/12/10 15:38:16 info->server_port:8890
+2019/12/10 15:38:16 info->http_server_port:8088
+2019/12/10 15:38:16 info->server_node_name:node_one
+2019/12/10 15:38:16 info->client_count:1000
+2019/12/10 15:38:16 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:38:16 info->start ms_nt_iocp server...
+2019/12/10 15:38:16 info->init ms_nt_iocp finished
+2019/12/10 15:38:16 info->init socket success
+2019/12/10 15:38:16 info->listen socket binding success
+2019/12/10 15:38:16 info->init ms_init_listen_socket finished
+2019/12/10 15:38:16 info->ms_nt_iocp server has start
+2019/12/10 15:38:16 info->moon http service started
+2019/12/10 15:38:19 debug->current request url path:\
+2019/12/10 15:40:14 info->init log environment finished
+2019/12/10 15:40:14 info->starting server,please waiting...
+2019/12/10 15:40:14 info->load config
+2019/12/10 15:40:14 info->The read main configuration is as follows:
+2019/12/10 15:40:14 info->server_ip:127.0.0.1
+2019/12/10 15:40:14 info->server_port:8890
+2019/12/10 15:40:14 info->http_server_port:8088
+2019/12/10 15:40:14 info->server_node_name:node_one
+2019/12/10 15:40:14 info->client_count:1000
+2019/12/10 15:40:14 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:40:14 info->start ms_nt_iocp server...
+2019/12/10 15:40:14 info->init ms_nt_iocp finished
+2019/12/10 15:40:14 info->init socket success
+2019/12/10 15:40:14 info->listen socket binding success
+2019/12/10 15:40:14 info->init ms_init_listen_socket finished
+2019/12/10 15:40:14 info->ms_nt_iocp server has start
+2019/12/10 15:40:14 info->moon http service started
+2019/12/10 15:40:18 debug->current request url path:\
+2019/12/10 15:41:16 info->init log environment finished
+2019/12/10 15:41:16 info->starting server,please waiting...
+2019/12/10 15:41:16 info->load config
+2019/12/10 15:41:16 info->The read main configuration is as follows:
+2019/12/10 15:41:16 info->server_ip:127.0.0.1
+2019/12/10 15:41:16 info->server_port:8890
+2019/12/10 15:41:16 info->http_server_port:8088
+2019/12/10 15:41:16 info->server_node_name:node_one
+2019/12/10 15:41:16 info->client_count:1000
+2019/12/10 15:41:16 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:41:16 info->start ms_nt_iocp server...
+2019/12/10 15:41:16 info->init ms_nt_iocp finished
+2019/12/10 15:41:16 info->init socket success
+2019/12/10 15:41:16 info->listen socket binding success
+2019/12/10 15:41:16 info->init ms_init_listen_socket finished
+2019/12/10 15:41:16 info->ms_nt_iocp server has start
+2019/12/10 15:41:16 info->moon http service started
+2019/12/10 15:41:59 debug->current request url path:\
+2019/12/10 15:42:49 debug->http request is not get or head method.close ok.
+2019/12/10 15:43:0 debug->http request is not get or head method.close ok.
+2019/12/10 15:45:25 info->init log environment finished
+2019/12/10 15:45:25 info->starting server,please waiting...
+2019/12/10 15:45:25 info->load config
+2019/12/10 15:45:25 info->The read main configuration is as follows:
+2019/12/10 15:45:25 info->server_ip:127.0.0.1
+2019/12/10 15:45:25 info->server_port:8890
+2019/12/10 15:45:25 info->http_server_port:8088
+2019/12/10 15:45:25 info->server_node_name:node_one
+2019/12/10 15:45:25 info->client_count:1000
+2019/12/10 15:45:25 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:45:25 info->start ms_nt_iocp server...
+2019/12/10 15:45:25 info->init ms_nt_iocp finished
+2019/12/10 15:45:25 info->init socket success
+2019/12/10 15:45:25 info->listen socket binding success
+2019/12/10 15:45:25 info->init ms_init_listen_socket finished
+2019/12/10 15:45:25 info->ms_nt_iocp server has start
+2019/12/10 15:45:25 info->moon http service started
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:33 info->the worker thread exit
+2019/12/10 15:45:35 info->alive thread exit
+2019/12/10 15:45:35 info->close http server
+2019/12/10 15:46:54 info->init log environment finished
+2019/12/10 15:46:54 info->starting server,please waiting...
+2019/12/10 15:46:54 info->load config
+2019/12/10 15:46:54 info->The read main configuration is as follows:
+2019/12/10 15:46:54 info->server_ip:127.0.0.1
+2019/12/10 15:46:54 info->server_port:8890
+2019/12/10 15:46:54 info->http_server_port:8088
+2019/12/10 15:46:54 info->server_node_name:node_one
+2019/12/10 15:46:54 info->client_count:1000
+2019/12/10 15:46:54 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:46:54 info->start ms_nt_iocp server...
+2019/12/10 15:46:54 info->init ms_nt_iocp finished
+2019/12/10 15:46:54 info->init socket success
+2019/12/10 15:46:54 info->listen socket binding success
+2019/12/10 15:46:54 info->init ms_init_listen_socket finished
+2019/12/10 15:46:54 info->ms_nt_iocp server has start
+2019/12/10 15:46:54 info->moon http service started
+2019/12/10 15:47:12 info->init log environment finished
+2019/12/10 15:47:12 info->starting server,please waiting...
+2019/12/10 15:47:12 info->load config
+2019/12/10 15:47:12 info->The read main configuration is as follows:
+2019/12/10 15:47:12 info->server_ip:127.0.0.1
+2019/12/10 15:47:12 info->server_port:8890
+2019/12/10 15:47:12 info->http_server_port:8088
+2019/12/10 15:47:12 info->server_node_name:node_one
+2019/12/10 15:47:12 info->client_count:1000
+2019/12/10 15:47:12 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:47:12 info->start ms_nt_iocp server...
+2019/12/10 15:47:12 info->init ms_nt_iocp finished
+2019/12/10 15:47:12 info->init socket success
+2019/12/10 15:47:12 info->listen socket binding success
+2019/12/10 15:47:12 info->init ms_init_listen_socket finished
+2019/12/10 15:47:12 info->ms_nt_iocp server has start
+2019/12/10 15:47:12 info->moon http service started
+2019/12/10 15:47:18 info->init log environment finished
+2019/12/10 15:47:18 info->starting server,please waiting...
+2019/12/10 15:47:18 info->load config
+2019/12/10 15:47:18 info->The read main configuration is as follows:
+2019/12/10 15:47:18 info->server_ip:127.0.0.1
+2019/12/10 15:47:18 info->server_port:8890
+2019/12/10 15:47:18 info->http_server_port:8088
+2019/12/10 15:47:18 info->server_node_name:node_one
+2019/12/10 15:47:18 info->client_count:1000
+2019/12/10 15:47:18 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:47:18 info->start ms_nt_iocp server...
+2019/12/10 15:47:18 info->init ms_nt_iocp finished
+2019/12/10 15:47:18 info->init socket success
+2019/12/10 15:47:18 info->listen socket binding success
+2019/12/10 15:47:18 info->init ms_init_listen_socket finished
+2019/12/10 15:47:18 info->ms_nt_iocp server has start
+2019/12/10 15:47:18 info->moon http service started
+2019/12/10 15:47:52 info->init log environment finished
+2019/12/10 15:47:52 info->starting server,please waiting...
+2019/12/10 15:47:52 info->load config
+2019/12/10 15:47:52 info->The read main configuration is as follows:
+2019/12/10 15:47:52 info->server_ip:127.0.0.1
+2019/12/10 15:47:52 info->server_port:8890
+2019/12/10 15:47:52 info->http_server_port:8088
+2019/12/10 15:47:52 info->server_node_name:node_one
+2019/12/10 15:47:52 info->client_count:1000
+2019/12/10 15:47:52 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:47:52 info->start ms_nt_iocp server...
+2019/12/10 15:47:52 info->init ms_nt_iocp finished
+2019/12/10 15:47:52 info->init socket success
+2019/12/10 15:47:52 info->listen socket binding success
+2019/12/10 15:47:52 info->init ms_init_listen_socket finished
+2019/12/10 15:47:52 info->ms_nt_iocp server has start
+2019/12/10 15:47:52 info->moon http service started
+2019/12/10 15:48:35 info->init log environment finished
+2019/12/10 15:48:35 info->starting server,please waiting...
+2019/12/10 15:48:35 info->load config
+2019/12/10 15:48:35 info->The read main configuration is as follows:
+2019/12/10 15:48:35 info->server_ip:127.0.0.1
+2019/12/10 15:48:35 info->server_port:8890
+2019/12/10 15:48:35 info->http_server_port:8088
+2019/12/10 15:48:35 info->server_node_name:node_one
+2019/12/10 15:48:35 info->client_count:1000
+2019/12/10 15:48:35 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:48:35 info->start ms_nt_iocp server...
+2019/12/10 15:48:35 info->init ms_nt_iocp finished
+2019/12/10 15:48:35 info->init socket success
+2019/12/10 15:48:35 info->listen socket binding success
+2019/12/10 15:48:35 info->init ms_init_listen_socket finished
+2019/12/10 15:48:35 info->ms_nt_iocp server has start
+2019/12/10 15:48:35 info->moon http service started
+2019/12/10 15:49:9 info->init log environment finished
+2019/12/10 15:49:9 info->starting server,please waiting...
+2019/12/10 15:49:9 info->load config
+2019/12/10 15:49:9 info->The read main configuration is as follows:
+2019/12/10 15:49:9 info->server_ip:127.0.0.1
+2019/12/10 15:49:9 info->server_port:8890
+2019/12/10 15:49:9 info->http_server_port:8088
+2019/12/10 15:49:9 info->server_node_name:node_one
+2019/12/10 15:49:9 info->client_count:1000
+2019/12/10 15:49:9 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:49:9 info->start ms_nt_iocp server...
+2019/12/10 15:49:9 info->init ms_nt_iocp finished
+2019/12/10 15:49:10 info->init socket success
+2019/12/10 15:49:10 info->listen socket binding success
+2019/12/10 15:49:10 info->init ms_init_listen_socket finished
+2019/12/10 15:49:10 info->ms_nt_iocp server has start
+2019/12/10 15:49:10 info->moon http service started
+2019/12/10 15:50:27 info->init log environment finished
+2019/12/10 15:50:27 info->starting server,please waiting...
+2019/12/10 15:50:27 info->load config
+2019/12/10 15:50:27 info->The read main configuration is as follows:
+2019/12/10 15:50:27 info->server_ip:127.0.0.1
+2019/12/10 15:50:27 info->server_port:8890
+2019/12/10 15:50:27 info->http_server_port:8088
+2019/12/10 15:50:27 info->server_node_name:node_one
+2019/12/10 15:50:27 info->client_count:1000
+2019/12/10 15:50:27 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:50:27 info->start ms_nt_iocp server...
+2019/12/10 15:50:27 info->init ms_nt_iocp finished
+2019/12/10 15:50:27 info->init socket success
+2019/12/10 15:50:27 info->listen socket binding success
+2019/12/10 15:50:27 info->init ms_init_listen_socket finished
+2019/12/10 15:50:27 info->ms_nt_iocp server has start
+2019/12/10 15:50:27 info->moon http service started
+2019/12/10 15:50:30 error->有客户端连入，关闭客户端
+2019/12/10 15:50:30 error->有客户端连入，关闭客户端
+2019/12/10 15:50:30 error->有客户端连入，关闭客户端
+2019/12/10 15:50:33 error->有客户端连入，关闭客户端
+2019/12/10 15:50:33 error->有客户端连入，关闭客户端
+2019/12/10 15:50:34 error->有客户端连入，关闭客户端
+2019/12/10 15:50:34 error->有客户端连入，关闭客户端
+2019/12/10 15:50:34 error->有客户端连入，关闭客户端
+2019/12/10 15:50:34 error->有客户端连入，关闭客户端
+2019/12/10 15:50:34 error->有客户端连入，关闭客户端
+2019/12/10 15:50:34 error->有客户端连入，关闭客户端
+2019/12/10 15:50:35 error->有客户端连入，关闭客户端
+2019/12/10 15:50:35 error->有客户端连入，关闭客户端
+2019/12/10 15:50:35 error->有客户端连入，关闭客户端
+2019/12/10 15:50:35 error->有客户端连入，关闭客户端
+2019/12/10 15:50:35 error->有客户端连入，关闭客户端
+2019/12/10 15:50:35 error->有客户端连入，关闭客户端
+2019/12/10 15:50:36 error->有客户端连入，关闭客户端
+2019/12/10 15:50:36 error->有客户端连入，关闭客户端
+2019/12/10 15:50:36 error->有客户端连入，关闭客户端
+2019/12/10 15:50:36 error->有客户端连入，关闭客户端
+2019/12/10 15:50:37 error->有客户端连入，关闭客户端
+2019/12/10 15:50:37 error->有客户端连入，关闭客户端
+2019/12/10 15:51:7 info->init log environment finished
+2019/12/10 15:51:7 info->starting server,please waiting...
+2019/12/10 15:51:7 info->load config
+2019/12/10 15:51:7 info->The read main configuration is as follows:
+2019/12/10 15:51:7 info->server_ip:127.0.0.1
+2019/12/10 15:51:7 info->server_port:8890
+2019/12/10 15:51:7 info->http_server_port:8088
+2019/12/10 15:51:7 info->server_node_name:node_one
+2019/12/10 15:51:7 info->client_count:1000
+2019/12/10 15:51:7 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:51:7 info->start ms_nt_iocp server...
+2019/12/10 15:51:7 info->init ms_nt_iocp finished
+2019/12/10 15:51:7 info->init socket success
+2019/12/10 15:51:7 info->listen socket binding success
+2019/12/10 15:51:7 info->init ms_init_listen_socket finished
+2019/12/10 15:51:7 info->ms_nt_iocp server has start
+2019/12/10 15:51:7 info->moon http service started
+2019/12/10 15:51:9 error->has client link,close client
+2019/12/10 15:51:9 error->has client link,close client
+2019/12/10 15:51:9 error->has client link,close client
+2019/12/10 15:51:11 error->has client link,close client
+2019/12/10 15:51:11 error->has client link,close client
+2019/12/10 15:51:11 error->has client link,close client
+2019/12/10 15:51:11 error->has client link,close client
+2019/12/10 15:51:12 error->has client link,close client
+2019/12/10 15:51:12 error->has client link,close client
+2019/12/10 15:51:12 error->has client link,close client
+2019/12/10 15:51:12 error->has client link,close client
+2019/12/10 15:51:12 error->has client link,close client
+2019/12/10 15:51:14 error->has client link,close client
+2019/12/10 15:51:14 error->has client link,close client
+2019/12/10 15:51:14 error->has client link,close client
+2019/12/10 15:51:14 error->has client link,close client
+2019/12/10 15:51:14 error->has client link,close client
+2019/12/10 15:51:14 error->has client link,close client
+2019/12/10 15:51:15 error->has client link,close client
+2019/12/10 15:51:15 error->has client link,close client
+2019/12/10 15:51:16 error->has client link,close client
+2019/12/10 15:51:16 error->has client link,close client
+2019/12/10 15:51:17 error->has client link,close client
+2019/12/10 15:51:17 error->has client link,close client
+2019/12/10 15:51:17 error->has client link,close client
+2019/12/10 15:51:17 error->has client link,close client
+2019/12/10 15:51:17 error->has client link,close client
+2019/12/10 15:51:17 error->has client link,close client
+2019/12/10 15:51:21 error->has client link,close client
+2019/12/10 15:51:21 error->has client link,close client
+2019/12/10 15:51:21 error->has client link,close client
+2019/12/10 15:51:21 error->has client link,close client
+2019/12/10 15:51:21 error->has client link,close client
+2019/12/10 15:51:24 error->has client link,close client
+2019/12/10 15:51:24 error->has client link,close client
+2019/12/10 15:51:24 error->has client link,close client
+2019/12/10 15:51:24 error->has client link,close client
+2019/12/10 15:51:25 error->has client link,close client
+2019/12/10 15:51:25 error->has client link,close client
+2019/12/10 15:51:25 error->has client link,close client
+2019/12/10 15:51:25 error->has client link,close client
+2019/12/10 15:51:25 error->has client link,close client
+2019/12/10 15:51:26 error->has client link,close client
+2019/12/10 15:51:31 error->has client link,close client
+2019/12/10 15:51:31 error->has client link,close client
+2019/12/10 15:51:32 error->has client link,close client
+2019/12/10 15:51:32 error->has client link,close client
+2019/12/10 15:51:32 error->has client link,close client
+2019/12/10 15:51:32 error->has client link,close client
+2019/12/10 15:51:33 error->has client link,close client
+2019/12/10 15:51:33 error->has client link,close client
+2019/12/10 15:51:33 error->has client link,close client
+2019/12/10 15:51:33 error->has client link,close client
+2019/12/10 15:51:34 error->has client link,close client
+2019/12/10 15:51:34 error->has client link,close client
+2019/12/10 15:51:34 error->has client link,close client
+2019/12/10 15:51:34 error->has client link,close client
+2019/12/10 15:51:34 error->has client link,close client
+2019/12/10 15:54:20 info->init log environment finished
+2019/12/10 15:54:20 info->starting server,please waiting...
+2019/12/10 15:54:20 info->load config
+2019/12/10 15:54:20 info->The read main configuration is as follows:
+2019/12/10 15:54:20 info->server_ip:127.0.0.1
+2019/12/10 15:54:20 info->server_port:8890
+2019/12/10 15:54:20 info->http_server_port:8088
+2019/12/10 15:54:20 info->server_node_name:node_one
+2019/12/10 15:54:20 info->client_count:1000
+2019/12/10 15:54:20 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/10 15:54:20 info->start ms_nt_iocp server...
+2019/12/10 15:54:20 info->init ms_nt_iocp finished
+2019/12/10 15:54:20 info->init socket success
+2019/12/10 15:54:20 info->listen socket binding success
+2019/12/10 15:54:20 info->init ms_init_listen_socket finished
+2019/12/10 15:54:20 info->ms_nt_iocp server has start
+2019/12/10 15:54:20 info->moon http service started
+2019/12/10 15:54:25 debug->current request url path:\
+2019/12/10 15:54:31 debug->current request url path:\
+2019/12/10 15:54:31 debug->current request url path:\
+2019/12/10 15:54:32 debug->current request url path:\
+2019/12/10 15:54:32 debug->current request url path:\
+2019/12/10 15:54:33 debug->current request url path:\
+2019/12/10 15:55:15 debug->current request url path:\
+2019/12/10 15:55:25 debug->http request is not get or head method.close ok.
+2019/12/10 15:55:25 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/10 15:55:25 debug->http request is not get or head method.close ok.
+2019/12/10 15:55:25 debug->current request url path:\favicon.ico
+2019/12/10 15:55:32 debug->current request url path:\
+2019/12/10 15:55:32 debug->current request url path:\
+2019/12/10 15:55:32 debug->current request url path:\
+2019/12/10 15:55:33 debug->current request url path:\
+2019/12/10 15:55:33 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/10 15:55:33 debug->current request url path:\favicon.ico
+2019/12/10 15:55:33 debug->current request url path:\favicon.ico
+2019/12/10 15:55:36 debug->current request url path:\
+2019/12/10 15:55:36 debug->current request url path:\
+2019/12/10 15:55:36 debug->current request url path:\
+2019/12/10 15:55:37 debug->current request url path:\
+2019/12/10 15:55:37 debug->current request url path:\
+2019/12/10 15:55:38 debug->current request url path:\
+2019/12/10 15:55:43 debug->current request url path:\
+2019/12/10 15:55:43 debug->current request url path:\
+2019/12/10 15:55:44 debug->current request url path:\
+2019/12/10 15:55:45 debug->current request url path:\
+2019/12/10 15:55:45 debug->current request url path:\
+2019/12/10 15:55:45 debug->current request url path:\
+2019/12/10 15:55:53 debug->current request url path:\
+2019/12/10 15:55:54 debug->current request url path:\
+2019/12/10 15:55:54 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/10 15:56:4 debug->http request is not get or head method.close ok.
+2019/12/10 15:56:4 debug->current request url path:\
+2019/12/10 15:56:4 debug->current request url path:\
+2019/12/10 15:56:4 debug->current request url path:\
+2019/12/10 15:56:5 debug->current request url path:\
+2019/12/10 15:56:5 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/10 15:56:6 debug->current request url path:\favicon.ico
+2019/12/11 9:44:27 info->init log environment finished
+2019/12/11 9:44:27 info->starting server,please waiting...
+2019/12/11 9:44:27 info->load config
+2019/12/11 9:44:27 info->The read main configuration is as follows:
+2019/12/11 9:44:27 info->server_ip:127.0.0.1
+2019/12/11 9:44:27 info->server_port:8890
+2019/12/11 9:44:27 info->http_server_port:8088
+2019/12/11 9:44:27 info->server_node_name:node_one
+2019/12/11 9:44:27 info->client_count:1000
+2019/12/11 9:44:27 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 9:44:27 info->start ms_nt_iocp server...
+2019/12/11 9:44:27 info->init ms_nt_iocp finished
+2019/12/11 9:44:27 info->init socket success
+2019/12/11 9:44:27 info->listen socket binding success
+2019/12/11 9:44:27 info->init ms_init_listen_socket finished
+2019/12/11 9:44:27 info->ms_nt_iocp server has start
+2019/12/11 9:44:27 info->moon http service started
+2019/12/11 9:44:33 debug->current request url path:\
+2019/12/11 9:44:33 debug->current request url path:\
+2019/12/11 9:44:33 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/11 9:44:33 debug->current request url path:\favicon.ico
+2019/12/11 9:45:5 debug->current request url path:\
+2019/12/11 9:45:5 debug->current request url path:\
+2019/12/11 9:45:5 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/11 9:45:5 debug->current request url path:\favicon.ico
+2019/12/11 9:45:6 debug->current request url path:\
+2019/12/11 9:45:6 debug->current request url path:\
+2019/12/11 9:45:6 debug->current request url path:\
+2019/12/11 9:45:7 debug->current request url path:\
+2019/12/11 9:45:8 debug->current request url path:\
+2019/12/11 9:45:8 debug->current request url path:\
+2019/12/11 9:45:8 debug->current request url path:\
+2019/12/11 9:45:8 debug->current request url path:\
+2019/12/11 9:45:9 debug->current request url path:\
+2019/12/11 9:45:10 debug->http request is not get or head method.close ok.
+2019/12/11 9:45:10 debug->current request url path:\
+2019/12/11 9:45:10 debug->current request url path:\
+2019/12/11 9:45:11 debug->current request url path:\
+2019/12/11 9:45:14 debug->current request url path:\
+2019/12/11 9:45:14 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/11 9:45:15 debug->current request url path:\favicon.ico
+2019/12/11 10:28:50 debug->http request is not get or head method.close ok.
+2019/12/11 10:28:50 debug->http request is not get or head method.close ok.
+2019/12/11 10:28:50 debug->http request is not get or head method.close ok.
+2019/12/11 10:28:57 debug->current request url path:\
+2019/12/11 10:28:57 debug->current request url path:\
+2019/12/11 10:28:58 debug->current request url path:\
+2019/12/11 10:28:58 debug->current request url path:\
+2019/12/11 10:29:3 debug->current request url path:\
+2019/12/11 10:29:3 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/11 10:29:3 debug->current request url path:\favicon.ico
+2019/12/11 10:29:3 debug->current request url path:\favicon.ico
+2019/12/11 10:29:58 debug->http request is not get or head method.close ok.
+2019/12/11 14:22:7 debug->new connect is comming
+2019/12/11 14:23:6 info->init log environment finished
+2019/12/11 14:23:6 info->starting server,please waiting...
+2019/12/11 14:23:6 info->load config
+2019/12/11 14:23:6 info->The read main configuration is as follows:
+2019/12/11 14:23:6 info->server_ip:127.0.0.1
+2019/12/11 14:23:6 info->server_port:8890
+2019/12/11 14:23:6 info->http_server_port:8088
+2019/12/11 14:23:6 info->server_node_name:node_one
+2019/12/11 14:23:6 info->client_count:1000
+2019/12/11 14:23:6 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:23:6 info->start ms_nt_iocp server...
+2019/12/11 14:23:6 info->init ms_nt_iocp finished
+2019/12/11 14:23:6 info->init socket success
+2019/12/11 14:23:6 info->listen socket binding success
+2019/12/11 14:23:6 info->init ms_init_listen_socket finished
+2019/12/11 14:23:6 info->ms_nt_iocp server has start
+2019/12/11 14:23:6 info->moon http service started
+2019/12/11 14:23:37 debug->new connect is comming
+2019/12/11 14:26:53 debug->new connect is comming
+2019/12/11 14:40:51 info->init log environment finished
+2019/12/11 14:40:51 info->starting server,please waiting...
+2019/12/11 14:40:51 info->load config
+2019/12/11 14:40:51 info->The read main configuration is as follows:
+2019/12/11 14:40:51 info->server_ip:127.0.0.1
+2019/12/11 14:40:51 info->server_port:8890
+2019/12/11 14:40:51 info->http_server_port:8088
+2019/12/11 14:40:51 info->server_node_name:node_one
+2019/12/11 14:40:51 info->client_count:1000
+2019/12/11 14:40:51 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:40:51 info->start ms_nt_iocp server...
+2019/12/11 14:40:51 info->init ms_nt_iocp finished
+2019/12/11 14:40:51 info->init socket success
+2019/12/11 14:40:51 info->listen socket binding success
+2019/12/11 14:40:51 info->init ms_init_listen_socket finished
+2019/12/11 14:40:51 info->ms_nt_iocp server has start
+2019/12/11 14:40:51 info->moon http service started
+2019/12/11 14:41:30 debug->new connect is comming
+2019/12/11 14:42:5 info->init log environment finished
+2019/12/11 14:42:5 info->starting server,please waiting...
+2019/12/11 14:42:5 info->load config
+2019/12/11 14:42:5 info->The read main configuration is as follows:
+2019/12/11 14:42:5 info->server_ip:127.0.0.1
+2019/12/11 14:42:5 info->server_port:8890
+2019/12/11 14:42:5 info->http_server_port:8088
+2019/12/11 14:42:5 info->server_node_name:node_one
+2019/12/11 14:42:5 info->client_count:1000
+2019/12/11 14:42:5 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:42:5 info->start ms_nt_iocp server...
+2019/12/11 14:42:5 info->init ms_nt_iocp finished
+2019/12/11 14:42:5 info->init socket success
+2019/12/11 14:42:5 info->listen socket binding success
+2019/12/11 14:42:5 info->init ms_init_listen_socket finished
+2019/12/11 14:42:5 info->ms_nt_iocp server has start
+2019/12/11 14:42:5 info->moon http service started
+2019/12/11 14:42:10 debug->new connect is comming
+2019/12/11 14:43:3 info->init log environment finished
+2019/12/11 14:43:3 info->starting server,please waiting...
+2019/12/11 14:43:3 info->load config
+2019/12/11 14:43:3 info->The read main configuration is as follows:
+2019/12/11 14:43:3 info->server_ip:127.0.0.1
+2019/12/11 14:43:3 info->server_port:8890
+2019/12/11 14:43:3 info->http_server_port:8088
+2019/12/11 14:43:3 info->server_node_name:node_one
+2019/12/11 14:43:3 info->client_count:1000
+2019/12/11 14:43:3 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:43:3 info->start ms_nt_iocp server...
+2019/12/11 14:43:4 info->init ms_nt_iocp finished
+2019/12/11 14:43:4 info->init socket success
+2019/12/11 14:43:4 info->listen socket binding success
+2019/12/11 14:43:4 info->init ms_init_listen_socket finished
+2019/12/11 14:43:4 info->ms_nt_iocp server has start
+2019/12/11 14:43:4 info->moon http service started
+2019/12/11 14:43:8 debug->new connect is comming
+2019/12/11 14:44:15 info->init log environment finished
+2019/12/11 14:44:15 info->starting server,please waiting...
+2019/12/11 14:44:15 info->load config
+2019/12/11 14:44:15 info->The read main configuration is as follows:
+2019/12/11 14:44:15 info->server_ip:127.0.0.1
+2019/12/11 14:44:15 info->server_port:8890
+2019/12/11 14:44:15 info->http_server_port:8088
+2019/12/11 14:44:15 info->server_node_name:node_one
+2019/12/11 14:44:15 info->client_count:1000
+2019/12/11 14:44:15 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:44:15 info->start ms_nt_iocp server...
+2019/12/11 14:44:15 info->init ms_nt_iocp finished
+2019/12/11 14:44:15 info->init socket success
+2019/12/11 14:44:15 info->listen socket binding success
+2019/12/11 14:44:15 info->init ms_init_listen_socket finished
+2019/12/11 14:44:15 info->ms_nt_iocp server has start
+2019/12/11 14:44:15 info->moon http service started
+2019/12/11 14:44:22 debug->new connect is comming
+2019/12/11 14:45:24 info->init log environment finished
+2019/12/11 14:45:24 info->starting server,please waiting...
+2019/12/11 14:45:24 info->load config
+2019/12/11 14:45:24 info->The read main configuration is as follows:
+2019/12/11 14:45:24 info->server_ip:127.0.0.1
+2019/12/11 14:45:24 info->server_port:8890
+2019/12/11 14:45:24 info->http_server_port:8088
+2019/12/11 14:45:24 info->server_node_name:node_one
+2019/12/11 14:45:24 info->client_count:1000
+2019/12/11 14:45:24 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:45:24 info->start ms_nt_iocp server...
+2019/12/11 14:45:24 info->init ms_nt_iocp finished
+2019/12/11 14:45:24 info->init socket success
+2019/12/11 14:45:24 info->listen socket binding success
+2019/12/11 14:45:24 info->init ms_init_listen_socket finished
+2019/12/11 14:45:24 info->ms_nt_iocp server has start
+2019/12/11 14:45:24 info->moon http service started
+2019/12/11 14:45:28 debug->new connect is comming
+2019/12/11 14:46:49 info->init log environment finished
+2019/12/11 14:46:49 info->starting server,please waiting...
+2019/12/11 14:46:49 info->load config
+2019/12/11 14:46:49 info->The read main configuration is as follows:
+2019/12/11 14:46:49 info->server_ip:127.0.0.1
+2019/12/11 14:46:49 info->server_port:8890
+2019/12/11 14:46:49 info->http_server_port:8088
+2019/12/11 14:46:49 info->server_node_name:node_one
+2019/12/11 14:46:49 info->client_count:1000
+2019/12/11 14:46:49 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:46:49 info->start ms_nt_iocp server...
+2019/12/11 14:46:49 info->init ms_nt_iocp finished
+2019/12/11 14:46:49 info->init socket success
+2019/12/11 14:46:49 info->listen socket binding success
+2019/12/11 14:46:49 info->init ms_init_listen_socket finished
+2019/12/11 14:46:49 info->ms_nt_iocp server has start
+2019/12/11 14:46:49 info->moon http service started
+2019/12/11 14:46:54 debug->new connect is comming
+2019/12/11 14:48:2 debug->new connect is comming
+2019/12/11 14:48:15 debug->new connect is comming
+2019/12/11 14:51:22 debug->new connect is comming
+2019/12/11 14:53:38 info->init log environment finished
+2019/12/11 14:53:38 info->starting server,please waiting...
+2019/12/11 14:53:38 info->load config
+2019/12/11 14:53:38 info->The read main configuration is as follows:
+2019/12/11 14:53:38 info->server_ip:127.0.0.1
+2019/12/11 14:53:38 info->server_port:8890
+2019/12/11 14:53:38 info->http_server_port:8088
+2019/12/11 14:53:38 info->server_node_name:node_one
+2019/12/11 14:53:38 info->client_count:1000
+2019/12/11 14:53:38 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:53:38 info->start ms_nt_iocp server...
+2019/12/11 14:53:38 info->init ms_nt_iocp finished
+2019/12/11 14:53:38 info->init socket success
+2019/12/11 14:53:38 info->listen socket binding success
+2019/12/11 14:53:38 info->init ms_init_listen_socket finished
+2019/12/11 14:53:38 info->ms_nt_iocp server has start
+2019/12/11 14:53:38 info->moon http service started
+2019/12/11 14:53:43 debug->new connect is comming
+2019/12/11 14:53:56 debug->new connect is comming
+2019/12/11 14:57:4 info->init log environment finished
+2019/12/11 14:57:4 info->starting server,please waiting...
+2019/12/11 14:57:4 info->load config
+2019/12/11 14:57:4 info->The read main configuration is as follows:
+2019/12/11 14:57:4 info->server_ip:127.0.0.1
+2019/12/11 14:57:4 info->server_port:8890
+2019/12/11 14:57:4 info->http_server_port:8088
+2019/12/11 14:57:4 info->server_node_name:node_one
+2019/12/11 14:57:4 info->client_count:1000
+2019/12/11 14:57:4 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 14:57:4 info->start ms_nt_iocp server...
+2019/12/11 14:57:4 info->init ms_nt_iocp finished
+2019/12/11 14:57:4 info->init socket success
+2019/12/11 14:57:4 info->listen socket binding success
+2019/12/11 14:57:4 info->init ms_init_listen_socket finished
+2019/12/11 14:57:4 info->ms_nt_iocp server has start
+2019/12/11 14:57:4 info->moon http service started
+2019/12/11 14:57:8 debug->new connect is comming
+2019/12/11 15:55:39 info->init log environment finished
+2019/12/11 15:55:39 info->starting server,please waiting...
+2019/12/11 15:55:39 info->load config
+2019/12/11 15:55:39 info->The read main configuration is as follows:
+2019/12/11 15:55:39 info->server_ip:127.0.0.1
+2019/12/11 15:55:39 info->server_port:8890
+2019/12/11 15:55:39 info->http_server_port:8088
+2019/12/11 15:55:39 info->server_node_name:node_one
+2019/12/11 15:55:39 info->client_count:1000
+2019/12/11 15:55:39 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 15:55:39 info->start ms_nt_iocp server...
+2019/12/11 15:55:39 info->init ms_nt_iocp finished
+2019/12/11 15:55:39 info->init socket success
+2019/12/11 15:55:39 info->listen socket binding success
+2019/12/11 15:55:39 info->init ms_init_listen_socket finished
+2019/12/11 15:55:39 info->ms_nt_iocp server has start
+2019/12/11 15:55:39 info->moon http service started
+2019/12/11 15:55:43 debug->new connect is comming
+2019/12/11 16:22:9 info->init log environment finished
+2019/12/11 16:22:9 info->starting server,please waiting...
+2019/12/11 16:22:9 info->load config
+2019/12/11 16:22:9 info->The read main configuration is as follows:
+2019/12/11 16:22:9 info->server_ip:127.0.0.1
+2019/12/11 16:22:9 info->server_port:8890
+2019/12/11 16:22:9 info->http_server_port:8088
+2019/12/11 16:22:9 info->server_node_name:node_one
+2019/12/11 16:22:9 info->client_count:1000
+2019/12/11 16:22:9 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 16:22:9 info->start ms_nt_iocp server...
+2019/12/11 16:22:9 info->init ms_nt_iocp finished
+2019/12/11 16:22:9 info->init socket success
+2019/12/11 16:22:9 info->listen socket binding success
+2019/12/11 16:22:9 info->init ms_init_listen_socket finished
+2019/12/11 16:22:9 info->ms_nt_iocp server has start
+2019/12/11 16:22:9 info->moon http service started
+2019/12/11 16:22:11 debug->new connect is comming
+2019/12/11 16:24:39 debug->new connect is comming
+2019/12/11 16:30:50 info->init log environment finished
+2019/12/11 16:30:50 info->starting server,please waiting...
+2019/12/11 16:30:50 info->load config
+2019/12/11 16:30:50 info->The read main configuration is as follows:
+2019/12/11 16:30:50 info->server_ip:127.0.0.1
+2019/12/11 16:30:50 info->server_port:8890
+2019/12/11 16:30:50 info->http_server_port:8088
+2019/12/11 16:30:50 info->server_node_name:node_one
+2019/12/11 16:30:50 info->client_count:1000
+2019/12/11 16:30:50 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 16:30:50 info->start ms_nt_iocp server...
+2019/12/11 16:30:50 info->init ms_nt_iocp finished
+2019/12/11 16:30:50 info->init socket success
+2019/12/11 16:30:50 info->listen socket binding success
+2019/12/11 16:30:50 info->init ms_init_listen_socket finished
+2019/12/11 16:30:50 info->ms_nt_iocp server has start
+2019/12/11 16:30:50 info->moon http service started
+2019/12/11 16:31:1 debug->new connect is comming
+2019/12/11 16:31:33 info->init log environment finished
+2019/12/11 16:31:33 info->starting server,please waiting...
+2019/12/11 16:31:33 info->load config
+2019/12/11 16:31:33 info->The read main configuration is as follows:
+2019/12/11 16:31:33 info->server_ip:127.0.0.1
+2019/12/11 16:31:33 info->server_port:8890
+2019/12/11 16:31:33 info->http_server_port:8088
+2019/12/11 16:31:33 info->server_node_name:node_one
+2019/12/11 16:31:33 info->client_count:1000
+2019/12/11 16:31:33 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 16:31:33 info->start ms_nt_iocp server...
+2019/12/11 16:31:33 info->init ms_nt_iocp finished
+2019/12/11 16:31:33 info->init socket success
+2019/12/11 16:31:33 info->listen socket binding success
+2019/12/11 16:31:33 info->init ms_init_listen_socket finished
+2019/12/11 16:31:33 info->ms_nt_iocp server has start
+2019/12/11 16:31:33 info->moon http service started
+2019/12/11 16:31:38 debug->new connect is comming
+2019/12/11 17:26:0 info->init log environment finished
+2019/12/11 17:26:0 info->starting server,please waiting...
+2019/12/11 17:26:0 info->load config
+2019/12/11 17:26:0 info->The read main configuration is as follows:
+2019/12/11 17:26:0 info->server_ip:127.0.0.1
+2019/12/11 17:26:0 info->server_port:8890
+2019/12/11 17:26:0 info->http_server_port:8088
+2019/12/11 17:26:0 info->server_node_name:node_one
+2019/12/11 17:26:0 info->client_count:1000
+2019/12/11 17:26:0 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:26:0 info->start ms_nt_iocp server...
+2019/12/11 17:26:0 info->init ms_nt_iocp finished
+2019/12/11 17:26:0 info->init socket success
+2019/12/11 17:26:0 info->listen socket binding success
+2019/12/11 17:26:0 info->init ms_init_listen_socket finished
+2019/12/11 17:26:0 info->ms_nt_iocp server has start
+2019/12/11 17:26:0 info->moon http service started
+2019/12/11 17:26:1 debug->new connect is comming
+2019/12/11 17:26:21 info->init log environment finished
+2019/12/11 17:26:21 info->starting server,please waiting...
+2019/12/11 17:26:21 info->load config
+2019/12/11 17:26:21 info->The read main configuration is as follows:
+2019/12/11 17:26:21 info->server_ip:127.0.0.1
+2019/12/11 17:26:21 info->server_port:8890
+2019/12/11 17:26:21 info->http_server_port:8088
+2019/12/11 17:26:21 info->server_node_name:node_one
+2019/12/11 17:26:21 info->client_count:1000
+2019/12/11 17:26:21 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:26:21 info->start ms_nt_iocp server...
+2019/12/11 17:26:21 info->init ms_nt_iocp finished
+2019/12/11 17:26:21 info->init socket success
+2019/12/11 17:26:21 info->listen socket binding success
+2019/12/11 17:26:21 info->init ms_init_listen_socket finished
+2019/12/11 17:26:21 info->ms_nt_iocp server has start
+2019/12/11 17:26:21 info->moon http service started
+2019/12/11 17:26:26 debug->new connect is comming
+2019/12/11 17:27:16 info->init log environment finished
+2019/12/11 17:27:16 info->starting server,please waiting...
+2019/12/11 17:27:16 info->load config
+2019/12/11 17:27:16 info->The read main configuration is as follows:
+2019/12/11 17:27:16 info->server_ip:127.0.0.1
+2019/12/11 17:27:16 info->server_port:8890
+2019/12/11 17:27:16 info->http_server_port:8088
+2019/12/11 17:27:16 info->server_node_name:node_one
+2019/12/11 17:27:16 info->client_count:1000
+2019/12/11 17:27:16 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:27:16 info->start ms_nt_iocp server...
+2019/12/11 17:27:16 info->init ms_nt_iocp finished
+2019/12/11 17:27:16 info->init socket success
+2019/12/11 17:27:16 info->listen socket binding success
+2019/12/11 17:27:16 info->init ms_init_listen_socket finished
+2019/12/11 17:27:16 info->ms_nt_iocp server has start
+2019/12/11 17:27:16 info->moon http service started
+2019/12/11 17:27:20 debug->new connect is comming
+2019/12/11 17:28:14 info->init log environment finished
+2019/12/11 17:28:14 info->starting server,please waiting...
+2019/12/11 17:28:14 info->load config
+2019/12/11 17:28:14 info->The read main configuration is as follows:
+2019/12/11 17:28:14 info->server_ip:127.0.0.1
+2019/12/11 17:28:14 info->server_port:8890
+2019/12/11 17:28:14 info->http_server_port:8088
+2019/12/11 17:28:14 info->server_node_name:node_one
+2019/12/11 17:28:14 info->client_count:1000
+2019/12/11 17:28:14 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:28:14 info->start ms_nt_iocp server...
+2019/12/11 17:28:14 info->init ms_nt_iocp finished
+2019/12/11 17:28:14 info->init socket success
+2019/12/11 17:28:14 info->listen socket binding success
+2019/12/11 17:28:14 info->init ms_init_listen_socket finished
+2019/12/11 17:28:14 info->ms_nt_iocp server has start
+2019/12/11 17:28:14 info->moon http service started
+2019/12/11 17:28:24 debug->new connect is comming
+2019/12/11 17:33:27 info->init log environment finished
+2019/12/11 17:33:27 info->starting server,please waiting...
+2019/12/11 17:33:27 info->load config
+2019/12/11 17:33:27 info->The read main configuration is as follows:
+2019/12/11 17:33:27 info->server_ip:127.0.0.1
+2019/12/11 17:33:27 info->server_port:8890
+2019/12/11 17:33:27 info->http_server_port:8088
+2019/12/11 17:33:27 info->server_node_name:node_one
+2019/12/11 17:33:27 info->client_count:1000
+2019/12/11 17:33:27 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:33:27 info->start ms_nt_iocp server...
+2019/12/11 17:33:27 info->init ms_nt_iocp finished
+2019/12/11 17:33:27 info->init socket success
+2019/12/11 17:33:27 info->listen socket binding success
+2019/12/11 17:33:27 info->init ms_init_listen_socket finished
+2019/12/11 17:33:27 info->ms_nt_iocp server has start
+2019/12/11 17:33:27 info->moon http service started
+2019/12/11 17:33:36 debug->new connect is comming
+2019/12/11 17:33:48 info->init log environment finished
+2019/12/11 17:33:48 info->starting server,please waiting...
+2019/12/11 17:33:48 info->load config
+2019/12/11 17:33:48 info->The read main configuration is as follows:
+2019/12/11 17:33:48 info->server_ip:127.0.0.1
+2019/12/11 17:33:48 info->server_port:8890
+2019/12/11 17:33:48 info->http_server_port:8088
+2019/12/11 17:33:48 info->server_node_name:node_one
+2019/12/11 17:33:48 info->client_count:1000
+2019/12/11 17:33:48 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:33:48 info->start ms_nt_iocp server...
+2019/12/11 17:33:48 info->init ms_nt_iocp finished
+2019/12/11 17:33:48 info->init socket success
+2019/12/11 17:33:48 info->listen socket binding success
+2019/12/11 17:33:48 info->init ms_init_listen_socket finished
+2019/12/11 17:33:48 info->ms_nt_iocp server has start
+2019/12/11 17:33:48 info->moon http service started
+2019/12/11 17:33:51 debug->new connect is comming
+2019/12/11 17:35:14 info->init log environment finished
+2019/12/11 17:35:14 info->starting server,please waiting...
+2019/12/11 17:35:14 info->load config
+2019/12/11 17:35:14 info->The read main configuration is as follows:
+2019/12/11 17:35:14 info->server_ip:127.0.0.1
+2019/12/11 17:35:14 info->server_port:8890
+2019/12/11 17:35:14 info->http_server_port:8088
+2019/12/11 17:35:14 info->server_node_name:node_one
+2019/12/11 17:35:14 info->client_count:1000
+2019/12/11 17:35:14 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:35:14 info->start ms_nt_iocp server...
+2019/12/11 17:35:14 info->init ms_nt_iocp finished
+2019/12/11 17:35:14 info->init socket success
+2019/12/11 17:35:14 info->listen socket binding success
+2019/12/11 17:35:14 info->init ms_init_listen_socket finished
+2019/12/11 17:35:14 info->ms_nt_iocp server has start
+2019/12/11 17:35:14 info->moon http service started
+2019/12/11 17:59:34 debug->new connect is comming
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->the worker thread exit
+2019/12/11 17:59:39 info->alive thread exit
+2019/12/11 17:59:53 info->init log environment finished
+2019/12/11 17:59:53 info->starting server,please waiting...
+2019/12/11 17:59:53 info->load config
+2019/12/11 17:59:53 info->The read main configuration is as follows:
+2019/12/11 17:59:53 info->server_ip:127.0.0.1
+2019/12/11 17:59:53 info->server_port:8890
+2019/12/11 17:59:53 info->http_server_port:8088
+2019/12/11 17:59:53 info->server_node_name:node_one
+2019/12/11 17:59:53 info->client_count:1000
+2019/12/11 17:59:53 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 17:59:53 info->start ms_nt_iocp server...
+2019/12/11 17:59:53 info->init ms_nt_iocp finished
+2019/12/11 17:59:53 info->init socket success
+2019/12/11 17:59:53 info->listen socket binding success
+2019/12/11 17:59:53 info->init ms_init_listen_socket finished
+2019/12/11 17:59:53 info->ms_nt_iocp server has start
+2019/12/11 17:59:53 info->moon http service started
+2019/12/11 17:59:56 debug->new connect is comming
+2019/12/11 18:0:0 info->start send message:
+2019/12/11 18:0:0 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/11 18:0:27 info->init log environment finished
+2019/12/11 18:0:27 info->starting server,please waiting...
+2019/12/11 18:0:27 info->load config
+2019/12/11 18:0:27 info->The read main configuration is as follows:
+2019/12/11 18:0:27 info->server_ip:127.0.0.1
+2019/12/11 18:0:27 info->server_port:8890
+2019/12/11 18:0:27 info->http_server_port:8088
+2019/12/11 18:0:27 info->server_node_name:node_one
+2019/12/11 18:0:27 info->client_count:1000
+2019/12/11 18:0:27 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 18:0:27 info->start ms_nt_iocp server...
+2019/12/11 18:0:27 info->init ms_nt_iocp finished
+2019/12/11 18:0:27 info->init socket success
+2019/12/11 18:0:27 info->listen socket binding success
+2019/12/11 18:0:27 info->init ms_init_listen_socket finished
+2019/12/11 18:0:27 info->ms_nt_iocp server has start
+2019/12/11 18:0:27 info->moon http service started
+2019/12/11 18:0:41 debug->new connect is comming
+2019/12/11 18:1:3 info->start send message:
+2019/12/11 18:1:3 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/11 18:2:8 debug->new connect is comming
+2019/12/11 18:2:12 info->start send message:
+2019/12/11 18:2:12 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/11 18:3:1 info->init log environment finished
+2019/12/11 18:3:1 info->starting server,please waiting...
+2019/12/11 18:3:1 info->load config
+2019/12/11 18:3:1 info->The read main configuration is as follows:
+2019/12/11 18:3:1 info->server_ip:127.0.0.1
+2019/12/11 18:3:1 info->server_port:8890
+2019/12/11 18:3:1 info->http_server_port:8088
+2019/12/11 18:3:1 info->server_node_name:node_one
+2019/12/11 18:3:1 info->client_count:1000
+2019/12/11 18:3:1 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 18:3:1 info->start ms_nt_iocp server...
+2019/12/11 18:3:1 info->init ms_nt_iocp finished
+2019/12/11 18:3:1 info->init socket success
+2019/12/11 18:3:1 info->listen socket binding success
+2019/12/11 18:3:1 info->init ms_init_listen_socket finished
+2019/12/11 18:3:1 info->ms_nt_iocp server has start
+2019/12/11 18:3:1 info->moon http service started
+2019/12/11 18:3:24 debug->new connect is comming
+2019/12/11 18:3:28 info->start send message:
+2019/12/11 18:3:28 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/11 18:3:57 info->init log environment finished
+2019/12/11 18:3:57 info->starting server,please waiting...
+2019/12/11 18:3:57 info->load config
+2019/12/11 18:3:57 info->The read main configuration is as follows:
+2019/12/11 18:3:57 info->server_ip:127.0.0.1
+2019/12/11 18:3:57 info->server_port:8890
+2019/12/11 18:3:57 info->http_server_port:8088
+2019/12/11 18:3:57 info->server_node_name:node_one
+2019/12/11 18:3:57 info->client_count:1000
+2019/12/11 18:3:57 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 18:3:57 info->start ms_nt_iocp server...
+2019/12/11 18:3:57 info->init ms_nt_iocp finished
+2019/12/11 18:3:57 info->init socket success
+2019/12/11 18:3:57 info->listen socket binding success
+2019/12/11 18:3:57 info->init ms_init_listen_socket finished
+2019/12/11 18:3:57 info->ms_nt_iocp server has start
+2019/12/11 18:3:57 info->moon http service started
+2019/12/11 18:4:3 debug->new connect is comming
+2019/12/11 18:4:7 info->start send message:
+2019/12/11 18:4:7 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/11 18:4:47 info->init log environment finished
+2019/12/11 18:4:47 info->starting server,please waiting...
+2019/12/11 18:4:47 info->load config
+2019/12/11 18:4:47 info->The read main configuration is as follows:
+2019/12/11 18:4:47 info->server_ip:127.0.0.1
+2019/12/11 18:4:47 info->server_port:8890
+2019/12/11 18:4:47 info->http_server_port:8088
+2019/12/11 18:4:47 info->server_node_name:node_one
+2019/12/11 18:4:47 info->client_count:1000
+2019/12/11 18:4:47 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 18:4:47 info->start ms_nt_iocp server...
+2019/12/11 18:4:47 info->init ms_nt_iocp finished
+2019/12/11 18:4:47 info->init socket success
+2019/12/11 18:4:47 info->listen socket binding success
+2019/12/11 18:4:47 info->init ms_init_listen_socket finished
+2019/12/11 18:4:47 info->ms_nt_iocp server has start
+2019/12/11 18:4:47 info->moon http service started
+2019/12/11 18:4:52 debug->new connect is comming
+2019/12/11 18:4:57 info->start send message:
+2019/12/11 18:4:57 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/11 18:5:23 info->init log environment finished
+2019/12/11 18:5:23 info->starting server,please waiting...
+2019/12/11 18:5:23 info->load config
+2019/12/11 18:5:23 info->The read main configuration is as follows:
+2019/12/11 18:5:23 info->server_ip:127.0.0.1
+2019/12/11 18:5:23 info->server_port:8890
+2019/12/11 18:5:23 info->http_server_port:8088
+2019/12/11 18:5:23 info->server_node_name:node_one
+2019/12/11 18:5:23 info->client_count:1000
+2019/12/11 18:5:23 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/11 18:5:23 info->start ms_nt_iocp server...
+2019/12/11 18:5:23 info->init ms_nt_iocp finished
+2019/12/11 18:5:23 info->init socket success
+2019/12/11 18:5:23 info->listen socket binding success
+2019/12/11 18:5:23 info->init ms_init_listen_socket finished
+2019/12/11 18:5:23 info->ms_nt_iocp server has start
+2019/12/11 18:5:23 info->moon http service started
+2019/12/11 18:5:41 debug->new connect is comming
+2019/12/11 18:6:7 info->start send message:
+2019/12/11 18:6:7 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}

@@ -289,6 +289,7 @@ extern "C" {
 			return;
 		}
 		i = 0; j = 0;
+		
 		// 取出第一个单词，一般为HEAD、GET、POST
 		while (!(' ' == recv_buf[j]) && (i < sizeof(method) - 1))
 		{
@@ -421,7 +422,8 @@ extern "C" {
 			//CreateThread(NULL,0,SimpleHTTPServer,(LPVOID)sAccept,0,&ThreadID);
 			//单次工作提交
 			context.m_socket = sAccept;
-			TrySubmitThreadpoolCallback(moon_win32_http_request,&context,&pcbe);
+			//TrySubmitThreadpoolCallback(moon_win32_http_request,&context,&pcbe);
+			SubmitThreadpoolWork(CreateThreadpoolWork(moon_win32_http_request, &context,&pcbe));
 		}
 		//清理线程池的环境变量
 		DestroyThreadpoolEnvironment(&pcbe);

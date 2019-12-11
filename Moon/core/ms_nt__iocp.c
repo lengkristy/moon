@@ -64,6 +64,15 @@ void client_login_handle(PMS_IO_CONTEXT pIoContext,Message* p_msg)
 	{
 	case SYS_SUB_PROTOCOL_LOGIN_FIRST://client first login
 		{
+			if(p_msg->p_message_body->p_content == NULL)
+			{
+				memset(ret_json_data,0,512);
+				memset(utf8_ret_json_data,0,512);
+				create_client_login_failed_msg("client login id is not null",ret_json_data);
+				moon_ms_windows_unicode_to_utf8(ret_json_data,utf8_ret_json_data);
+				ms_iocp_send(pIoContext->m_sockAccept,utf8_ret_json_data,strlen(utf8_ret_json_data));
+				return;
+			}
 			parse_login_id(p_msg->p_message_body->p_content,client_login_id);
 			if (stringIsEmpty(client_login_id))
 			{
@@ -280,7 +289,7 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 	//Parsing the first message from the client.
 	len = moon_ms_windows_utf8_to_unicode(pIoContext->m_szBuffer,clientMsg);//将收到的utf-8的字节序转化为unicode
 	//parse message
-	p_msg = parse_msg(clientMsg);
+	p_msg = parse_msg_head(clientMsg);
 	//the first message is about client running environment,if not this,the server will refuse
 	if (p_msg == NULL)
 	{
@@ -289,15 +298,7 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 		free_msg(p_msg);
 		return false;
 	}
-	if (!p_msg->p_message_head->main_msg_num == SYS_MAIN_PROTOCOL_CONNECT_INIT) //not environment message
-	{
-		//close client socket
-		closesocket(pIoContext->m_sockAccept);
-		free_msg(p_msg);
-		return false;
-	}
-	//parse client running environment
-	p_client_env = parse_client_running_environment(p_msg->p_message_body->p_content);
+	p_client_env = parse_client_running_environment(clientMsg);
 	if (p_client_env = NULL)
 	{
 		//close client socket
@@ -378,7 +379,7 @@ bool doRecv(PMS_IO_CONTEXT pIoContext)
 	}
 	memset(client_msg,0,size);
 	len = moon_ms_windows_utf8_to_unicode(p_utf8_msg,client_msg);//将收到的utf-8的字节序转化为moon_char
-	p_msg = parse_msg(client_msg);
+	p_msg = parse_msg_head(client_msg);
 	if (p_msg == NULL)
 	{
 		postRecv(pIoContext);

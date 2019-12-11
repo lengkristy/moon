@@ -22,6 +22,7 @@ typedef struct _MessageHead{
 	moon_char msg_id[50];/*message id,represents the unique identity of the message throughout the message chain*/
 	int main_msg_num;/*main message number*/
 	int sub_msg_num;/*sub message number*/
+	int msg_size;/*the message size*/
 }MessageHead;
 
 //define message body

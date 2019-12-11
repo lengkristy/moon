@@ -13,9 +13,9 @@ extern "C" {
 
 //define client environment struct
 typedef struct _ClientEnvironment{
-	char client_sdk_version[10];/*client sdk version*/
-	char client_platform[10];/*client platform info,windows/linux/android/ios*/
-	char opra_system_version[10];/*system version*/
+	char client_sdk_version[20];/*client sdk version*/
+	char client_platform[20];/*client platform info,windows/linux/android/ios*/
+	char opra_system_version[50];/*system version*/
 	char connect_sdk_token[100];/*sdk token*/
 }ClientEnvironment;
 
