@@ -2,6 +2,7 @@
 #include "../collection/array_list.h"
 #include <malloc.h>
 #include <string.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

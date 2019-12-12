@@ -365,7 +365,9 @@ bool doRecv(PMS_IO_CONTEXT pIoContext)
 	// Then start delivering the next WSARecv request
 	
 	//recv message
-	WSABUF buf;
+
+	
+	/*WSABUF buf;
 	char *p_utf8_msg = pIoContext->m_wsaBuf.buf;
 	moon_char* client_msg = NULL;
 	int len = 0;
@@ -377,7 +379,6 @@ bool doRecv(PMS_IO_CONTEXT pIoContext)
 	{
 		return postRecv( pIoContext );
 	}
-	memset(client_msg,0,size);
 	len = moon_ms_windows_utf8_to_unicode(p_utf8_msg,client_msg);//将收到的utf-8的字节序转化为moon_char
 	p_msg = parse_msg_head(client_msg);
 	if (p_msg == NULL)
@@ -389,8 +390,9 @@ bool doRecv(PMS_IO_CONTEXT pIoContext)
 	free_msg(p_msg);
 	p_msg = NULL;
 	moon_free(client_msg);
-	client_msg = NULL;
 
+	client_msg = NULL;*/
+	moon_write_info_log(pIoContext->m_wsaBuf.buf);
 	//
 	return postRecv(pIoContext);
 }
@@ -437,6 +439,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 	OVERLAPPED           *pOverlapped = NULL;
 	PMS_SOCKET_CONTEXT   pSocketContext = NULL;
 	DWORD                dwBytesTransfered = 0;
+	int errnum = -1;
 
 	// The loop processes the request until the Shutdown information is received.
 	while (WAIT_OBJECT_0 != WaitForSingleObject(g_hShutdownEvent, 0))
@@ -476,52 +479,55 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 		else  
 		{  
 			// Read the incoming parameters.
-			MS_IO_CONTEXT* pIoContext = CONTAINING_RECORD(pOverlapped, MS_IO_CONTEXT, m_Overlapped);  
+			MS_IO_CONTEXT* pIoContext = CONTAINING_RECORD(pOverlapped, MS_IO_CONTEXT, m_Overlapped);
 
 			// Is the client disconnected?
 			if((0 == dwBytesTransfered) && ( RECV_POSTED==pIoContext->m_OpType || SEND_POSTED==pIoContext->m_OpType))  
 			{  
 				// release client resource
+				_LeaveCriticalSection(pSocketContext);
+				//close socket
+				closesocket(pSocketContext->m_socket);
 				array_list_remove(g_pListMSClientSocketContext,pSocketContext);
 				free_socket_context(pSocketContext);
 				pSocketContext = NULL;
-				_LeaveCriticalSection(pSocketContext);
 				continue;  
-			}  
+			}
 			else
 			{
 				switch( pIoContext->m_OpType )  
-				{  
-					// Accept  
-				case ACCEPT_POSTED:
-					{ 
-						// To increase the readability of your code,use the special _DoAccept function to process the incoming requests.
-						doAccpet(pIoContext);
-					}
-					break;
+					{  
+						// Accept  
+					case ACCEPT_POSTED:
+						{ 
+							// To increase the readability of your code,use the special _DoAccept function to process the incoming requests.
+							doAccpet(pIoContext);
+						}
+						break;
 
-					// RECV
-				case RECV_POSTED:
-					{
-						// In order to increase the readability of the code, a special _DoRecv function is used to process the receive request.
-						doRecv(pIoContext);
-						//make Io buf null
-						memset(pIoContext->m_wsaBuf.buf,0,pIoContext->m_wsaBuf.len);
-						pIoContext->m_wsaBuf.len = 0;
-					}
-					break;
+						// RECV
+					case RECV_POSTED:
+						{
+							// In order to increase the readability of the code, a special _DoRecv function is used to process the receive request.
+							pIoContext->m_wsaBuf.len = strlen(pIoContext->m_wsaBuf.buf);
+							doRecv(pIoContext);
+							//make Io buf null
+							memset(pIoContext->m_wsaBuf.buf,0,pIoContext->m_wsaBuf.len);
+							pIoContext->m_wsaBuf.len = 0;
+						}
+						break;
 
-					// SEND
-				case SEND_POSTED:
-					{
-						moon_write_info_log("start send message:");
-						moon_write_info_log(pIoContext->m_wsaBuf.buf);
-					}
-					break;
-				default:
-					// It shouldn't be done here.
-					//TRACE(_T("_WorkThread中的 pIoContext->m_OpType exception.\n"));
-					break;
+						// SEND
+					case SEND_POSTED:
+						{
+							moon_write_info_log("start send message:");
+							moon_write_info_log(pIoContext->m_wsaBuf.buf);
+						}
+						break;
+					default:
+						// It shouldn't be done here.
+						//TRACE(_T("_WorkThread中的 pIoContext->m_OpType exception.\n"));
+						break;
 				} //switch
 			}//if
 		}//if
@@ -550,7 +556,7 @@ DWORD static WINAPI alive_thread(LPVOID lpParam)
 				i--;
 			}
 		}
-		Sleep(2000);
+		Sleep(500);
 	}
 	moon_write_info_log("alive thread exit");
 	return 0;

@@ -3659,3 +3659,1941 @@
 2019/12/11 18:5:41 debug->new connect is comming
 2019/12/11 18:6:7 info->start send message:
 2019/12/11 18:6:7 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:20:51 info->init log environment finished
+2019/12/12 9:20:51 info->starting server,please waiting...
+2019/12/12 9:20:51 info->load config
+2019/12/12 9:20:51 info->The read main configuration is as follows:
+2019/12/12 9:20:51 info->server_ip:127.0.0.1
+2019/12/12 9:20:51 info->server_port:8890
+2019/12/12 9:20:51 info->http_server_port:8088
+2019/12/12 9:20:51 info->server_node_name:node_one
+2019/12/12 9:20:51 info->client_count:1000
+2019/12/12 9:20:51 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:20:51 info->start ms_nt_iocp server...
+2019/12/12 9:20:51 info->init ms_nt_iocp finished
+2019/12/12 9:20:51 info->init socket success
+2019/12/12 9:20:51 info->listen socket binding success
+2019/12/12 9:20:51 info->init ms_init_listen_socket finished
+2019/12/12 9:20:51 info->ms_nt_iocp server has start
+2019/12/12 9:20:51 info->moon http service started
+2019/12/12 9:21:4 debug->new connect is comming
+2019/12/12 9:21:8 info->start send message:
+2019/12/12 9:21:8 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:21:19 debug->new connect is comming
+2019/12/12 9:21:22 info->start send message:
+2019/12/12 9:21:22 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:24:22 info->init log environment finished
+2019/12/12 9:24:22 info->starting server,please waiting...
+2019/12/12 9:24:22 info->load config
+2019/12/12 9:24:22 info->The read main configuration is as follows:
+2019/12/12 9:24:22 info->server_ip:127.0.0.1
+2019/12/12 9:24:22 info->server_port:8890
+2019/12/12 9:24:22 info->http_server_port:8088
+2019/12/12 9:24:22 info->server_node_name:node_one
+2019/12/12 9:24:22 info->client_count:1000
+2019/12/12 9:24:22 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:24:22 info->start ms_nt_iocp server...
+2019/12/12 9:24:22 info->init ms_nt_iocp finished
+2019/12/12 9:24:22 info->init socket success
+2019/12/12 9:24:22 info->listen socket binding success
+2019/12/12 9:24:22 info->init ms_init_listen_socket finished
+2019/12/12 9:24:22 info->ms_nt_iocp server has start
+2019/12/12 9:24:22 info->moon http service started
+2019/12/12 9:24:27 debug->new connect is comming
+2019/12/12 9:24:28 info->start send message:
+2019/12/12 9:24:28 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:24:38 info->init log environment finished
+2019/12/12 9:24:38 info->starting server,please waiting...
+2019/12/12 9:24:38 info->load config
+2019/12/12 9:24:38 info->The read main configuration is as follows:
+2019/12/12 9:24:38 info->server_ip:127.0.0.1
+2019/12/12 9:24:38 info->server_port:8890
+2019/12/12 9:24:38 info->http_server_port:8088
+2019/12/12 9:24:38 info->server_node_name:node_one
+2019/12/12 9:24:38 info->client_count:1000
+2019/12/12 9:24:38 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:24:38 info->start ms_nt_iocp server...
+2019/12/12 9:24:38 info->init ms_nt_iocp finished
+2019/12/12 9:24:38 info->init socket success
+2019/12/12 9:24:38 info->listen socket binding success
+2019/12/12 9:24:38 info->init ms_init_listen_socket finished
+2019/12/12 9:24:38 info->ms_nt_iocp server has start
+2019/12/12 9:24:38 info->moon http service started
+2019/12/12 9:24:45 debug->new connect is comming
+2019/12/12 9:25:4 info->start send message:
+2019/12/12 9:25:4 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:29:50 info->init log environment finished
+2019/12/12 9:29:50 info->starting server,please waiting...
+2019/12/12 9:29:50 info->load config
+2019/12/12 9:29:50 info->The read main configuration is as follows:
+2019/12/12 9:29:50 info->server_ip:127.0.0.1
+2019/12/12 9:29:50 info->server_port:8890
+2019/12/12 9:29:50 info->http_server_port:8088
+2019/12/12 9:29:50 info->server_node_name:node_one
+2019/12/12 9:29:50 info->client_count:1000
+2019/12/12 9:29:50 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:29:50 info->start ms_nt_iocp server...
+2019/12/12 9:29:50 info->init ms_nt_iocp finished
+2019/12/12 9:29:50 info->init socket success
+2019/12/12 9:29:50 info->listen socket binding success
+2019/12/12 9:29:50 info->init ms_init_listen_socket finished
+2019/12/12 9:29:50 info->ms_nt_iocp server has start
+2019/12/12 9:29:50 info->moon http service started
+2019/12/12 9:29:55 debug->new connect is comming
+2019/12/12 9:30:18 info->start send message:
+2019/12/12 9:30:18 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:31:2 info->init log environment finished
+2019/12/12 9:31:2 info->starting server,please waiting...
+2019/12/12 9:31:2 info->load config
+2019/12/12 9:31:2 info->The read main configuration is as follows:
+2019/12/12 9:31:2 info->server_ip:127.0.0.1
+2019/12/12 9:31:2 info->server_port:8890
+2019/12/12 9:31:2 info->http_server_port:8088
+2019/12/12 9:31:2 info->server_node_name:node_one
+2019/12/12 9:31:2 info->client_count:1000
+2019/12/12 9:31:2 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:31:2 info->start ms_nt_iocp server...
+2019/12/12 9:31:2 info->init ms_nt_iocp finished
+2019/12/12 9:31:2 info->init socket success
+2019/12/12 9:31:2 info->listen socket binding success
+2019/12/12 9:31:2 info->init ms_init_listen_socket finished
+2019/12/12 9:31:2 info->ms_nt_iocp server has start
+2019/12/12 9:31:2 info->moon http service started
+2019/12/12 9:31:7 debug->new connect is comming
+2019/12/12 9:31:21 info->start send message:
+2019/12/12 9:31:21 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:31:46 info->init log environment finished
+2019/12/12 9:31:46 info->starting server,please waiting...
+2019/12/12 9:31:46 info->load config
+2019/12/12 9:31:46 info->The read main configuration is as follows:
+2019/12/12 9:31:46 info->server_ip:127.0.0.1
+2019/12/12 9:31:46 info->server_port:8890
+2019/12/12 9:31:46 info->http_server_port:8088
+2019/12/12 9:31:46 info->server_node_name:node_one
+2019/12/12 9:31:46 info->client_count:1000
+2019/12/12 9:31:46 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:31:46 info->start ms_nt_iocp server...
+2019/12/12 9:31:46 info->init ms_nt_iocp finished
+2019/12/12 9:31:46 info->init socket success
+2019/12/12 9:31:46 info->listen socket binding success
+2019/12/12 9:31:46 info->init ms_init_listen_socket finished
+2019/12/12 9:31:46 info->ms_nt_iocp server has start
+2019/12/12 9:31:46 info->moon http service started
+2019/12/12 9:31:48 debug->new connect is comming
+2019/12/12 9:31:56 info->start send message:
+2019/12/12 9:31:56 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:33:30 info->init log environment finished
+2019/12/12 9:33:30 info->starting server,please waiting...
+2019/12/12 9:33:30 info->load config
+2019/12/12 9:33:30 info->The read main configuration is as follows:
+2019/12/12 9:33:30 info->server_ip:127.0.0.1
+2019/12/12 9:33:30 info->server_port:8890
+2019/12/12 9:33:30 info->http_server_port:8088
+2019/12/12 9:33:30 info->server_node_name:node_one
+2019/12/12 9:33:30 info->client_count:1000
+2019/12/12 9:33:30 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:33:30 info->start ms_nt_iocp server...
+2019/12/12 9:33:30 info->init ms_nt_iocp finished
+2019/12/12 9:33:30 info->init socket success
+2019/12/12 9:33:30 info->listen socket binding success
+2019/12/12 9:33:30 info->init ms_init_listen_socket finished
+2019/12/12 9:33:30 info->ms_nt_iocp server has start
+2019/12/12 9:33:30 info->moon http service started
+2019/12/12 9:34:8 debug->new connect is comming
+2019/12/12 9:34:18 info->start send message:
+2019/12/12 9:34:18 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:38:44 info->init log environment finished
+2019/12/12 9:38:44 info->starting server,please waiting...
+2019/12/12 9:38:44 info->load config
+2019/12/12 9:38:44 info->The read main configuration is as follows:
+2019/12/12 9:38:44 info->server_ip:127.0.0.1
+2019/12/12 9:38:44 info->server_port:8890
+2019/12/12 9:38:44 info->http_server_port:8088
+2019/12/12 9:38:44 info->server_node_name:node_one
+2019/12/12 9:38:44 info->client_count:1000
+2019/12/12 9:38:44 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:38:44 info->start ms_nt_iocp server...
+2019/12/12 9:38:44 info->init ms_nt_iocp finished
+2019/12/12 9:38:44 info->init socket success
+2019/12/12 9:38:44 info->listen socket binding success
+2019/12/12 9:38:44 info->init ms_init_listen_socket finished
+2019/12/12 9:38:44 info->ms_nt_iocp server has start
+2019/12/12 9:38:44 info->moon http service started
+2019/12/12 9:38:50 debug->new connect is comming
+2019/12/12 9:39:7 info->start send message:
+2019/12/12 9:39:7 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:40:7 info->init log environment finished
+2019/12/12 9:40:7 info->starting server,please waiting...
+2019/12/12 9:40:7 info->load config
+2019/12/12 9:40:7 info->The read main configuration is as follows:
+2019/12/12 9:40:7 info->server_ip:127.0.0.1
+2019/12/12 9:40:7 info->server_port:8890
+2019/12/12 9:40:7 info->http_server_port:8088
+2019/12/12 9:40:7 info->server_node_name:node_one
+2019/12/12 9:40:7 info->client_count:1000
+2019/12/12 9:40:7 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:40:7 info->start ms_nt_iocp server...
+2019/12/12 9:40:7 info->init ms_nt_iocp finished
+2019/12/12 9:40:7 info->init socket success
+2019/12/12 9:40:7 info->listen socket binding success
+2019/12/12 9:40:7 info->init ms_init_listen_socket finished
+2019/12/12 9:40:7 info->ms_nt_iocp server has start
+2019/12/12 9:40:7 info->moon http service started
+2019/12/12 9:40:12 debug->new connect is comming
+2019/12/12 9:40:27 info->start send message:
+2019/12/12 9:40:27 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:41:35 info->init log environment finished
+2019/12/12 9:41:35 info->starting server,please waiting...
+2019/12/12 9:41:35 info->load config
+2019/12/12 9:41:35 info->The read main configuration is as follows:
+2019/12/12 9:41:35 info->server_ip:127.0.0.1
+2019/12/12 9:41:35 info->server_port:8890
+2019/12/12 9:41:35 info->http_server_port:8088
+2019/12/12 9:41:35 info->server_node_name:node_one
+2019/12/12 9:41:35 info->client_count:1000
+2019/12/12 9:41:35 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:41:35 info->start ms_nt_iocp server...
+2019/12/12 9:41:35 info->init ms_nt_iocp finished
+2019/12/12 9:41:35 info->init socket success
+2019/12/12 9:41:35 info->listen socket binding success
+2019/12/12 9:41:35 info->init ms_init_listen_socket finished
+2019/12/12 9:41:35 info->ms_nt_iocp server has start
+2019/12/12 9:41:35 info->moon http service started
+2019/12/12 9:41:59 debug->new connect is comming
+2019/12/12 9:42:5 info->start send message:
+2019/12/12 9:42:5 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:42:25 info->init log environment finished
+2019/12/12 9:42:25 info->starting server,please waiting...
+2019/12/12 9:42:25 info->load config
+2019/12/12 9:42:25 info->The read main configuration is as follows:
+2019/12/12 9:42:25 info->server_ip:127.0.0.1
+2019/12/12 9:42:25 info->server_port:8890
+2019/12/12 9:42:25 info->http_server_port:8088
+2019/12/12 9:42:25 info->server_node_name:node_one
+2019/12/12 9:42:25 info->client_count:1000
+2019/12/12 9:42:25 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:42:25 info->start ms_nt_iocp server...
+2019/12/12 9:42:25 info->init ms_nt_iocp finished
+2019/12/12 9:42:25 info->init socket success
+2019/12/12 9:42:25 info->listen socket binding success
+2019/12/12 9:42:25 info->init ms_init_listen_socket finished
+2019/12/12 9:42:25 info->ms_nt_iocp server has start
+2019/12/12 9:42:25 info->moon http service started
+2019/12/12 9:42:32 debug->new connect is comming
+2019/12/12 9:42:36 info->start send message:
+2019/12/12 9:42:36 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:42:53 info->init log environment finished
+2019/12/12 9:42:53 info->starting server,please waiting...
+2019/12/12 9:42:53 info->load config
+2019/12/12 9:42:53 info->The read main configuration is as follows:
+2019/12/12 9:42:53 info->server_ip:127.0.0.1
+2019/12/12 9:42:53 info->server_port:8890
+2019/12/12 9:42:53 info->http_server_port:8088
+2019/12/12 9:42:53 info->server_node_name:node_one
+2019/12/12 9:42:53 info->client_count:1000
+2019/12/12 9:42:53 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:42:53 info->start ms_nt_iocp server...
+2019/12/12 9:42:53 info->init ms_nt_iocp finished
+2019/12/12 9:42:53 info->init socket success
+2019/12/12 9:42:53 info->listen socket binding success
+2019/12/12 9:42:53 info->init ms_init_listen_socket finished
+2019/12/12 9:42:53 info->ms_nt_iocp server has start
+2019/12/12 9:42:53 info->moon http service started
+2019/12/12 9:42:59 debug->new connect is comming
+2019/12/12 9:43:6 info->start send message:
+2019/12/12 9:43:6 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:45:49 info->init log environment finished
+2019/12/12 9:45:49 info->starting server,please waiting...
+2019/12/12 9:45:49 info->load config
+2019/12/12 9:45:49 info->The read main configuration is as follows:
+2019/12/12 9:45:49 info->server_ip:127.0.0.1
+2019/12/12 9:45:49 info->server_port:8890
+2019/12/12 9:45:49 info->http_server_port:8088
+2019/12/12 9:45:49 info->server_node_name:node_one
+2019/12/12 9:45:49 info->client_count:1000
+2019/12/12 9:45:49 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:45:49 info->start ms_nt_iocp server...
+2019/12/12 9:45:49 info->init ms_nt_iocp finished
+2019/12/12 9:45:49 info->init socket success
+2019/12/12 9:45:49 info->listen socket binding success
+2019/12/12 9:45:49 info->init ms_init_listen_socket finished
+2019/12/12 9:45:49 info->ms_nt_iocp server has start
+2019/12/12 9:45:50 info->moon http service started
+2019/12/12 9:46:10 debug->new connect is comming
+2019/12/12 9:46:28 info->start send message:
+2019/12/12 9:46:28 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 9:47:25 info->init log environment finished
+2019/12/12 9:47:25 info->starting server,please waiting...
+2019/12/12 9:47:25 info->load config
+2019/12/12 9:47:25 info->The read main configuration is as follows:
+2019/12/12 9:47:25 info->server_ip:127.0.0.1
+2019/12/12 9:47:25 info->server_port:8890
+2019/12/12 9:47:25 info->http_server_port:8088
+2019/12/12 9:47:25 info->server_node_name:node_one
+2019/12/12 9:47:25 info->client_count:1000
+2019/12/12 9:47:25 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 9:47:25 info->start ms_nt_iocp server...
+2019/12/12 9:47:25 info->init ms_nt_iocp finished
+2019/12/12 9:47:25 info->init socket success
+2019/12/12 9:47:25 info->listen socket binding success
+2019/12/12 9:47:25 info->init ms_init_listen_socket finished
+2019/12/12 9:47:25 info->ms_nt_iocp server has start
+2019/12/12 9:47:25 info->moon http service started
+2019/12/12 9:47:29 debug->new connect is comming
+2019/12/12 9:48:25 info->start send message:
+2019/12/12 9:48:25 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 10:50:0 info->init log environment finished
+2019/12/12 10:50:0 info->starting server,please waiting...
+2019/12/12 10:50:1 info->load config
+2019/12/12 10:50:1 info->The read main configuration is as follows:
+2019/12/12 10:50:1 info->server_ip:127.0.0.1
+2019/12/12 10:50:2 info->server_port:8890
+2019/12/12 10:50:2 info->http_server_port:8088
+2019/12/12 10:50:2 info->server_node_name:node_one
+2019/12/12 10:50:2 info->client_count:1000
+2019/12/12 10:50:2 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 10:50:2 info->start ms_nt_iocp server...
+2019/12/12 10:50:3 info->init ms_nt_iocp finished
+2019/12/12 10:50:3 info->init socket success
+2019/12/12 10:50:3 info->listen socket binding success
+2019/12/12 10:50:4 info->init ms_init_listen_socket finished
+2019/12/12 10:50:4 info->ms_nt_iocp server has start
+2019/12/12 10:50:4 info->moon http service started
+2019/12/12 10:50:23 debug->new connect is comming
+2019/12/12 10:50:44 info->start send message:
+2019/12/12 10:50:44 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 10:51:58 info->init log environment finished
+2019/12/12 10:51:58 info->starting server,please waiting...
+2019/12/12 10:51:58 info->load config
+2019/12/12 10:51:58 info->The read main configuration is as follows:
+2019/12/12 10:51:58 info->server_ip:127.0.0.1
+2019/12/12 10:51:58 info->server_port:8890
+2019/12/12 10:51:58 info->http_server_port:8088
+2019/12/12 10:51:58 info->server_node_name:node_one
+2019/12/12 10:51:58 info->client_count:1000
+2019/12/12 10:51:58 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 10:51:58 info->start ms_nt_iocp server...
+2019/12/12 10:51:58 info->init ms_nt_iocp finished
+2019/12/12 10:51:58 info->init socket success
+2019/12/12 10:51:58 info->listen socket binding success
+2019/12/12 10:51:58 info->init ms_init_listen_socket finished
+2019/12/12 10:51:58 info->ms_nt_iocp server has start
+2019/12/12 10:51:58 info->moon http service started
+2019/12/12 10:52:13 debug->new connect is comming
+2019/12/12 10:52:22 info->start send message:
+2019/12/12 10:52:22 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 10:53:1 info->init log environment finished
+2019/12/12 10:53:1 info->starting server,please waiting...
+2019/12/12 10:53:1 info->load config
+2019/12/12 10:53:1 info->The read main configuration is as follows:
+2019/12/12 10:53:1 info->server_ip:127.0.0.1
+2019/12/12 10:53:1 info->server_port:8890
+2019/12/12 10:53:1 info->http_server_port:8088
+2019/12/12 10:53:1 info->server_node_name:node_one
+2019/12/12 10:53:1 info->client_count:1000
+2019/12/12 10:53:1 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 10:53:1 info->start ms_nt_iocp server...
+2019/12/12 10:53:1 info->init ms_nt_iocp finished
+2019/12/12 10:53:1 info->init socket success
+2019/12/12 10:53:1 info->listen socket binding success
+2019/12/12 10:53:1 info->init ms_init_listen_socket finished
+2019/12/12 10:53:1 info->ms_nt_iocp server has start
+2019/12/12 10:53:1 info->moon http service started
+2019/12/12 10:53:9 debug->new connect is comming
+2019/12/12 10:53:15 info->start send message:
+2019/12/12 10:53:15 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 10:56:59 info->init log environment finished
+2019/12/12 10:56:59 info->starting server,please waiting...
+2019/12/12 10:56:59 info->load config
+2019/12/12 10:56:59 info->The read main configuration is as follows:
+2019/12/12 10:56:59 info->server_ip:127.0.0.1
+2019/12/12 10:56:59 info->server_port:8890
+2019/12/12 10:56:59 info->http_server_port:8088
+2019/12/12 10:56:59 info->server_node_name:node_one
+2019/12/12 10:56:59 info->client_count:1000
+2019/12/12 10:56:59 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 10:56:59 info->start ms_nt_iocp server...
+2019/12/12 10:56:59 info->init ms_nt_iocp finished
+2019/12/12 10:56:59 info->init socket success
+2019/12/12 10:56:59 info->listen socket binding success
+2019/12/12 10:56:59 info->init ms_init_listen_socket finished
+2019/12/12 10:56:59 info->ms_nt_iocp server has start
+2019/12/12 10:56:59 info->moon http service started
+2019/12/12 10:57:18 debug->new connect is comming
+2019/12/12 10:57:24 info->start send message:
+2019/12/12 10:57:24 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 11:0:9 info->init log environment finished
+2019/12/12 11:0:9 info->starting server,please waiting...
+2019/12/12 11:0:9 info->load config
+2019/12/12 11:0:9 info->The read main configuration is as follows:
+2019/12/12 11:0:9 info->server_ip:127.0.0.1
+2019/12/12 11:0:9 info->server_port:8890
+2019/12/12 11:0:9 info->http_server_port:8088
+2019/12/12 11:0:9 info->server_node_name:node_one
+2019/12/12 11:0:9 info->client_count:1000
+2019/12/12 11:0:9 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:0:9 info->start ms_nt_iocp server...
+2019/12/12 11:0:9 info->init ms_nt_iocp finished
+2019/12/12 11:0:9 info->init socket success
+2019/12/12 11:0:9 info->listen socket binding success
+2019/12/12 11:0:9 info->init ms_init_listen_socket finished
+2019/12/12 11:0:9 info->ms_nt_iocp server has start
+2019/12/12 11:0:9 info->moon http service started
+2019/12/12 11:0:15 debug->new connect is comming
+2019/12/12 11:0:33 info->start send message:
+2019/12/12 11:0:33 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 11:2:5 info->init log environment finished
+2019/12/12 11:2:5 info->starting server,please waiting...
+2019/12/12 11:2:5 info->load config
+2019/12/12 11:2:5 info->The read main configuration is as follows:
+2019/12/12 11:2:5 info->server_ip:127.0.0.1
+2019/12/12 11:2:5 info->server_port:8890
+2019/12/12 11:2:5 info->http_server_port:8088
+2019/12/12 11:2:5 info->server_node_name:node_one
+2019/12/12 11:2:5 info->client_count:1000
+2019/12/12 11:2:5 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:2:5 info->start ms_nt_iocp server...
+2019/12/12 11:2:5 info->init ms_nt_iocp finished
+2019/12/12 11:2:5 info->init socket success
+2019/12/12 11:2:5 info->listen socket binding success
+2019/12/12 11:2:5 info->init ms_init_listen_socket finished
+2019/12/12 11:2:5 info->ms_nt_iocp server has start
+2019/12/12 11:2:5 info->moon http service started
+2019/12/12 11:2:11 debug->new connect is comming
+2019/12/12 11:2:17 info->start send message:
+2019/12/12 11:2:17 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 11:4:44 info->init log environment finished
+2019/12/12 11:4:44 info->starting server,please waiting...
+2019/12/12 11:4:44 info->load config
+2019/12/12 11:4:44 info->The read main configuration is as follows:
+2019/12/12 11:4:44 info->server_ip:127.0.0.1
+2019/12/12 11:4:44 info->server_port:8890
+2019/12/12 11:4:44 info->http_server_port:8088
+2019/12/12 11:4:44 info->server_node_name:node_one
+2019/12/12 11:4:44 info->client_count:1000
+2019/12/12 11:4:44 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:4:44 info->start ms_nt_iocp server...
+2019/12/12 11:4:44 info->init ms_nt_iocp finished
+2019/12/12 11:4:44 info->init socket success
+2019/12/12 11:4:44 info->listen socket binding success
+2019/12/12 11:4:44 info->init ms_init_listen_socket finished
+2019/12/12 11:4:44 info->ms_nt_iocp server has start
+2019/12/12 11:4:44 info->moon http service started
+2019/12/12 11:4:51 debug->new connect is comming
+2019/12/12 11:5:20 info->init log environment finished
+2019/12/12 11:5:20 info->starting server,please waiting...
+2019/12/12 11:5:20 info->load config
+2019/12/12 11:5:20 info->The read main configuration is as follows:
+2019/12/12 11:5:20 info->server_ip:127.0.0.1
+2019/12/12 11:5:20 info->server_port:8890
+2019/12/12 11:5:20 info->http_server_port:8088
+2019/12/12 11:5:20 info->server_node_name:node_one
+2019/12/12 11:5:20 info->client_count:1000
+2019/12/12 11:5:20 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:5:20 info->start ms_nt_iocp server...
+2019/12/12 11:5:20 info->init ms_nt_iocp finished
+2019/12/12 11:5:20 info->init socket success
+2019/12/12 11:5:20 info->listen socket binding success
+2019/12/12 11:5:20 info->init ms_init_listen_socket finished
+2019/12/12 11:5:20 info->ms_nt_iocp server has start
+2019/12/12 11:5:20 info->moon http service started
+2019/12/12 11:5:27 debug->new connect is comming
+2019/12/12 11:5:42 info->init log environment finished
+2019/12/12 11:5:42 info->starting server,please waiting...
+2019/12/12 11:5:42 info->load config
+2019/12/12 11:5:42 info->The read main configuration is as follows:
+2019/12/12 11:5:42 info->server_ip:127.0.0.1
+2019/12/12 11:5:42 info->server_port:8890
+2019/12/12 11:5:42 info->http_server_port:8088
+2019/12/12 11:5:42 info->server_node_name:node_one
+2019/12/12 11:5:42 info->client_count:1000
+2019/12/12 11:5:42 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:5:42 info->start ms_nt_iocp server...
+2019/12/12 11:5:42 info->init ms_nt_iocp finished
+2019/12/12 11:5:42 info->init socket success
+2019/12/12 11:5:42 info->listen socket binding success
+2019/12/12 11:5:42 info->init ms_init_listen_socket finished
+2019/12/12 11:5:42 info->ms_nt_iocp server has start
+2019/12/12 11:5:42 info->moon http service started
+2019/12/12 11:5:48 debug->new connect is comming
+2019/12/12 11:6:44 info->init log environment finished
+2019/12/12 11:6:44 info->starting server,please waiting...
+2019/12/12 11:6:44 info->load config
+2019/12/12 11:6:44 info->The read main configuration is as follows:
+2019/12/12 11:6:44 info->server_ip:127.0.0.1
+2019/12/12 11:6:44 info->server_port:8890
+2019/12/12 11:6:44 info->http_server_port:8088
+2019/12/12 11:6:44 info->server_node_name:node_one
+2019/12/12 11:6:44 info->client_count:1000
+2019/12/12 11:6:44 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:6:44 info->start ms_nt_iocp server...
+2019/12/12 11:6:44 info->init ms_nt_iocp finished
+2019/12/12 11:6:44 info->init socket success
+2019/12/12 11:6:44 info->listen socket binding success
+2019/12/12 11:6:44 info->init ms_init_listen_socket finished
+2019/12/12 11:6:44 info->ms_nt_iocp server has start
+2019/12/12 11:6:44 info->moon http service started
+2019/12/12 11:6:50 debug->new connect is comming
+2019/12/12 11:7:54 info->init log environment finished
+2019/12/12 11:7:54 info->starting server,please waiting...
+2019/12/12 11:7:54 info->load config
+2019/12/12 11:7:54 info->The read main configuration is as follows:
+2019/12/12 11:7:54 info->server_ip:127.0.0.1
+2019/12/12 11:7:54 info->server_port:8890
+2019/12/12 11:7:54 info->http_server_port:8088
+2019/12/12 11:7:54 info->server_node_name:node_one
+2019/12/12 11:7:54 info->client_count:1000
+2019/12/12 11:7:54 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:7:54 info->start ms_nt_iocp server...
+2019/12/12 11:7:54 info->init ms_nt_iocp finished
+2019/12/12 11:7:54 info->init socket success
+2019/12/12 11:7:54 info->listen socket binding success
+2019/12/12 11:7:54 info->init ms_init_listen_socket finished
+2019/12/12 11:7:54 info->ms_nt_iocp server has start
+2019/12/12 11:7:54 info->moon http service started
+2019/12/12 11:8:6 debug->new connect is comming
+2019/12/12 11:10:52 info->init log environment finished
+2019/12/12 11:10:52 info->starting server,please waiting...
+2019/12/12 11:10:52 info->load config
+2019/12/12 11:10:52 info->The read main configuration is as follows:
+2019/12/12 11:10:52 info->server_ip:127.0.0.1
+2019/12/12 11:10:52 info->server_port:8890
+2019/12/12 11:10:52 info->http_server_port:8088
+2019/12/12 11:10:52 info->server_node_name:node_one
+2019/12/12 11:10:52 info->client_count:1000
+2019/12/12 11:10:52 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:10:52 info->start ms_nt_iocp server...
+2019/12/12 11:10:52 info->init ms_nt_iocp finished
+2019/12/12 11:10:52 info->init socket success
+2019/12/12 11:10:52 info->listen socket binding success
+2019/12/12 11:10:52 info->init ms_init_listen_socket finished
+2019/12/12 11:10:52 info->ms_nt_iocp server has start
+2019/12/12 11:10:52 info->moon http service started
+2019/12/12 11:10:58 debug->new connect is comming
+2019/12/12 11:13:44 info->init log environment finished
+2019/12/12 11:13:44 info->starting server,please waiting...
+2019/12/12 11:13:44 info->load config
+2019/12/12 11:13:44 info->The read main configuration is as follows:
+2019/12/12 11:13:44 info->server_ip:127.0.0.1
+2019/12/12 11:13:44 info->server_port:8890
+2019/12/12 11:13:44 info->http_server_port:8088
+2019/12/12 11:13:44 info->server_node_name:node_one
+2019/12/12 11:13:44 info->client_count:1000
+2019/12/12 11:13:44 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:13:44 info->start ms_nt_iocp server...
+2019/12/12 11:13:44 info->init ms_nt_iocp finished
+2019/12/12 11:13:44 info->init socket success
+2019/12/12 11:13:44 info->listen socket binding success
+2019/12/12 11:13:44 info->init ms_init_listen_socket finished
+2019/12/12 11:13:44 info->ms_nt_iocp server has start
+2019/12/12 11:13:44 info->moon http service started
+2019/12/12 11:13:52 debug->new connect is comming
+2019/12/12 11:18:19 info->init log environment finished
+2019/12/12 11:18:19 info->starting server,please waiting...
+2019/12/12 11:18:19 info->load config
+2019/12/12 11:18:19 info->The read main configuration is as follows:
+2019/12/12 11:18:19 info->server_ip:127.0.0.1
+2019/12/12 11:18:19 info->server_port:8890
+2019/12/12 11:18:19 info->http_server_port:8088
+2019/12/12 11:18:19 info->server_node_name:node_one
+2019/12/12 11:18:19 info->client_count:1000
+2019/12/12 11:18:19 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:18:19 info->start ms_nt_iocp server...
+2019/12/12 11:18:19 info->init ms_nt_iocp finished
+2019/12/12 11:18:19 info->init socket success
+2019/12/12 11:18:19 info->listen socket binding success
+2019/12/12 11:18:19 info->init ms_init_listen_socket finished
+2019/12/12 11:18:19 info->ms_nt_iocp server has start
+2019/12/12 11:18:19 info->moon http service started
+2019/12/12 11:18:25 debug->new connect is comming
+2019/12/12 11:19:37 info->init log environment finished
+2019/12/12 11:19:37 info->starting server,please waiting...
+2019/12/12 11:19:37 info->load config
+2019/12/12 11:19:37 info->The read main configuration is as follows:
+2019/12/12 11:19:37 info->server_ip:127.0.0.1
+2019/12/12 11:19:37 info->server_port:8890
+2019/12/12 11:19:37 info->http_server_port:8088
+2019/12/12 11:19:37 info->server_node_name:node_one
+2019/12/12 11:19:37 info->client_count:1000
+2019/12/12 11:19:37 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:19:37 info->start ms_nt_iocp server...
+2019/12/12 11:19:37 info->init ms_nt_iocp finished
+2019/12/12 11:19:37 info->init socket success
+2019/12/12 11:19:37 info->listen socket binding success
+2019/12/12 11:19:37 info->init ms_init_listen_socket finished
+2019/12/12 11:19:37 info->ms_nt_iocp server has start
+2019/12/12 11:19:37 info->moon http service started
+2019/12/12 11:19:43 debug->new connect is comming
+2019/12/12 11:22:51 info->init log environment finished
+2019/12/12 11:22:51 info->starting server,please waiting...
+2019/12/12 11:22:51 info->load config
+2019/12/12 11:22:51 info->The read main configuration is as follows:
+2019/12/12 11:22:51 info->server_ip:127.0.0.1
+2019/12/12 11:22:51 info->server_port:8890
+2019/12/12 11:22:51 info->http_server_port:8088
+2019/12/12 11:22:51 info->server_node_name:node_one
+2019/12/12 11:22:51 info->client_count:1000
+2019/12/12 11:22:51 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:22:51 info->start ms_nt_iocp server...
+2019/12/12 11:22:51 info->init ms_nt_iocp finished
+2019/12/12 11:22:51 info->init socket success
+2019/12/12 11:22:51 info->listen socket binding success
+2019/12/12 11:22:51 info->init ms_init_listen_socket finished
+2019/12/12 11:22:51 info->ms_nt_iocp server has start
+2019/12/12 11:22:51 info->moon http service started
+2019/12/12 11:23:6 debug->new connect is comming
+2019/12/12 11:23:58 info->init log environment finished
+2019/12/12 11:23:58 info->starting server,please waiting...
+2019/12/12 11:23:58 info->load config
+2019/12/12 11:23:58 info->The read main configuration is as follows:
+2019/12/12 11:23:58 info->server_ip:127.0.0.1
+2019/12/12 11:23:58 info->server_port:8890
+2019/12/12 11:23:58 info->http_server_port:8088
+2019/12/12 11:23:58 info->server_node_name:node_one
+2019/12/12 11:23:58 info->client_count:1000
+2019/12/12 11:23:58 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:23:58 info->start ms_nt_iocp server...
+2019/12/12 11:23:58 info->init ms_nt_iocp finished
+2019/12/12 11:23:58 info->init socket success
+2019/12/12 11:23:58 info->listen socket binding success
+2019/12/12 11:23:58 info->init ms_init_listen_socket finished
+2019/12/12 11:23:58 info->ms_nt_iocp server has start
+2019/12/12 11:23:58 info->moon http service started
+2019/12/12 11:24:43 debug->new connect is comming
+2019/12/12 11:25:0 info->init log environment finished
+2019/12/12 11:25:0 info->starting server,please waiting...
+2019/12/12 11:25:0 info->load config
+2019/12/12 11:25:0 info->The read main configuration is as follows:
+2019/12/12 11:25:0 info->server_ip:127.0.0.1
+2019/12/12 11:25:0 info->server_port:8890
+2019/12/12 11:25:0 info->http_server_port:8088
+2019/12/12 11:25:0 info->server_node_name:node_one
+2019/12/12 11:25:0 info->client_count:1000
+2019/12/12 11:25:0 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:25:0 info->start ms_nt_iocp server...
+2019/12/12 11:25:0 info->init ms_nt_iocp finished
+2019/12/12 11:25:0 info->init socket success
+2019/12/12 11:25:0 info->listen socket binding success
+2019/12/12 11:25:0 info->init ms_init_listen_socket finished
+2019/12/12 11:25:0 info->ms_nt_iocp server has start
+2019/12/12 11:25:0 info->moon http service started
+2019/12/12 11:25:6 debug->new connect is comming
+2019/12/12 11:25:40 info->init log environment finished
+2019/12/12 11:25:40 info->starting server,please waiting...
+2019/12/12 11:25:40 info->load config
+2019/12/12 11:25:40 info->The read main configuration is as follows:
+2019/12/12 11:25:40 info->server_ip:127.0.0.1
+2019/12/12 11:25:40 info->server_port:8890
+2019/12/12 11:25:40 info->http_server_port:8088
+2019/12/12 11:25:40 info->server_node_name:node_one
+2019/12/12 11:25:40 info->client_count:1000
+2019/12/12 11:25:40 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:25:40 info->start ms_nt_iocp server...
+2019/12/12 11:25:40 info->init ms_nt_iocp finished
+2019/12/12 11:25:40 info->init socket success
+2019/12/12 11:25:40 info->listen socket binding success
+2019/12/12 11:25:40 info->init ms_init_listen_socket finished
+2019/12/12 11:25:40 info->ms_nt_iocp server has start
+2019/12/12 11:25:40 info->moon http service started
+2019/12/12 11:25:48 debug->new connect is comming
+2019/12/12 11:26:14 info->init log environment finished
+2019/12/12 11:26:14 info->starting server,please waiting...
+2019/12/12 11:26:14 info->load config
+2019/12/12 11:26:14 info->The read main configuration is as follows:
+2019/12/12 11:26:14 info->server_ip:127.0.0.1
+2019/12/12 11:26:14 info->server_port:8890
+2019/12/12 11:26:14 info->http_server_port:8088
+2019/12/12 11:26:14 info->server_node_name:node_one
+2019/12/12 11:26:14 info->client_count:1000
+2019/12/12 11:26:14 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:26:14 info->start ms_nt_iocp server...
+2019/12/12 11:26:14 info->init ms_nt_iocp finished
+2019/12/12 11:26:14 info->init socket success
+2019/12/12 11:26:14 info->listen socket binding success
+2019/12/12 11:26:14 info->init ms_init_listen_socket finished
+2019/12/12 11:26:14 info->ms_nt_iocp server has start
+2019/12/12 11:26:14 info->moon http service started
+2019/12/12 11:26:17 debug->new connect is comming
+2019/12/12 11:31:14 info->init log environment finished
+2019/12/12 11:31:14 info->starting server,please waiting...
+2019/12/12 11:31:14 info->load config
+2019/12/12 11:31:14 info->The read main configuration is as follows:
+2019/12/12 11:31:14 info->server_ip:127.0.0.1
+2019/12/12 11:31:14 info->server_port:8890
+2019/12/12 11:31:14 info->http_server_port:8088
+2019/12/12 11:31:14 info->server_node_name:node_one
+2019/12/12 11:31:14 info->client_count:1000
+2019/12/12 11:31:14 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:31:14 info->start ms_nt_iocp server...
+2019/12/12 11:31:14 info->init ms_nt_iocp finished
+2019/12/12 11:31:14 info->init socket success
+2019/12/12 11:31:14 info->listen socket binding success
+2019/12/12 11:31:14 info->init ms_init_listen_socket finished
+2019/12/12 11:31:14 info->ms_nt_iocp server has start
+2019/12/12 11:31:14 info->moon http service started
+2019/12/12 11:31:21 debug->new connect is comming
+2019/12/12 11:39:39 info->init log environment finished
+2019/12/12 11:39:41 info->starting server,please waiting...
+2019/12/12 11:39:41 info->load config
+2019/12/12 11:39:41 info->The read main configuration is as follows:
+2019/12/12 11:39:41 info->server_ip:127.0.0.1
+2019/12/12 11:39:41 info->server_port:8890
+2019/12/12 11:39:41 info->http_server_port:8088
+2019/12/12 11:39:41 info->server_node_name:node_one
+2019/12/12 11:39:41 info->client_count:1000
+2019/12/12 11:39:41 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:39:41 info->start ms_nt_iocp server...
+2019/12/12 11:39:41 info->init ms_nt_iocp finished
+2019/12/12 11:39:41 info->init socket success
+2019/12/12 11:39:41 info->listen socket binding success
+2019/12/12 11:39:41 info->init ms_init_listen_socket finished
+2019/12/12 11:39:41 info->ms_nt_iocp server has start
+2019/12/12 11:39:41 info->moon http service started
+2019/12/12 11:39:50 debug->new connect is comming
+2019/12/12 11:47:29 info->init log environment finished
+2019/12/12 11:47:29 info->starting server,please waiting...
+2019/12/12 11:47:29 info->load config
+2019/12/12 11:47:29 info->The read main configuration is as follows:
+2019/12/12 11:47:29 info->server_ip:127.0.0.1
+2019/12/12 11:47:29 info->server_port:8890
+2019/12/12 11:47:29 info->http_server_port:8088
+2019/12/12 11:47:29 info->server_node_name:node_one
+2019/12/12 11:47:29 info->client_count:1000
+2019/12/12 11:47:29 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:47:29 info->start ms_nt_iocp server...
+2019/12/12 11:47:29 info->init ms_nt_iocp finished
+2019/12/12 11:47:29 info->init socket success
+2019/12/12 11:47:29 info->listen socket binding success
+2019/12/12 11:47:29 info->init ms_init_listen_socket finished
+2019/12/12 11:47:29 info->ms_nt_iocp server has start
+2019/12/12 11:47:29 info->moon http service started
+2019/12/12 11:47:43 debug->new connect is comming
+2019/12/12 11:48:10 info->init log environment finished
+2019/12/12 11:48:10 info->starting server,please waiting...
+2019/12/12 11:48:10 info->load config
+2019/12/12 11:48:10 info->The read main configuration is as follows:
+2019/12/12 11:48:10 info->server_ip:127.0.0.1
+2019/12/12 11:48:10 info->server_port:8890
+2019/12/12 11:48:10 info->http_server_port:8088
+2019/12/12 11:48:10 info->server_node_name:node_one
+2019/12/12 11:48:10 info->client_count:1000
+2019/12/12 11:48:10 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:48:10 info->start ms_nt_iocp server...
+2019/12/12 11:48:10 info->init ms_nt_iocp finished
+2019/12/12 11:48:10 info->init socket success
+2019/12/12 11:48:10 info->listen socket binding success
+2019/12/12 11:48:10 info->init ms_init_listen_socket finished
+2019/12/12 11:48:10 info->ms_nt_iocp server has start
+2019/12/12 11:48:10 info->moon http service started
+2019/12/12 11:48:15 debug->new connect is comming
+2019/12/12 11:50:3 info->init log environment finished
+2019/12/12 11:50:3 info->starting server,please waiting...
+2019/12/12 11:50:3 info->load config
+2019/12/12 11:50:3 info->The read main configuration is as follows:
+2019/12/12 11:50:3 info->server_ip:127.0.0.1
+2019/12/12 11:50:3 info->server_port:8890
+2019/12/12 11:50:3 info->http_server_port:8088
+2019/12/12 11:50:3 info->server_node_name:node_one
+2019/12/12 11:50:3 info->client_count:1000
+2019/12/12 11:50:3 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:50:3 info->start ms_nt_iocp server...
+2019/12/12 11:50:3 info->init ms_nt_iocp finished
+2019/12/12 11:50:3 info->init socket success
+2019/12/12 11:50:3 info->listen socket binding success
+2019/12/12 11:50:3 info->init ms_init_listen_socket finished
+2019/12/12 11:50:3 info->ms_nt_iocp server has start
+2019/12/12 11:50:3 info->moon http service started
+2019/12/12 11:50:7 debug->new connect is comming
+2019/12/12 11:56:43 info->init log environment finished
+2019/12/12 11:56:43 info->starting server,please waiting...
+2019/12/12 11:56:43 info->load config
+2019/12/12 11:56:43 info->The read main configuration is as follows:
+2019/12/12 11:56:43 info->server_ip:127.0.0.1
+2019/12/12 11:56:43 info->server_port:8890
+2019/12/12 11:56:43 info->http_server_port:8088
+2019/12/12 11:56:43 info->server_node_name:node_one
+2019/12/12 11:56:43 info->client_count:1000
+2019/12/12 11:56:43 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 11:56:43 info->start ms_nt_iocp server...
+2019/12/12 11:56:43 info->init ms_nt_iocp finished
+2019/12/12 11:56:43 info->init socket success
+2019/12/12 11:56:43 info->listen socket binding success
+2019/12/12 11:56:43 info->init ms_init_listen_socket finished
+2019/12/12 11:56:43 info->ms_nt_iocp server has start
+2019/12/12 11:56:43 info->moon http service started
+2019/12/12 11:57:10 debug->new connect is comming
+2019/12/12 12:1:55 info->init log environment finished
+2019/12/12 12:1:55 info->starting server,please waiting...
+2019/12/12 12:1:55 info->load config
+2019/12/12 12:1:55 info->The read main configuration is as follows:
+2019/12/12 12:1:55 info->server_ip:127.0.0.1
+2019/12/12 12:1:55 info->server_port:8890
+2019/12/12 12:1:55 info->http_server_port:8088
+2019/12/12 12:1:55 info->server_node_name:node_one
+2019/12/12 12:1:55 info->client_count:1000
+2019/12/12 12:1:55 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 12:1:55 info->start ms_nt_iocp server...
+2019/12/12 12:1:55 info->init ms_nt_iocp finished
+2019/12/12 12:1:55 info->init socket success
+2019/12/12 12:1:55 info->listen socket binding success
+2019/12/12 12:1:55 info->init ms_init_listen_socket finished
+2019/12/12 12:1:55 info->ms_nt_iocp server has start
+2019/12/12 12:1:55 info->moon http service started
+2019/12/12 12:2:3 debug->new connect is comming
+2019/12/12 13:36:22 info->init log environment finished
+2019/12/12 13:36:22 info->starting server,please waiting...
+2019/12/12 13:36:22 info->load config
+2019/12/12 13:36:22 info->The read main configuration is as follows:
+2019/12/12 13:36:22 info->server_ip:127.0.0.1
+2019/12/12 13:36:22 info->server_port:8890
+2019/12/12 13:36:22 info->http_server_port:8088
+2019/12/12 13:36:22 info->server_node_name:node_one
+2019/12/12 13:36:22 info->client_count:1000
+2019/12/12 13:36:22 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 13:36:22 info->start ms_nt_iocp server...
+2019/12/12 13:36:22 info->init ms_nt_iocp finished
+2019/12/12 13:36:22 info->init socket success
+2019/12/12 13:36:22 info->listen socket binding success
+2019/12/12 13:36:22 info->init ms_init_listen_socket finished
+2019/12/12 13:36:22 info->ms_nt_iocp server has start
+2019/12/12 13:36:22 info->moon http service started
+2019/12/12 13:36:26 debug->new connect is comming
+2019/12/12 13:38:37 info->init log environment finished
+2019/12/12 13:38:37 info->starting server,please waiting...
+2019/12/12 13:38:37 info->load config
+2019/12/12 13:38:37 info->The read main configuration is as follows:
+2019/12/12 13:38:37 info->server_ip:127.0.0.1
+2019/12/12 13:38:37 info->server_port:8890
+2019/12/12 13:38:37 info->http_server_port:8088
+2019/12/12 13:38:37 info->server_node_name:node_one
+2019/12/12 13:38:37 info->client_count:1000
+2019/12/12 13:38:37 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 13:38:37 info->start ms_nt_iocp server...
+2019/12/12 13:38:37 info->init ms_nt_iocp finished
+2019/12/12 13:38:37 info->init socket success
+2019/12/12 13:38:37 info->listen socket binding success
+2019/12/12 13:38:37 info->init ms_init_listen_socket finished
+2019/12/12 13:38:37 info->ms_nt_iocp server has start
+2019/12/12 13:38:37 info->moon http service started
+2019/12/12 13:38:41 debug->new connect is comming
+2019/12/12 13:40:49 info->init log environment finished
+2019/12/12 13:40:49 info->starting server,please waiting...
+2019/12/12 13:40:49 info->load config
+2019/12/12 13:40:49 info->The read main configuration is as follows:
+2019/12/12 13:40:49 info->server_ip:127.0.0.1
+2019/12/12 13:40:49 info->server_port:8890
+2019/12/12 13:40:49 info->http_server_port:8088
+2019/12/12 13:40:49 info->server_node_name:node_one
+2019/12/12 13:40:49 info->client_count:1000
+2019/12/12 13:40:49 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 13:40:49 info->start ms_nt_iocp server...
+2019/12/12 13:40:49 info->init ms_nt_iocp finished
+2019/12/12 13:40:49 info->init socket success
+2019/12/12 13:40:49 info->listen socket binding success
+2019/12/12 13:40:49 info->init ms_init_listen_socket finished
+2019/12/12 13:40:49 info->ms_nt_iocp server has start
+2019/12/12 13:40:49 info->moon http service started
+2019/12/12 13:40:58 debug->new connect is comming
+2019/12/12 13:43:10 info->init log environment finished
+2019/12/12 13:43:10 info->starting server,please waiting...
+2019/12/12 13:43:10 info->load config
+2019/12/12 13:43:10 info->The read main configuration is as follows:
+2019/12/12 13:43:10 info->server_ip:127.0.0.1
+2019/12/12 13:43:10 info->server_port:8890
+2019/12/12 13:43:10 info->http_server_port:8088
+2019/12/12 13:43:10 info->server_node_name:node_one
+2019/12/12 13:43:10 info->client_count:1000
+2019/12/12 13:43:10 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 13:43:10 info->start ms_nt_iocp server...
+2019/12/12 13:43:10 info->init ms_nt_iocp finished
+2019/12/12 13:43:10 info->init socket success
+2019/12/12 13:43:10 info->listen socket binding success
+2019/12/12 13:43:10 info->init ms_init_listen_socket finished
+2019/12/12 13:43:10 info->ms_nt_iocp server has start
+2019/12/12 13:43:10 info->moon http service started
+2019/12/12 13:43:16 debug->new connect is comming
+2019/12/12 13:55:45 info->init log environment finished
+2019/12/12 13:55:45 info->starting server,please waiting...
+2019/12/12 13:55:45 info->load config
+2019/12/12 13:55:45 info->The read main configuration is as follows:
+2019/12/12 13:55:45 info->server_ip:127.0.0.1
+2019/12/12 13:55:45 info->server_port:8890
+2019/12/12 13:55:45 info->http_server_port:8088
+2019/12/12 13:55:45 info->server_node_name:node_one
+2019/12/12 13:55:45 info->client_count:1000
+2019/12/12 13:55:45 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 13:55:45 info->start ms_nt_iocp server...
+2019/12/12 13:55:45 info->init ms_nt_iocp finished
+2019/12/12 13:55:45 info->init socket success
+2019/12/12 13:55:45 info->listen socket binding success
+2019/12/12 13:55:45 info->init ms_init_listen_socket finished
+2019/12/12 13:55:45 info->ms_nt_iocp server has start
+2019/12/12 13:55:45 info->moon http service started
+2019/12/12 13:55:47 debug->new connect is comming
+2019/12/12 13:57:52 info->init log environment finished
+2019/12/12 13:57:52 info->starting server,please waiting...
+2019/12/12 13:57:52 info->load config
+2019/12/12 13:57:52 info->The read main configuration is as follows:
+2019/12/12 13:57:52 info->server_ip:127.0.0.1
+2019/12/12 13:57:52 info->server_port:8890
+2019/12/12 13:57:52 info->http_server_port:8088
+2019/12/12 13:57:52 info->server_node_name:node_one
+2019/12/12 13:57:52 info->client_count:1000
+2019/12/12 13:57:52 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 13:57:52 info->start ms_nt_iocp server...
+2019/12/12 13:57:52 info->init ms_nt_iocp finished
+2019/12/12 13:57:52 info->init socket success
+2019/12/12 13:57:52 info->listen socket binding success
+2019/12/12 13:57:52 info->init ms_init_listen_socket finished
+2019/12/12 13:57:52 info->ms_nt_iocp server has start
+2019/12/12 13:57:52 info->moon http service started
+2019/12/12 13:57:59 debug->new connect is comming
+2019/12/12 13:58:59 info->init log environment finished
+2019/12/12 13:58:59 info->starting server,please waiting...
+2019/12/12 13:58:59 info->load config
+2019/12/12 13:58:59 info->The read main configuration is as follows:
+2019/12/12 13:58:59 info->server_ip:127.0.0.1
+2019/12/12 13:58:59 info->server_port:8890
+2019/12/12 13:58:59 info->http_server_port:8088
+2019/12/12 13:58:59 info->server_node_name:node_one
+2019/12/12 13:58:59 info->client_count:1000
+2019/12/12 13:58:59 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 13:58:59 info->start ms_nt_iocp server...
+2019/12/12 13:58:59 info->init ms_nt_iocp finished
+2019/12/12 13:58:59 info->init socket success
+2019/12/12 13:58:59 info->listen socket binding success
+2019/12/12 13:58:59 info->init ms_init_listen_socket finished
+2019/12/12 13:58:59 info->ms_nt_iocp server has start
+2019/12/12 13:58:59 info->moon http service started
+2019/12/12 13:59:4 debug->new connect is comming
+2019/12/12 14:8:8 info->init log environment finished
+2019/12/12 14:8:8 info->starting server,please waiting...
+2019/12/12 14:8:8 info->load config
+2019/12/12 14:8:8 info->The read main configuration is as follows:
+2019/12/12 14:8:8 info->server_ip:127.0.0.1
+2019/12/12 14:8:8 info->server_port:8890
+2019/12/12 14:8:8 info->http_server_port:8088
+2019/12/12 14:8:8 info->server_node_name:node_one
+2019/12/12 14:8:8 info->client_count:1000
+2019/12/12 14:8:8 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:8:8 info->start ms_nt_iocp server...
+2019/12/12 14:8:8 info->init ms_nt_iocp finished
+2019/12/12 14:8:8 info->init socket success
+2019/12/12 14:8:8 info->listen socket binding success
+2019/12/12 14:8:8 info->init ms_init_listen_socket finished
+2019/12/12 14:8:8 info->ms_nt_iocp server has start
+2019/12/12 14:8:8 info->moon http service started
+2019/12/12 14:8:11 debug->new connect is comming
+2019/12/12 14:11:20 info->init log environment finished
+2019/12/12 14:11:20 info->starting server,please waiting...
+2019/12/12 14:11:20 info->load config
+2019/12/12 14:11:20 info->The read main configuration is as follows:
+2019/12/12 14:11:20 info->server_ip:127.0.0.1
+2019/12/12 14:11:20 info->server_port:8890
+2019/12/12 14:11:20 info->http_server_port:8088
+2019/12/12 14:11:20 info->server_node_name:node_one
+2019/12/12 14:11:20 info->client_count:1000
+2019/12/12 14:11:20 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:11:20 info->start ms_nt_iocp server...
+2019/12/12 14:11:20 info->init ms_nt_iocp finished
+2019/12/12 14:11:20 info->init socket success
+2019/12/12 14:11:20 info->listen socket binding success
+2019/12/12 14:11:20 info->init ms_init_listen_socket finished
+2019/12/12 14:11:20 info->ms_nt_iocp server has start
+2019/12/12 14:11:20 info->moon http service started
+2019/12/12 14:11:21 debug->new connect is comming
+2019/12/12 14:11:27 info->start send message:
+2019/12/12 14:11:27 info->socket closed
+2019/12/12 14:11:31 info->start send message:
+2019/12/12 14:11:31 info->socket closed
+2019/12/12 14:12:5 debug->new connect is comming
+2019/12/12 14:12:8 info->start send message:
+2019/12/12 14:12:8 info->socket closed
+2019/12/12 14:12:45 info->init log environment finished
+2019/12/12 14:12:45 info->starting server,please waiting...
+2019/12/12 14:12:45 info->load config
+2019/12/12 14:12:45 info->The read main configuration is as follows:
+2019/12/12 14:12:45 info->server_ip:127.0.0.1
+2019/12/12 14:12:45 info->server_port:8890
+2019/12/12 14:12:45 info->http_server_port:8088
+2019/12/12 14:12:45 info->server_node_name:node_one
+2019/12/12 14:12:45 info->client_count:1000
+2019/12/12 14:12:45 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:12:45 info->start ms_nt_iocp server...
+2019/12/12 14:12:45 info->init ms_nt_iocp finished
+2019/12/12 14:12:45 info->init socket success
+2019/12/12 14:12:45 info->listen socket binding success
+2019/12/12 14:12:45 info->init ms_init_listen_socket finished
+2019/12/12 14:12:45 info->ms_nt_iocp server has start
+2019/12/12 14:12:45 info->moon http service started
+2019/12/12 14:12:51 debug->new connect is comming
+2019/12/12 14:13:13 info->start send message:
+2019/12/12 14:13:13 info->socket closed
+2019/12/12 14:13:19 debug->new connect is comming
+2019/12/12 14:26:19 info->init log environment finished
+2019/12/12 14:26:19 info->starting server,please waiting...
+2019/12/12 14:26:19 info->load config
+2019/12/12 14:26:19 info->The read main configuration is as follows:
+2019/12/12 14:26:19 info->server_ip:127.0.0.1
+2019/12/12 14:26:19 info->server_port:8890
+2019/12/12 14:26:19 info->http_server_port:8088
+2019/12/12 14:26:19 info->server_node_name:node_one
+2019/12/12 14:26:19 info->client_count:1000
+2019/12/12 14:26:19 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:26:19 info->start ms_nt_iocp server...
+2019/12/12 14:26:19 info->init ms_nt_iocp finished
+2019/12/12 14:26:19 info->init socket success
+2019/12/12 14:26:19 info->listen socket binding success
+2019/12/12 14:26:19 info->init ms_init_listen_socket finished
+2019/12/12 14:26:19 info->ms_nt_iocp server has start
+2019/12/12 14:26:19 info->moon http service started
+2019/12/12 14:26:21 debug->new connect is comming
+2019/12/12 14:26:41 debug->new connect is comming
+2019/12/12 14:27:10 debug->new connect is comming
+2019/12/12 14:33:13 info->init log environment finished
+2019/12/12 14:33:13 info->starting server,please waiting...
+2019/12/12 14:33:13 info->load config
+2019/12/12 14:33:13 info->The read main configuration is as follows:
+2019/12/12 14:33:13 info->server_ip:127.0.0.1
+2019/12/12 14:33:13 info->server_port:8890
+2019/12/12 14:33:13 info->http_server_port:8088
+2019/12/12 14:33:13 info->server_node_name:node_one
+2019/12/12 14:33:13 info->client_count:1000
+2019/12/12 14:33:13 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:33:13 info->start ms_nt_iocp server...
+2019/12/12 14:33:13 info->init ms_nt_iocp finished
+2019/12/12 14:33:13 info->init socket success
+2019/12/12 14:33:13 info->listen socket binding success
+2019/12/12 14:33:13 info->init ms_init_listen_socket finished
+2019/12/12 14:33:13 info->ms_nt_iocp server has start
+2019/12/12 14:33:13 info->moon http service started
+2019/12/12 14:33:17 debug->new connect is comming
+2019/12/12 14:34:10 debug->new connect is comming
+2019/12/12 14:35:17 info->init log environment finished
+2019/12/12 14:35:17 info->starting server,please waiting...
+2019/12/12 14:35:17 info->load config
+2019/12/12 14:35:17 info->The read main configuration is as follows:
+2019/12/12 14:35:17 info->server_ip:127.0.0.1
+2019/12/12 14:35:17 info->server_port:8890
+2019/12/12 14:35:17 info->http_server_port:8088
+2019/12/12 14:35:17 info->server_node_name:node_one
+2019/12/12 14:35:17 info->client_count:1000
+2019/12/12 14:35:17 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:35:17 info->start ms_nt_iocp server...
+2019/12/12 14:35:17 info->init ms_nt_iocp finished
+2019/12/12 14:35:17 info->init socket success
+2019/12/12 14:35:17 info->listen socket binding success
+2019/12/12 14:35:17 info->init ms_init_listen_socket finished
+2019/12/12 14:35:17 info->ms_nt_iocp server has start
+2019/12/12 14:35:17 info->moon http service started
+2019/12/12 14:35:25 debug->new connect is comming
+2019/12/12 14:37:5 debug->new connect is comming
+2019/12/12 14:39:6 info->init log environment finished
+2019/12/12 14:39:6 info->starting server,please waiting...
+2019/12/12 14:39:6 info->load config
+2019/12/12 14:39:6 info->The read main configuration is as follows:
+2019/12/12 14:39:6 info->server_ip:127.0.0.1
+2019/12/12 14:39:6 info->server_port:8890
+2019/12/12 14:39:6 info->http_server_port:8088
+2019/12/12 14:39:6 info->server_node_name:node_one
+2019/12/12 14:39:6 info->client_count:1000
+2019/12/12 14:39:6 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:39:6 info->start ms_nt_iocp server...
+2019/12/12 14:39:6 info->init ms_nt_iocp finished
+2019/12/12 14:39:6 info->init socket success
+2019/12/12 14:39:6 info->listen socket binding success
+2019/12/12 14:39:6 info->init ms_init_listen_socket finished
+2019/12/12 14:39:6 info->ms_nt_iocp server has start
+2019/12/12 14:39:6 info->moon http service started
+2019/12/12 14:39:15 debug->new connect is comming
+2019/12/12 14:40:19 info->init log environment finished
+2019/12/12 14:40:19 info->starting server,please waiting...
+2019/12/12 14:40:19 info->load config
+2019/12/12 14:40:19 info->The read main configuration is as follows:
+2019/12/12 14:40:19 info->server_ip:127.0.0.1
+2019/12/12 14:40:19 info->server_port:8890
+2019/12/12 14:40:19 info->http_server_port:8088
+2019/12/12 14:40:19 info->server_node_name:node_one
+2019/12/12 14:40:19 info->client_count:1000
+2019/12/12 14:40:19 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:40:19 info->start ms_nt_iocp server...
+2019/12/12 14:40:19 info->init ms_nt_iocp finished
+2019/12/12 14:40:19 info->init socket success
+2019/12/12 14:40:19 info->listen socket binding success
+2019/12/12 14:40:19 info->init ms_init_listen_socket finished
+2019/12/12 14:40:19 info->ms_nt_iocp server has start
+2019/12/12 14:40:19 info->moon http service started
+2019/12/12 14:40:23 debug->new connect is comming
+2019/12/12 14:40:25 info->start send message:
+2019/12/12 14:40:25 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 14:40:40 info->init log environment finished
+2019/12/12 14:40:40 info->starting server,please waiting...
+2019/12/12 14:40:40 info->load config
+2019/12/12 14:40:40 info->The read main configuration is as follows:
+2019/12/12 14:40:40 info->server_ip:127.0.0.1
+2019/12/12 14:40:40 info->server_port:8890
+2019/12/12 14:40:40 info->http_server_port:8088
+2019/12/12 14:40:40 info->server_node_name:node_one
+2019/12/12 14:40:40 info->client_count:1000
+2019/12/12 14:40:40 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:40:40 info->start ms_nt_iocp server...
+2019/12/12 14:40:40 info->init ms_nt_iocp finished
+2019/12/12 14:40:40 info->init socket success
+2019/12/12 14:40:40 info->listen socket binding success
+2019/12/12 14:40:40 info->init ms_init_listen_socket finished
+2019/12/12 14:40:40 info->ms_nt_iocp server has start
+2019/12/12 14:40:40 info->moon http service started
+2019/12/12 14:41:37 info->init log environment finished
+2019/12/12 14:41:37 info->starting server,please waiting...
+2019/12/12 14:41:37 info->load config
+2019/12/12 14:41:37 info->The read main configuration is as follows:
+2019/12/12 14:41:37 info->server_ip:127.0.0.1
+2019/12/12 14:41:37 info->server_port:8890
+2019/12/12 14:41:37 info->http_server_port:8088
+2019/12/12 14:41:37 info->server_node_name:node_one
+2019/12/12 14:41:37 info->client_count:1000
+2019/12/12 14:41:37 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 14:41:37 info->start ms_nt_iocp server...
+2019/12/12 14:41:37 info->init ms_nt_iocp finished
+2019/12/12 14:41:37 info->init socket success
+2019/12/12 14:41:37 info->listen socket binding success
+2019/12/12 14:41:37 info->init ms_init_listen_socket finished
+2019/12/12 14:41:37 info->ms_nt_iocp server has start
+2019/12/12 14:41:37 info->moon http service started
+2019/12/12 14:41:39 debug->new connect is comming
+2019/12/12 14:41:45 info->start send message:
+2019/12/12 14:41:45 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 15:5:8 info->init log environment finished
+2019/12/12 15:5:8 info->starting server,please waiting...
+2019/12/12 15:5:8 info->load config
+2019/12/12 15:5:8 info->The read main configuration is as follows:
+2019/12/12 15:5:8 info->server_ip:127.0.0.1
+2019/12/12 15:5:8 info->server_port:8890
+2019/12/12 15:5:8 info->http_server_port:8088
+2019/12/12 15:5:8 info->server_node_name:node_one
+2019/12/12 15:5:8 info->client_count:1000
+2019/12/12 15:5:8 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 15:5:8 info->start ms_nt_iocp server...
+2019/12/12 15:5:8 info->init ms_nt_iocp finished
+2019/12/12 15:5:8 info->init socket success
+2019/12/12 15:5:8 info->listen socket binding success
+2019/12/12 15:5:8 info->init ms_init_listen_socket finished
+2019/12/12 15:5:8 info->ms_nt_iocp server has start
+2019/12/12 15:5:8 info->moon http service started
+2019/12/12 15:5:11 debug->new connect is comming
+2019/12/12 15:5:20 info->start send message:
+2019/12/12 15:5:20 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/12 15:6:58 info->init log environment finished
+2019/12/12 15:6:58 info->starting server,please waiting...
+2019/12/12 15:6:58 info->load config
+2019/12/12 15:6:58 info->The read main configuration is as follows:
+2019/12/12 15:6:58 info->server_ip:127.0.0.1
+2019/12/12 15:6:58 info->server_port:8890
+2019/12/12 15:6:58 info->http_server_port:8088
+2019/12/12 15:6:58 info->server_node_name:node_one
+2019/12/12 15:6:58 info->client_count:1000
+2019/12/12 15:6:58 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 15:6:58 info->start ms_nt_iocp server...
+2019/12/12 15:6:58 info->init ms_nt_iocp finished
+2019/12/12 15:6:58 info->init socket success
+2019/12/12 15:6:58 info->listen socket binding success
+2019/12/12 15:6:58 info->init ms_init_listen_socket finished
+2019/12/12 15:6:58 info->ms_nt_iocp server has start
+2019/12/12 15:6:58 info->moon http service started
+2019/12/12 15:7:1 debug->new connect is comming
+2019/12/12 15:7:18 info->init log environment finished
+2019/12/12 15:7:18 info->starting server,please waiting...
+2019/12/12 15:7:18 info->load config
+2019/12/12 15:7:18 info->The read main configuration is as follows:
+2019/12/12 15:7:18 info->server_ip:127.0.0.1
+2019/12/12 15:7:18 info->server_port:8890
+2019/12/12 15:7:18 info->http_server_port:8088
+2019/12/12 15:7:18 info->server_node_name:node_one
+2019/12/12 15:7:18 info->client_count:1000
+2019/12/12 15:7:18 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 15:7:18 info->start ms_nt_iocp server...
+2019/12/12 15:7:18 info->init ms_nt_iocp finished
+2019/12/12 15:7:18 info->init socket success
+2019/12/12 15:7:18 info->listen socket binding success
+2019/12/12 15:7:18 info->init ms_init_listen_socket finished
+2019/12/12 15:7:18 info->ms_nt_iocp server has start
+2019/12/12 15:7:18 info->moon http service started
+2019/12/12 15:7:24 debug->new connect is comming
+2019/12/12 15:7:49 info->init log environment finished
+2019/12/12 15:7:49 info->starting server,please waiting...
+2019/12/12 15:7:49 info->load config
+2019/12/12 15:7:49 info->The read main configuration is as follows:
+2019/12/12 15:7:49 info->server_ip:127.0.0.1
+2019/12/12 15:7:49 info->server_port:8890
+2019/12/12 15:7:49 info->http_server_port:8088
+2019/12/12 15:7:49 info->server_node_name:node_one
+2019/12/12 15:7:49 info->client_count:1000
+2019/12/12 15:7:49 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 15:7:49 info->start ms_nt_iocp server...
+2019/12/12 15:7:49 info->init ms_nt_iocp finished
+2019/12/12 15:7:49 info->init socket success
+2019/12/12 15:7:49 info->listen socket binding success
+2019/12/12 15:7:49 info->init ms_init_listen_socket finished
+2019/12/12 15:7:49 info->ms_nt_iocp server has start
+2019/12/12 15:7:49 info->moon http service started
+2019/12/12 15:7:53 debug->new connect is comming
+2019/12/12 15:11:7 info->init log environment finished
+2019/12/12 15:11:7 info->starting server,please waiting...
+2019/12/12 15:11:7 info->load config
+2019/12/12 15:11:7 info->The read main configuration is as follows:
+2019/12/12 15:11:7 info->server_ip:127.0.0.1
+2019/12/12 15:11:7 info->server_port:8890
+2019/12/12 15:11:7 info->http_server_port:8088
+2019/12/12 15:11:7 info->server_node_name:node_one
+2019/12/12 15:11:7 info->client_count:1000
+2019/12/12 15:11:7 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 15:11:7 info->start ms_nt_iocp server...
+2019/12/12 15:11:7 info->init ms_nt_iocp finished
+2019/12/12 15:11:7 info->init socket success
+2019/12/12 15:11:7 info->listen socket binding success
+2019/12/12 15:11:7 info->init ms_init_listen_socket finished
+2019/12/12 15:11:7 info->ms_nt_iocp server has start
+2019/12/12 15:11:7 info->moon http service started
+2019/12/12 15:11:11 debug->new connect is comming
+2019/12/12 15:11:14 info->{"message_head":{"msg_id":"9472a0394464491fa89651e35ba3f30b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"927b35015202495d8c5bfc26930b6140"}}
+2019/12/12 15:11:19 info->{"message_head":{"msg_id":"46ce3cf37c1e466a9034501ecf12ce92","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ab9d8e17e88948dfa3923779ce1c3408"}}
+2019/12/12 15:11:21 info->{"message_head":{"msg_id":"840d82c39a1040d6b2c3d4c9e5395911","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"70d0e86c2fff41cd8ec9f01a01b685e9"}}
+2019/12/12 15:11:22 info->{"message_head":{"msg_id":"7ac9c46f9a0a4ef990d4a76d575fd26e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cf30e1d993f14c78a63484e6a94411a4"}}
+2019/12/12 15:11:23 info->{"message_head":{"msg_id":"38e1e35a02134a69a7664c16cdbfb79e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ea470731f41e4855a0e8fbd9b2a22431"}}
+2019/12/12 15:11:23 info->{"message_head":{"msg_id":"7fd21bbe2f4a4306949f31852127d492","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e098e662cb994b2687c31f2d460fcf30"}}
+2019/12/12 15:11:24 info->{"message_head":{"msg_id":"4ca11f0c383f45bc84b57da39decd437","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1498be7dcc6d422e9edc0dc1b9820ad4"}}
+2019/12/12 15:11:24 info->{"message_head":{"msg_id":"49280faf2a624f34b598e43d4d419ad0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"06a6b61877dc4b91a039d9fe2d7f6d0a"}}
+2019/12/12 15:11:25 info->{"message_head":{"msg_id":"e0855a01d0db47aba7da28f8c7eb201d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f2c059a5d8d5417d96f8a91de3d008cd"}}
+2019/12/12 15:11:25 info->{"message_head":{"msg_id":"1eec97632692488292153bd8296f910d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a77b13a511514608878aa9e6ea65ebc8"}}
+2019/12/12 15:11:25 info->{"message_head":{"msg_id":"03d4fa8f14524f9ca8ad538bf37f71fc","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"89e9ae3e1b9b46419d47660a8ae15c94"}}
+2019/12/12 15:11:25 info->{"message_head":{"msg_id":"bf08f6620ef1431f873f340ba26f785e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c0bdf78c68c34acc8325fdd628f7dbb8"}}
+2019/12/12 15:11:25 info->{"message_head":{"msg_id":"cfdabb40b9134bc09901138ea0c52c1b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3839eadbede648209a8d4c3ba33e331d"}}
+2019/12/12 15:11:26 info->{"message_head":{"msg_id":"93e783f53dd14684ad35f5501602eea3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"31df686029c6430aa5e7971a125fddb1"}}
+2019/12/12 15:11:26 info->{"message_head":{"msg_id":"20b173e02929445daec63188782f3aac","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"60b48df4fc34447eb84768afc838377b"}}
+2019/12/12 15:11:26 info->{"message_head":{"msg_id":"b06121086cb84c9ba10049cfe90bc9ae","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"45eae3a6c9aa4fbf8790591df1843901"}}
+2019/12/12 15:11:26 info->{"message_head":{"msg_id":"e1c0444ad65b40279f07e81e49d759f0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d384f46d01604c3489e97123e9140306"}}
+2019/12/12 15:11:26 info->{"message_head":{"msg_id":"7df9c9fd78f3460fba08a32ff37076c8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"986467625e57420c9d716700d259f4ff"}}
+2019/12/12 15:11:27 info->{"message_head":{"msg_id":"3181a71ad3a0485b8ccb2d073ab2b556","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"df4dc1e3025c478abe2c14b9919eddfd"}}
+2019/12/12 15:11:30 info->{"message_head":{"msg_id":"64828d0f8ee84eadb596f27f635b202c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"03a397a3a9cd417b849c41c7564acd75"}}
+2019/12/12 15:11:30 info->{"message_head":{"msg_id":"3f2b10cab32449628580c684c5720828","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"34e233ab4e40472a9177b03b84236d77"}}
+2019/12/12 15:11:30 info->{"message_head":{"msg_id":"b2694ed9459c4fdca29b0bb4d45f7aa8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"17451896161041b3897cf8e04b46429b"}}
+2019/12/12 15:11:31 info->{"message_head":{"msg_id":"76522f39a91b4245a5355764dc441340","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"4734bd6f0b914ff1b506b10a2c8d9176"}}
+2019/12/12 15:11:31 info->{"message_head":{"msg_id":"aacca3130aec4c4397011684388fede7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d69e33a6530447ec998c1a5ae45a64ce"}}
+2019/12/12 15:11:31 info->{"message_head":{"msg_id":"5284d1c1968f4c7c9fc7aa044c1f07a9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c147ca287eef4f33b1dec5276b220ce0"}}
+2019/12/12 15:11:32 info->{"message_head":{"msg_id":"ccdf8d8e57a84cac9663f6089c230239","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"634bdb85abdc4e4b997e80b76e04df3d"}}
+2019/12/12 15:11:32 info->{"message_head":{"msg_id":"928117b1c98446e6b1028b052b467872","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c43a8871b216447d8e7d32fe9306fd09"}}
+2019/12/12 15:11:32 info->{"message_head":{"msg_id":"b71176b42d9f476eb34e612679711f34","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"982d8ea82e6b433391f6a7463c0ac197"}}
+2019/12/12 15:11:32 info->{"message_head":{"msg_id":"d119a2f64d6d4fc39c127722f24d548c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"86361fad58cd4685984fc8ba8390c4cb"}}
+2019/12/12 15:11:33 info->{"message_head":{"msg_id":"f8b46f461a1c43538a194ded4c1b31f9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"58d59c2e79e7424e8c5980aa09c7699f"}}
+2019/12/12 15:11:33 info->{"message_head":{"msg_id":"8613801d8d9745c8a59eccd4151fe228","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1dfdde01065243799ebc8b2deaa01a4e"}}
+2019/12/12 15:11:33 info->{"message_head":{"msg_id":"ce3a9e48d87c4d26b72412a5437b7c3d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8ccc88e3b3c841b2a094385a4adad1ab"}}
+2019/12/12 15:11:33 info->{"message_head":{"msg_id":"7e9229d1a99b43f191fcf716940b3ed4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ae84518f89d14b29bf7b16d1e43f2061"}}
+2019/12/12 15:11:34 info->{"message_head":{"msg_id":"980acde99a2f4ca9a83f4fb4f02ef7b6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"30cd4327001e4c729ac65ac86bb33e37"}}
+2019/12/12 15:11:34 info->{"message_head":{"msg_id":"f2c072f56d6f49c8a480b457c59de692","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"765bdde4b9c64c73b98508899ad518ef"}}
+2019/12/12 15:11:34 info->{"message_head":{"msg_id":"52769c5a4efd40d58ef438b04cd945e2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8bd07828334b41ada4750c96dbefb19a"}}
+2019/12/12 15:11:34 info->{"message_head":{"msg_id":"972354d9ea28487cbc2ac4b2faef3196","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7048edba03294069b22506bb31008f69"}}
+2019/12/12 15:11:35 info->{"message_head":{"msg_id":"10ef819989884c8d8d4998d9120fc2ce","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f1852fd207214e45893905c79ac3b0e5"}}
+2019/12/12 15:11:35 info->{"message_head":{"msg_id":"4076fff4de754ad5b6075d19101ff44e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1975eacdd9a049b3a8f037f7b69fa23a"}}
+2019/12/12 15:11:35 info->{"message_head":{"msg_id":"4bb99b0a79c6487ebf21d98c62967860","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"561ea6ea5d00466487767faa29ceaca5"}}
+2019/12/12 15:18:49 info->{"message_head":{"msg_id":"65de20f047284dbaad3e713feb7a9109","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"465034116c2f4fc8b5a6ed472eb3055f"}}
+2019/12/12 15:18:50 info->{"message_head":{"msg_id":"eef337f6e5734e0bbfbeb8b7b54f739a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f2128ac8d07f448e98221525ce934a43"}}
+2019/12/12 15:18:50 info->{"message_head":{"msg_id":"e56df0e3b1a24620b6cd98fb65deea4e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"376c17d2912a4325be4c6cb0283f45fa"}}
+2019/12/12 15:18:50 info->{"message_head":{"msg_id":"1da6aee3da994de4be6985e9372bd9c3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ac4a26585bc545f28381fbadda74418d"}}
+2019/12/12 15:18:50 info->{"message_head":{"msg_id":"ef1997a55752417cad4ec7b228cb4544","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fea72a29b6d042cbb0c15f9b0790bca8"}}
+2019/12/12 15:19:16 info->{"message_head":{"msg_id":"495ca866238d4e9b9a760746fcf21829","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cd2c40349a3c4169bf19d79ed8db3e9a"}}
+2019/12/12 15:19:16 info->{"message_head":{"msg_id":"70a8e775785b477893b4eb59d17c7f56","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"240690da0b9a4363a95dee1eff852f34"}}
+2019/12/12 15:19:16 info->{"message_head":{"msg_id":"cd26ebac3a814b669331eff3870a4365","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"043d583b860846ecb1a46afce5c5dbb5"}}
+2019/12/12 15:19:16 info->{"message_head":{"msg_id":"b3a0fd17dcea435e92ebb0ae79576c03","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"194d61ab2aad4c18ab66e06d6ca76ee9"}}
+2019/12/12 15:19:16 info->{"message_head":{"msg_id":"2a611c2319db40e2b9c5c7b9bd4be696","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"bfee2259280b401d877672c039cab578"}}
+2019/12/12 15:19:17 info->{"message_head":{"msg_id":"00baab1ef6b04183861ec2766f7c04be","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c515fee6863140629416b99f1051ffcd"}}
+2019/12/12 15:19:17 info->{"message_head":{"msg_id":"a3344682ad654e53ad8e4c4ff19be74e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d4830a3d5361457b82f6136bd7771150"}}
+2019/12/12 15:19:17 info->{"message_head":{"msg_id":"647a8d6e922f47eb90a486086ae5007e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"89a29941d8cd4a169d49ea9afb2d58ea"}}
+2019/12/12 15:19:17 info->{"message_head":{"msg_id":"0137dcd5c0ff44c084a36b99196b7547","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"41b8b93657d74153866cb5fe3f197b9a"}}
+2019/12/12 15:19:17 info->{"message_head":{"msg_id":"f990307fdc5549f193d4c08283d67c4e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"dd90d8c3da964766971bb108f93c495b"}}
+2019/12/12 15:19:17 info->{"message_head":{"msg_id":"a772c484d8c9409d9903e17e15240c01","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"905c8fcfe87a43e6ae6b93424be0062d"}}
+2019/12/12 15:19:18 info->{"message_head":{"msg_id":"851dedbf592f4728b2c084c9429d320f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"60a5614a560442c18c004dcad8b82e6d"}}
+2019/12/12 15:19:18 info->{"message_head":{"msg_id":"fefb9b1d15c74305b91933b8ab5612f6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c2319ec32ddd44fc8572d11cd2ca30dc"}}
+2019/12/12 15:19:18 info->{"message_head":{"msg_id":"e6187a1cf7e84667898af7a9d5a85d02","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b31e35d7c0d949eba5a6fcb3a4e30da2"}}
+2019/12/12 15:19:18 info->{"message_head":{"msg_id":"4a1c9a62a94e41fd91dd830bbca5a6a1","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6b955e276c424f73b44900a8c886a6b4"}}
+2019/12/12 15:19:18 info->{"message_head":{"msg_id":"6519adb2e9a84b5abac93cb8b3c8b092","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3ff8887e7e024fa4a4665544baeefa18"}}
+2019/12/12 15:19:19 info->{"message_head":{"msg_id":"3073ebadb06c4aeaa63fd4ddf0fc901b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"059fda9fddbe48f9b55457f1b81c9b1a"}}
+2019/12/12 15:19:19 info->{"message_head":{"msg_id":"06243abdf04241e4aa8cdebb79902076","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9209fa05b3994754b6dfd0404e31b694"}}
+2019/12/12 15:19:19 info->{"message_head":{"msg_id":"edaf9d2358fc4d84ab4b62b30f91e025","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ec73c833d7c64f2087fa438b083b05c2"}}
+2019/12/12 15:19:20 info->{"message_head":{"msg_id":"41ff350f11dc4f1c816334468f6691ed","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d936795fffa24f00b4ca0c5b735de1cd"}}
+2019/12/12 15:19:20 info->{"message_head":{"msg_id":"ca0255d8afb6489b835c0d83392f8ea2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c41c37ca4a8f428a98b1e435ec83dabd"}}
+2019/12/12 15:19:20 info->{"message_head":{"msg_id":"30a42c94c2ea44aaab1f2886bf86819d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2152ee08045c4eec85ea74504c9d9c3d"}}
+2019/12/12 15:19:20 info->{"message_head":{"msg_id":"b1c8dd8ad8b140d39211c626ee0a06d8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"20cee3a084b740e4a645d63feebce032"}}
+2019/12/12 15:19:20 info->{"message_head":{"msg_id":"7d9d761127d248c6adf04cc7046c9c3f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ff0ea3a896114f3fb8ee0f5dfa17436c"}}
+2019/12/12 15:19:21 info->{"message_head":{"msg_id":"70e480c8a2a64abbb76dbd2e01ec3f63","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9f245e816e444cc2be79d5fc459673de"}}
+2019/12/12 15:19:21 info->{"message_head":{"msg_id":"203b6c3cd8b240a0ad68e3440f7a532b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"104a941ee8b94cb4b649e4f8d0eb212c"}}
+2019/12/12 15:19:21 info->{"message_head":{"msg_id":"348166117b8d4af5b2d0d00c5f5dbed9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1c3bd3e6d6b642a4acfb6dc160868cbd"}}
+2019/12/12 15:19:21 info->{"message_head":{"msg_id":"bc145e7f59544dcca80fe7c64d4daa5b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"771bb1e634b94fe38bb362347cdbf936"}}
+2019/12/12 15:19:21 info->{"message_head":{"msg_id":"5536a5358a8a4b83a1d7a09bcfc3491c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1643bd7e35d34d73b147269dd744feaa"}}
+2019/12/12 15:19:22 info->{"message_head":{"msg_id":"2a6a55d90c8a491682289074784f4f11","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5d889f106cff479496e1060c716866ff"}}
+2019/12/12 15:19:22 info->{"message_head":{"msg_id":"8937372817c245e9809f68d179fa4346","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cc93ac576ca14d4084d6ec5e3ceb759e"}}
+2019/12/12 15:19:23 info->{"message_head":{"msg_id":"d33a0dc68de646d6a216381d0f3c4ac0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"85b047a0dc0d478abbf6c409b9abca91"}}
+2019/12/12 15:19:23 info->{"message_head":{"msg_id":"8f632c52e0e845a899956fb2f85bfdd3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"832da3fef6514de7bf666e9d6112393a"}}
+2019/12/12 15:19:23 info->{"message_head":{"msg_id":"ae87e92cab294f32b4b0395fd68252fe","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ae5d9931db44483f9beaa094e0d54388"}}
+2019/12/12 15:19:23 info->{"message_head":{"msg_id":"1aec28aa6aae45618b9c9600d12adf6a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fd453fa8f1f44bfbac740b78e8b1ec9e"}}
+2019/12/12 15:19:23 info->{"message_head":{"msg_id":"53cb21070b19464fa01248aa1abcceec","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ccb68096f7df429682daf31df0c42a44"}}
+2019/12/12 15:19:24 info->{"message_head":{"msg_id":"e2be987b614c44999f6c138f4c75f509","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7ab5f1be30894c60a8f805597189fa13"}}
+2019/12/12 15:19:24 info->{"message_head":{"msg_id":"39f6fb3a185e4e6d819340134aaebe73","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a7a9a1879acc434d87204027be6e6885"}}
+2019/12/12 15:19:24 info->{"message_head":{"msg_id":"0847bd7f2a1b42c3ae493540d8802efa","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2f9914a8e3634bebba4cb9b4f7d7bab4"}}
+2019/12/12 15:19:24 info->{"message_head":{"msg_id":"c7f847c86a7d4970babf7d7850672dd6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7b1d6cd1082147009152f2c1b0f9e5eb"}}
+2019/12/12 15:19:24 info->{"message_head":{"msg_id":"95c6a9a9a908491782d5727a7c051944","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fff65e4e5a86463f950d9c7bce8add26"}}
+2019/12/12 15:19:25 info->{"message_head":{"msg_id":"a20b32a7bcd4488ea92baaad83588dbb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"39866fe8a9304876a75f680595adda27"}}
+2019/12/12 15:19:25 info->{"message_head":{"msg_id":"c8d6f6a18f634c95bf2e63441cb49ae7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6c5f58a0828f4042b53b1744e5ca2116"}}
+2019/12/12 15:19:25 info->{"message_head":{"msg_id":"396e3b7b06f443d79d3f24de7905a19f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"20cab3d7ea2c4d62ba9ce2e626cea0f8"}}
+2019/12/12 15:19:25 info->{"message_head":{"msg_id":"fc56fdf4cf38471b904595a5078c9805","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9c71ca04b5d44c46befacc56d3687f38"}}
+2019/12/12 15:19:27 info->{"message_head":{"msg_id":"925c708612174a7e9cb0d4d1fffe900a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"decd923deae5441c8cd8b429e799bb24"}}
+2019/12/12 15:19:27 info->{"message_head":{"msg_id":"c09637a2f5b84eb0bd3de56600c6ba34","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2dbccc99ae2f4b81840cb13e12adb854"}}
+2019/12/12 15:19:27 info->{"message_head":{"msg_id":"d40d800c6ceb4b1b8feaef476b26e269","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"82b1894745204fc7967c30853e2d8fe9"}}
+2019/12/12 15:19:27 info->{"message_head":{"msg_id":"338730a188fb43a09a0e599112d639f2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"bc01e3f2bf3240d796e3ccca42782178"}}
+2019/12/12 15:19:28 info->{"message_head":{"msg_id":"b30009d64a8d4889b845202c960d9ecd","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ddda3d040ec8418db14749f41c9f8155"}}
+2019/12/12 15:19:28 info->{"message_head":{"msg_id":"2ddbecf63e9e4076a900aa72bf413781","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cb0069ea72f74f18809761ea211e3455"}}
+2019/12/12 15:19:28 info->{"message_head":{"msg_id":"cafa630207e8483594ee4542f351b549","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"84a6306c54f540f4b1404620939d3e52"}}
+2019/12/12 15:19:28 info->{"message_head":{"msg_id":"a790dab0c27c4943b8af9a299d5493d4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"128496778b1d4b0ca4550c3903e1e6c3"}}
+2019/12/12 15:19:28 info->{"message_head":{"msg_id":"82bf7da3ed124732b86b18d6c75e39eb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fad86582095a454c94b550c0c0e21674"}}
+2019/12/12 15:19:29 info->{"message_head":{"msg_id":"5754836a562342deadeece4e53f13d4c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7559686c5b884155897acfcb096e4098"}}
+2019/12/12 15:19:29 info->{"message_head":{"msg_id":"c7ddbf943f5d4710a34e4fd292cd3ccf","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e5dd350276bd4477a36316446790e10f"}}
+2019/12/12 15:19:29 info->{"message_head":{"msg_id":"a89c5cdc683742e6a141b39638195802","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"94b6e9c0c081416ab861e133f9471920"}}
+2019/12/12 15:19:29 info->{"message_head":{"msg_id":"b53b583a66f648849e6d059f227565f2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a37650ebd5574d139c5ccdf380622afb"}}
+2019/12/12 15:19:29 info->{"message_head":{"msg_id":"1b2aac417f3448a293276cbaf46c34f3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6d37973bf5c94ba4a37527ae33914afd"}}
+2019/12/12 15:19:30 info->{"message_head":{"msg_id":"e925151617f04ccaa36b6cbf07a9b156","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ba5129bf4d7445f5bce42f20d7c075b5"}}
+2019/12/12 15:19:30 info->{"message_head":{"msg_id":"2dd6297838e945969aa10adec69ceefc","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"bc34e97525384d2395d57fd9cfaf4aa8"}}
+2019/12/12 15:19:30 info->{"message_head":{"msg_id":"54afe34237d44c8bb41f85b95088a370","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"70b92036c53a458c9d18b9b32835b621"}}
+2019/12/12 15:19:30 info->{"message_head":{"msg_id":"136b141b819649fcb8d4ce895adf38ce","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ad3b7e4dcd454bf1b7cee089610cc71e"}}
+2019/12/12 15:19:30 info->{"message_head":{"msg_id":"7f4803e92e98431cb5427c8e2066f67c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d975b333a448466d91482d8a1d6dd7f1"}}
+2019/12/12 15:19:31 info->{"message_head":{"msg_id":"28fe811b957d4fe498b72488b153f2b4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"53f490d26f6e47a08d481c706ed8d9a7"}}
+2019/12/12 15:19:31 info->{"message_head":{"msg_id":"0fc81fd3381347538e574fc22b400727","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cbab0c1bf7394f648297b09149ed1fc7"}}
+2019/12/12 15:19:31 info->{"message_head":{"msg_id":"b1beee6c731e433e9677909b02c8ac53","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ef5744ad5f944de4b9fd257b1951ce4e"}}
+2019/12/12 15:19:31 info->{"message_head":{"msg_id":"ff5a3952af7a4c69ac86c15be8935296","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"41382f3f081e4da3add08b37ae5008dc"}}
+2019/12/12 15:19:31 info->{"message_head":{"msg_id":"7866c21102eb44bcbb9972d8640eb008","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fe8e7160ddf34546a190ebe78bbdab1c"}}
+2019/12/12 15:19:32 info->{"message_head":{"msg_id":"8139fd7fe06640e4904a68b4133b7921","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"711e76937144458d9c8644de37376525"}}
+2019/12/12 15:19:32 info->{"message_head":{"msg_id":"badfd92cac6f4576997a45a52cf7bbdb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9ea06adb820c47f48b7d3ebd38cd37f7"}}
+2019/12/12 15:19:32 info->{"message_head":{"msg_id":"46b729fcaa3f4effb583e0f3a447b9bb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2276f7694d984a87a0bf926c1830b0a4"}}
+2019/12/12 15:19:32 info->{"message_head":{"msg_id":"662fd1ee33bb49419e51279683ac9090","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"69b86407a09b4db1b66d041da0913e73"}}
+2019/12/12 15:19:47 debug->current request url path:\
+2019/12/12 15:19:47 debug->current request url path:\
+2019/12/12 15:19:48 debug->current request url path:\
+2019/12/12 15:19:53 debug->current request url path:\
+2019/12/12 15:19:53 debug->current request url path:\
+2019/12/12 15:19:53 debug->current request url path:\
+2019/12/12 15:19:53 debug->current request url path:\
+2019/12/12 15:19:54 debug->current request url path:\
+2019/12/12 15:19:54 debug->current request url path:\
+2019/12/12 15:19:54 debug->current request url path:\
+2019/12/12 15:19:55 debug->current request url path:\
+2019/12/12 15:19:56 debug->current request url path:\
+2019/12/12 15:19:56 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/12 15:19:56 debug->current request url path:\favicon.ico
+2019/12/12 15:19:58 debug->current request url path:\
+2019/12/12 15:19:58 debug->current request url path:\
+2019/12/12 15:19:58 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/12 15:19:58 debug->current request url path:\favicon.ico
+2019/12/12 15:20:0 info->{"message_head":{"msg_id":"c05dbb1137084c4b8d8cc8be39c23da2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d80f9212093d4b579accbbf356e9bc3a"}}
+2019/12/12 15:20:1 info->{"message_head":{"msg_id":"c20b45c2b5f843438d14a4174cb1b8d2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"039e37af34084b31a6b148de3d82a24c"}}
+2019/12/12 15:20:1 info->{"message_head":{"msg_id":"d45aa4ee51b448a99babfbcf59040169","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2cd5b5a8d5ce4d9ca2f5e62b5d9d9986"}}
+2019/12/12 15:20:1 info->{"message_head":{"msg_id":"b30ccf4cbc584d988715ff5d5798105b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"860ebdb90bd547ac8c96b2c792f4524d"}}
+2019/12/12 15:20:1 info->{"message_head":{"msg_id":"e68d960e3a4147ab94a29be7ecd1d317","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"13cb10ca0e5a4d869fa075fe920de151"}}
+2019/12/12 15:20:1 info->{"message_head":{"msg_id":"fc6507ad28074e40957aefd7585e88f8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"97f6d717d9ce4e909237d521df717411"}}
+2019/12/12 15:20:1 info->{"message_head":{"msg_id":"c0f7cccf68b34e6e915237b1650ac2a0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"daac20942394404d9a4c650c6cbe5d88"}}
+2019/12/12 15:20:2 info->{"message_head":{"msg_id":"406cfa774a034ca092d6c3268a8abd3e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"53f56b9332d84682a8530cd8523927d6"}}
+2019/12/12 15:20:2 info->{"message_head":{"msg_id":"d5c1d97ba31148a7b94a2186f766e5f5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"87673a49b5394e0fa614e6ee4b17ab60"}}
+2019/12/12 15:20:2 info->{"message_head":{"msg_id":"b74ee64044b44598ad95b115a4112759","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7496f40fe6694ac2b68e4a49c979a723"}}
+2019/12/12 15:20:3 info->{"message_head":{"msg_id":"2b0955a81daf45d09680b4ee7d504523","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1e8bf7efffa147b08f05397054e57127"}}
+2019/12/12 15:20:3 info->{"message_head":{"msg_id":"ded239a8004d49c08e000a40f83b6e17","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"16a118172f7942fe949b4eb1ab55b543"}}
+2019/12/12 15:20:3 info->{"message_head":{"msg_id":"a79d2f9cdfba444fbb09fa5b8e66380c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"65b6a211bc3346fbb8f01cacfb4f9572"}}
+2019/12/12 15:20:3 info->{"message_head":{"msg_id":"e74364ed0dc84ff7bd5cbf5d7f758db1","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5990e1c7d03f4edbb905baad83ce8766"}}
+2019/12/12 15:20:3 info->{"message_head":{"msg_id":"d59db1615eb744f5954e478997e659c0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a86bdc4b906a40389b2b0c6548221c7b"}}
+2019/12/12 15:20:3 info->{"message_head":{"msg_id":"f05ba4ad95434346944ac566b8d35fe7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"70f73594d5b5440cb8fc9bc920b58ed1"}}
+2019/12/12 15:20:4 info->{"message_head":{"msg_id":"68a6defe915342fcaa3d25df95c6b326","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3283b18220554d8b92528330a146d05e"}}
+2019/12/12 15:20:4 info->{"message_head":{"msg_id":"b1b26ad32ef649e78b32aa9725b1d967","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8861b769466c4d7baffb24c8057f764d"}}
+2019/12/12 15:20:4 info->{"message_head":{"msg_id":"942c9b78533f4553bda76d3510078367","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ffd146cc824f4019b91d06a049a115a8"}}
+2019/12/12 15:20:4 info->{"message_head":{"msg_id":"76b78fa2fa5e44679dfc4c667ce228d9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"350159b3b0fa4f45ab33d8bc65fb3135"}}
+2019/12/12 15:20:4 info->{"message_head":{"msg_id":"5d729b0daac6444ba22c37336646a883","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"63fb53223eb0422fb78d5b5326f5e0b8"}}
+2019/12/12 15:20:5 info->{"message_head":{"msg_id":"806a5c4397cc426490d795ef4a0d92f8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3b074c1d1dc04112be9fe5efe7d1b933"}}
+2019/12/12 15:20:5 info->{"message_head":{"msg_id":"d6b0e4fccaa442c6824a0de4d4f88525","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"79d668b24f7243028dfe5b38a8b14351"}}
+2019/12/12 15:20:5 info->{"message_head":{"msg_id":"be4277ee35cd43a4884aff916cfc337b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c3cf0badc85c4499b0d2ea15a0505231"}}
+2019/12/12 15:20:5 info->{"message_head":{"msg_id":"66d77c12e510478ca2b3982ea2731396","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0c2a1158aefe42f9ad44bd4979ce2a3b"}}
+2019/12/12 15:20:5 info->{"message_head":{"msg_id":"847d3848c57346bd9d1ec151a9d4640b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"baef1f63335e487a8b947e854560f7d9"}}
+2019/12/12 15:20:6 info->{"message_head":{"msg_id":"ebffb70e4af2491686e9fe596334e0e3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6b77d3e7f90349848a96f0e1105414b1"}}
+2019/12/12 15:20:6 info->{"message_head":{"msg_id":"0457f65963ee4fbd8c974021c26e5610","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1a91e76015674f4180248e821aed24e9"}}
+2019/12/12 15:20:6 info->{"message_head":{"msg_id":"650d808afc7c4fd591616d9ba8316d93","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8bd9886e7fc147829387c2d30f160267"}}
+2019/12/12 15:20:6 info->{"message_head":{"msg_id":"e74352615ffb439a92aeecea1e866da8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d240e2e2bc764525812548b66dac41e4"}}
+2019/12/12 15:20:6 info->{"message_head":{"msg_id":"ec5483706f724f0c958a13e0f3fc56f4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f65472dd539d46b88787232ed698f683"}}
+2019/12/12 15:20:7 info->{"message_head":{"msg_id":"f23e8fe95ea94c68bef39ab2256c0af8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d16790b026f24f3eb1049cb749727e4c"}}
+2019/12/12 15:20:7 info->{"message_head":{"msg_id":"f875d6337e944eebb7ac9e865599f24c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"27d1c8e6c5224bb88a6884c06d26f1b4"}}
+2019/12/12 15:20:7 info->{"message_head":{"msg_id":"88fb092942a54688a4a88b2475c86a7d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5133461975254674bb175aee8e0423c7"}}
+2019/12/12 15:20:7 info->{"message_head":{"msg_id":"bf064d949f5040599c95375ef287650a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1ae9caa3d3cf42228081db975681a9a2"}}
+2019/12/12 15:20:7 info->{"message_head":{"msg_id":"a8683b4da09a4d61aca7d9c06d195fc2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e830b367c5b34f0b8f89204c4dbcb54c"}}
+2019/12/12 15:20:8 info->{"message_head":{"msg_id":"2a67fa03413e4258a9664efec7bef1f2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b8cfeaacf8ed423ca91cf7bfcde7953c"}}
+2019/12/12 15:20:8 info->{"message_head":{"msg_id":"3391c960cf824996b4a5e22f5e316071","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3c4b414fe55441ea87179ed74f582abc"}}
+2019/12/12 15:20:8 info->{"message_head":{"msg_id":"1d3a341b927648cfaa9e74cd7c4c0313","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b22f8b8830e440bfbfd248c7aed0925c"}}
+2019/12/12 15:20:8 info->{"message_head":{"msg_id":"42a61247a18746f7a8139e0b880a071a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2e15c2f7a5d24364834ef6f49d32afa8"}}
+2019/12/12 15:20:8 info->{"message_head":{"msg_id":"ecfb06d427d945189db1243223a04dfe","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8b8c2b510b7e4aa283ef558edac211bb"}}
+2019/12/12 15:20:9 info->{"message_head":{"msg_id":"eafd9f90f8af49d39624b73f40506a62","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"4983f80d08294693945f149666d382be"}}
+2019/12/12 15:20:9 info->{"message_head":{"msg_id":"3b5389948cf44fd5a6bd8f034c353113","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f1b6afc2683e40da94be1b30a1d3b211"}}
+2019/12/12 15:20:9 info->{"message_head":{"msg_id":"bd3d0c021d894c629194f0e653cf4575","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d5f3250ec7444a5dac0ee2a292792dbd"}}
+2019/12/12 15:20:10 info->{"message_head":{"msg_id":"73dfec75cf814df1879a88661d016f3e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5733d7b95abe442f8aa530d9c5d8b289"}}
+2019/12/12 15:20:10 info->{"message_head":{"msg_id":"e924064dbfc44b05aef9bd193f60ebd8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0665dd847c8a4979ab1b7e61a6b97075"}}
+2019/12/12 15:20:10 info->{"message_head":{"msg_id":"6030aab0a1fc4fa68915107255cb84a8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"653d1529d3034ce49a5a39f5e2930ad7"}}
+2019/12/12 15:20:11 info->{"message_head":{"msg_id":"c08e83516f2b4f10a1d9a73974d88c28","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"32e0b111a665409f84351d986ba8ef8b"}}
+2019/12/12 15:20:11 info->{"message_head":{"msg_id":"14b99ac1292243fcbbcc87efd732e4fd","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"44eb8f64977e40ac807af2fb9bd6fc5f"}}
+2019/12/12 15:20:11 info->{"message_head":{"msg_id":"7c17b681992244ab88e2ea6823e0b8c1","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5c08ddf841024f1589020795094cf2eb"}}
+2019/12/12 15:20:11 info->{"message_head":{"msg_id":"917fe652d02646f8aafde378c0fd6b07","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"bc87cd496a4f4da4a68cc8a92df18cf0"}}
+2019/12/12 15:20:12 info->{"message_head":{"msg_id":"d54c15bcf2ca403f94097eb864b954c1","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2b367db6e7db4b7dbcf7bbd082d662d6"}}
+2019/12/12 15:20:12 info->{"message_head":{"msg_id":"5b4a4d3b213547ab89922158b51f927a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1ab10e365a1f4cd68c28868d7baa30b2"}}
+2019/12/12 15:20:12 info->{"message_head":{"msg_id":"0731b42ab7c645adb1bf84a86203bca0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"382b0e28d1fa4ea4ac11e17b7dd982b3"}}
+2019/12/12 15:20:12 info->{"message_head":{"msg_id":"249bea3a86814725ad52662e27ef67cb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c17d9bc6060a4723adb6f14b1014052d"}}
+2019/12/12 15:20:12 info->{"message_head":{"msg_id":"bbdd8b2517f44e6c97c7d9bf38bdb23b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2099b5f21f824af9a77021dfc6e13e15"}}
+2019/12/12 15:20:13 info->{"message_head":{"msg_id":"63dc294e5b504572a3ea6a4a3ac27ece","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"51b00d2c0ced4958a9f2017ea228c152"}}
+2019/12/12 15:20:13 info->{"message_head":{"msg_id":"e3d8b159e3854a54bb1ab833e50e00f5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8afd029cbfb3412599795ae978edfb70"}}
+2019/12/12 15:20:13 info->{"message_head":{"msg_id":"35e7943af6024feeb6d01f6acac353cd","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c2edd87393b148228e22c050fe5dfce4"}}
+2019/12/12 15:20:13 info->{"message_head":{"msg_id":"0a8e7e6e46cc4c19a284d9f0890e574a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"4df33963c3854095bb2d70e9f17ace43"}}
+2019/12/12 15:20:13 info->{"message_head":{"msg_id":"a4c10b69632741aea71881bfb5bebd4a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7b71edfe8f1b4e00847d69195c739ce9"}}
+2019/12/12 15:20:14 info->{"message_head":{"msg_id":"ffb2e070aeac4d0a82e12a08e0ba69e6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7784a8b4d02a45bfb7fbd1cccfcf0b87"}}
+2019/12/12 15:20:14 info->{"message_head":{"msg_id":"85c529645fbb46d299ea913edfffbded","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a72b200046e54a1ba2aa70a38fdd63b3"}}
+2019/12/12 15:20:14 info->{"message_head":{"msg_id":"18e396d93e774c6ba8f9fe1d2be89d2b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0914784be7f94a9e8f586c5446918e97"}}
+2019/12/12 15:20:14 info->{"message_head":{"msg_id":"3c48d0e6cf024e99a3690642b53d4d0e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a0da5474546f4d64b8a62288bf91939f"}}
+2019/12/12 15:20:14 info->{"message_head":{"msg_id":"e59db48dee494ad0be5f26724e57477b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"989c8647cef64306a528b2107383c321"}}
+2019/12/12 15:20:15 info->{"message_head":{"msg_id":"9a50adbdbaa840c99512e4f5e79f861b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3fbaaf0e69ef402e97f5d5c40482bde7"}}
+2019/12/12 15:20:16 info->{"message_head":{"msg_id":"c8ff0df98b7848a3823b8f888b9e5f1c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7e7b2e3f596e4ed6b9b38317cddb19eb"}}
+2019/12/12 15:20:16 info->{"message_head":{"msg_id":"0ce6ee3e77914898b0392ec14a20ea43","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a9b3db92ffe241f2bfdfd2681bd2f6f8"}}
+2019/12/12 15:20:16 info->{"message_head":{"msg_id":"31f3dfca49344cd1b6d457a5cf1e01c6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"add9cda5bd794847a89dfddaaee9d7de"}}
+2019/12/12 15:20:17 info->{"message_head":{"msg_id":"3772e381dc564a7dba47848c84983c20","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2a9556f500ea4b52957c03f58ea2b0b0"}}
+2019/12/12 15:20:18 info->{"message_head":{"msg_id":"78543f38acf540aa8a726345d7789c7f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b5fb6034c56d4668aea4d2b04ba056d3"}}
+2019/12/12 15:20:18 info->{"message_head":{"msg_id":"325bce1527714a8db426cbdf0a444e60","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"054866c3d7e7486d9ed3a558df45b0a9"}}
+2019/12/12 15:20:18 info->{"message_head":{"msg_id":"a3a7ad77791f4862bf36e85e70f7bde5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"31043880635c40ff99afb83ee72ad58b"}}
+2019/12/12 15:20:18 info->{"message_head":{"msg_id":"87666c0daae249b08cbe807854b0740e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"199b98b7e0b24cf7af25d11c2f9f5e30"}}
+2019/12/12 15:20:18 info->{"message_head":{"msg_id":"d1363514d3224e048be2d5eb237b25f6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"937e168db5b44c74a58c6b891b345b47"}}
+2019/12/12 15:20:19 info->{"message_head":{"msg_id":"82a2a72c85164348875848b0912400eb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"17ed5ced88554d36be5f17300b44bef6"}}
+2019/12/12 15:20:19 info->{"message_head":{"msg_id":"e7b6f67a6f2d44e9903ce869e3e16d75","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"218d3dca21f34ad1989f4dc63174cda8"}}
+2019/12/12 15:20:20 info->{"message_head":{"msg_id":"f2eeabd5438c41c6b42ae293e622952e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fd7e7ac295e5428c8f6d4ac4c1c551d1"}}
+2019/12/12 15:20:20 info->{"message_head":{"msg_id":"8866eab0e402420a9e04f27d0150eb9e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"945fef0a7f024f85a6c918c89910b008"}}
+2019/12/12 15:20:20 info->{"message_head":{"msg_id":"d0291aba25784c018dcd7b4eb5ef3c9c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2ee6e19339aa434bbfbdaa2214d859d7"}}
+2019/12/12 15:20:20 info->{"message_head":{"msg_id":"7a0e2af3a4db47b0b48cc7b425c72246","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c33fefe290164b398a528dd4087b304f"}}
+2019/12/12 15:20:20 info->{"message_head":{"msg_id":"26f698478e994813add0554e8430dfd4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b1bb94535e384f5eb676a2505589895b"}}
+2019/12/12 15:20:26 debug->current request url path:\
+2019/12/12 15:20:26 debug->current request url path:\
+2019/12/12 15:20:26 debug->current request url path:\image\748x578.jpg?platform=b
+2019/12/12 15:20:26 debug->current request url path:\favicon.ico
+2019/12/12 16:5:37 info->init log environment finished
+2019/12/12 16:5:37 info->starting server,please waiting...
+2019/12/12 16:5:37 info->load config
+2019/12/12 16:5:37 info->The read main configuration is as follows:
+2019/12/12 16:5:37 info->server_ip:127.0.0.1
+2019/12/12 16:5:37 info->server_port:8890
+2019/12/12 16:5:37 info->http_server_port:8088
+2019/12/12 16:5:37 info->server_node_name:node_one
+2019/12/12 16:5:37 info->client_count:1000
+2019/12/12 16:5:37 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:5:37 info->start ms_nt_iocp server...
+2019/12/12 16:5:37 info->init ms_nt_iocp finished
+2019/12/12 16:5:37 info->init socket success
+2019/12/12 16:5:37 info->listen socket binding success
+2019/12/12 16:5:37 info->init ms_init_listen_socket finished
+2019/12/12 16:5:37 info->ms_nt_iocp server has start
+2019/12/12 16:5:37 info->moon http service started
+2019/12/12 16:5:45 debug->new connect is comming
+2019/12/12 16:5:50 info->{"message_head":{"msg_id":"dc1da3ed0c704092981500a70fa3e071","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1a0459d3b41d4d459039a29bbaf74cb5"}}
+2019/12/12 16:5:51 info->{"message_head":{"msg_id":"f7e9d53c558a4ff5ad8fae8fe3960cbf","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"346965c6647145ffaead05a80639a35c"}}
+2019/12/12 16:5:51 info->{"message_head":{"msg_id":"2702d1c4f3c249528e95a92599c5e7c5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"55f3c5930b864b18ae5894b0c171b1c3"}}
+2019/12/12 16:5:51 info->{"message_head":{"msg_id":"bf7c7c63d009472eb4198f67d3c1f67c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"955823cf665b41ff89b8ab4e4c8d9aba"}}
+2019/12/12 16:5:51 info->{"message_head":{"msg_id":"8d7e07122bdd410d8a6def40e88c68a0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d335fb0e496b4b21ae9a187425b1f6f5"}}
+2019/12/12 16:5:51 info->{"message_head":{"msg_id":"417a6c9ca2014fd0a073d77f52c5d4e2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5055ecbd7946435cb1e56982e6389a37"}}
+2019/12/12 16:5:51 info->{"message_head":{"msg_id":"ce77a26a190f49dca886998e115ed828","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e044a6b211494856badbd1bbfc9b7587"}}
+2019/12/12 16:5:52 info->{"message_head":{"msg_id":"bad1e33d9bf241db8b8c718644fab920","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f3c88b1a1e2d4d258aecb49c89f2ceab"}}
+2019/12/12 16:5:52 info->{"message_head":{"msg_id":"0a974061e8964e5e845ff45f67efafe5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1db795b2202346689d492f1b2822437b"}}
+2019/12/12 16:5:52 info->{"message_head":{"msg_id":"d6f9e18034354d818003ec0c1ac5df23","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"814f115c4b544e1d8204b60c57351332"}}
+2019/12/12 16:5:52 info->{"message_head":{"msg_id":"f926c49f42884136b8ffa5388b5b8d1f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7cf437f0512b45f4b7adf1fcfc98fc7c"}}
+2019/12/12 16:5:52 info->{"message_head":{"msg_id":"74b186677b114fe388a503b83c0a64c7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"67fcfdd59cae48b9b0e331a4bf145996"}}
+2019/12/12 16:5:53 info->{"message_head":{"msg_id":"86b2b24b0c3e4a74ae7d6dbaf264475b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"80c2b65e6695457f93ff80b54382952e"}}
+2019/12/12 16:5:53 info->{"message_head":{"msg_id":"2a5f5b390a8e4384a7e03340a724768b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"006d0fac3b6b4d84a36af1b93538e5a1"}}
+2019/12/12 16:5:54 info->{"message_head":{"msg_id":"6a8c8a302fa949e4b95c5c30cc494df5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6693dcbe14f54b008f3ed635a284548a"}}
+2019/12/12 16:5:56 info->{"message_head":{"msg_id":"6023c79d3c4c4bbaaafce8ff92c618da","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fe477db6e32c4775a3f016593cbf8869"}}
+2019/12/12 16:5:56 info->{"message_head":{"msg_id":"c3c3f9f2bf51413cb10233b293152cff","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"01ff95b857ba4a6f9dfb56b14d68fdab"}}
+2019/12/12 16:5:56 info->{"message_head":{"msg_id":"38d04a2f68f84da9aa712ca9f9e3b19f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"4e742ce035dd465495c2bda80b41970b"}}
+2019/12/12 16:5:56 info->{"message_head":{"msg_id":"a6283a4354644d03a933cdc0a18dd961","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7f635b80089242729e37e8e7af0a4b30"}}
+2019/12/12 16:5:57 info->{"message_head":{"msg_id":"9769df3b3c784a1488c4b7ea8016e277","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"be1df47bd44147808dcdad19505765f3"}}
+2019/12/12 16:5:57 info->{"message_head":{"msg_id":"a0bd606657a5471b820f71ce97ff3000","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fbbca49e79bc4c6f96a6c31750e4f337"}}
+2019/12/12 16:5:57 info->{"message_head":{"msg_id":"40f948d6f7de4554addd39054a9b0cd0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"12b9f13b5dc8404689561cae8334f135"}}
+2019/12/12 16:5:57 info->{"message_head":{"msg_id":"ba6698cad0c04f64a1492192f2846ca5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8515e2e60fb847fb963d4cf27f532ee9"}}
+2019/12/12 16:5:57 info->{"message_head":{"msg_id":"7f1ee374471d4d0796e4d7306c17a06e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"acaf13df660f453f92f2626b56804eb2"}}
+2019/12/12 16:5:58 info->{"message_head":{"msg_id":"d74a02ddde5c44cf989afc8f3f9de22a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5a7e77deb6244204a82057c400a2865c"}}
+2019/12/12 16:5:58 info->{"message_head":{"msg_id":"331c2cc6afcf4d2caa4cc97a02709536","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b651614326a54ac98755246fc7fe32d0"}}
+2019/12/12 16:5:58 info->{"message_head":{"msg_id":"4cddb99663934350a225dc5743b23b9a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"31c026e807d64aacaf0ada78d870940e"}}
+2019/12/12 16:5:58 info->{"message_head":{"msg_id":"5c706854129f42a5bbcb829ef293ba3d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"744420a1bbc446919a055d0feaa57394"}}
+2019/12/12 16:5:59 info->{"message_head":{"msg_id":"f0caed80280943cb97091d629204b0aa","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"24824ab786ac49359b5f1bf5a7366ba5"}}
+2019/12/12 16:5:59 info->{"message_head":{"msg_id":"f4c91b4a9a844f6aa01057f72587db61","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fa27a13d58b049c59e8fffcccc531723"}}
+2019/12/12 16:6:0 info->{"message_head":{"msg_id":"001e6af932c942209f65156ac91aeb62","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6f5bd839bf3641e1bfca0b2c1c6fc2c2"}}
+2019/12/12 16:6:0 info->{"message_head":{"msg_id":"ba277e94c46940cb92e7a7ce297e764d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"bbf4f80c5b2c4014b08d2e4e93466dc9"}}
+2019/12/12 16:6:0 info->{"message_head":{"msg_id":"78a1d25ceecf4b8e813ab7211c9028a0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"da2fb49e12564181a43606c97cfb812b"}}
+2019/12/12 16:6:0 info->{"message_head":{"msg_id":"730987c65bf647aea8e4a11b0fcf8db9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"744d1d892d254066a11e1095fa60e9d6"}}
+2019/12/12 16:6:1 info->{"message_head":{"msg_id":"7b64b0e04e00432299a4773a402678e5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f3d67919ca41492bb3ebca69fe35ded5"}}
+2019/12/12 16:6:1 info->{"message_head":{"msg_id":"8ed50c34abbf45b7ab6a8c319c42a7eb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9cbd0586bdfb40bfa0b89a384cf678f0"}}
+2019/12/12 16:6:1 info->{"message_head":{"msg_id":"486857d085fd4cfcb7c313e7ed3f7179","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ed1367e7bae94bc09a11265fa516dfd0"}}
+2019/12/12 16:6:1 info->{"message_head":{"msg_id":"8af68ab98fb2488bbc0590b30e99f05e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0340e74ea00d437eb26114ef6b943338"}}
+2019/12/12 16:6:2 info->{"message_head":{"msg_id":"b3f54d87eb8645379ad1e4f6f07bb446","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"61f03856d9054685bfeacc2e61b0f1bc"}}
+2019/12/12 16:6:2 info->{"message_head":{"msg_id":"c9b1f0164bd3459787c4744ecf742da8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b814620ad7d54e4083c60b016b73ca91"}}
+2019/12/12 16:6:2 info->{"message_head":{"msg_id":"05b7a36c8c2446e289609dfa9fafa608","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"97dfd1626e624b27a9adc55ca80c8740"}}
+2019/12/12 16:6:2 info->{"message_head":{"msg_id":"9a51e95e1ce740d5b43b3bf74f09a233","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"49c507f952f94f6c89b8dfca4d55e61e"}}
+2019/12/12 16:6:3 info->{"message_head":{"msg_id":"33f9791c7fe745d5a1577b463a4115ef","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"695286e6ebb949f1ae439aaf1246253f"}}
+2019/12/12 16:6:3 info->{"message_head":{"msg_id":"9f0046c4b1fb4ae8bfcc7e845a1f5156","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"541c3f899e844f1ebe1d7af2ed945bce"}}
+2019/12/12 16:6:3 info->{"message_head":{"msg_id":"69a563244647423cb8fa08b53ad830f3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d80390e2e6374c6b8a72261fdc638d58"}}
+2019/12/12 16:6:3 info->{"message_head":{"msg_id":"fa1d6e91353443dead1720b442b737f9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b9b7c51d01bd429d82c6fe9dfc4628a5"}}
+2019/12/12 16:6:3 info->{"message_head":{"msg_id":"d619564343724aa09d4342a616b5c27d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"107a12239b06463aa868e8123377692e"}}
+2019/12/12 16:6:4 info->{"message_head":{"msg_id":"3b506a02f50744d1af956f635f7372da","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c1085e7386ec41bebaa9f0812d1b2442"}}
+2019/12/12 16:6:4 info->{"message_head":{"msg_id":"5ae70fdda54c45de827124f126107932","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"99c5cfae02bf4bd9bfaffd4cab587bfd"}}
+2019/12/12 16:6:4 info->{"message_head":{"msg_id":"04a19cad17334ce89d126f59d3ab7b08","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f3526049891a401c904ffdef7c6a7a0e"}}
+2019/12/12 16:6:4 info->{"message_head":{"msg_id":"ec97a5d07e3b4fd59a0106ce5f39af7a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3726abb3cf49465392a9a98858baaaa6"}}
+2019/12/12 16:6:4 info->{"message_head":{"msg_id":"4f0b210df4934f7088a68f188623f1d8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"72ebb0bea8be4a39a97ed9c091a0e6af"}}
+2019/12/12 16:6:5 info->{"message_head":{"msg_id":"7b7a1c1c08fc4b8bb827a7fd81264980","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"86f8442cdd874f04b6095ab3acea8068"}}
+2019/12/12 16:6:5 info->{"message_head":{"msg_id":"a2888d7f29d54c20bd4516b3b3da79f2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ca8798fdbf574c798119084a22200b9d"}}
+2019/12/12 16:6:5 info->{"message_head":{"msg_id":"b15d14c713d644abb23cef8fbe5dd3d2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fd1513a98439435abe0643ed48822602"}}
+2019/12/12 16:6:5 info->{"message_head":{"msg_id":"d574461ddd29449f89bae0c908fbb327","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6797cb1d3f87439d86bd25ddabce9af9"}}
+2019/12/12 16:6:5 info->{"message_head":{"msg_id":"650b515821254a27808ded4cf1eaf2cf","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"89d47fdd18874f56a3a3ec7326e8f213"}}
+2019/12/12 16:6:6 info->{"message_head":{"msg_id":"33d3cef955624c8a95aa308d535255ad","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"573d63d856db4cdc99d6fefbd6cc3e37"}}
+2019/12/12 16:6:6 info->{"message_head":{"msg_id":"1bfe0fa1fef34e2f9ca4fc3536044636","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1448ac26f76c49cdbdbce3b36dbc501f"}}
+2019/12/12 16:6:6 info->{"message_head":{"msg_id":"6ef59af3e61a4f4e93bb51c8655f35f6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3c47ba0cc58b4b989a1e73545bfb1b37"}}
+2019/12/12 16:6:6 info->{"message_head":{"msg_id":"6f511078a3fc4e88a550855eaa1fe52f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"dc2f8fa15ea340c4870b5f75b7f38a9b"}}
+2019/12/12 16:6:6 info->{"message_head":{"msg_id":"21e2aef38101443bb03a271a7a8d7297","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"78c80c6704c14d9f9dfc62b693304913"}}
+2019/12/12 16:6:6 info->{"message_head":{"msg_id":"fe130c01a2f04e479fd053c91147f3d5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1058478f0ef34ee19cb4f037712bce97"}}
+2019/12/12 16:6:7 info->{"message_head":{"msg_id":"a530256e78044153b9194f784ca621de","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6966d47367aa4288a58c2540a4d1a045"}}
+2019/12/12 16:6:7 info->{"message_head":{"msg_id":"a1a53999890c47deaff0c396d216d1af","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a690a6e4d802441fa62053f1a45ae499"}}
+2019/12/12 16:6:7 info->{"message_head":{"msg_id":"b14f653c4bdc46c998759f5627fd0393","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"089793bc1d8e4f88b7ec8c7e3a6e8510"}}
+2019/12/12 16:6:7 info->{"message_head":{"msg_id":"3091dd9ccfd24d00b34ad01ec9e6c646","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"607063d7f3c54208be49490f34ef525d"}}
+2019/12/12 16:6:22 info->init log environment finished
+2019/12/12 16:6:22 info->starting server,please waiting...
+2019/12/12 16:6:22 info->load config
+2019/12/12 16:6:22 info->The read main configuration is as follows:
+2019/12/12 16:6:22 info->server_ip:127.0.0.1
+2019/12/12 16:6:22 info->server_port:8890
+2019/12/12 16:6:22 info->http_server_port:8088
+2019/12/12 16:6:22 info->server_node_name:node_one
+2019/12/12 16:6:22 info->client_count:1000
+2019/12/12 16:6:22 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:6:22 info->start ms_nt_iocp server...
+2019/12/12 16:6:22 info->init ms_nt_iocp finished
+2019/12/12 16:6:22 info->init socket success
+2019/12/12 16:6:22 info->listen socket binding success
+2019/12/12 16:6:22 info->init ms_init_listen_socket finished
+2019/12/12 16:6:22 info->ms_nt_iocp server has start
+2019/12/12 16:6:22 info->moon http service started
+2019/12/12 16:6:24 debug->new connect is comming
+2019/12/12 16:7:42 info->init log environment finished
+2019/12/12 16:7:42 info->starting server,please waiting...
+2019/12/12 16:7:42 info->load config
+2019/12/12 16:7:42 info->The read main configuration is as follows:
+2019/12/12 16:7:42 info->server_ip:127.0.0.1
+2019/12/12 16:7:42 info->server_port:8890
+2019/12/12 16:7:42 info->http_server_port:8088
+2019/12/12 16:7:42 info->server_node_name:node_one
+2019/12/12 16:7:42 info->client_count:1000
+2019/12/12 16:7:42 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:7:42 info->start ms_nt_iocp server...
+2019/12/12 16:7:42 info->init ms_nt_iocp finished
+2019/12/12 16:7:42 info->init socket success
+2019/12/12 16:7:42 info->listen socket binding success
+2019/12/12 16:7:42 info->init ms_init_listen_socket finished
+2019/12/12 16:7:42 info->ms_nt_iocp server has start
+2019/12/12 16:7:42 info->moon http service started
+2019/12/12 16:7:45 debug->new connect is comming
+2019/12/12 16:7:48 info->{"message_head":{"msg_id":"0fa90781de464469b21f72cc400f4acd","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ae461ce198ab44518e9bc7d5cd5f7210"}}
+2019/12/12 16:7:50 info->{"message_head":{"msg_id":"2887055a95e248719b938a6bad7bad2d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b7e3bda95ea140f5b8be774a6f53808a"}}
+2019/12/12 16:7:51 info->{"message_head":{"msg_id":"afce85ead0044e109cb521f271f61689","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"30dbd76617494fde9c25c7ea829595a9"}}
+2019/12/12 16:7:51 info->{"message_head":{"msg_id":"f25b59878da0438a9ef2182b86189bd8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b5c51847d1de4d7fa928a3b075055f74"}}
+2019/12/12 16:7:51 info->{"message_head":{"msg_id":"a99c361cd3214940bfb63db3e3b821b2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"18ba166fe31e4ad6924638eb296b284e"}}
+2019/12/12 16:7:51 info->{"message_head":{"msg_id":"0c0ccbcde3bc488485d3c120dc80a207","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1f84898c6ea54bc18399eed4b9bba7f5"}}
+2019/12/12 16:7:51 info->{"message_head":{"msg_id":"2b51531e7dbe4b7ab9d863a266fd6ee7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"85806b6031e943f29cb0d402c5d00e55"}}
+2019/12/12 16:7:52 info->{"message_head":{"msg_id":"1fbc6e5f2e4749d7847d671a92e9596e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7a9fee1ac6864f30925f08a076fbd53e"}}
+2019/12/12 16:7:52 info->{"message_head":{"msg_id":"877b938ff10e454d971ca0e66d975be8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a65385cbcec54d0ead4614c20b5a73c9"}}
+2019/12/12 16:7:52 info->{"message_head":{"msg_id":"4425a40d90c64aa2a4574eb581e4a355","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2626f565c8e9469f8bee9234c3e1da56"}}
+2019/12/12 16:7:52 info->{"message_head":{"msg_id":"e10e9fd222d744af85e5041329609f9f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"807ba88882b446639fc7949a87f4e30a"}}
+2019/12/12 16:7:53 info->{"message_head":{"msg_id":"18bc9fc48dd141ea87272d145bbf21af","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ae932460d01642b4b2a0e91d4838c60f"}}
+2019/12/12 16:7:53 info->{"message_head":{"msg_id":"8d184a5986854112967499e482b8f364","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"979e1c82da1a41a1a879c2a5461053b2"}}
+2019/12/12 16:7:53 info->{"message_head":{"msg_id":"91e553ed89c946cd8e5bb52ccface28d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"227ac42cb93b4737818c92dadb26a9cd"}}
+2019/12/12 16:7:53 info->{"message_head":{"msg_id":"264ee08f4d194e6391e9f8ff3cd1275d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"384e3e598bec4b82a7bababdede73761"}}
+2019/12/12 16:7:53 info->{"message_head":{"msg_id":"2168a14011f54f66ada699d6aeb0f8f3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a79b35e8b35e4b389d0ff0c6e435c6f9"}}
+2019/12/12 16:7:54 info->{"message_head":{"msg_id":"e313b6b43dd24f158efc40ab1a5255e0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a84b746300714c398f4889717ca5eafb"}}
+2019/12/12 16:7:54 info->{"message_head":{"msg_id":"4d62a30990c4429a9ee792dae5931107","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"098a8575bffa45468ce4ced227fc8472"}}
+2019/12/12 16:7:54 info->{"message_head":{"msg_id":"7bbf09ee2bfe4672b28db0fd2a3ec02d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"371502b4696b45f294a013b749016643"}}
+2019/12/12 16:7:54 info->{"message_head":{"msg_id":"7cba1bb6bb5e4fdcabc741518a990f68","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2bc7603898ce47a280d581c3a18598e3"}}
+2019/12/12 16:7:54 info->{"message_head":{"msg_id":"f17222f11c1544d6801cdcb06c78d3f4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ff1965de37014910a3911d020bcf10b3"}}
+2019/12/12 16:7:55 info->{"message_head":{"msg_id":"e89a0e9e175d4135bc47f31e8c758201","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7712dc58a6e0415f8846f36e6baa253a"}}
+2019/12/12 16:7:55 info->{"message_head":{"msg_id":"4c363111b76f48b3ad19d3a8c8a5011c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cce9f9963f174b01ac4eb0eb0f8d6c29"}}
+2019/12/12 16:7:55 info->{"message_head":{"msg_id":"dbb710b458f84f249de5c926712ce52a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c7ee3720017b4dc3a27f6bd348951f63"}}
+2019/12/12 16:7:55 info->{"message_head":{"msg_id":"6a9deeb42a684a3b9772b354511ae182","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"073b096c8f1c4fb387fa1ef18d48ade6"}}
+2019/12/12 16:7:55 info->{"message_head":{"msg_id":"ec483fb6097e43eaa91721d5e634a5a6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"02bdc52e2bcd45c1aace1a877bfeff08"}}
+2019/12/12 16:7:55 info->{"message_head":{"msg_id":"a611c53a7da4472fbf4bdb890225ea3f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1bcb418ae69e409187636007f37fa0e3"}}
+2019/12/12 16:7:56 info->{"message_head":{"msg_id":"876fec02d0364ee29962c0b84723cddf","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9492de3ba794463b8ab48c1ca5d07fb4"}}
+2019/12/12 16:7:56 info->{"message_head":{"msg_id":"f78f7027f668424ab2a932943f7340df","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"45542ab4868245eab566fd1b0319aed0"}}
+2019/12/12 16:7:56 info->{"message_head":{"msg_id":"6cdd2260afcd4d0eacb9301b202d483a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"68918bf8f46c4ddea8186a0a03e27b56"}}
+2019/12/12 16:7:56 info->{"message_head":{"msg_id":"b045b22f80ee4f0d9d4e291eab6ee23b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"749995e4e90c4167a023bf1e1567687a"}}
+2019/12/12 16:7:56 info->{"message_head":{"msg_id":"122a3b0d33db4a07b152dd9182ab50b1","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a69189b6c691492985f251788c506866"}}
+2019/12/12 16:7:57 info->{"message_head":{"msg_id":"3527606a2cd6462eb6563beb6ce8bcdd","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"bfe807c2ee1348c9b5b2180b048e83af"}}
+2019/12/12 16:7:57 info->{"message_head":{"msg_id":"19aac274a0004b1e997b9db804968a74","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cd5dccaeeac04069abfef9bc0da1afcd"}}
+2019/12/12 16:7:57 info->{"message_head":{"msg_id":"dd3f42a6c14e43ca8525a4b24f598b98","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"433b2d5d969c49d88be8cd7ed80f1d92"}}
+2019/12/12 16:7:57 info->{"message_head":{"msg_id":"5b7ddcc8ddea47d6b8dc698c036577a3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b5f877c45bc2437fb45bfe71cf08ee0b"}}
+2019/12/12 16:7:57 info->{"message_head":{"msg_id":"80d1de11480e42248e970306b4e8a6f5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0b18d099f3884ec38b6fcdbaeb7145f8"}}
+2019/12/12 16:7:57 info->{"message_head":{"msg_id":"c71f16941b1a461fa7992b9324f8319e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e026ba998ad644a1aa2f4856a28558d6"}}
+2019/12/12 16:7:58 info->{"message_head":{"msg_id":"72b9d02b87a44f7aaa4bb287d1d2d2ab","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fda67f4256b246f3b19bb8d738efbf31"}}
+2019/12/12 16:7:58 info->{"message_head":{"msg_id":"d6ea6a1762af4588b55976e79b8594ae","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e09018f9c7fd4bb4a49e83f34b8c6e48"}}
+2019/12/12 16:7:58 info->{"message_head":{"msg_id":"d0925c788fed4f46841af532d04b5241","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3d0c0ad4f1c54f4b9793f981e853e508"}}
+2019/12/12 16:7:58 info->{"message_head":{"msg_id":"8825a9592aa449cc879eecab9b00baa4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"36b94550e85a4c7e93757d68c265ee28"}}
+2019/12/12 16:7:58 info->{"message_head":{"msg_id":"669737dccdde41febc56fcd6b4d1c863","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ba6007ff13d64d778f3a8e6fe53ceea3"}}
+2019/12/12 16:7:59 info->{"message_head":{"msg_id":"a59707e907844150bfcfc4e8af48d4d2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5e134b9be5434493bbc242cdc7c89a37"}}
+2019/12/12 16:7:59 info->{"message_head":{"msg_id":"8343db67c90e42819854925974f3560f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"81c78fcee0664aa99581f7f2a89dabfd"}}
+2019/12/12 16:7:59 info->{"message_head":{"msg_id":"8b352a229baa40019e70166c636e6d91","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a66c45f423694168a6a38a7b5c553a44"}}
+2019/12/12 16:7:59 info->{"message_head":{"msg_id":"4fd9aabb38f34bc6b241ac7ea293ea8b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8ef8a5886fc5421e9f67d881362818d1"}}
+2019/12/12 16:7:59 info->{"message_head":{"msg_id":"7074d3acf624461d941fd19d32681c28","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ca37b391131c4b738b45f6fae899ce30"}}
+2019/12/12 16:8:0 info->{"message_head":{"msg_id":"96fe906f301c450f963deaf2c3a1a78a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a08b66d8ac954c46b65c59a039c2a736"}}
+2019/12/12 16:8:0 info->{"message_head":{"msg_id":"e263e97838724dfd9fa62517318f869e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"451cdcacf370489a89d7e4acc0301fee"}}
+2019/12/12 16:8:0 info->{"message_head":{"msg_id":"d3d02dfa9ec04331b0f50e89ca8c6545","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f617c71462804f09bc8426458410a38b"}}
+2019/12/12 16:8:0 info->{"message_head":{"msg_id":"03edc161e2b2411f8c3b576fc2bbcb3e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"aa913dc316884b56bad7de29fb8ffe44"}}
+2019/12/12 16:8:0 info->{"message_head":{"msg_id":"f7e5be1c95284f64974e11e48b196c77","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b7cc22693597448db83b0f89e313c60c"}}
+2019/12/12 16:8:0 info->{"message_head":{"msg_id":"53f7d77796b24ee198e7b5d95bbbb471","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6cbb73dd7c9f411b9f80be42fca3a160"}}
+2019/12/12 16:8:1 info->{"message_head":{"msg_id":"dc5defbb5ca6457388face9579da4bf4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3e94ff8201154953b35adb80fc905372"}}
+2019/12/12 16:8:1 info->{"message_head":{"msg_id":"78b57e869fa54d6cb1cd8471bb22b980","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b926441853214e8cb4f02ed2e54b53ad"}}
+2019/12/12 16:8:1 info->{"message_head":{"msg_id":"883accafb9234955a58b7a0f9812a9a8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"200af472d20a44dbbc1f8032f1d24586"}}
+2019/12/12 16:8:1 info->{"message_head":{"msg_id":"231435a648894b8a8c530c0b98523947","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fa96db1fa7a247b4b42a6cbb7c6c5136"}}
+2019/12/12 16:8:1 info->{"message_head":{"msg_id":"206afe60100843f89f1a895da8bb06a8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7d3ec3a7d0b94cc9acca65a88d439713"}}
+2019/12/12 16:8:2 info->{"message_head":{"msg_id":"26881e0d74d04be1896971025839ee4d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5ee4397d7e484f1cb18d85792ecd8ca0"}}
+2019/12/12 16:8:2 info->{"message_head":{"msg_id":"834dda9e585540f1994d0a62f7ca2f16","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7493b4f00d3541919a432af56137f899"}}
+2019/12/12 16:8:2 info->{"message_head":{"msg_id":"3d4ceb33932348b080e11ffa6fff2760","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"16d817caff5641958bc55f56ba199db5"}}
+2019/12/12 16:8:2 info->{"message_head":{"msg_id":"856cf265844f47e4a6c4012a635e6130","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"174c6fda2db847bfab12efcaf530f2bc"}}
+2019/12/12 16:8:3 info->{"message_head":{"msg_id":"cceb5bcda08b49e2b67227b6384a94d7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0c831c4d12dc41b68e032931995e7a80"}}
+2019/12/12 16:8:3 info->{"message_head":{"msg_id":"0941da22d7ec4ff7b25ea44818b25889","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"64f09f2338e84a259dc133bcbddfd627"}}
+2019/12/12 16:8:3 info->{"message_head":{"msg_id":"566d2bfedf0248dfa846932acc289927","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c4da3c4f5bd347ddad0b0044341e37cd"}}
+2019/12/12 16:8:3 info->{"message_head":{"msg_id":"591e0a273d544746abbdb61b556b7cb0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0ed93556dadc4fbca3572b68eee2011a"}}
+2019/12/12 16:8:3 info->{"message_head":{"msg_id":"199409e17f954bbfa24935aadf32812d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ee4d21c2af664128958804e6de25775d"}}
+2019/12/12 16:8:4 info->{"message_head":{"msg_id":"b0696505f36b4ddcade3128e508419c0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7ef68aa4b3a3476a95f36a18daf4152f"}}
+2019/12/12 16:8:4 info->{"message_head":{"msg_id":"d67b208794eb49c2ab4d68d6e580f107","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7e842c20d159448c98dc4a3d12939d25"}}
+2019/12/12 16:8:5 info->{"message_head":{"msg_id":"b8189478e7fd4f9285215b7cff959619","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ef6bfeb269f04e40993c5ced89f4da3f"}}
+2019/12/12 16:8:5 info->{"message_head":{"msg_id":"0637001fc47e462eb9e91c0ac2dd6492","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f1c5f98555d64002b2dff3e5817e8472"}}
+2019/12/12 16:8:5 info->{"message_head":{"msg_id":"2d08aaf99734411395c4053cf76671f8","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"94ca647397e7463a8fb3af75b36dbca0"}}
+2019/12/12 16:8:5 info->{"message_head":{"msg_id":"fc9ca7a5d57b4a6b8d4140ba9fa2d12b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0f5f9e3e14cf4e6cb79b05f14e5dd76a"}}
+2019/12/12 16:8:5 info->{"message_head":{"msg_id":"9df5871ba3ed49a9a80d5c18a8aab8b7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a83cb8c5f0c346068f378a18e72a9f16"}}
+2019/12/12 16:8:5 info->{"message_head":{"msg_id":"ce5b71b5dbcd4a0b8ffa5ef3378236c3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7a6f559a5c864774a136763e3e85c9fe"}}
+2019/12/12 16:8:8 info->{"message_head":{"msg_id":"d8dc7dfe1c6f432a99983cac0a44b387","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"59d6a7ebdb4b4d15a5c6f9df256b6a08"}}
+2019/12/12 16:8:8 info->{"message_head":{"msg_id":"e464af3578644cbdbd2edafc19e1c960","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"93acb60214874b228c8be6cfffed92cd"}}
+2019/12/12 16:8:17 info->{"message_head":{"msg_id":"70b69d65a545454e804b2676521dd939","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"eea9c25f3bec4589aaafb6c6c737ae6a"}}
+2019/12/12 16:9:57 info->{"message_head":{"msg_id":"cbbf93e8f5824b60801cb1eaf755d355","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3c0b32a339234d72810f88c742e9cff6"}}
+2019/12/12 16:10:3 info->{"message_head":{"msg_id":"da2170e64254423db940e386b9965e90","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"cafa032c06cb43448c3365b74c6d061f"}}
+2019/12/12 16:10:3 info->{"message_head":{"msg_id":"ec5577d186344b15951890d8d4010010","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"6afa88f6dc03400686c68550762e5086"}}
+2019/12/12 16:10:3 info->{"message_head":{"msg_id":"3aa01cc1ece740f7befe6237b5ce743b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"126c8c16c1354109886994c2c8c0719b"}}
+2019/12/12 16:10:6 info->{"message_head":{"msg_id":"73c27b4cb578487ca2d2fc0840ac79d7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"0339a4b018a64df1a1d331db60a07e29"}}
+2019/12/12 16:10:6 info->{"message_head":{"msg_id":"cf13a43f80d449888acdfea89ef98447","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e385e5bb52d04993b94b5662fb3ebf83"}}
+2019/12/12 16:10:6 info->{"message_head":{"msg_id":"a6c142fa2e1248c88d7d3eef7d4d39eb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"54a74e6207ae4544acf33e069cd08618"}}
+2019/12/12 16:10:7 info->{"message_head":{"msg_id":"0183372752354bb3830204ad1cb09fe2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"89250a9749c540b09370bebcee750b4f"}}
+2019/12/12 16:10:7 info->{"message_head":{"msg_id":"76d41a2c3cf64098a4e6059966195b5d","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"71a2aaa0485545c5b9c7b7051af324ac"}}
+2019/12/12 16:10:7 info->{"message_head":{"msg_id":"0db9e72b7ca34f6ca1096992ef908666","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2b58fb92d68f4b57adbab10a02a2d927"}}
+2019/12/12 16:10:7 info->{"message_head":{"msg_id":"fb92ac524a7e49f2a7fe4cc9d72fa456","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"473131231b024aadb853ab55201c6ed4"}}
+2019/12/12 16:10:7 info->{"message_head":{"msg_id":"2547d7702c0d413b97b0347ff5b992b3","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d90fa9ed622d43bba5d8f4afa973f72a"}}
+2019/12/12 16:10:7 info->{"message_head":{"msg_id":"0378654d85124f73a2aa12a7c7f93698","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"469c87a9ecd14d33ab6c73517aa0bb9b"}}
+2019/12/12 16:10:8 info->{"message_head":{"msg_id":"a468178d7f1049fdbc26f9a8b167eb71","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"21e34fe1087d42719f9b28c9d21f77d1"}}
+2019/12/12 16:10:8 info->{"message_head":{"msg_id":"af2d7ae7b4c343f7ad91bcdd4c74b49a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"dc6c765d784d4e8ab3da974c90da6ccd"}}
+2019/12/12 16:10:8 info->{"message_head":{"msg_id":"e546dbaad2264fc7a3a384645effd154","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"39604fba04704490b80c61fa449aeeef"}}
+2019/12/12 16:10:8 info->{"message_head":{"msg_id":"6496a3dbe05b4c63a610fe34a9382b05","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"560eb01730d94fafbd27e0dee9ffcb1f"}}
+2019/12/12 16:10:9 info->{"message_head":{"msg_id":"60b2702ffd6d4c05ad525dd5ba16293b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5fb00bf18e4d43a4badb0492ee8c5cbd"}}
+2019/12/12 16:10:9 info->{"message_head":{"msg_id":"4d62c55fdf02428f8120c7099cc7dfde","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3f0fb728eff448a9b1f35a049c044aeb"}}
+2019/12/12 16:10:9 info->{"message_head":{"msg_id":"ed3780d6971a470388d18d0488878e57","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"fe000733576f4656826691351d9c0145"}}
+2019/12/12 16:10:13 info->{"message_head":{"msg_id":"711efdc3eee445d7b473a1f47e56e6f4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a2632efcaf24431f9320691de26015a3"}}
+2019/12/12 16:10:13 info->{"message_head":{"msg_id":"db684a7750a9454d926135d0c64110ab","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"69a81700d33a49b191d2ee2fe6511a60"}}
+2019/12/12 16:10:13 info->{"message_head":{"msg_id":"d27f064c1c044001b9cf66f8678a6612","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"87cc60a7601f4049a6de8516f68f69c2"}}
+2019/12/12 16:10:51 info->init log environment finished
+2019/12/12 16:10:51 info->starting server,please waiting...
+2019/12/12 16:10:51 info->load config
+2019/12/12 16:10:51 info->The read main configuration is as follows:
+2019/12/12 16:10:51 info->server_ip:127.0.0.1
+2019/12/12 16:10:51 info->server_port:8890
+2019/12/12 16:10:51 info->http_server_port:8088
+2019/12/12 16:10:51 info->server_node_name:node_one
+2019/12/12 16:10:51 info->client_count:1000
+2019/12/12 16:10:51 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:10:51 info->start ms_nt_iocp server...
+2019/12/12 16:10:51 info->init ms_nt_iocp finished
+2019/12/12 16:10:51 info->init socket success
+2019/12/12 16:10:51 info->listen socket binding success
+2019/12/12 16:10:51 info->init ms_init_listen_socket finished
+2019/12/12 16:10:51 info->ms_nt_iocp server has start
+2019/12/12 16:10:51 info->moon http service started
+2019/12/12 16:10:55 info->init log environment finished
+2019/12/12 16:10:55 info->starting server,please waiting...
+2019/12/12 16:10:55 info->load config
+2019/12/12 16:10:55 info->The read main configuration is as follows:
+2019/12/12 16:10:55 info->server_ip:127.0.0.1
+2019/12/12 16:10:55 info->server_port:8890
+2019/12/12 16:10:55 info->http_server_port:8088
+2019/12/12 16:10:55 info->server_node_name:node_one
+2019/12/12 16:10:55 info->client_count:1000
+2019/12/12 16:10:55 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:10:55 info->start ms_nt_iocp server...
+2019/12/12 16:10:55 info->init ms_nt_iocp finished
+2019/12/12 16:10:55 info->init socket success
+2019/12/12 16:10:55 info->listen socket binding success
+2019/12/12 16:10:55 info->init ms_init_listen_socket finished
+2019/12/12 16:10:55 info->ms_nt_iocp server has start
+2019/12/12 16:10:55 info->moon http service started
+2019/12/12 16:11:11 debug->new connect is comming
+2019/12/12 16:11:47 info->init log environment finished
+2019/12/12 16:11:47 info->starting server,please waiting...
+2019/12/12 16:11:47 info->load config
+2019/12/12 16:11:47 info->The read main configuration is as follows:
+2019/12/12 16:11:47 info->server_ip:127.0.0.1
+2019/12/12 16:11:47 info->server_port:8890
+2019/12/12 16:11:47 info->http_server_port:8088
+2019/12/12 16:11:47 info->server_node_name:node_one
+2019/12/12 16:11:47 info->client_count:1000
+2019/12/12 16:11:47 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:11:47 info->start ms_nt_iocp server...
+2019/12/12 16:11:47 info->init ms_nt_iocp finished
+2019/12/12 16:11:47 info->init socket success
+2019/12/12 16:11:47 info->listen socket binding success
+2019/12/12 16:11:47 info->init ms_init_listen_socket finished
+2019/12/12 16:11:47 info->ms_nt_iocp server has start
+2019/12/12 16:11:47 info->moon http service started
+2019/12/12 16:11:50 debug->new connect is comming
+2019/12/12 16:12:23 info->init log environment finished
+2019/12/12 16:12:23 info->starting server,please waiting...
+2019/12/12 16:12:23 info->load config
+2019/12/12 16:12:23 info->The read main configuration is as follows:
+2019/12/12 16:12:23 info->server_ip:127.0.0.1
+2019/12/12 16:12:23 info->server_port:8890
+2019/12/12 16:12:23 info->http_server_port:8088
+2019/12/12 16:12:23 info->server_node_name:node_one
+2019/12/12 16:12:23 info->client_count:1000
+2019/12/12 16:12:23 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:12:23 info->start ms_nt_iocp server...
+2019/12/12 16:12:23 info->init ms_nt_iocp finished
+2019/12/12 16:12:23 info->init socket success
+2019/12/12 16:12:23 info->listen socket binding success
+2019/12/12 16:12:23 info->init ms_init_listen_socket finished
+2019/12/12 16:12:23 info->ms_nt_iocp server has start
+2019/12/12 16:12:23 info->moon http service started
+2019/12/12 16:12:30 debug->new connect is comming
+2019/12/12 16:12:47 info->init log environment finished
+2019/12/12 16:12:47 info->starting server,please waiting...
+2019/12/12 16:12:47 info->load config
+2019/12/12 16:12:47 info->The read main configuration is as follows:
+2019/12/12 16:12:47 info->server_ip:127.0.0.1
+2019/12/12 16:12:47 info->server_port:8890
+2019/12/12 16:12:47 info->http_server_port:8088
+2019/12/12 16:12:47 info->server_node_name:node_one
+2019/12/12 16:12:47 info->client_count:1000
+2019/12/12 16:12:47 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:12:47 info->start ms_nt_iocp server...
+2019/12/12 16:12:47 info->init ms_nt_iocp finished
+2019/12/12 16:12:47 info->init socket success
+2019/12/12 16:12:47 info->listen socket binding success
+2019/12/12 16:12:47 info->init ms_init_listen_socket finished
+2019/12/12 16:12:47 info->ms_nt_iocp server has start
+2019/12/12 16:12:47 info->moon http service started
+2019/12/12 16:12:51 debug->new connect is comming
+2019/12/12 16:13:8 info->init log environment finished
+2019/12/12 16:13:8 info->starting server,please waiting...
+2019/12/12 16:13:8 info->load config
+2019/12/12 16:13:8 info->The read main configuration is as follows:
+2019/12/12 16:13:8 info->server_ip:127.0.0.1
+2019/12/12 16:13:8 info->server_port:8890
+2019/12/12 16:13:8 info->http_server_port:8088
+2019/12/12 16:13:8 info->server_node_name:node_one
+2019/12/12 16:13:8 info->client_count:1000
+2019/12/12 16:13:8 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:13:8 info->start ms_nt_iocp server...
+2019/12/12 16:13:8 info->init ms_nt_iocp finished
+2019/12/12 16:13:8 info->init socket success
+2019/12/12 16:13:8 info->listen socket binding success
+2019/12/12 16:13:8 info->init ms_init_listen_socket finished
+2019/12/12 16:13:8 info->ms_nt_iocp server has start
+2019/12/12 16:13:8 info->moon http service started
+2019/12/12 16:13:11 debug->new connect is comming
+2019/12/12 16:19:32 info->init log environment finished
+2019/12/12 16:19:32 info->starting server,please waiting...
+2019/12/12 16:19:32 info->load config
+2019/12/12 16:19:32 info->The read main configuration is as follows:
+2019/12/12 16:19:32 info->server_ip:127.0.0.1
+2019/12/12 16:19:32 info->server_port:8890
+2019/12/12 16:19:32 info->http_server_port:8088
+2019/12/12 16:19:32 info->server_node_name:node_one
+2019/12/12 16:19:32 info->client_count:1000
+2019/12/12 16:19:32 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:19:32 info->start ms_nt_iocp server...
+2019/12/12 16:19:32 info->init ms_nt_iocp finished
+2019/12/12 16:19:32 info->init socket success
+2019/12/12 16:19:32 info->listen socket binding success
+2019/12/12 16:19:32 info->init ms_init_listen_socket finished
+2019/12/12 16:19:32 info->ms_nt_iocp server has start
+2019/12/12 16:19:32 info->moon http service started
+2019/12/12 16:19:35 debug->new connect is comming
+2019/12/12 16:27:34 info->init log environment finished
+2019/12/12 16:27:34 info->starting server,please waiting...
+2019/12/12 16:27:34 info->load config
+2019/12/12 16:27:34 info->The read main configuration is as follows:
+2019/12/12 16:27:34 info->server_ip:127.0.0.1
+2019/12/12 16:27:34 info->server_port:8890
+2019/12/12 16:27:34 info->http_server_port:8088
+2019/12/12 16:27:34 info->server_node_name:node_one
+2019/12/12 16:27:34 info->client_count:1000
+2019/12/12 16:27:34 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 16:27:34 info->start ms_nt_iocp server...
+2019/12/12 16:27:34 info->init ms_nt_iocp finished
+2019/12/12 16:27:34 info->init socket success
+2019/12/12 16:27:34 info->listen socket binding success
+2019/12/12 16:27:34 info->init ms_init_listen_socket finished
+2019/12/12 16:27:34 info->ms_nt_iocp server has start
+2019/12/12 16:27:34 info->moon http service started
+2019/12/12 16:27:36 debug->new connect is comming
+2019/12/12 18:9:29 info->init log environment finished
+2019/12/12 18:9:29 info->starting server,please waiting...
+2019/12/12 18:9:29 info->load config
+2019/12/12 18:9:29 info->The read main configuration is as follows:
+2019/12/12 18:9:29 info->server_ip:127.0.0.1
+2019/12/12 18:9:29 info->server_port:8890
+2019/12/12 18:9:29 info->http_server_port:8088
+2019/12/12 18:9:29 info->server_node_name:node_one
+2019/12/12 18:9:29 info->client_count:1000
+2019/12/12 18:9:29 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 18:9:29 info->start ms_nt_iocp server...
+2019/12/12 18:9:29 info->init ms_nt_iocp finished
+2019/12/12 18:9:29 info->init socket success
+2019/12/12 18:9:29 info->listen socket binding success
+2019/12/12 18:9:29 info->init ms_init_listen_socket finished
+2019/12/12 18:9:29 info->ms_nt_iocp server has start
+2019/12/12 18:9:29 info->moon http service started
+2019/12/12 18:9:33 debug->new connect is comming
+2019/12/12 18:9:40 info->init log environment finished
+2019/12/12 18:9:40 info->starting server,please waiting...
+2019/12/12 18:9:40 info->load config
+2019/12/12 18:9:40 info->The read main configuration is as follows:
+2019/12/12 18:9:40 info->server_ip:127.0.0.1
+2019/12/12 18:9:40 info->server_port:8890
+2019/12/12 18:9:40 info->http_server_port:8088
+2019/12/12 18:9:40 info->server_node_name:node_one
+2019/12/12 18:9:40 info->client_count:1000
+2019/12/12 18:9:40 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 18:9:40 info->start ms_nt_iocp server...
+2019/12/12 18:9:40 info->init ms_nt_iocp finished
+2019/12/12 18:9:40 info->init socket success
+2019/12/12 18:9:40 info->listen socket binding success
+2019/12/12 18:9:40 info->init ms_init_listen_socket finished
+2019/12/12 18:9:40 info->ms_nt_iocp server has start
+2019/12/12 18:9:40 info->moon http service started
+2019/12/12 18:10:42 debug->new connect is comming
+2019/12/12 18:11:28 info->init log environment finished
+2019/12/12 18:11:28 info->starting server,please waiting...
+2019/12/12 18:11:28 info->load config
+2019/12/12 18:11:28 info->The read main configuration is as follows:
+2019/12/12 18:11:28 info->server_ip:127.0.0.1
+2019/12/12 18:11:28 info->server_port:8890
+2019/12/12 18:11:28 info->http_server_port:8088
+2019/12/12 18:11:28 info->server_node_name:node_one
+2019/12/12 18:11:28 info->client_count:1000
+2019/12/12 18:11:28 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 18:11:28 info->start ms_nt_iocp server...
+2019/12/12 18:11:28 info->init ms_nt_iocp finished
+2019/12/12 18:11:28 info->init socket success
+2019/12/12 18:11:28 info->listen socket binding success
+2019/12/12 18:11:28 info->init ms_init_listen_socket finished
+2019/12/12 18:11:28 info->ms_nt_iocp server has start
+2019/12/12 18:11:28 info->moon http service started
+2019/12/12 18:11:32 debug->new connect is comming
+2019/12/12 18:12:9 info->init log environment finished
+2019/12/12 18:12:9 info->starting server,please waiting...
+2019/12/12 18:12:9 info->load config
+2019/12/12 18:12:9 info->The read main configuration is as follows:
+2019/12/12 18:12:9 info->server_ip:127.0.0.1
+2019/12/12 18:12:9 info->server_port:8890
+2019/12/12 18:12:9 info->http_server_port:8088
+2019/12/12 18:12:9 info->server_node_name:node_one
+2019/12/12 18:12:9 info->client_count:1000
+2019/12/12 18:12:9 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 18:12:9 info->start ms_nt_iocp server...
+2019/12/12 18:12:9 info->init ms_nt_iocp finished
+2019/12/12 18:12:9 info->init socket success
+2019/12/12 18:12:9 info->listen socket binding success
+2019/12/12 18:12:9 info->init ms_init_listen_socket finished
+2019/12/12 18:12:9 info->ms_nt_iocp server has start
+2019/12/12 18:12:9 info->moon http service started
+2019/12/12 18:12:13 debug->new connect is comming
+2019/12/12 18:12:24 info->init log environment finished
+2019/12/12 18:12:24 info->starting server,please waiting...
+2019/12/12 18:12:24 info->load config
+2019/12/12 18:12:24 info->The read main configuration is as follows:
+2019/12/12 18:12:24 info->server_ip:127.0.0.1
+2019/12/12 18:12:24 info->server_port:8890
+2019/12/12 18:12:24 info->http_server_port:8088
+2019/12/12 18:12:24 info->server_node_name:node_one
+2019/12/12 18:12:24 info->client_count:1000
+2019/12/12 18:12:24 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 18:12:24 info->start ms_nt_iocp server...
+2019/12/12 18:12:24 info->init ms_nt_iocp finished
+2019/12/12 18:12:24 info->init socket success
+2019/12/12 18:12:24 info->listen socket binding success
+2019/12/12 18:12:24 info->init ms_init_listen_socket finished
+2019/12/12 18:12:24 info->ms_nt_iocp server has start
+2019/12/12 18:12:24 info->moon http service started
+2019/12/12 18:12:28 debug->new connect is comming
+2019/12/12 18:12:56 info->init log environment finished
+2019/12/12 18:12:56 info->starting server,please waiting...
+2019/12/12 18:12:56 info->load config
+2019/12/12 18:12:56 info->The read main configuration is as follows:
+2019/12/12 18:12:56 info->server_ip:127.0.0.1
+2019/12/12 18:12:56 info->server_port:8890
+2019/12/12 18:12:56 info->http_server_port:8088
+2019/12/12 18:12:56 info->server_node_name:node_one
+2019/12/12 18:12:56 info->client_count:1000
+2019/12/12 18:12:56 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/12 18:12:56 info->start ms_nt_iocp server...
+2019/12/12 18:12:56 info->init ms_nt_iocp finished
+2019/12/12 18:12:56 info->init socket success
+2019/12/12 18:12:56 info->listen socket binding success
+2019/12/12 18:12:56 info->init ms_init_listen_socket finished
+2019/12/12 18:12:56 info->ms_nt_iocp server has start
+2019/12/12 18:12:56 info->moon http service started
+2019/12/12 18:13:1 debug->new connect is comming
+2019/12/12 18:13:6 info->{"message_head":{"msg_id":"dd14fe0dae354011a106ac46d7500764","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1e65ee560182459bac28d4bfddc513b9"}}
+2019/12/12 18:13:7 info->{"message_head":{"msg_id":"e097fd552f32477cbd4230aa28df5ef7","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"445fa9afe8c248d5a3fa8e3b205d91a3"}}
+2019/12/12 18:13:7 info->{"message_head":{"msg_id":"bc8c719c174642d1bf40db153fbf8c2a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"5506c3498eaa43fe9381c929b3a051df"}}
+2019/12/12 18:13:7 info->{"message_head":{"msg_id":"b7fbefcbfe07495f9bb72c31c814d3e0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"ce9899c596f44598bf9bd1a496d67c7a"}}
+2019/12/12 18:13:8 info->{"message_head":{"msg_id":"65a63a9ecaff4a11881e5fcc5a725040","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1c5e206991574149a9b0bf300b605201"}}
+2019/12/12 18:13:8 info->{"message_head":{"msg_id":"590b5066fe234ca8a44d7eb757819c82","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"8c3b6f6386274dc587d551d10516525c"}}
+2019/12/12 18:13:8 info->{"message_head":{"msg_id":"d87933e869154292b882b9b9f036e016","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1d7c6321cb014ce5b846251dcc010b59"}}
+2019/12/12 18:13:8 info->{"message_head":{"msg_id":"d801c3bcbabb4806bb38ca36374a6231","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"01c293271708475bb43c856919bbf196"}}
+2019/12/12 18:13:8 info->{"message_head":{"msg_id":"0f08996be28e49758288b85b620dfc18","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1369f78b6f55441888f27652655c9c54"}}
+2019/12/12 18:13:8 info->{"message_head":{"msg_id":"a7486a294d404642aeb88838de9d84d5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"205240a4649e40c0bfaac1230fd5d0aa"}}
+2019/12/12 18:13:9 info->{"message_head":{"msg_id":"2af95da36ae44b6ab0556da42116cc13","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"11ace67730df4080aa89aa432ba94d67"}}
+2019/12/12 18:13:9 info->{"message_head":{"msg_id":"ef318e3de35b4bf5a611299a1e8fa4db","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"671d1ee6c30d47c6b552c71d253ba8c5"}}
+2019/12/12 18:13:9 info->{"message_head":{"msg_id":"7fc61ee0f3a94ca4b6cefcc45d2b1236","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b608a1aafea045989458879be8efd2b4"}}
+2019/12/12 18:13:9 info->{"message_head":{"msg_id":"5b92523c050a4c6189012a3d6a2901ed","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2becd7c66c10449b87380878e08247a8"}}
+2019/12/12 18:13:9 info->{"message_head":{"msg_id":"98da6869c4f9414cbe57740db934d289","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"c9cb1c286a1040e297d7893b7c78b656"}}
+2019/12/12 18:13:10 info->{"message_head":{"msg_id":"60aa99e995da46cb8a491a6cf9769bf0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"1766d82aed1f49c4996b046307ee6cbc"}}
+2019/12/12 18:13:10 info->{"message_head":{"msg_id":"cd4ec15260ee46c78c7760edbef0ddc0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"953ea07d61b64b0b9176087e20d15310"}}
+2019/12/12 18:13:11 info->{"message_head":{"msg_id":"b85e8626caff4adda7b5ebf7e7634de0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2ecb3e0bd95547e4a126e2b2584fff39"}}
+2019/12/12 18:13:11 info->{"message_head":{"msg_id":"49f3b40666f24751938c5815434a45f1","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"120402f8df4049c89ca0366cc247891c"}}
+2019/12/12 18:13:11 info->{"message_head":{"msg_id":"9fa2181cfdd147658c81bab2a13214d9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"834eca7dc0604f6b9ed063a207c1f3be"}}
+2019/12/12 18:13:12 info->{"message_head":{"msg_id":"28ab5796e66544a5bf372bda0ab91934","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2d5c83afa5e240d896481b753c94e15b"}}
+2019/12/12 18:13:12 info->{"message_head":{"msg_id":"52a472f082de4ba69a3cf909ab42474b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"7a89f49ec23249e0964f20f5f90fa018"}}
+2019/12/12 18:13:12 info->{"message_head":{"msg_id":"8be71bf13fc1457792c60048f659f9d6","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"35a8eaf5a2914b948e2f5482f41e31f8"}}
+2019/12/12 18:13:12 info->{"message_head":{"msg_id":"75ffae90c4274de5b788541d4ef25fc2","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f556c2f8e90d4d1d9747e70f2882efd9"}}
+2019/12/12 18:13:12 info->{"message_head":{"msg_id":"aaf90e568e47478f9cb11beb6573f994","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9f05407456a64dd7a47c441a5716d2d4"}}
+2019/12/12 18:13:12 info->{"message_head":{"msg_id":"b9ba412ccc774463b09e71b8f596d6c1","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"50286c2a546e4bcaa91cdd6c9a6b72d6"}}
+2019/12/12 18:13:13 info->{"message_head":{"msg_id":"2160450013bd4db6b9fe7b1eb2f2e870","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"933c4825c6544936bb9e423643b5fd92"}}
+2019/12/12 18:13:13 info->{"message_head":{"msg_id":"a6bd5c819a5f4cb3a79bfd615e198465","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"11b30d3b168347adb27711f3ffadc8b7"}}
+2019/12/12 18:13:13 info->{"message_head":{"msg_id":"59daeacd7ab24296844c7cb159597e55","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"9f84f754f9da4775a766dfc669e87f59"}}
+2019/12/12 18:13:13 info->{"message_head":{"msg_id":"90c6df1ca4264b729b032e23642d23a5","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"33bf9b8cd79b46259650be6e5c869fb6"}}
+2019/12/12 18:13:13 info->{"message_head":{"msg_id":"88081664827643aa970e3691d0c15a0f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"bfd7506167fb46ceb7ded0e5178bfa17"}}
+2019/12/12 18:13:13 info->{"message_head":{"msg_id":"31eecaa3198f4baeaa2d5dc718fb8f21","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3141c8344c9a4e6d951fff5c96a8da81"}}
+2019/12/12 18:13:14 info->{"message_head":{"msg_id":"c8ba6bd24d944cc28e286b510622aee0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"075fcee0e19642eda6a6d7c6e4ece96f"}}
+2019/12/12 18:13:14 info->{"message_head":{"msg_id":"c650b404c39c4bc784c01e03461c696c","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"14ff9f5aa0ad48ea9787813d07473da3"}}
+2019/12/12 18:13:14 info->{"message_head":{"msg_id":"3a4a274162a5444a9f961ec9266c48a0","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2fc9229212dd4cf2b9f974dac35313ac"}}
+2019/12/12 18:13:14 info->{"message_head":{"msg_id":"59901226da4c4464a1c2710b5e4b42dd","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d7cef24be6be414cb73107787161f380"}}
+2019/12/12 18:13:14 info->{"message_head":{"msg_id":"b190a92be04f4c17a730e29e74132c8b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"d98181f6f0db4e8d8a233b3f0a778243"}}
+2019/12/12 18:13:15 info->{"message_head":{"msg_id":"4bbd13cb80504602ab7eb41cdb12796b","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3246e9bf9d9e4dea8633493828c5d489"}}
+2019/12/12 18:13:15 info->{"message_head":{"msg_id":"563554aa15054c55b41748e057d0667f","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"34ecdcb2a8f6464c8110424afd8a737b"}}
+2019/12/12 18:13:15 info->{"message_head":{"msg_id":"bdad238314b54d4bb186ca3981c17a05","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"e04e9ed17d484a529a8b3ba788d78639"}}
+2019/12/12 18:13:15 info->{"message_head":{"msg_id":"0d478dbac988495dbb3bbac92f982582","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"a7bc05258cf94b5384f65430ae92f906"}}
+2019/12/12 18:13:15 info->{"message_head":{"msg_id":"bb6dbf5882b843a5847c03d0f2b6aa31","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"78bcc33d38b84c63abeb454bcb640fab"}}
+2019/12/12 18:13:16 info->{"message_head":{"msg_id":"bdc7c2aa2de54d528251aa31db942fee","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"382fc6448e4745a8ae140df4404e7532"}}
+2019/12/12 18:13:16 info->{"message_head":{"msg_id":"5d6922db99124c48821f4003da409359","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"3021e96164ce43608a2f8505ca7a1709"}}
+2019/12/12 18:13:16 info->{"message_head":{"msg_id":"aba37d7f68484c849f950290529cd18a","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"4696e8ad53ce47a1af51286fda03ae8d"}}

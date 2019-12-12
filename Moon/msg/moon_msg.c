@@ -36,16 +36,17 @@ Message* parse_msg_head(moon_char* str_message)
 	Message* p_message = NULL;
 	char* ascii_msg = NULL;
 	int length = moon_char_length(str_message);
-	int size = length * 2 + 2;
+	int size = length * 2 + 4;
 	int len = 0;
 	moon_char msg_id[50] = {0};
 	cJSON *head = NULL;
-	//cJSON *body = NULL;
 	cJSON *item = NULL;
-	//char* p_str_body = NULL;
-	//moon_char *p_msg_body = NULL;
-	//int msg_body_length = 0;
 	ascii_msg = (char*)moon_malloc(size * sizeof(char));
+	if(ascii_msg == NULL)
+	{
+		return NULL;
+	}
+
 	len = moon_ms_windows_unicode_to_ascii(str_message,ascii_msg);
 	root = cJSON_Parse(ascii_msg);
 	if (root == NULL)
@@ -55,12 +56,11 @@ Message* parse_msg_head(moon_char* str_message)
 	}
 	if (root->type == cJSON_Object)
 	{
-		p_message = (Message*)moon_malloc(sizeof(Message));
-		memset(p_message,0,sizeof(Message));
-		p_message->p_message_head = (MessageHead*)moon_malloc(sizeof(MessageHead));
-		memset(p_message->p_message_head,0,sizeof(MessageHead));
-		p_message->p_message_body = (MessageBody*)moon_malloc(sizeof(MessageBody));
-		memset(p_message->p_message_body,0,sizeof(MessageBody));
+		p_message = (Message*)moon_malloc(sizeof(struct _Message));
+		memset(p_message,0,sizeof(struct _Message));
+		p_message->p_message_head = (MessageHead*)moon_malloc(sizeof(struct _MessageHead));
+		memset(p_message->p_message_head,0,sizeof(struct _MessageHead));
+		p_message->p_message_body = NULL;
 		//get header
 		head = cJSON_GetObjectItem(root,"message_head");
 		if (head != NULL)
@@ -82,23 +82,6 @@ Message* parse_msg_head(moon_char* str_message)
 				p_message->p_message_head->sub_msg_num = item->valueint;
 			}
 		}
-		//body = cJSON_GetObjectItem(root,"message_body");
-		/*if (body != NULL)
-		{
-			item = cJSON_GetObjectItem(body,"content");
-			if (item != NULL && !stringIsEmpty(item->valuestring))
-			{
-				msg_body_length = moon_get_string_length(item->valuestring);
-				p_str_body = (char*)moon_malloc(msg_body_length + 1);
-				memset(p_str_body,0,msg_body_length + 1);
-				strcpy(p_str_body,item->valuestring);
-				p_msg_body = (moon_char*)moon_malloc((msg_body_length + 1) * 2);
-				memset(p_msg_body,0,(msg_body_length + 1) * 2);
-				char_to_moon_char(p_str_body,p_msg_body);
-				p_message->p_message_body->p_content = p_msg_body;
-				moon_free(p_str_body);
-			}
-		}*/
 	}
 	cJSON_Delete(root);
 	moon_free(ascii_msg);
