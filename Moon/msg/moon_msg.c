@@ -171,11 +171,15 @@ ClientEnvironment* parse_client_running_environment(moon_char* msgData)
 		body = cJSON_GetObjectItem(root,"message_body");
 		if(body == NULL)
 		{
+			moon_free(ascii_msg);
+			cJSON_Delete(root);
 			return NULL;
 		}
 		body = cJSON_GetObjectItem(body,"content");
 		if(body == NULL)
 		{
+			moon_free(ascii_msg);
+			cJSON_Delete(root);
 			return NULL;
 		}
 		p_client_env = (ClientEnvironment*)moon_malloc(sizeof(ClientEnvironment));
@@ -202,6 +206,7 @@ ClientEnvironment* parse_client_running_environment(moon_char* msgData)
 		}
 	}
 	moon_free(ascii_msg);
+	cJSON_Delete(root);
 	return p_client_env;
 }
 
@@ -225,6 +230,8 @@ void parse_login_id(moon_char* msgData,_out_ char* out_client_login_id)
 	if (root == NULL)
 	{
 		moon_free(ascii_msg);
+		cJSON_Delete(root);
+		return;
 	}
 	if (root->type == cJSON_Object)
 	{
@@ -235,6 +242,7 @@ void parse_login_id(moon_char* msgData,_out_ char* out_client_login_id)
 		}
 	}
 	moon_free(ascii_msg);
+	cJSON_Delete(root);
 }
 
 /**

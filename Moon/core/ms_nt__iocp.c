@@ -64,7 +64,7 @@ void client_login_handle(PMS_IO_CONTEXT pIoContext,Message* p_msg)
 	{
 	case SYS_SUB_PROTOCOL_LOGIN_FIRST://client first login
 		{
-			if(p_msg->p_message_body->p_content == NULL)
+			if(p_msg->p_message_body == NULL || p_msg->p_message_body->p_content == NULL)
 			{
 				memset(ret_json_data,0,512);
 				memset(utf8_ret_json_data,0,512);
@@ -308,6 +308,8 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 	}
 	free_msg(p_msg);
 	p_msg = NULL;
+	//release p_client_env
+	moon_free(p_client_env);
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 2.So, notice here, this is the Context in the listening socket, and this Context we also need to use to listen for the next connection.
@@ -367,19 +369,23 @@ bool doRecv(PMS_IO_CONTEXT pIoContext)
 	//recv message
 
 	
-	/*WSABUF buf;
+	WSABUF buf;
 	char *p_utf8_msg = pIoContext->m_wsaBuf.buf;
 	moon_char* client_msg = NULL;
 	int len = 0;
 	unsigned long size = 0;
 	Message* p_msg = NULL;
-	size = pIoContext->m_wsaBuf.len + 2;
+	size = sizeof(moon_char) * pIoContext->m_wsaBuf.len + sizeof(moon_char);
 	client_msg = (moon_char*)moon_malloc(size);
 	if (client_msg == NULL)
 	{
 		return postRecv( pIoContext );
 	}
 	len = moon_ms_windows_utf8_to_unicode(p_utf8_msg,client_msg);//将收到的utf-8的字节序转化为moon_char
+
+	//print client message
+	moon_write_info_log(p_utf8_msg);
+
 	p_msg = parse_msg_head(client_msg);
 	if (p_msg == NULL)
 	{
@@ -387,12 +393,13 @@ bool doRecv(PMS_IO_CONTEXT pIoContext)
 	}
 	//deal with message
 	msg_handle(pIoContext,p_msg);
+
+	//release
 	free_msg(p_msg);
 	p_msg = NULL;
 	moon_free(client_msg);
+	client_msg = NULL;
 
-	client_msg = NULL;*/
-	moon_write_info_log(pIoContext->m_wsaBuf.buf);
 	//
 	return postRecv(pIoContext);
 }

@@ -52,7 +52,10 @@ void moom_memory_pool_init()
 void* moon_malloc(unsigned int num_bytes)/*allocate memory*/
 {
 	void* pMemory = malloc(num_bytes);
-	memset(pMemory,0,num_bytes);
+	if(pMemory != NULL)
+	{
+		memset(pMemory,0,num_bytes);
+	}
 	return pMemory;
 }
 
