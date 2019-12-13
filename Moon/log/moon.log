@@ -6218,3 +6218,57 @@
 2019/12/13 11:38:37 info->{"message_head":{"msg_id":"788e9311c0b04d9a8dd76bcdd934bb7e","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"390393dada2a4f6988751f0e8ccf5975"}}
 2019/12/13 11:38:37 info->start send message:
 2019/12/13 11:38:37 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/13 14:34:8 info->init log environment finished
+2019/12/13 14:34:8 info->starting server,please waiting...
+2019/12/13 14:34:8 info->load config
+2019/12/13 14:34:8 info->The read main configuration is as follows:
+2019/12/13 14:34:8 info->server_ip:127.0.0.1
+2019/12/13 14:34:8 info->server_port:8890
+2019/12/13 14:34:8 info->http_server_port:8088
+2019/12/13 14:34:8 info->server_node_name:node_one
+2019/12/13 14:34:8 info->client_count:1000
+2019/12/13 14:34:8 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/13 14:34:8 info->start ms_nt_iocp server...
+2019/12/13 14:34:8 info->init ms_nt_iocp finished
+2019/12/13 14:34:8 info->init socket success
+2019/12/13 14:34:8 info->listen socket binding success
+2019/12/13 14:34:8 info->init ms_init_listen_socket finished
+2019/12/13 14:34:8 info->ms_nt_iocp server has start
+2019/12/13 14:34:8 info->moon http service started
+2019/12/13 16:7:55 debug->new connect is comming
+2019/12/13 16:8:5 info->{"message_head":{"msg_id":"190b1b43d19742f9aa5bffb4274df345","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b49b8921a95a4926bb891bec2d2146cb"}}
+2019/12/13 16:8:5 info->start send message:
+2019/12/13 16:8:5 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/13 16:8:7 info->{"message_head":{"msg_id":"f19d5370d66b41f7b8206a6e5102b709","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f395f0f6ab6046578f1d454e2158b4be"}}
+2019/12/13 16:8:7 info->start send message:
+2019/12/13 16:8:7 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/13 16:8:9 info->{"message_head":{"msg_id":"8ed3cdbd2c4648a9afff967f3df613c4","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"f4eeb9ab927f45a5aeca5daa11dfef39"}}
+2019/12/13 16:8:9 info->start send message:
+2019/12/13 16:8:9 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/13 16:8:12 info->{"message_head":{"msg_id":"93094d8284c54c048a5f88d4f1813deb","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"43f93178fe934a30bba2caca3ddda254"}}
+2019/12/13 16:8:12 info->start send message:
+2019/12/13 16:8:12 info->{"message_head":{"msg_id":"node_one-d4ed5106454d4325976553055c33ec3f","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/13 16:17:58 info->init log environment finished
+2019/12/13 16:17:58 info->starting server,please waiting...
+2019/12/13 16:17:58 info->load config
+2019/12/13 16:17:58 info->The read main configuration is as follows:
+2019/12/13 16:17:58 info->server_ip:127.0.0.1
+2019/12/13 16:17:58 info->server_port:8890
+2019/12/13 16:17:58 info->http_server_port:8088
+2019/12/13 16:17:58 info->server_node_name:node_one
+2019/12/13 16:17:58 info->client_count:1000
+2019/12/13 16:17:58 info->moon_manager_domain:http://127.0.0.1:8080
+2019/12/13 16:17:58 info->start ms_nt_iocp server...
+2019/12/13 16:17:58 info->init ms_nt_iocp finished
+2019/12/13 16:17:58 info->init socket success
+2019/12/13 16:17:58 info->listen socket binding success
+2019/12/13 16:17:58 info->init ms_init_listen_socket finished
+2019/12/13 16:17:58 info->ms_nt_iocp server has start
+2019/12/13 16:17:58 info->moon http service started
+2019/12/13 16:18:0 debug->new connect is comming
+2019/12/13 16:18:4 info->{"message_head":{"msg_id":"522dafda4d4b431e9ac233be167020e9","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"b420915d25894530af8af73cc297f68f"}}
+2019/12/13 16:18:4 info->start send message:
+2019/12/13 16:18:4 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}
+2019/12/13 16:18:10 info->{"message_head":{"msg_id":"e93cdc0bfddd425e8550a3538b8bed76","main_msg_num":10002,"sub_msg_num":1000201,"msg_size":0},"message_body":{"content":"2f0b0dc012714fbabf6c9332ecba6687"}}
+2019/12/13 16:18:10 info->start send message:
+2019/12/13 16:18:10 info->{"message_head":{"msg_id":"node_one-296bd6eb2ca94321875f5f4cfc10ecbe","main_msg_num":10002,"sub_msg_num":1000202},"message_body":{"content":"client login id is not null"}}

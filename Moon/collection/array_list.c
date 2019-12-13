@@ -7,8 +7,8 @@
 #ifdef _MSC_VER/* only support win32 and greater. */
 #include <windows.h>
 #define MS_WINDOWS
-#define ARRAY_LIST_MUTEX "ARRAY_LIST_MUTEX"
-static HANDLE g_hMutex;
+#define ARRAY_LIST_EVENT "ARRAY_LIST_EVENT"
+static HANDLE g_hArrayListEvent;
 #endif
 
 /**
@@ -42,8 +42,8 @@ Array_List* array_list_init()
 
 	//init mutexes
 #ifdef MS_WINDOWS
-	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(ARRAY_LIST_MUTEX));
-	if (g_hMutex == NULL)
+	g_hArrayListEvent = CreateEvent(NULL, FALSE, TRUE, TEXT(ARRAY_LIST_EVENT));
+	if (g_hArrayListEvent == NULL)
 	{
 		array_list_free(pList);
 		return NULL;
@@ -69,20 +69,22 @@ int array_list_insert(Array_List* pList,void* pData,long index)
 	unsigned long reallocSize = 0;//redistribute the space size.
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return -1;
-	}
-	//get mutexes object
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hArrayListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
+	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return -1;
+	}
 	if(index < -1 || (index > pList->length && index != -1))
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return -1;
 	}
 	//if the pre-allocated list space is used up,and it will be redistributed.
@@ -93,6 +95,9 @@ int array_list_insert(Array_List* pList,void* pData,long index)
 		pList->node = (Array_Node*)realloc(pList->node,reallocSize * sizeof(Array_Node));
 		if(pList->node == NULL)
 		{
+#ifdef MS_WINDOWS
+			SetEvent(g_hArrayListEvent);
+#endif
 			return -1;
 		}
 		//set data is NULL of the new node
@@ -107,6 +112,9 @@ int array_list_insert(Array_List* pList,void* pData,long index)
 	{
 		pList->node[pList->length].data = pData;
 		pList->length++;//length self-increasing 1 of list
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return 0;
 	}
 	else if(index == 0) //insert from start
@@ -117,6 +125,9 @@ int array_list_insert(Array_List* pList,void* pData,long index)
 		}
 		pList->node[0].data = pData;
 		pList->length++;//length self-increasing 1 of list
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return 0;
 	}
 	else//the specified location is inserted.
@@ -127,12 +138,14 @@ int array_list_insert(Array_List* pList,void* pData,long index)
 		}
 		pList->node[i].data = pData;
 		pList->length++;//length self-increasing 1 of list
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return 0;
 	}
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+		SetEvent(g_hArrayListEvent);
 #endif
 	return 0;
 }
@@ -150,19 +163,24 @@ void array_list_removeAt(Array_List* pList,unsigned long index)
 	int i = 0;
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hArrayListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
+	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return;
+	}
 	if(index < 0 || index >= pList->length)
+	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return;
+	}
 	for(i = index; i < pList->length;i++)//after deleting the element，let the rest of the elements move forward.
 	{
 		pList->node[i] = pList->node[i + 1];
@@ -173,8 +191,7 @@ void array_list_removeAt(Array_List* pList,unsigned long index)
 	pList->length--;
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+		SetEvent(g_hArrayListEvent);
 #endif
 }
 
@@ -191,12 +208,7 @@ void array_list_remove(Array_List* pList,void* pData)
 	int removeIndex = -1;//the index of to be delete element
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hArrayListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
@@ -211,7 +223,12 @@ void array_list_remove(Array_List* pList,void* pData)
 	if(removeIndex != -1)
 	{
 		if(pList == NULL)
+		{
+#ifdef MS_WINDOWS
+			SetEvent(g_hArrayListEvent);
+#endif
 			return;
+		}
 		for(i = removeIndex; i < pList->length;i++)//after deleting the element，let the rest of the elements move forward.
 		{
 			pList->node[i] = pList->node[i + 1];
@@ -223,8 +240,7 @@ void array_list_remove(Array_List* pList,void* pData)
 	}
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+	SetEvent(g_hArrayListEvent);
 #endif
 }
 
@@ -240,29 +256,29 @@ void* array_list_getAt(Array_List* pList,unsigned long index)
 	void* pData = NULL;
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return NULL;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hArrayListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return NULL;
 	}
 	if(index < 0 || index >= pList->length)
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return NULL;
 	}
 	pData = pList->node[index].data;
 	
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+	SetEvent(g_hArrayListEvent);
 #endif
 	return pData;
 }
@@ -278,17 +294,15 @@ void array_list_clear(Array_List* pList)
 	int i = 0;
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return NULL;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hArrayListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return;
 	}
 	//NULL to be set the data domain 
@@ -303,8 +317,7 @@ void array_list_clear(Array_List* pList)
 
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+	SetEvent(g_hArrayListEvent);
 #endif
 }
 
@@ -318,15 +331,15 @@ void array_list_free(Array_List* pList)
 {
 //thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(ARRAY_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return NULL;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hArrayListEvent, INFINITE);
 #endif
 	if(pList == NULL)
+	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hArrayListEvent);
+#endif
 		return;
+	}
 	//release node
 	if(pList->node != NULL)
 	{
@@ -339,10 +352,11 @@ void array_list_free(Array_List* pList)
 		pList = NULL;
 	}
 #ifdef MS_WINDOWS
-	if (g_hMutex != NULL)
+	SetEvent(g_hArrayListEvent);
+	if (g_hArrayListEvent != NULL)
 	{
-		CloseHandle(g_hMutex);
-		g_hMutex = NULL;
+		CloseHandle(g_hArrayListEvent);
+		g_hArrayListEvent = NULL;
 	}
 #endif
 }

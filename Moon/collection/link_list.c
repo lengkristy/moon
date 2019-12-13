@@ -5,8 +5,8 @@
 #ifdef _MSC_VER/* only support win32 and greater. */
 #include <windows.h>
 #define MS_WINDOWS
-#define LINK_LIST_MUTEX "LINK_LIST_MUTEX"
-static HANDLE g_hMutex;
+#define LINK_LIST_EVENT "LINK_LIST_MUTEX"
+static HANDLE g_hLinkListEvent;
 #endif
 
 /**
@@ -27,9 +27,10 @@ Link_List* link_list_init()
 	pList->head = NULL;
 	pList->trail = NULL;
 	//init mutexes
+
 #ifdef MS_WINDOWS
-	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(LINK_LIST_MUTEX));
-	if (g_hMutex == NULL)
+	g_hLinkListEvent = CreateEvent(NULL, FALSE, TRUE, TEXT(LINK_LIST_EVENT));
+	if (g_hLinkListEvent == NULL)
 	{
 		link_list_free(pList);
 		return NULL;
@@ -54,19 +55,22 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 	long i = 0;
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return -1;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hLinkListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
+	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 		return -1;
+	}
 	if(index < -1 || (index > pList->length && index != -1))
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 		return -1;
 	}
 	//whether to insert for the first time.
@@ -74,13 +78,21 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 	{
 		Link_Node* pNode = (Link_Node*)malloc(sizeof(Link_Node));
 		if(pNode == NULL)
+		{
+#ifdef MS_WINDOWS
+			SetEvent(g_hLinkListEvent);
+#endif
 			return -1;
+		}
 		pNode->data = pData;
 		pNode->priorNode = NULL;
 		pNode->nextNode = NULL;
 		pList->head = pNode;
 		pList->trail = pNode;
 		pList->length++;
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 		return 0;
 	}
 	else
@@ -90,7 +102,12 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 			//create node
 			Link_Node* pNode = (Link_Node*)malloc(sizeof(Link_Node));
 			if(pNode == NULL)
+			{
+#ifdef MS_WINDOWS
+				SetEvent(g_hLinkListEvent);
+#endif
 				return -1;
+			}
 			pNode->data = pData;
 			pNode->nextNode = NULL;
 			pNode->priorNode = pList->trail;
@@ -104,7 +121,12 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 			//create node
 			Link_Node* pNode = (Link_Node*)malloc(sizeof(Link_Node));
 			if(pNode == NULL)
+			{
+#ifdef MS_WINDOWS
+				SetEvent(g_hLinkListEvent);
+#endif
 				return -1;
+			}
 			pNode->data = pData;
 			pNode->nextNode = pList->head;
 			pNode->priorNode = NULL;
@@ -112,6 +134,9 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 			pList->head->priorNode = pNode;
 			pList->head = pNode;
 			pList->length++;
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 			return 0;
 		}
 		else//insert by specified index
@@ -125,12 +150,20 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 					//create node
 					Link_Node* pCurrentNode = (Link_Node*)malloc(sizeof(Link_Node));
 					if(pCurrentNode == NULL)
+					{
+#ifdef MS_WINDOWS
+						SetEvent(g_hLinkListEvent);
+#endif
 						return -1;
+					}
 					pCurrentNode->nextNode = pNode;
 					pCurrentNode->priorNode = pNode->priorNode;
 					pNode->priorNode->nextNode = pCurrentNode;
 					pNode->priorNode = pCurrentNode;
 					pList->length++;
+#ifdef MS_WINDOWS
+					SetEvent(g_hLinkListEvent);
+#endif
 					return 0;
 				}
 				pNode = pNode->nextNode;
@@ -141,8 +174,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+		SetEvent(g_hLinkListEvent);
 #endif
 	return 0;
 }
@@ -160,17 +192,15 @@ void* link_list_getAt(Link_List* pList,unsigned long index)
 	Link_Node* pNode = NULL;
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return NULL;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hLinkListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 		return NULL;
 	}
 	i = 0;
@@ -186,8 +216,7 @@ void* link_list_getAt(Link_List* pList,unsigned long index)
 	}
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+	SetEvent(g_hLinkListEvent);
 #endif
 	return NULL;
 }
@@ -206,17 +235,15 @@ void link_list_removeAt(Link_List* pList,unsigned long index)
 	Link_Node* pNode = NULL;
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return NULL;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hLinkListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 		return;
 	}
 	i = 0;
@@ -256,8 +283,7 @@ void link_list_removeAt(Link_List* pList,unsigned long index)
 	}
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+	SetEvent(g_hLinkListEvent);
 #endif
 }
 
@@ -272,17 +298,15 @@ void link_list_clear(Link_List* pList)
 	Link_Node* pNode = NULL;
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	HANDLE hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LINK_LIST_MUTEX));
-	if(hMutex == NULL)
-	{
-		return NULL;
-	}
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_hLinkListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
 	if(pList == NULL)
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 		return;
 	}
 	//release from trail
@@ -299,8 +323,7 @@ void link_list_clear(Link_List* pList)
 
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+		SetEvent(g_hLinkListEvent);
 #endif
 }
 
@@ -313,8 +336,14 @@ void link_list_clear(Link_List* pList)
 void link_list_free(Link_List* pList)
 {
 	Link_Node* pNode = NULL;
+#ifdef MS_WINDOWS
+	WaitForSingleObject(g_hLinkListEvent, INFINITE);
+#endif
 	if(pList == NULL)
 	{
+#ifdef MS_WINDOWS
+		SetEvent(g_hLinkListEvent);
+#endif
 		return;
 	}
 	//release from trail
@@ -331,10 +360,11 @@ void link_list_free(Link_List* pList)
 	free(pList);
 	pList = NULL;
 #ifdef MS_WINDOWS
-	if (g_hMutex != NULL)
+	SetEvent(g_hLinkListEvent);
+	if (g_hLinkListEvent != NULL)
 	{
-		CloseHandle(g_hMutex);
-		g_hMutex = NULL;
+		CloseHandle(g_hLinkListEvent);
+		g_hLinkListEvent = NULL;
 	}
 #endif
 }
