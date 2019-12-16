@@ -147,6 +147,12 @@
     <ClInclude Include="module\moon_client.h">
       <Filter>头文件\module</Filter>
     </ClInclude>
+    <ClInclude Include="core\socket_context_manager.h">
+      <Filter>头文件\core</Filter>
+    </ClInclude>
+    <ClInclude Include="msg\moon_msg_handle.h">
+      <Filter>头文件\msg</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -208,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="module\moon_client.c">
       <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="core\socket_context_manager.c">
+      <Filter>源文件\core</Filter>
+    </ClCompile>
+    <ClCompile Include="msg\moon_msg_handle.c">
+      <Filter>源文件\msg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

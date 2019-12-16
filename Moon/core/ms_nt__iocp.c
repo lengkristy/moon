@@ -3,6 +3,8 @@
 #include "../module/moon_char.h"
 #include "../module/moon_string.h"
 #include "../msg/moon_msg.h"
+#include "socket_context_manager.h"
+#include "../msg/moon_msg_handle.h"
 #include <stdio.h>
 
 #ifdef MS_WINDOWS
@@ -41,7 +43,7 @@ static HANDLE* g_phWorkerThreads;// the handle pointer of work thread
 static PMS_SOCKET_CONTEXT g_pListenContext = NULL;//listen context
 static LPFN_ACCEPTEX                g_lpfnAcceptEx;// the functions pointer of AcceptEx and GetAcceptExSockaddrs，in order to invoke them
 static LPFN_GETACCEPTEXSOCKADDRS    g_lpfnGetAcceptExSockAddrs; 
-static Array_List* g_pListMSClientSocketContext;//the context of client socket
+extern Array_List* g_pClientSocketContext;//the context of client socket
 static HANDLE g_hAliveThread;//heartbeat detection thread
 
 
@@ -157,8 +159,7 @@ bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 		//Whether the client links
 		if( !isSocketAlive( pContext->m_socket) )
 		{
-			array_list_remove(g_pListMSClientSocketContext,pContext);
-			free_socket_context(pContext);
+			remove_socket_context(pContext);
 			pContext = NULL;
 			return true;
 		}
@@ -170,7 +171,7 @@ bool handleError( MS_SOCKET_CONTEXT *pContext,const DWORD dwErr )
 	// The client aborted.
 	else if( ERROR_NETNAME_DELETED==dwErr )
 	{
-		array_list_remove(g_pListMSClientSocketContext,pContext);
+		remove_socket_context(pContext);
 		return true;
 	}
 	else
@@ -209,7 +210,7 @@ bool postRecv( PMS_IO_CONTEXT pIoContext )
 	WSABUF *p_wbuf   = &pIoContext->m_wsaBuf;
 	OVERLAPPED *p_ol = &pIoContext->m_Overlapped;
 
-	memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
+	memset(pIoContext->m_szBuffer,0,PKG_BYTE_MAX_LENGTH);
 	pIoContext->m_OpType = RECV_POSTED;
 
 	//After the initialization is complete, the WSARecv request is delivered.
@@ -266,7 +267,7 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 ////////////////////////////////////////////////////////////
 // Processing when the client is connected.
 //
-bool doAccpet(PMS_IO_CONTEXT pIoContext )
+bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT   pSocketContext)
 {
 	
 	SOCKADDR_IN* ClientAddr = NULL;
@@ -274,7 +275,9 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 	PMS_SOCKET_CONTEXT pNewSocketContext = NULL;
 	PMS_IO_CONTEXT pNewIoContext = NULL;
 	int remoteLen = sizeof(SOCKADDR_IN), localLen = sizeof(SOCKADDR_IN);
-	moon_char clientMsg[MAX_BUFFER_LEN] = {0};
+	char package_data[PKG_BYTE_MAX_LENGTH] = {0};
+	moon_char clientMsg[PKG_BYTE_MAX_LENGTH] = {0};
+	char msg_id[50] = {0};
 	int len = 0;
 	Message* p_msg = NULL;
 	ClientEnvironment* p_client_env = NULL;
@@ -286,8 +289,26 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 	// Not only can you get the client and local address information, but also the first set of data sent by the client.
 	g_lpfnGetAcceptExSockAddrs(pIoContext->m_wsaBuf.buf, pIoContext->m_wsaBuf.len - ((sizeof(SOCKADDR_IN)+16)*2),  
 		sizeof(SOCKADDR_IN)+16, sizeof(SOCKADDR_IN)+16, (LPSOCKADDR*)&LocalAddr, &localLen, (LPSOCKADDR*)&ClientAddr, &remoteLen);
+
+	//parse data packge,the first data must complete,otherwise close socket
+	if(!pkg_is_head(pIoContext->m_szBuffer))
+	{
+		//close client socket
+		closesocket(pIoContext->m_sockAccept);
+		return false;
+	}
+	//parse packge data
+	len = parse_pkg(pIoContext->m_szBuffer,package_data);
+
+	if(len == 0)
+	{
+		//close client socket
+		closesocket(pIoContext->m_sockAccept);
+		return false;
+	}
+	
 	//Parsing the first message from the client.
-	len = moon_ms_windows_utf8_to_unicode(pIoContext->m_szBuffer,clientMsg);//将收到的utf-8的字节序转化为unicode
+	len = moon_ms_windows_utf8_to_unicode(package_data,clientMsg);//将收到的utf-8的字节序转化为unicode
 	//parse message
 	p_msg = parse_msg_head(clientMsg);
 	//the first message is about client running environment,if not this,the server will refuse
@@ -306,10 +327,7 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 		free_msg(p_msg);
 		return false;
 	}
-	free_msg(p_msg);
-	p_msg = NULL;
-	//release p_client_env
-	moon_free(p_client_env);
+	
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 2.So, notice here, this is the Context in the listening socket, and this Context we also need to use to listen for the next connection.
@@ -319,6 +337,11 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 	pNewSocketContext->m_socket           = pIoContext->m_sockAccept;
 	pNewSocketContext->mp_client_environment = p_client_env;
 	memcpy(&(pNewSocketContext->m_client_addr), ClientAddr, sizeof(SOCKADDR_IN));
+
+	moon_char_copy(pNewSocketContext->m_client_id, p_msg->p_message_head->msg_id);
+	//release
+	free_msg(p_msg);
+	p_msg = NULL;
 
 	// After the parameters are set, the Socket is bound to the completion port.
 	if( false==associateWithIOCP( pNewSocketContext ) )
@@ -347,18 +370,19 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext )
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	// 4. If the delivery is successful, then add this valid client information to the ContextList
 	//    (which requires unified management and easy release of resources)
-	array_list_insert(g_pListMSClientSocketContext,pNewSocketContext,-1);
+	add_socket_context(pNewSocketContext);
 	array_list_insert(pNewSocketContext->m_pListIOContext,pNewIoContext,-1);
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	// 5. After use, reset the IoContext of the Listen Socket, and then prepare to deliver the new AcceptEx.
-	memset(pIoContext->m_szBuffer,0,MAX_BUFFER_LEN);
+	memset(pIoContext->m_szBuffer,0,PKG_BYTE_MAX_LENGTH);
+
 	return post_accept( pIoContext );
 }
 
 /////////////////////////////////////////////////////////////////
 // When the received data arrives, it is processed.
-bool doRecv(PMS_IO_CONTEXT pIoContext)
+bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 {
 	// First display the last data, then reset the state and issue the next Recv request.
 	//SOCKADDR_IN* ClientAddr = &pSocketContext->m_client_addr;
@@ -367,38 +391,104 @@ bool doRecv(PMS_IO_CONTEXT pIoContext)
 	// Then start delivering the next WSARecv request
 	
 	//recv message
-
-	
 	WSABUF buf;
 	char *p_utf8_msg = pIoContext->m_wsaBuf.buf;
-	moon_char* client_msg = NULL;
+	//moon_char* client_msg = NULL;
 	int len = 0;
-	unsigned long size = 0;
-	Message* p_msg = NULL;
-	size = sizeof(moon_char) * pIoContext->m_wsaBuf.len + sizeof(moon_char);
-	client_msg = (moon_char*)moon_malloc(size);
-	if (client_msg == NULL)
+	int index = 0;
+	unsigned int size = 0;
+	int rel_pkg_size = 0;
+	char package_data[PKG_BYTE_MAX_LENGTH] = {0};
+	//Message* p_msg = NULL;
+
+	//如果不是包头，那么将数据加到当前的socket context缓存中
+	if(!pkg_is_head(p_utf8_msg))
 	{
-		return postRecv( pIoContext );
+		len = strlen(p_utf8_msg);
+		if(pSocketContext->m_currentPkgSize + len > pSocketContext->m_pkgSize) //当前接收的数据超过了完整包的数据，那么只接收部分数据
+		{
+			 len = pSocketContext->m_pkgSize - pSocketContext->m_currentPkgSize;
+			 while(len > 0)
+			 {
+				 pSocketContext->m_completePkg[pSocketContext->m_currentPkgSize] = p_utf8_msg[index];
+				 pSocketContext->m_currentPkgSize++;
+				 index++;
+			 }
+			 //接收完了之后，将数据传给消息包处理器，然后清空缓存
+			 msg_handler(pSocketContext->m_client_id,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
+			 memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
+			 pSocketContext->m_currentPkgSize = 0;
+			 pSocketContext->m_pkgSize = 0;
+			 p_utf8_msg += index;
+		}
+		else
+		{
+			//如果没有超过，那么就继续接收
+			for(index = 0;index < len;index++)
+			{
+				pSocketContext->m_completePkg[pSocketContext->m_currentPkgSize] = p_utf8_msg[index];
+				pSocketContext->m_currentPkgSize++;
+			}
+			//接收完了之后判断缓存数据是否完整，如果完整将数据传给消息包处理器，然后清空缓存
+			if(pSocketContext->m_currentPkgSize == pSocketContext->m_pkgSize)
+			{
+				msg_handler(pSocketContext->m_client_id,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
+				memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
+				pSocketContext->m_currentPkgSize = 0;
+				pSocketContext->m_pkgSize = 0;
+				return postRecv(pIoContext);
+			}
+		}
 	}
-	len = moon_ms_windows_utf8_to_unicode(p_utf8_msg,client_msg);//将收到的utf-8的字节序转化为moon_char
+	//进行包头处理
+	len = parse_pkg(p_utf8_msg,package_data);
+	if( 0 == len) //没有接收到数据
+	{
+		return postRecv(pIoContext);
+	}
+	rel_pkg_size = strlen(package_data);
+	//判断接收的数据是否是完整的
+	if(len == rel_pkg_size)
+	{
+		//如果是完整的，那么直接将数据发送给消息包处理器
+		msg_handler(pSocketContext->m_client_id,package_data,len);
+	}
+	else
+	{
+		//如果不完整，存在粘包的问题，那么将数据缓存下来
+		pSocketContext->m_pkgSize = len;
+		for(index = 0;index < rel_pkg_size;index++)
+		{
+			pSocketContext->m_completePkg[pSocketContext->m_currentPkgSize] = p_utf8_msg[index];
+			pSocketContext->m_currentPkgSize++;
+		}
+		p_utf8_msg += index;
+	}
 
-	//print client message
-	moon_write_info_log(p_utf8_msg);
+	//size = sizeof(moon_char) * pIoContext->m_wsaBuf.len + sizeof(moon_char);
+	//client_msg = (moon_char*)moon_malloc(size);
+	//if (client_msg == NULL)
+	//{
+	//	return postRecv( pIoContext );
+	//}
+	//len = moon_ms_windows_utf8_to_unicode(p_utf8_msg,client_msg);//将收到的utf-8的字节序转化为moon_char
 
-	p_msg = parse_msg_head(client_msg);
-	if (p_msg == NULL)
+	////print client message
+	//moon_write_info_log(p_utf8_msg);
+
+	//p_msg = parse_msg_head(client_msg);
+	/*if (p_msg == NULL)
 	{
 		postRecv(pIoContext);
-	}
+	}*/
 	//deal with message
-	msg_handle(pIoContext,p_msg);
+	//msg_handle(pIoContext,p_msg);
 
 	//release
-	free_msg(p_msg);
-	p_msg = NULL;
-	moon_free(client_msg);
-	client_msg = NULL;
+	//free_msg(p_msg);
+	//p_msg = NULL;
+	//moon_free(client_msg);
+	//client_msg = NULL;
 
 	//
 	return postRecv(pIoContext);
@@ -495,8 +585,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 				_LeaveCriticalSection(pSocketContext);
 				//close socket
 				closesocket(pSocketContext->m_socket);
-				array_list_remove(g_pListMSClientSocketContext,pSocketContext);
-				free_socket_context(pSocketContext);
+				remove_socket_context(pSocketContext);
 				pSocketContext = NULL;
 				continue;  
 			}
@@ -508,7 +597,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 					case ACCEPT_POSTED:
 						{ 
 							// To increase the readability of your code,use the special _DoAccept function to process the incoming requests.
-							doAccpet(pIoContext);
+							doAccpet(pIoContext,pSocketContext);
 						}
 						break;
 
@@ -517,7 +606,7 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 						{
 							// In order to increase the readability of the code, a special _DoRecv function is used to process the receive request.
 							pIoContext->m_wsaBuf.len = strlen(pIoContext->m_wsaBuf.buf);
-							doRecv(pIoContext);
+							doRecv(pIoContext,pSocketContext);
 							//make Io buf null
 							memset(pIoContext->m_wsaBuf.buf,0,pIoContext->m_wsaBuf.len);
 							pIoContext->m_wsaBuf.len = 0;
@@ -553,12 +642,12 @@ DWORD static WINAPI alive_thread(LPVOID lpParam)
 	MS_SOCKET_CONTEXT* pSocketContext = NULL;
 	while (WAIT_OBJECT_0 != WaitForSingleObject(g_hShutdownEvent, 0))
 	{
-		for (i = 0;i < g_pListMSClientSocketContext->length;i++)
+		for (i = 0;i < g_pClientSocketContext->length;i++)
 		{
-			pSocketContext = (MS_SOCKET_CONTEXT*)array_list_getAt(g_pListMSClientSocketContext,i);
+			pSocketContext = (MS_SOCKET_CONTEXT*)array_list_getAt(g_pClientSocketContext,i);
 			if(pSocketContext != NULL && !isSocketAlive(pSocketContext->m_socket))
 			{
-				array_list_remove(g_pListMSClientSocketContext,pSocketContext);
+				array_list_remove(g_pClientSocketContext,pSocketContext);
 				pSocketContext = NULL;
 				i--;
 			}
@@ -657,12 +746,12 @@ void dispose()
 	free_socket_context(g_pListenContext);
 
 	//Releases the client context collection
-	for (i = 0; i < g_pListMSClientSocketContext->length;)
+	for (i = 0; i < g_pClientSocketContext->length;)
 	{
-		free_socket_context((PMS_SOCKET_CONTEXT)array_list_getAt(g_pListMSClientSocketContext,i));
+		free_socket_context((PMS_SOCKET_CONTEXT)array_list_getAt(g_pClientSocketContext,i));
 		i = 0;
 	}
-	array_list_free(g_pListMSClientSocketContext);
+	array_list_free(g_pClientSocketContext);
 }
 
 /////////////////////////////////////////////////////////////////
@@ -850,8 +939,8 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*启
 	}
 	// Establish notification of event notification of system exit.
 	g_hShutdownEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-	//Initialize the client collection.
-	g_pListMSClientSocketContext = array_list_init();
+	//Initialize the socket context manager
+	init_socket_context_manager();
 	// init IOCP
 	if (false == ms_iocp_init())
 	{
@@ -913,12 +1002,12 @@ void ms_iocp_server_stop()
  * @param len:the data length
  * @return the sent-data length
  **/
-int ms_iocp_send(SOCKET socket,char * send_buf,int len)
+int ms_iocp_send(SOCKET socket,char * utf8_send_buf,int len)
 {
 	PMS_IO_CONTEXT pio = (PMS_IO_CONTEXT)moon_malloc(sizeof(MS_IO_CONTEXT));
 	pio->m_OpType = SEND_POSTED;
 	pio->m_sockAccept = socket;
-	pio->m_wsaBuf.buf = send_buf;
+	pio->m_wsaBuf.buf = utf8_send_buf;
 	pio->m_wsaBuf.len = len;
 	postSend(pio);
 	//moon_free(pio);

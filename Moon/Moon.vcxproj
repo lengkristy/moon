@@ -94,6 +94,7 @@
     <ClInclude Include="core\ms_nt__iocp.h" />
     <ClInclude Include="core\ms_socket_context.h" />
     <ClInclude Include="core\server.h" />
+    <ClInclude Include="core\socket_context_manager.h" />
     <ClInclude Include="module\cJSON.h" />
     <ClInclude Include="module\module_cfg.h" />
     <ClInclude Include="module\module_log.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="module\moon_string.h" />
     <ClInclude Include="module\moon_thread_pool.h" />
     <ClInclude Include="msg\moon_msg.h" />
+    <ClInclude Include="msg\moon_msg_handle.h" />
     <ClInclude Include="msg\moon_protocol.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -139,6 +141,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="core\socket_context_manager.c" />
     <ClCompile Include="module\cJSON.c" />
     <ClCompile Include="module\module_cfg.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -175,6 +178,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="msg\moon_msg.c" />
+    <ClCompile Include="msg\moon_msg_handle.c" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

@@ -9,6 +9,7 @@
 #include "../collection/array_list.h"
 #include "../cfg/environment.h"
 #include "../module/moon_client.h"
+#include "../msg/moon_protocol.h"
 
 #ifdef MS_WINDOWS
 #include <winsock2.h>
@@ -21,10 +22,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-// Buffer length (1024*8)
-// If you do have fewer sets of data from the client, set it smaller.
-#define MAX_BUFFER_LEN        8192
 
 //////////////////////////////////////////////////////////////////
 // Type of I/O operation delivered on the completion port.
@@ -47,7 +44,7 @@ typedef struct _MS_IO_CONTEXT
 	OVERLAPPED     m_Overlapped;                               // Overlapping structures for each overlapping network operation (one for each operation of each Socket             
 	SOCKET         m_sockAccept;                               // The Socket used by this network operation.
 	WSABUF         m_wsaBuf;                                   // A buffer of type WSA used to pass parameters to overlapped operations.
-	char           m_szBuffer[MAX_BUFFER_LEN];                 // This is a buffer of specific characters in WSABUF.
+	char           m_szBuffer[PKG_BYTE_MAX_LENGTH];            // This is a buffer of specific characters in WSABUF.
 	OPERATION_TYPE m_OpType;                                   // Identify the type of network operation (corresponding to the enumeration above)
 
 } MS_IO_CONTEXT, *PMS_IO_CONTEXT;
@@ -64,9 +61,15 @@ typedef struct _MS_SOCKET_CONTEXT
 	SOCKET      m_socket;      // Socket for each client connection.
 	SOCKADDR_IN m_client_addr; // Client address
 	unsigned int m_client_port;// Port for each client.						
-	char m_client_id[255];//Client ID(unique ID)
+	moon_char m_client_id[255];//Client ID(unique ID)
 	Array_List* m_pListIOContext;//// The context data for the client network operation, which means that for each client Socket, it is possible to deliver multiple IO requests simultaneously.
 	ClientEnvironment* mp_client_environment;//client running environment
+	//当前接收的数据的完整包，如果接收的数据不完整，那么将继续接收数据直到下一个包头，如果接收的数据是包头，那么将当前的数据给业务处理器，然后将当前缓冲区置空，包的编码为utf8
+	char m_completePkg[PKG_BYTE_MAX_LENGTH];
+	//数据包大小
+	int m_pkgSize;
+	//当前接收的数据大小
+	int m_currentPkgSize;
 }MS_SOCKET_CONTEXT,*PMS_SOCKET_CONTEXT;
 
 

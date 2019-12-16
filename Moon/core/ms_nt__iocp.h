@@ -41,7 +41,7 @@ void ms_iocp_server_stop();
  * @param len:the data length
  * @return the sent-data length
  **/
-int ms_iocp_send(SOCKET socket,char * send_buf,int len);
+int ms_iocp_send(SOCKET socket,char * utf8_send_buf,int len);
 
 #ifdef __cplusplus
 }

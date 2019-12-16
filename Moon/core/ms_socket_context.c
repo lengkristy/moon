@@ -11,10 +11,10 @@ PMS_IO_CONTEXT create_new_io_context()
 {
 	PMS_IO_CONTEXT context = (MS_IO_CONTEXT*)moon_malloc(sizeof(MS_IO_CONTEXT));
 	memset(&context->m_Overlapped,0, sizeof(context->m_Overlapped));
-	memset(context->m_szBuffer,0,MAX_BUFFER_LEN );
+	memset(context->m_szBuffer,0,PKG_BYTE_MAX_LENGTH );
 	context->m_sockAccept = INVALID_SOCKET;
 	context->m_wsaBuf.buf = context->m_szBuffer;
-	context->m_wsaBuf.len = MAX_BUFFER_LEN;
+	context->m_wsaBuf.len = PKG_BYTE_MAX_LENGTH;
 	context->m_OpType     = NULL_POSTED;
 	return context;
 }
@@ -29,8 +29,11 @@ void free_io_context(PMS_IO_CONTEXT context)
 PMS_SOCKET_CONTEXT create_new_socket_context()
 {
 	PMS_SOCKET_CONTEXT context = (PMS_SOCKET_CONTEXT)moon_malloc(sizeof(MS_SOCKET_CONTEXT));
+	memset(context,0,sizeof(MS_SOCKET_CONTEXT));
 	InitializeCriticalSection(&context->SockCritSec);
 	context->m_pListIOContext = array_list_init();
+	context->m_currentPkgSize = 0;
+	context->m_pkgSize = 0;
 	return context;
 }
 

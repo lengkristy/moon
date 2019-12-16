@@ -12,6 +12,80 @@ extern "C" {
 
 extern Moon_Server_Config* p_global_server_config;//global configuration struct
 
+
+/**
+ * 函数说明：
+ *   判断在网络上获取的数据包是否是包头开始，数据报文的前4个字节为包头标识
+ * 返回值：
+ *   如果是返回true，否则返回false
+ */
+bool pkg_is_head(char* pkg)
+{
+	char head_flag[5] = {0};
+	if(pkg == NULL)
+	{
+		return false;
+	}
+	if(strlen(pkg) < PKG_HEAD_LENGTH)
+	{
+		return false;
+	}
+	head_flag[0] = pkg[0];
+	head_flag[1] = pkg[1];
+	head_flag[2] = pkg[2];
+	head_flag[3] = pkg[3];
+	if(strcmp(head_flag,PKG_HEAD_FLAG) != 0)
+	{
+		return false;
+	}
+	return true;
+}
+
+/**
+ * 函数说明：
+ *   解析数据包，将包头后面的数据解析出来
+ * 参数：
+ *   src_pkg：原始数据
+ *   out_data：解析后得到的业务JSON数据
+ * 返回值：
+ *   返回该包的大小
+ */
+int parse_pkg(char* src_pkg,_out_ char* out_data)
+{
+	unsigned int pkg_size = 0;
+
+	char head_size[5] = {0};
+
+	unsigned int index = 0;
+
+	char* p = src_pkg;
+
+	if(src_pkg == NULL)
+	{
+		return 0;
+	}
+	if(strlen(src_pkg) < PKG_HEAD_LENGTH)
+	{
+		return 0;
+	}
+	head_size[0] = src_pkg[4];
+	head_size[1] = src_pkg[5];
+	head_size[2] = src_pkg[6];
+	head_size[3] = src_pkg[7];
+	
+	if(!moon_string_parse_to_int(head_size,&pkg_size))
+	{
+		return 0;
+	}
+	//从第8个字节开始读取，一直读pkg_size个字节
+	p = p + 8;
+	for(index = 0;index < pkg_size;index++)
+	{
+		out_data[index] = p[index];
+	}
+	return pkg_size;
+}
+
 /**
  * function desc:
  *	parse the message head on the network
@@ -276,6 +350,36 @@ void create_client_login_failed_msg(char* err_msg,_out_ moon_char* out_login_fai
 	sprintf(tmp_msg,msg,cmsg_id,SYS_MAIN_PROTOCOL_LOGIN,SYS_SUB_PROTOCOL_LOGIN_SUCCESS,err_msg);
 	char_to_moon_char(tmp_msg,out_login_failed_msg);
 }
+
+
+/**
+ * 函数说明：
+ *   创建一个服务端收到客户端消息的相应包
+ * 参数：
+ *   msg_id:消息id
+ *   success:是否处理成功
+ * 返回值：
+ *  返回json数据包
+ */
+void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moon_char* out_reply_msg)
+{
+	char* msg = "{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":\"%s\"}}";
+	char tmp_msg[512] = {0};
+	char c_msg_id[50] = {0};
+	int sub_protocol = 0;
+	if(success)
+	{
+		sub_protocol = SYS_SUB_PROTOCOL_REPLY_OK;
+	}
+	else
+	{
+		sub_protocol = SYS_SUB_PROTOCOL_REPLY_FAILD;
+	}
+	moon_char_to_char(msg_id,c_msg_id);
+	sprintf(tmp_msg,msg,c_msg_id,SYS_MAIN_PROTOCOL_REPLY,sub_protocol,"");
+	char_to_moon_char(tmp_msg,out_reply_msg);
+}
+
 
 #ifdef __cplusplus
 }

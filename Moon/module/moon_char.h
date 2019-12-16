@@ -45,6 +45,18 @@ void char_to_moon_char(const char* sourceStr,_out_ moon_char* destStr);
  **/
 void moon_char_to_char(const moon_char* source_str,_out_ char* dest_str);
 
+/**
+ * 函数说明：
+ *  比较两个字符串是否相等
+ * 参数：
+ *  source_str：源字符串
+ *  desc_str：目标字符串
+ * 返回值：
+ *  相等返回true,不相等返回false
+ */
+bool moon_char_equals(const moon_char* source_str,const moon_char* desc_str);
+
+
 #ifdef __cplusplus
 }
 #endif

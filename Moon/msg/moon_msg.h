@@ -43,6 +43,27 @@ typedef struct _Message{
 ///////////////////////////////////////////////////////////////
 
 /**
+ * 函数说明：
+ *   判断在网络上获取的数据包是否是包头开始，数据报文的前4个字节为包头标识
+ * 返回值：
+ *   如果是返回true，否则返回false
+ */
+bool pkg_is_head(char* pkg);
+
+/**
+ * 函数说明：
+ *   解析数据包，将包头后面的数据解析出来
+ * 参数：
+ *   src_pkg：原始数据
+ *   out_data：解析后得到的业务JSON数据
+ * 返回值：
+ *   返回该包的大小
+ */
+int parse_pkg(char* src_pkg,_out_ char* out_data);
+
+
+
+/**
  * function desc:
  *	parse the message on the network
  * params:
@@ -60,7 +81,8 @@ typedef struct _Message{
  * return:
  *	if success return the pointer of Message struct,otherwise return null
  */
-Message* parse_msg(moon_char* str_message);
+Message* parse_msg_head(moon_char* str_message);
+
 
 /**
  * release message memory
@@ -101,6 +123,18 @@ void create_client_login_success_msg(_out_ moon_char* out_login_suc_msg);
  * @param out_login_failed_msg:return json data
  **/
 void create_client_login_failed_msg(char* err_msg,_out_ moon_char* out_login_failed_msg);
+
+
+/**
+ * 函数说明：
+ *   创建一个服务端收到客户端消息的相应包
+ * 参数：
+ *   msg_id:消息id
+ *   success:是否处理成功
+ * 返回值：
+ *  返回json数据包
+ */
+void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moon_char* out_reply_msg);
 
 #ifdef __cplusplus
 }

@@ -5,6 +5,11 @@
 #include "../module/moon_memory_pool.h"
 #include "ms_nt__iocp.h"
 #include "../module/moon_http_service.h"
+#include "socket_context_manager.h"
+#ifdef MS_WINDOWS
+#include "ms_socket_context.h"
+#endif
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,6 +55,29 @@ void moon_start()
 
 	//start http server
 	lauch_http_service();
+}
+
+
+/**
+ * 函数说明：
+ *    向客户端发送消息
+ * 参数：
+ *	  client_id：客户端id
+ *	  utf8_send_buf：utf8编码消息
+ *    len:消息长度
+ */
+void moon_server_send_msg(moon_char* client_id,char * utf8_send_buf,int len)
+{
+#ifdef MS_WINDOWS
+	if(client_id != NULL)
+	{
+		MS_SOCKET_CONTEXT * psocket_context = get_socket_context_by_client_id(client_id);
+		if(psocket_context != NULL)
+		{
+			ms_iocp_send(psocket_context->m_socket,utf8_send_buf,len);
+		}
+	}
+#endif
 }
 
 /************************************************************************/
