@@ -8,6 +8,12 @@
 #include "../module/moon_config_struct.h"
 #include "../module/moon_char.h"
 
+#ifdef MS_WINDOWS
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

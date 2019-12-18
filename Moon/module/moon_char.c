@@ -1,6 +1,10 @@
 #include "moon_char.h"
 #include "moon_string.h"
 
+#ifdef MS_WINDOWS
+#include <windows.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -73,6 +77,27 @@ bool moon_char_equals(const moon_char* source_str,const moon_char* desc_str)
 	 }
 #endif
 	 return false;
+}
+
+
+/**
+ * 函数说明：
+ *  实现字符串格式化
+ * 参数：
+ *  buf：格式化保存的地址
+ *  fmt：格式化字符串
+ *  ...：不定参数
+ */
+int moon_sprintf(moon_char *buf, const moon_char *fmt, ...)
+{
+#ifdef MS_WINDOWS
+	int length = 0;
+	va_list args;
+	va_start(args,fmt);
+	length = _vscwprintf(fmt, args) + 1;
+	vswprintf_s(buf,length,fmt,args);
+	va_end(args);
+#endif
 }
 
 #ifdef __cplusplus

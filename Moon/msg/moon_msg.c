@@ -221,9 +221,8 @@ void create_message_id(_out_ moon_char* out_msg_id)
  * @param msgData:message body
  * @return if success return ClientEnvironment struct pointer,otherwise return NULL
  **/
-ClientEnvironment* parse_client_running_environment(moon_char* msgData)
+bool parse_client_running_environment(moon_char* msgData,_out_ ClientEnvironment* p_client_env)
 {
-	ClientEnvironment* p_client_env = NULL;
 	cJSON * root = NULL;
 	cJSON * body = NULL;
 	cJSON * item = NULL;
@@ -238,7 +237,7 @@ ClientEnvironment* parse_client_running_environment(moon_char* msgData)
 	if (root == NULL)
 	{
 		moon_free(ascii_msg);
-		return NULL;
+		return false;
 	}
 	if (root->type == cJSON_Object)
 	{
@@ -247,17 +246,16 @@ ClientEnvironment* parse_client_running_environment(moon_char* msgData)
 		{
 			moon_free(ascii_msg);
 			cJSON_Delete(root);
-			return NULL;
+			return false;
 		}
 		body = cJSON_GetObjectItem(body,"content");
 		if(body == NULL)
 		{
 			moon_free(ascii_msg);
 			cJSON_Delete(root);
-			return NULL;
+			return false;
 		}
-		p_client_env = (ClientEnvironment*)moon_malloc(sizeof(ClientEnvironment));
-		memset(p_client_env,0,sizeof(ClientEnvironment));
+		
 		item = cJSON_GetObjectItem(body,"client_sdk_version");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
@@ -278,10 +276,15 @@ ClientEnvironment* parse_client_running_environment(moon_char* msgData)
 		{
 			strcpy(p_client_env->connect_sdk_token,item->valuestring);
 		}
+		item = cJSON_GetObjectItem(body,"client_id");
+		if (item != NULL && !stringIsEmpty(item->valuestring))
+		{
+			strcpy(p_client_env->client_id,item->valuestring);
+		}
 	}
 	moon_free(ascii_msg);
 	cJSON_Delete(root);
-	return p_client_env;
+	return true;
 }
 
 /**
@@ -317,38 +320,6 @@ void parse_login_id(moon_char* msgData,_out_ char* out_client_login_id)
 	}
 	moon_free(ascii_msg);
 	cJSON_Delete(root);
-}
-
-/**
- * @desc create a login-successful message json data
- * @param out_login_suc_msg:return json data
- **/
-void create_client_login_success_msg(_out_ moon_char* out_login_suc_msg)
-{
-	char* msg = "{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":\"login successful\"}}";
-	char tmp_msg[512] = {0};
-	moon_char msg_id[50] = {0};
-	char cmsg_id[50] = {0};
-	create_message_id(msg_id);
-	moon_char_to_char(msg_id,cmsg_id);
-	sprintf(tmp_msg,msg,cmsg_id,SYS_MAIN_PROTOCOL_LOGIN,SYS_SUB_PROTOCOL_LOGIN_SUCCESS);
-	char_to_moon_char(tmp_msg,out_login_suc_msg);
-}
-
-/**
- * @desc create a login-failed message json data
- * @param out_login_failed_msg:return json data
- **/
-void create_client_login_failed_msg(char* err_msg,_out_ moon_char* out_login_failed_msg)
-{
-	char* msg = "{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":\"%s\"}}";
-	char tmp_msg[512] = {0};
-	moon_char msg_id[50] = {0};
-	char cmsg_id[50] = {0};
-	create_message_id(msg_id);
-	moon_char_to_char(msg_id,cmsg_id);
-	sprintf(tmp_msg,msg,cmsg_id,SYS_MAIN_PROTOCOL_LOGIN,SYS_SUB_PROTOCOL_LOGIN_SUCCESS,err_msg);
-	char_to_moon_char(tmp_msg,out_login_failed_msg);
 }
 
 

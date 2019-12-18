@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <malloc.h>
 
+#include "../module/moon_string.h"
+
 #ifdef _MSC_VER/* only support win32 and greater. */
 #include <windows.h>
 #define MS_WINDOWS
-#define LINK_LIST_EVENT "LINK_LIST_MUTEX"
 static HANDLE g_hLinkListEvent;
 #endif
 
@@ -17,6 +18,7 @@ static HANDLE g_hLinkListEvent;
  */
 Link_List* link_list_init()
 {
+	moon_char muuid[50] = {0};
 	Link_List* pList = NULL;
 	pList = (Link_List*)malloc(sizeof(Link_List));
 	if(pList == NULL)
@@ -29,7 +31,8 @@ Link_List* link_list_init()
 	//init mutexes
 
 #ifdef MS_WINDOWS
-	g_hLinkListEvent = CreateEvent(NULL, FALSE, TRUE, TEXT(LINK_LIST_EVENT));
+	moon_create_32uuid(muuid);
+	g_hLinkListEvent = CreateEvent(NULL, FALSE, TRUE, muuid);
 	if (g_hLinkListEvent == NULL)
 	{
 		link_list_free(pList);
@@ -190,17 +193,8 @@ void* link_list_getAt(Link_List* pList,unsigned long index)
 {
 	int i = 0;
 	Link_Node* pNode = NULL;
-	//thread synchronization under windows platform
-#ifdef MS_WINDOWS
-	WaitForSingleObject(g_hLinkListEvent, INFINITE);
-#endif
-	//////////////////////////////////////////////////////////////////////////
-	//critical region
 	if(pList == NULL)
 	{
-#ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
-#endif
 		return NULL;
 	}
 	i = 0;
@@ -214,10 +208,6 @@ void* link_list_getAt(Link_List* pList,unsigned long index)
 		pNode = pNode->nextNode;
 		i++;
 	}
-	//////////////////////////////////////////////////////////////////////////
-#ifdef MS_WINDOWS
-	SetEvent(g_hLinkListEvent);
-#endif
 	return NULL;
 }
 

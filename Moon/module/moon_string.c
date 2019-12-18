@@ -135,6 +135,35 @@ bool stringIsEmpty(char* str)//判断字符串是否为NULL
 	else
 		return false;
 }
+
+/**
+ * function desc:
+ *      Determines whether the string is NULL.
+ * params:
+ *      string
+ * return:
+ *      null return true,not null return false
+ */
+bool moon_string_is_empty(moon_char* str)
+{
+#ifdef MS_WINDOWS
+	if(str == NULL)
+	{
+		return true;
+	}
+	if(str[0] == L'\0')
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+#endif
+
+}
+
+
 #ifdef MS_WINDOWS
 /**
  * function desc:
@@ -166,7 +195,7 @@ int moon_ms_windows_ascii_to_utf8(const char* asciiStr,char* outUTF8)
 		return convertSize;
 	}
 	//unicode to utf8
-	convertSize = moon_ms_windows_unicode_to_utf8(unicodeStr,outUTF8);
+	convertSize = moon_ms_windows_moonchar_to_utf8(unicodeStr,outUTF8);
 	moon_free(unicodeStr);
 	return convertSize;
 }
@@ -205,20 +234,20 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)
  * function desc:
  *      turn the unicode string to the utf8 string.
  * params:
- *      unicodeStr:unicode string
+ *      moonchar:unicode string
  *      outUTF8:the converted utf8 string
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_unicode_to_utf8(const moon_char* unicodeStr,char* outUTF8)
+int moon_ms_windows_moonchar_to_utf8(const moon_char* moonchar,char* outUTF8)
 {
-	int utf8size = WideCharToMultiByte(CP_UTF8,0,unicodeStr,-1,NULL,0,NULL,NULL);
+	int utf8size = WideCharToMultiByte(CP_UTF8,0,moonchar,-1,NULL,0,NULL,NULL);
 	int convertSize = 0;
 	if (utf8size == 0)
 	{
 		return -1;
 	}
-	convertSize = WideCharToMultiByte(CP_UTF8,0,unicodeStr,-1,outUTF8,utf8size,NULL,NULL);
+	convertSize = WideCharToMultiByte(CP_UTF8,0,moonchar,-1,outUTF8,utf8size,NULL,NULL);
 	if (convertSize != utf8size)
 	{
 		memset(outUTF8,0,utf8size);
@@ -288,7 +317,7 @@ int moon_ms_windows_utf8_to_unicode(const char* utf8Str,moon_char* outUnicode)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)
+int moon_ms_windows_utf8_to_ascii(const char* utf8Str,char* outAscii)
 {
 	int convertSize = 0;
 	wchar_t* unicodeStr = NULL;
@@ -301,7 +330,7 @@ int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii)
 	{
 		return 0;
 	}
-	unicodeStr = moon_malloc(unicodeSize);
+	unicodeStr = (wchar_t*)moon_malloc(unicodeSize);
 	convertSize = moon_ms_windows_utf8_to_unicode(utf8Str,unicodeStr);
 	if (convertSize == -1)
 	{
@@ -356,6 +385,23 @@ int moon_char_length(const moon_char* str)
 	int len = 0;
 #ifdef MS_WINDOWS
 	len = wcslen(str);
+#endif
+	return len;
+}
+
+/**
+ * 函数说明：
+ *   获取字符串占用内存的大小
+ * 参数：
+ *   str：moon_char
+ * 返回值：
+ *   返回字符串占用内存大小
+ */
+int moon_char_memory_size(const moon_char* str)
+{
+	int len = 0;
+#ifdef MS_WINDOWS
+	len = wcslen(str) * sizeof(moon_char);
 #endif
 	return len;
 }

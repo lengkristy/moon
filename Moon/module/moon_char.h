@@ -57,6 +57,16 @@ void moon_char_to_char(const moon_char* source_str,_out_ char* dest_str);
 bool moon_char_equals(const moon_char* source_str,const moon_char* desc_str);
 
 
+/**
+ * 函数说明：
+ *  实现字符串格式化
+ * 参数：
+ *  buf：格式化保存的地址
+ *  fmt：格式化字符串
+ *  ...：不定参数
+ */
+int moon_sprintf(moon_char *buf, const moon_char *fmt, ...);
+
 #ifdef __cplusplus
 }
 #endif

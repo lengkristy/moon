@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <memory.h>
-
+#include "../module/moon_string.h"
 
 #ifdef _MSC_VER/* only support win32 and greater. */
 #include <windows.h>
 #define MS_WINDOWS
-#define ARRAY_LIST_EVENT "ARRAY_LIST_EVENT"
 static HANDLE g_hArrayListEvent;
 #endif
 
@@ -20,6 +19,7 @@ static HANDLE g_hArrayListEvent;
 Array_List* array_list_init()
 {
 	int i = 0;
+	moon_char muuid[50] = {0};
 	Array_List* pList = (Array_List*)malloc(sizeof(Array_List));//Allocate the list address space
 	if(pList == NULL)
 	{
@@ -42,7 +42,8 @@ Array_List* array_list_init()
 
 	//init mutexes
 #ifdef MS_WINDOWS
-	g_hArrayListEvent = CreateEvent(NULL, FALSE, TRUE, TEXT(ARRAY_LIST_EVENT));
+	moon_create_32uuid(muuid);
+	g_hArrayListEvent = CreateEvent(NULL, FALSE, TRUE,muuid);
 	if (g_hArrayListEvent == NULL)
 	{
 		array_list_free(pList);
@@ -254,32 +255,15 @@ void array_list_remove(Array_List* pList,void* pData)
 void* array_list_getAt(Array_List* pList,unsigned long index)
 {
 	void* pData = NULL;
-	//thread synchronization under windows platform
-#ifdef MS_WINDOWS
-	WaitForSingleObject(g_hArrayListEvent, INFINITE);
-#endif
-	//////////////////////////////////////////////////////////////////////////
-	//critical region
 	if(pList == NULL)
 	{
-#ifdef MS_WINDOWS
-		SetEvent(g_hArrayListEvent);
-#endif
 		return NULL;
 	}
 	if(index < 0 || index >= pList->length)
 	{
-#ifdef MS_WINDOWS
-		SetEvent(g_hArrayListEvent);
-#endif
 		return NULL;
 	}
 	pData = pList->node[index].data;
-	
-	//////////////////////////////////////////////////////////////////////////
-#ifdef MS_WINDOWS
-	SetEvent(g_hArrayListEvent);
-#endif
 	return pData;
 }
 

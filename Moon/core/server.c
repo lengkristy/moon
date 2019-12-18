@@ -23,6 +23,8 @@ bool b_config_load_finish = false;//config has inited
 /************************************************************************/
 void moon_start()
 {
+	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+
 	moon_write_info_log("init log environment");
 	//init log
 	if(!moon_log_init())

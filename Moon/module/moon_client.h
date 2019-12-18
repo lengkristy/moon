@@ -17,6 +17,7 @@ typedef struct _ClientEnvironment{
 	char client_platform[20];/*client platform info,windows/linux/android/ios*/
 	char opra_system_version[50];/*system version*/
 	char connect_sdk_token[100];/*sdk token*/
+	char client_id[50];/**¿Í»§¶Ëid*/
 }ClientEnvironment;
 
 //define client struct

@@ -42,6 +42,16 @@ bool stringIsEmpty(char* str);
 
 /**
  * function desc:
+ *      Determines whether the string is NULL.
+ * params:
+ *      string
+ * return:
+ *      null return true,not null return false
+ */
+bool moon_string_is_empty(moon_char* str);
+
+/**
+ * function desc:
  *      Converts string lowercase to uppercase
  * params:
  *      srcStr:The original string
@@ -57,9 +67,19 @@ int moon_to_capital(char* srcStr,char* pOutCapital);
  * params:
  *      str:the moon_char string
  * return:
- *      return length
+ *      return string length
  */
 int moon_char_length(const moon_char* str);
+
+/**
+ * 函数说明：
+ *   获取字符串占用内存的大小
+ * 参数：
+ *   str：moon_char
+ * 返回值：
+ *   返回字符串占用内存大小
+ */
+int moon_char_memory_size(const moon_char* str);
 
 /**
  * function desc:
@@ -96,12 +116,12 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode);
  * function desc:
  *      turn the unicode string to the utf8 string.
  * params:
- *      unicodeStr:unicode string
+ *      moonchar:unicode string
  *      outUTF8:the converted utf8 string
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_unicode_to_utf8(const moon_char* unicodeStr,char* outUTF8);
+int moon_ms_windows_moonchar_to_utf8(const moon_char* moonchar,char* outUTF8);
 
 /**
  * function desc:
@@ -134,7 +154,7 @@ int moon_ms_windows_utf8_to_unicode(const char* utf8Str,moon_char* outUnicode);
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_utf8_to_ascii(const moon_char* utf8Str,char* outAscii);
+int moon_ms_windows_utf8_to_ascii(const char* utf8Str,char* outAscii);
 
 #endif
 

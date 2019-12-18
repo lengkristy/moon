@@ -103,7 +103,7 @@ void create_message_id(_out_ moon_char* out_msg_id);
  * @param msgData:message body
  * @return if success return ClientEnvironment struct pointer,otherwise return NULL
  **/
-ClientEnvironment* parse_client_running_environment(moon_char* msgData);
+bool parse_client_running_environment(moon_char* msgData,_out_ ClientEnvironment* p_client_env);
 
 /**
  * @desc parse client login id

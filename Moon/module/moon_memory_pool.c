@@ -59,6 +59,19 @@ void* moon_malloc(unsigned int num_bytes)/*allocate memory*/
 	return pMemory;
 }
 
+void* moon_realloc(void* memory,unsigned int num_bytes)//在memory基础上重新分配内存
+{
+	if(memory == NULL)
+	{
+		return NULL;
+	}
+	if(num_bytes <= 0)
+	{
+		return memory;
+	}
+	return realloc(memory,num_bytes);
+}
+
 void moon_free(void* memory)/*free point*/
 {
 	if(memory != NULL)

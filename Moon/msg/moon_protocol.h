@@ -35,15 +35,20 @@
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-///////////////////////////client login protocol////////////////////////////////////////////
-#define SYS_MAIN_PROTOCOL_LOGIN 10002 //client login main-protocol
+////////////////////////////定义发送点对点的消息/////////////////////////////////////////////////////////
+#define SYS_MAIN_PROTOCOL_MSG_POINT_TO_POINT 10002 //点对点的主消息
+#define SYS_SUB_PROTOCOL_MSG_PTP_TEXT     1000201 //点对点的文本消息
+#define SYS_SUB_PROTOCOL_MSG_PTP_EMOTICON 1000202 //点对点的表情消息
+#define SYS_SUB_PROTOCOL_MSG_PTP_IMG      1000203 //点对点的图片消息
+#define SYS_SUB_PROTOCOL_MSG_PTP_VIDEO	  1000204 //点对点的短视频消息
+#define SYS_SUB_PROTOCOL_MSG_PTP_FILE	  1000205 //点对点的文件传输消息
 
-#define SYS_SUB_PROTOCOL_LOGIN_FIRST 1000201//client first login sub-protocol
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#define SYS_SUB_PROTOCOL_LOGIN_SUCCESS 1000202//client login successful sub-protocol
-
-#define SYS_SUB_PROTOCOL_LOGIN_FAILD 1000203//client login failed sub-protocol
-
-#define SYS_SUB_PROTOCOL_LOGIN_OUT 1000204//client login out sub-protocol
+///////////////////////////获取服务器客户端信息协议/////////////////////////////////////////////////////
+#define SYS_MAIN_PROTOCOL_SCI 10004 //获取服务器客户端信息主协议代码
+#define SYS_SUB_PROTOCOL_ALL_CLIENT_LIST 1000401 //请求获取服务器中所有客户端列表
+#define SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK 1000402 //服务器成功返回客户端列表
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #endif
