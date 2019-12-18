@@ -91,6 +91,7 @@
     <ClInclude Include="cfg\environment.h" />
     <ClInclude Include="collection\array_list.h" />
     <ClInclude Include="collection\link_list.h" />
+    <ClInclude Include="collection\queue.h" />
     <ClInclude Include="core\ms_nt__iocp.h" />
     <ClInclude Include="core\ms_socket_context.h" />
     <ClInclude Include="core\server.h" />
@@ -129,6 +130,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="collection\queue.c" />
     <ClCompile Include="core\ms_nt__iocp.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

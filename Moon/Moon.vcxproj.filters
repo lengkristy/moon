@@ -153,6 +153,9 @@
     <ClInclude Include="msg\moon_msg_handle.h">
       <Filter>头文件\msg</Filter>
     </ClInclude>
+    <ClInclude Include="collection\queue.h">
+      <Filter>头文件\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="msg\moon_msg_handle.c">
       <Filter>源文件\msg</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\queue.c">
+      <Filter>源文件\collection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

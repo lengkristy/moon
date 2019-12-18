@@ -23,6 +23,7 @@ typedef struct _MessageHead{
 	int main_msg_num;/*main message number*/
 	int sub_msg_num;/*sub message number*/
 	int msg_size;/*the message size*/
+	moon_char client_id[50];/*client id*/
 }MessageHead;
 
 //define message body

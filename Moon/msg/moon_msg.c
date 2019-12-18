@@ -155,6 +155,12 @@ Message* parse_msg_head(moon_char* str_message)
 			{
 				p_message->p_message_head->sub_msg_num = item->valueint;
 			}
+			item = cJSON_GetObjectItem(head,"client_id");
+			if (item != NULL)
+			{
+				char_to_moon_char(item->valuestring,msg_id);
+				moon_char_copy(p_message->p_message_head->client_id,msg_id);
+			}
 		}
 	}
 	cJSON_Delete(root);

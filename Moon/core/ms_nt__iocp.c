@@ -6,6 +6,7 @@
 #include "socket_context_manager.h"
 #include "../msg/moon_msg_handle.h"
 #include <stdio.h>
+#include "../collection/queue.h"
 
 #ifdef MS_WINDOWS
 #include <wchar.h>
@@ -44,6 +45,7 @@ static PMS_SOCKET_CONTEXT g_pListenContext = NULL;//listen context
 static LPFN_ACCEPTEX                g_lpfnAcceptEx;// the functions pointer of AcceptEx and GetAcceptExSockaddrs，in order to invoke them
 static LPFN_GETACCEPTEXSOCKADDRS    g_lpfnGetAcceptExSockAddrs; 
 extern Array_List* g_pClientSocketContext;//the context of client socket
+extern Queue* p_global_msg_queue;
 static HANDLE g_hAliveThread;//heartbeat detection thread
 
 /**
@@ -335,7 +337,7 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 				 index++;
 			 }
 			 //接收完了之后，将数据传给消息包处理器，然后清空缓存
-			 //msg_handler(pSocketContext->m_client_id,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
+			 Queue_AddToHead(p_global_msg_queue,pSocketContext->m_completePkg);
 			 memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
 			 pSocketContext->m_currentPkgSize = 0;
 			 pSocketContext->m_pkgSize = 0;
@@ -352,7 +354,7 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 			//接收完了之后判断缓存数据是否完整，如果完整将数据传给消息包处理器，然后清空缓存
 			if(pSocketContext->m_currentPkgSize == pSocketContext->m_pkgSize)
 			{
-				//msg_handler(pSocketContext->m_client_id,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
+				Queue_AddToHead(p_global_msg_queue,pSocketContext->m_completePkg);
 				memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
 				pSocketContext->m_currentPkgSize = 0;
 				pSocketContext->m_pkgSize = 0;
@@ -371,7 +373,7 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 	if(len == rel_pkg_size)
 	{
 		//如果是完整的，那么直接将数据发送给消息包处理器
-		//msg_handler(pSocketContext->m_client_id,package_data,len);
+		Queue_AddToHead(p_global_msg_queue,pSocketContext->m_completePkg);
 	}
 	else
 	{

@@ -6,6 +6,8 @@
 #include "ms_nt__iocp.h"
 #include "../module/moon_http_service.h"
 #include "socket_context_manager.h"
+#include "../collection/queue.h"
+#include "../msg/moon_msg_handle.h"
 #ifdef MS_WINDOWS
 #include "ms_socket_context.h"
 #endif
@@ -18,13 +20,21 @@ extern "C" {
 Moon_Server_Config* p_global_server_config = NULL;/*global server config*/
 bool b_config_load_finish = false;//config has inited
 
+#ifdef MS_WINDOWS
+HANDLE g_hMsgThread = NULL;
+#endif
+
+Queue* p_global_msg_queue = NULL;/*全局消息队列*/
+
 /************************************************************************/
 /* start server			                                                */
 /************************************************************************/
 void moon_start()
 {
+#ifdef MS_WINDOWS
+	DWORD threadid = 0;
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-
+#endif
 	moon_write_info_log("init log environment");
 	//init log
 	if(!moon_log_init())
@@ -53,6 +63,16 @@ void moon_start()
 		return;
 	}
 	moon_write_info_log("ms_nt_iocp server has start");
+	//初始化消息队列
+	p_global_msg_queue = Queue_Init(NULL);
+	//开始消息队列处理线程
+	g_hMsgThread = CreateThread(0, 0, msg_handle_thread, p_global_msg_queue, 0, &threadid);
+	if (g_hMsgThread == NULL)
+	{
+		moon_write_error_log("create alive thread failed");
+		moon_stop();
+		return;
+	}
 #endif
 
 	//start http server
