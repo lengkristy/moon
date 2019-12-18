@@ -28,7 +28,7 @@ extern "C" {
 		moon_char msgid[50] = {0};
 		moon_char tmp[100] = {0};
 		moon_char* msg = NULL;
-		int msglen = 512;//消息初始大小
+		int msglen = PKG_BYTE_MAX_LENGTH;//消息初始大小
 		switch(pmsg->p_message_head->sub_msg_num)
 		{
 		case SYS_SUB_PROTOCOL_ALL_CLIENT_LIST://获取所有客户端列表
@@ -49,11 +49,33 @@ extern "C" {
 					p_socket_context = get_socket_context_by_index(index);
 					if(p_socket_context != NULL)
 					{
-						if((moon_char_memory_size(msg) + moon_char_memory_size(((MS_SOCKET_CONTEXT *)p_socket_context)->m_client_id)) > msglen)
+						if((moon_char_memory_size(msg) - moon_char_memory_size(((MS_SOCKET_CONTEXT *)p_socket_context)->m_client_id)) > msglen)
 						{
-							//重新分配内存
-							msg = (moon_char*)moon_realloc(msg,msglen + msglen);
-							msglen += msglen;
+							//先发送到客户端，然后再发送后面的信息
+							//去掉最后一个逗号
+							if(client_count > 0)
+							{
+								msg[moon_char_length(msg) - 1] = L'\0';
+							}
+							char_to_moon_char("]}}",tmp);
+							moon_char_concat(msg,tmp);
+							memset(tmp,0,100);
+							msglen = moon_char_memory_size(msg) * 3 + 3;
+							utf8_msg = (char*)moon_malloc(msglen);
+							moon_ms_windows_moonchar_to_utf8(msg,utf8_msg);
+							moon_server_send_msg(client_id,utf8_msg,msglen);
+							//
+							if(utf8_msg != NULL)
+							{
+								moon_free(utf8_msg);
+								utf8_msg = NULL;
+							}
+							//
+							memset(tmp,0,100);
+							memset(msg,0,PKG_BYTE_MAX_LENGTH);
+							char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":[",tmp);
+							moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK);
+							continue;
 						}
 						char_to_moon_char("\"",tmp);
 						moon_char_concat(msg,tmp);
@@ -65,7 +87,7 @@ extern "C" {
 						char_to_moon_char(",",tmp);
 						moon_char_concat(msg,tmp);
 						memset(tmp,0,100);
-
+						
 					}
 				}
 				//去掉最后一个逗号
@@ -163,7 +185,9 @@ extern "C" {
 			msg_handler_ptp(p_msg->p_message_head->client_id,client_msg);
 			break;
 		case SYS_MAIN_PROTOCOL_SCI:
-			msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+			{
+				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+			}
 			break;
 		default:
 			break;
@@ -198,7 +222,12 @@ extern "C" {
 			if(p_msg_queue->length > 0)
 			{
 				utf8_package = (char*)Queue_GetFromTail(p_msg_queue);
-				msg_handler(utf8_package,strlen(utf8_package));
+				if(utf8_package != NULL)
+				{
+					//放开会存在内存错误
+					//msg_handler(utf8_package,strlen(utf8_package) + 1);
+					moon_free(utf8_package);
+				}
 			}
 			Sleep(10);
 		}

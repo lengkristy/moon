@@ -316,12 +316,13 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 	//recv message
 	WSABUF buf;
 	char *p_utf8_msg = pIoContext->m_wsaBuf.buf;
-	//moon_char* client_msg = NULL;
+	moon_char* client_msg = NULL;
 	int len = 0;
 	int index = 0;
 	unsigned int size = 0;
 	int rel_pkg_size = 0;
 	char package_data[PKG_BYTE_MAX_LENGTH] = {0};
+	char* utf8_msg = NULL;
 
 	//如果不是包头，那么将数据加到当前的socket context缓存中
 	if(!pkg_is_head(p_utf8_msg))
@@ -337,7 +338,9 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 				 index++;
 			 }
 			 //接收完了之后，将数据传给消息包处理器，然后清空缓存
-			 Queue_AddToHead(p_global_msg_queue,pSocketContext->m_completePkg);
+			 utf8_msg = (char*)moon_malloc(pSocketContext->m_pkgSize + 1);
+			 memcpy(utf8_msg,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
+			 Queue_AddToHead(p_global_msg_queue,utf8_msg);
 			 memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
 			 pSocketContext->m_currentPkgSize = 0;
 			 pSocketContext->m_pkgSize = 0;
@@ -354,7 +357,9 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 			//接收完了之后判断缓存数据是否完整，如果完整将数据传给消息包处理器，然后清空缓存
 			if(pSocketContext->m_currentPkgSize == pSocketContext->m_pkgSize)
 			{
-				Queue_AddToHead(p_global_msg_queue,pSocketContext->m_completePkg);
+				utf8_msg = (char*)moon_malloc(pSocketContext->m_pkgSize + 1);
+				memcpy(utf8_msg,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
+				Queue_AddToHead(p_global_msg_queue,utf8_msg);
 				memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
 				pSocketContext->m_currentPkgSize = 0;
 				pSocketContext->m_pkgSize = 0;
@@ -372,8 +377,10 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 	//判断接收的数据是否是完整的
 	if(len == rel_pkg_size)
 	{
+		utf8_msg = (char*)moon_malloc(len + 1);
+		memcpy(utf8_msg,package_data,len);
 		//如果是完整的，那么直接将数据发送给消息包处理器
-		Queue_AddToHead(p_global_msg_queue,pSocketContext->m_completePkg);
+		Queue_AddToHead(p_global_msg_queue,utf8_msg);
 	}
 	else
 	{
