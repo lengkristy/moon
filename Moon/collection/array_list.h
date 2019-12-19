@@ -4,12 +4,19 @@
  * time:2017-8-2
  **************************************************************************/
 #pragma once
+
 #ifndef _ARRAY_LIST_H
 #define _ARRAY_LIST_H
+
+#ifdef _MSC_VER/* only support win32 and greater. */
+#define MS_WINDOWS
+#endif
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+
 
 //the initial size of array list
 #define ARRAY_LIST_INIT_SIZE 100
@@ -26,7 +33,10 @@ typedef struct _Array_List{
 	Array_Node *node;//node
 	unsigned long length;//the current storage length of array list
 	unsigned long size;//the overall size of array list,
-}Array_List;
+#ifdef MS_WINDOWS
+	void* hArrayListEvent;
+#endif
+} Array_List;
 
 /**
  * function desc:

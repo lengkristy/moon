@@ -131,8 +131,19 @@ Message* parse_msg_head(moon_char* str_message)
 	if (root->type == cJSON_Object)
 	{
 		p_message = (Message*)moon_malloc(sizeof(struct _Message));
+		if(p_message == NULL)
+		{
+			moon_free(ascii_msg);
+			return NULL;
+		}
 		memset(p_message,0,sizeof(struct _Message));
 		p_message->p_message_head = (MessageHead*)moon_malloc(sizeof(struct _MessageHead));
+		if(p_message->p_message_head == NULL)
+		{
+			moon_free(ascii_msg);
+			moon_free(p_message->p_message_head);
+			return NULL;
+		}
 		memset(p_message->p_message_head,0,sizeof(struct _MessageHead));
 		p_message->p_message_body = NULL;
 		//get header

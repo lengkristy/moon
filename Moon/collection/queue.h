@@ -6,6 +6,10 @@
 #ifndef _QUEUE_H
 #define _QUEUE_H
 
+#ifdef _MSC_VER/* only support win32 and greater. */
+#define MS_WINDOWS
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -45,6 +49,7 @@ extern "C" {
 		QueueNode* tail;//队列的尾部
 		unsigned long length;//当前队列的长度
 		QueueIncreased onQueueIncreased;//函数指针
+		void* hQueueEvent;//同步
 	}Queue;
  
 	

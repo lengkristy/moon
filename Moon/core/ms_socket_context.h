@@ -6,10 +6,10 @@
 #pragma once
 #ifndef _MS_SOCKET_CONTEXT
 #define _MS_SOCKET_CONTEXT
-#include "../collection/array_list.h"
 #include "../cfg/environment.h"
 #include "../module/moon_client.h"
 #include "../msg/moon_protocol.h"
+#include "../collection/array_list.h"
 
 #ifdef MS_WINDOWS
 #include <winsock2.h>

@@ -6,6 +6,11 @@
 #pragma once
 #ifndef _Link_LIST_H
 #define _Link_LIST_H
+
+#ifdef _MSC_VER/* only support win32 and greater. */
+#define MS_WINDOWS
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -22,6 +27,9 @@ typedef struct _Link_List{
 	Link_Node *head;//the head pointer of link list
 	Link_Node *trail;//the trail pointer of link list
 	unsigned long length;//the current storage length of link list
+#ifdef MS_WINDOWS
+	void* hLinkListEvent;//同步事件
+#endif
 }Link_List;
 
 /**

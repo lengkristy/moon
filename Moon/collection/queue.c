@@ -4,10 +4,8 @@
 
 #include "../module/moon_string.h"
 
-#ifdef _MSC_VER/* only support win32 and greater. */
+#ifdef MS_WINDOWS/* only support win32 and greater. */
 #include <windows.h>
-#define MS_WINDOWS
-static HANDLE g_hQueueEvent;
 #endif
 
 
@@ -37,8 +35,8 @@ Queue* Queue_Init(QueueIncreased queueIncreasedEvent)
 
 	#ifdef MS_WINDOWS
 	moon_create_32uuid(muuid);
-	g_hQueueEvent = CreateEvent(NULL, FALSE, TRUE,muuid);
-	if (g_hQueueEvent == NULL)
+	queue->hQueueEvent = CreateEvent(NULL, FALSE, TRUE,muuid);
+	if (queue->hQueueEvent == NULL)
 	{
 		Queue_Free(queue,true);
 		return NULL;
@@ -60,7 +58,7 @@ int Queue_AddToHead(Queue* queue,void* data)
 	if(queue == NULL)
 		return -1;
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hQueueEvent, INFINITE);
+	WaitForSingleObject(queue->hQueueEvent, INFINITE);
 #endif
 	//创建节点
 	node = (QueueNode*)malloc(sizeof(QueueNode));
@@ -68,7 +66,7 @@ int Queue_AddToHead(Queue* queue,void* data)
 	if(node == NULL)
 	{
 #ifdef MS_WINDOWS
-		SetEvent(g_hQueueEvent);
+		SetEvent(queue->hQueueEvent);
 #endif
 		return -1;
 	}
@@ -94,12 +92,12 @@ int Queue_AddToHead(Queue* queue,void* data)
 	if(queue->onQueueIncreased != NULL)
 	{
 #ifdef MS_WINDOWS
-		SetEvent(g_hQueueEvent);
+		SetEvent(queue->hQueueEvent);
 #endif
 		return queue->onQueueIncreased(queue,data);
 	}
 #ifdef MS_WINDOWS
-		SetEvent(g_hQueueEvent);
+		SetEvent(queue->hQueueEvent);
 #endif
 	return 0;
 }
@@ -117,14 +115,14 @@ int Queue_AddToTail(Queue* queue,void* data)
 	if(queue == NULL)
 		return -1;
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hQueueEvent, INFINITE);
+	WaitForSingleObject(queue->hQueueEvent, INFINITE);
 #endif
 	//创建节点
 	node = (QueueNode*)malloc(sizeof(QueueNode));
 	if(node == NULL)
 	{
 #ifdef MS_WINDOWS
-		SetEvent(g_hQueueEvent);
+		SetEvent(queue->hQueueEvent);
 #endif
 		return -1;
 	}
@@ -150,12 +148,12 @@ int Queue_AddToTail(Queue* queue,void* data)
 	if(queue->onQueueIncreased != NULL)
 	{
 #ifdef MS_WINDOWS
-		SetEvent(g_hQueueEvent);
+		SetEvent(queue->hQueueEvent);
 #endif
 		return queue->onQueueIncreased(queue,data);
 	}
 #ifdef MS_WINDOWS
-		SetEvent(g_hQueueEvent);
+		SetEvent(queue->hQueueEvent);
 #endif
 	return 0;
 }
@@ -175,7 +173,7 @@ void* Queue_GetFromHead(Queue* queue)
 		return NULL;
 	}
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hQueueEvent, INFINITE);
+	WaitForSingleObject(queue->hQueueEvent, INFINITE);
 #endif
 	node = queue->head;
 	queue->head = node->next;
@@ -193,7 +191,7 @@ void* Queue_GetFromHead(Queue* queue)
 	free(node);
 	queue->length--;
 #ifdef MS_WINDOWS
-		SetEvent(g_hQueueEvent);
+		SetEvent(queue->hQueueEvent);
 #endif
 	return data;
 }
@@ -214,7 +212,7 @@ void* Queue_GetFromTail(Queue* queue)
 		return NULL;
 	}
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hQueueEvent, INFINITE);
+	WaitForSingleObject(queue->hQueueEvent, INFINITE);
 #endif
 	node = queue->tail;
 	queue->tail = node->prior;
@@ -232,7 +230,7 @@ void* Queue_GetFromTail(Queue* queue)
 	free(node);
 	queue->length--;
 #ifdef MS_WINDOWS
-	SetEvent(g_hQueueEvent);
+	SetEvent(queue->hQueueEvent);
 #endif
 	return data;
 }
@@ -246,19 +244,21 @@ void* Queue_GetFromTail(Queue* queue)
 void Queue_Free(Queue* queue,bool isFreeData)
 {
 	void* data = NULL;
+	if(queue == NULL)
+		return;
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hQueueEvent, INFINITE);
+	WaitForSingleObject(queue->hQueueEvent, INFINITE);
 #endif
 	data = Queue_GetFromHead(queue);
-	while(data != NULL)
+	while(data != NULL && isFreeData)
 	{
-		if(isFreeData)
-			free(data);
+		free(data);
+		data = Queue_GetFromHead(queue);
 	}
-	free(queue);
  #ifdef MS_WINDOWS
-	SetEvent(g_hQueueEvent);
+	SetEvent(queue->hQueueEvent);
 #endif
+	free(queue);
 }
  
 //队列新增事件

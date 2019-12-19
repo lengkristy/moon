@@ -33,6 +33,7 @@ extern "C" {
 		{
 		case SYS_SUB_PROTOCOL_ALL_CLIENT_LIST://获取所有客户端列表
 			{
+				/*
 				msg = (moon_char*)moon_malloc(msglen);
 				if(msg == NULL)
 				{
@@ -103,6 +104,7 @@ extern "C" {
 				utf8_msg = (char*)moon_malloc(msglen);
 				moon_ms_windows_moonchar_to_utf8(msg,utf8_msg);
 				moon_server_send_msg(client_id,utf8_msg,msglen);
+				*/
 				//释放内存
 				if(msg != NULL)
 				{
@@ -145,11 +147,10 @@ extern "C" {
 		int len = 0;
 		moon_char* client_msg = NULL;
 		Message* p_msg = NULL;
-		size = sizeof(moon_char) * size + sizeof(moon_char);
-		client_msg = (moon_char*)moon_malloc(size);
+		len = sizeof(moon_char) * size + sizeof(moon_char);
+		client_msg = (moon_char*)moon_malloc(len);
 		if (client_msg == NULL)
 		{
-			moon_write_error_log("内存分配失败");
 			return;
 		}
 
@@ -172,11 +173,6 @@ extern "C" {
 		len = moon_ms_windows_moonchar_to_utf8(reply_msg,utf8_reply_msg);
 #endif
 		moon_server_send_msg(p_msg->p_message_head->client_id,utf8_reply_msg,len);
-		if(client_msg != NULL)
-		{
-			moon_free(client_msg);
-			client_msg = NULL;
-		}
 
 		//判断消息类型，处理消息，后期采用消息队列的方式处理
 		switch(p_msg->p_message_head->main_msg_num)
@@ -186,7 +182,7 @@ extern "C" {
 			break;
 		case SYS_MAIN_PROTOCOL_SCI:
 			{
-				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+				//msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
 			}
 			break;
 		default:
@@ -200,7 +196,7 @@ extern "C" {
 			moon_free(p_msg);
 			p_msg = NULL;
 		}
-		
+
 		if(client_msg != NULL)
 		{
 			moon_free(client_msg);
@@ -225,11 +221,11 @@ extern "C" {
 				if(utf8_package != NULL)
 				{
 					//放开会存在内存错误
-					//msg_handler(utf8_package,strlen(utf8_package) + 1);
+					//msg_handler(utf8_package,strlen(utf8_package));
 					moon_free(utf8_package);
 				}
 			}
-			Sleep(10);
+			Sleep(100);
 		}
 		return 0;
 	}

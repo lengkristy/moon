@@ -4,10 +4,8 @@
 
 #include "../module/moon_string.h"
 
-#ifdef _MSC_VER/* only support win32 and greater. */
+#ifdef MS_WINDOWS/* only support win32 and greater. */
 #include <windows.h>
-#define MS_WINDOWS
-static HANDLE g_hLinkListEvent;
 #endif
 
 /**
@@ -32,8 +30,8 @@ Link_List* link_list_init()
 
 #ifdef MS_WINDOWS
 	moon_create_32uuid(muuid);
-	g_hLinkListEvent = CreateEvent(NULL, FALSE, TRUE, muuid);
-	if (g_hLinkListEvent == NULL)
+	pList->hLinkListEvent = CreateEvent(NULL, FALSE, TRUE, muuid);
+	if (pList->hLinkListEvent == NULL)
 	{
 		link_list_free(pList);
 		return NULL;
@@ -56,23 +54,21 @@ Link_List* link_list_init()
 int link_list_insert(Link_List* pList,void* pData,long index)
 {
 	long i = 0;
+	if(pList == NULL)
+	{
+		return -1;
+	}
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hLinkListEvent, INFINITE);
+	WaitForSingleObject(pList->hLinkListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
-	if(pList == NULL)
-	{
-#ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
-#endif
-		return -1;
-	}
+	
 	if(index < -1 || (index > pList->length && index != -1))
 	{
 #ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
+		SetEvent(pList->hLinkListEvent);
 #endif
 		return -1;
 	}
@@ -83,7 +79,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 		if(pNode == NULL)
 		{
 #ifdef MS_WINDOWS
-			SetEvent(g_hLinkListEvent);
+			SetEvent(pList->hLinkListEvent);
 #endif
 			return -1;
 		}
@@ -94,7 +90,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 		pList->trail = pNode;
 		pList->length++;
 #ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
+		SetEvent(pList->hLinkListEvent);
 #endif
 		return 0;
 	}
@@ -107,7 +103,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 			if(pNode == NULL)
 			{
 #ifdef MS_WINDOWS
-				SetEvent(g_hLinkListEvent);
+				SetEvent(pList->hLinkListEvent);
 #endif
 				return -1;
 			}
@@ -126,7 +122,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 			if(pNode == NULL)
 			{
 #ifdef MS_WINDOWS
-				SetEvent(g_hLinkListEvent);
+				SetEvent(pList->hLinkListEvent);
 #endif
 				return -1;
 			}
@@ -138,7 +134,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 			pList->head = pNode;
 			pList->length++;
 #ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
+		SetEvent(pList->hLinkListEvent);
 #endif
 			return 0;
 		}
@@ -155,7 +151,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 					if(pCurrentNode == NULL)
 					{
 #ifdef MS_WINDOWS
-						SetEvent(g_hLinkListEvent);
+						SetEvent(pList->hLinkListEvent);
 #endif
 						return -1;
 					}
@@ -165,7 +161,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 					pNode->priorNode = pCurrentNode;
 					pList->length++;
 #ifdef MS_WINDOWS
-					SetEvent(g_hLinkListEvent);
+					SetEvent(pList->hLinkListEvent);
 #endif
 					return 0;
 				}
@@ -177,7 +173,7 @@ int link_list_insert(Link_List* pList,void* pData,long index)
 
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
+		SetEvent(pList->hLinkListEvent);
 #endif
 	return 0;
 }
@@ -223,19 +219,16 @@ void link_list_removeAt(Link_List* pList,unsigned long index)
 {
 	int i = 0;
 	Link_Node* pNode = NULL;
+	if(pList == NULL)
+	{
+		return;
+	}
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hLinkListEvent, INFINITE);
+	WaitForSingleObject(pList->hLinkListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
-	if(pList == NULL)
-	{
-#ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
-#endif
-		return;
-	}
 	i = 0;
 	pNode = pList->head;
 	while(pNode != NULL)
@@ -273,7 +266,7 @@ void link_list_removeAt(Link_List* pList,unsigned long index)
 	}
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-	SetEvent(g_hLinkListEvent);
+	SetEvent(pList->hLinkListEvent);
 #endif
 }
 
@@ -286,19 +279,16 @@ void link_list_removeAt(Link_List* pList,unsigned long index)
 void link_list_clear(Link_List* pList)
 {
 	Link_Node* pNode = NULL;
+	if(pList == NULL)
+	{
+		return;
+	}
 	//thread synchronization under windows platform
 #ifdef MS_WINDOWS
-	WaitForSingleObject(g_hLinkListEvent, INFINITE);
+	WaitForSingleObject(pList->hLinkListEvent, INFINITE);
 #endif
 	//////////////////////////////////////////////////////////////////////////
 	//critical region
-	if(pList == NULL)
-	{
-#ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
-#endif
-		return;
-	}
 	//release from trail
 	pNode = pList->trail;
 	while(pNode != NULL)
@@ -313,7 +303,7 @@ void link_list_clear(Link_List* pList)
 
 	//////////////////////////////////////////////////////////////////////////
 #ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
+		SetEvent(pList->hLinkListEvent);
 #endif
 }
 
@@ -326,16 +316,13 @@ void link_list_clear(Link_List* pList)
 void link_list_free(Link_List* pList)
 {
 	Link_Node* pNode = NULL;
-#ifdef MS_WINDOWS
-	WaitForSingleObject(g_hLinkListEvent, INFINITE);
-#endif
 	if(pList == NULL)
 	{
-#ifdef MS_WINDOWS
-		SetEvent(g_hLinkListEvent);
-#endif
 		return;
 	}
+#ifdef MS_WINDOWS
+	WaitForSingleObject(pList->hLinkListEvent, INFINITE);
+#endif
 	//release from trail
 	pNode = pList->trail;
 	while(pNode != NULL)
@@ -350,11 +337,11 @@ void link_list_free(Link_List* pList)
 	free(pList);
 	pList = NULL;
 #ifdef MS_WINDOWS
-	SetEvent(g_hLinkListEvent);
-	if (g_hLinkListEvent != NULL)
+	SetEvent(pList->hLinkListEvent);
+	if (pList->hLinkListEvent != NULL)
 	{
-		CloseHandle(g_hLinkListEvent);
-		g_hLinkListEvent = NULL;
+		CloseHandle(pList->hLinkListEvent);
+		pList->hLinkListEvent = NULL;
 	}
 #endif
 }
