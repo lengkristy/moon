@@ -5,6 +5,7 @@
 #include "module_log.h"
 #include "moon_string.h"
 #include "moon_memory_pool.h"
+#include "../core/socket_context_manager.h"
 #include <stdio.h>
 #ifdef MS_WINDOWS
 #include <direct.h>
@@ -98,13 +99,48 @@ extern "C" {
 	{
 		char tmpHtml[1024] = {0};
 		sprintf(pOutContent,"<html xmlns=http://www.w3.org/1999/xhtml>");
-		strcat(pOutContent,"<head><title>moon http server</title></head>");
+		strcat(pOutContent,"<head><title>moon http server</title>");
+		strcat(pOutContent,"<style type=\"text/css\">");
+		strcat(pOutContent,"table.altrowstable { ");
+		strcat(pOutContent,"    font-family: verdana,arial,sans-serif;");
+		strcat(pOutContent,"    font-size:11px;");
+		strcat(pOutContent,"    color:#333333;");
+		strcat(pOutContent,"    border-width: 1px;");
+		strcat(pOutContent,"    border-color: #a9c6c9;");
+		strcat(pOutContent,"    border-collapse: collapse;");
+		strcat(pOutContent,"    margin: auto;");
+		strcat(pOutContent,"}");
+		strcat(pOutContent,"table.altrowstable th { ");
+		strcat(pOutContent,"    border-width: 1px;");
+		strcat(pOutContent,"    padding: 8px;");
+		strcat(pOutContent,"    border-style: solid;");
+		strcat(pOutContent,"    border-color: #a9c6c9;");
+		strcat(pOutContent,"}");
+		strcat(pOutContent,"table.altrowstable td { ");
+		strcat(pOutContent,"    border-width: 1px;");
+		strcat(pOutContent,"    padding: 8px;");
+		strcat(pOutContent,"    border-style: solid;");
+		strcat(pOutContent,"    border-color: #a9c6c9;");
+		strcat(pOutContent,"}");
+		strcat(pOutContent,".oddrowcolor{ ");
+		strcat(pOutContent,"    background-color:#d4e3e5;");
+		strcat(pOutContent,"}");
+		strcat(pOutContent,".evenrowcolor{ ");
+		strcat(pOutContent,"    background-color:#c3dde0;");
+		strcat(pOutContent,"}");
+		strcat(pOutContent,"</style>");
+		strcat(pOutContent,"</head>");
 		strcat(pOutContent,"<body bgcolor='#3299CC'>");
 		strcat(pOutContent,"<div align='center'><h1>Moon Server Node Info</h1></div>");
 		memset(tmpHtml,0,1024);
 		sprintf(tmpHtml,"<div><image style='width:100px;height:100px;' src='http://%s:%d/image/748x578.jpg?platform=b'/></div>",p_global_server_config->server_ip,p_global_server_config->http_port);
 		strcat(pOutContent,tmpHtml);
-		sprintf(tmpHtml,"<div><label>Moon Server IP:</label><label>%s</label><label style='margin-left:100px;'>Moon Port:</label><label>%d</label></div>",p_global_server_config->server_ip,p_global_server_config->server_port);
+		sprintf(tmpHtml,"<div><table  class=\"altrowstable\">                \
+			                  <tr><th>name</th><th>value</th></tr>              \
+			                  <tr><td>Moon Server IP</td><td>%s</td>         \
+							  <tr><td>Moon Port</td><td>%d</td>              \
+							  <tr><td>current client count</td><td>%d</td>   \
+					    </div>",p_global_server_config->server_ip,p_global_server_config->server_port,get_socket_context_count());
 		strcat(pOutContent,tmpHtml);
 		memset(tmpHtml,0,1024);
 		strcat(pOutContent,"</body>");
