@@ -17,7 +17,7 @@ extern "C" {
 ///////////////////////////////////////////////////////////////
 ///////////////define message struct///////////////////////////
 
-//define message head
+//define receive message head
 typedef struct _MessageHead{
 	moon_char msg_id[50];/*message id,represents the unique identity of the message throughout the message chain*/
 	int main_msg_num;/*main message number*/
@@ -37,6 +37,15 @@ typedef struct _Message{
 	MessageHead *p_message_head;/*message head*/
 	MessageBody *p_message_body;/*message body*/
 }Message;
+
+/**
+ * 定义发送消息的结构体
+ */
+typedef struct _SendMsg{
+	moon_char send_client_id[50];/*发送客户端id*/
+	char* utf8_msg_buf;/*utf8消息缓冲区*/
+	int length;/*发送消息成都*/
+}SendMsg;
 
 ///////////////////////////////////////////////////////////////
 

@@ -38,6 +38,7 @@ extern "C" {
 #define _LeaveCriticalSection(x) {if( x != NULL){LeaveCriticalSection(&x->SockCritSec);}}
 
 static HANDLE	g_hShutdownEvent;// the event of notifies the thread system to exit, in order to better exit the thread.
+static HANDLE   g_hSendSyncEvent = NULL;//发送同步事件
 static HANDLE g_hIOCompletionPort;//the handle of iocp
 static unsigned int g_nThreads;//the count of thread
 static HANDLE* g_phWorkerThreads;// the handle pointer of work thread
@@ -45,7 +46,8 @@ static PMS_SOCKET_CONTEXT g_pListenContext = NULL;//listen context
 static LPFN_ACCEPTEX                g_lpfnAcceptEx;// the functions pointer of AcceptEx and GetAcceptExSockaddrs，in order to invoke them
 static LPFN_GETACCEPTEXSOCKADDRS    g_lpfnGetAcceptExSockAddrs; 
 extern Array_List* g_pClientSocketContext;//the context of client socket
-extern Queue* p_global_msg_queue;
+extern Queue* p_global_receive_msg_queue;
+extern Moon_Server_Config* p_global_server_config;/*全局配置*/
 static HANDLE g_hAliveThread;//heartbeat detection thread
 
 /**
@@ -158,7 +160,7 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 		sprintf(strMsg,"create accept socket failed,error code:%d",WSAGetLastError());
 		moon_write_error_log(strMsg);
 		return false;
-	} 
+	}
 
 	// post AcceptEx
 	if(FALSE == g_lpfnAcceptEx( g_pListenContext->m_socket, pAcceptIoContext->m_sockAccept, p_wbuf->buf, p_wbuf->len - ((sizeof(SOCKADDR_IN)+16)*2),   
@@ -179,7 +181,6 @@ bool post_accept( PMS_IO_CONTEXT pAcceptIoContext )
 //
 bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT   pSocketContext)
 {
-	
 	SOCKADDR_IN* ClientAddr = NULL;
 	SOCKADDR_IN* LocalAddr = NULL;  
 	PMS_SOCKET_CONTEXT pNewSocketContext = NULL;
@@ -198,6 +199,12 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT   pSocketContext)
 		return post_accept( pIoContext );
 	}
 	
+	//判断连接是否超过了服务允许的最大值
+	if(get_socket_context_count() >= p_global_server_config->client_count)
+	{
+		closesocket(pIoContext->m_sockAccept);
+		return post_accept( pIoContext );
+	}
 	moon_write_debug_log("new connect is comming");
 
 	///////////////////////////////////////////////////////////////////////////
@@ -225,28 +232,24 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT   pSocketContext)
 	
 	//Parsing the first message from the client.
 	len = moon_ms_windows_utf8_to_unicode(package_data,clientMsg);//将收到的utf-8的字节序转化为unicode
-	//parse message
-	p_msg = parse_msg_head(clientMsg);
-	//the first message is about client running environment,if not this,the server will refuse
-	if (p_msg == NULL)
+
+	p_client_env = (ClientEnvironment*)malloc(sizeof(ClientEnvironment));
+	if(p_client_env == NULL)
 	{
 		//close client socket
 		closesocket(pIoContext->m_sockAccept);
 		free_msg(p_msg);
 		return post_accept( pIoContext );
 	}
-
-	p_client_env = (ClientEnvironment*)moon_malloc(sizeof(ClientEnvironment));
 	memset(p_client_env,0,sizeof(ClientEnvironment));
 	if(!parse_client_running_environment(clientMsg,p_client_env))
 	{
 		//close client socket
 		closesocket(pIoContext->m_sockAccept);
 		free_msg(p_msg);
-		moon_free(p_client_env);
+		free(p_client_env);
 		return post_accept( pIoContext );
 	}
-	
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 2.So, notice here, this is the Context in the listening socket, and this Context we also need to use to listen for the next connection.
@@ -259,9 +262,7 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT   pSocketContext)
 
 	char_to_moon_char(p_client_env->client_id,client_id);
 	moon_char_copy(pNewSocketContext->m_client_id, client_id);
-	//release
-	free_msg(p_msg);
-	p_msg = NULL;
+	
 
 	// After the parameters are set, the Socket is bound to the completion port.
 	if( false==associateWithIOCP( pNewSocketContext ) )
@@ -306,13 +307,7 @@ bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT   pSocketContext)
 /////////////////////////////////////////////////////////////////
 // When the received data arrives, it is processed.
 bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
-{
-	// First display the last data, then reset the state and issue the next Recv request.
-	//SOCKADDR_IN* ClientAddr = &pSocketContext->m_client_addr;
-	//this->_ShowMessage( _T("receive  %s:%d message：%s"),inet_ntoa(ClientAddr->sin_addr), ntohs(ClientAddr->sin_port),pIoContext->m_wsaBuf.buf );
-
-	// Then start delivering the next WSARecv request
-	
+{	
 	//recv message
 	WSABUF buf;
 	char *p_utf8_msg = pIoContext->m_wsaBuf.buf;
@@ -338,9 +333,10 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 				 index++;
 			 }
 			 //接收完了之后，将数据传给消息包处理器，然后清空缓存
-			 utf8_msg = (char*)moon_malloc(pSocketContext->m_pkgSize + 1);
+			 utf8_msg = (char*)malloc(pSocketContext->m_pkgSize + 1);
+			 memset(utf8_msg,0,pSocketContext->m_pkgSize + 1);
 			 memcpy(utf8_msg,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
-			 Queue_AddToHead(p_global_msg_queue,utf8_msg);
+			 Queue_AddToHead(p_global_receive_msg_queue,utf8_msg);
 			 memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
 			 pSocketContext->m_currentPkgSize = 0;
 			 pSocketContext->m_pkgSize = 0;
@@ -357,9 +353,10 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 			//接收完了之后判断缓存数据是否完整，如果完整将数据传给消息包处理器，然后清空缓存
 			if(pSocketContext->m_currentPkgSize == pSocketContext->m_pkgSize)
 			{
-				utf8_msg = (char*)moon_malloc(pSocketContext->m_pkgSize + 1);
+				utf8_msg = (char*)malloc(pSocketContext->m_pkgSize + 1);
+				memset(utf8_msg,0,pSocketContext->m_pkgSize + 1);
 				memcpy(utf8_msg,pSocketContext->m_completePkg,pSocketContext->m_pkgSize);
-				Queue_AddToHead(p_global_msg_queue,utf8_msg);
+				Queue_AddToHead(p_global_receive_msg_queue,utf8_msg);
 				memset(pSocketContext->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
 				pSocketContext->m_currentPkgSize = 0;
 				pSocketContext->m_pkgSize = 0;
@@ -375,12 +372,18 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 	}
 	rel_pkg_size = strlen(package_data);
 	//判断接收的数据是否是完整的
-	if(len == rel_pkg_size)
+	if(len == rel_pkg_size && len > 0)
 	{
-		utf8_msg = (char*)moon_malloc(len + 1);
+		utf8_msg = (char*)malloc(len + 1);
+		if(utf8_msg == NULL)
+		{
+			return postRecv(pIoContext);
+		}
+		memset(utf8_msg,0,len + 1);
 		memcpy(utf8_msg,package_data,len);
+
 		//如果是完整的，那么直接将数据发送给消息包处理器
-		Queue_AddToHead(p_global_msg_queue,utf8_msg);
+		Queue_AddToHead(p_global_receive_msg_queue,utf8_msg);
 	}
 	else
 	{
@@ -393,7 +396,6 @@ bool doRecv(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 		}
 		p_utf8_msg += index;
 	}
-
 	//
 	return postRecv(pIoContext);
 }
@@ -405,7 +407,7 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 	DWORD dwFlags = 0;
 	DWORD dwBytes = 0;
 	int nBytesRecv = 0;
-	char strMsg[256] = {0};
+	char strMsg[255] = {0};
 	WSABUF *p_wbuf   = &pIoContext->m_wsaBuf;
 	OVERLAPPED *p_ol = &pIoContext->m_Overlapped;
 	pIoContext->m_OpType = SEND_POSTED;
@@ -414,8 +416,6 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 	// After the initialization is complete, the request for sending the data is sent to the WSARecv request.
 	nBytesRecv = WSASend( pIoContext->m_sockAccept, p_wbuf, 1, &dwBytes, dwFlags, p_ol, NULL );
 
-	//
-	moon_free(pIoContext);
 	// If the return value error and the error code is not Pending, then this overlapping request fails.
 	if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
 	{
@@ -424,13 +424,6 @@ bool postSend(PMS_IO_CONTEXT pIoContext)
 		return false;
 	}
 	return true;
-}
-
-//////////////////////////////////////////////////////////////////////////
-//Processing when data is sent.
-bool doSend(PMS_IO_CONTEXT pIoContext)
-{
-	return postSend(pIoContext);
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -527,12 +520,11 @@ DWORD static WINAPI worker_thread(LPVOID lpParam)
 						// SEND
 					case SEND_POSTED:
 						{
-							doSend(pIoContext);
+							//当消息成功发送的时候，会调用到这里，这里只是记录消息日志，或者可以不用处理
 						}
 						break;
 					default:
-						// It shouldn't be done here.
-						//TRACE(_T("_WorkThread中的 pIoContext->m_OpType exception.\n"));
+						//永远不会走到这里，除非有异常
 						break;
 				} //switch
 			}//if
@@ -550,7 +542,7 @@ DWORD static WINAPI alive_thread(LPVOID lpParam)
 {
 	int i = 0;
 	MS_SOCKET_CONTEXT* pSocketContext = NULL;
-	while (true)
+	while (WAIT_OBJECT_0 != WaitForSingleObject(g_hShutdownEvent, 0))
 	{
 		for (i = 0;i < g_pClientSocketContext->length;i++)
 		{
@@ -639,6 +631,8 @@ void dispose()
 	// Close the system to exit the event handle.
 	RELEASE_HANDLE(g_hShutdownEvent);
 
+	//关于同步发送事件句柄
+	RELEASE_HANDLE(g_hSendSyncEvent);
 	// Release the worker thread handle pointer.
 	for(i=0;i<g_nThreads;i++ )
 	{
@@ -667,7 +661,7 @@ void dispose()
 
 /////////////////////////////////////////////////////////////////
 // init Socket
-bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
+bool ms_init_listen_socket(const Moon_Server_Config* global_server_config)
 {
 	// The GUID of AcceptEx and GetAcceptExSockaddrs for exporting function Pointers.
 	GUID GuidAcceptEx = WSAID_ACCEPTEX;  
@@ -721,8 +715,8 @@ bool ms_init_listen_socket(const Moon_Server_Config* p_global_server_config)
 	ServerAddress.sin_family = AF_INET;
 	// You can bind any available IP address, or bind a specified IP address.
 	//ServerAddress.sin_addr.s_addr = htonl(INADDR_ANY);                      
-	ServerAddress.sin_addr.s_addr = inet_addr(p_global_server_config->server_ip);         
-	ServerAddress.sin_port = htons(p_global_server_config->server_port);                          
+	ServerAddress.sin_addr.s_addr = inet_addr(global_server_config->server_ip);         
+	ServerAddress.sin_port = htons(global_server_config->server_port);                          
 
 	// Bind the address and port.
 	if (SOCKET_ERROR == bind(g_pListenContext->m_socket, (struct sockaddr *) &ServerAddress, sizeof(ServerAddress))) 
@@ -850,6 +844,8 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*启
 	}
 	// Establish notification of event notification of system exit.
 	g_hShutdownEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+	//创建发送消息同步事件
+	g_hSendSyncEvent = CreateEvent(NULL, FALSE, TRUE,TEXT("MOON_SEND_MSG_SYNC_EVENT"));
 	//Initialize the socket context manager
 	init_socket_context_manager();
 	// init IOCP
@@ -879,6 +875,7 @@ bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*启
 		ms_iocp_server_stop();
 		return false;
 	}
+	
 	return true;
 }
 
@@ -915,15 +912,30 @@ void ms_iocp_server_stop()
  **/
 int ms_iocp_send(SOCKET socket,char * utf8_send_buf,int len)
 {
-	PMS_IO_CONTEXT pio = (PMS_IO_CONTEXT)moon_malloc(sizeof(MS_IO_CONTEXT));
+	//发送消息需要做同步处理
+	PMS_IO_CONTEXT pio = NULL;
+	int size = 0;
+	WaitForSingleObject(g_hSendSyncEvent, INFINITE);
+	size = sizeof(struct _MS_IO_CONTEXT);
+	pio = (PMS_IO_CONTEXT)malloc(size);
+	if(pio == NULL)
+	{
+		SetEvent(g_hSendSyncEvent);
+		return -1;
+	}
+	memset(pio,0,sizeof(struct _MS_IO_CONTEXT));
 	pio->m_OpType = SEND_POSTED;
 	pio->m_sockAccept = socket;
 	pio->m_wsaBuf.buf = utf8_send_buf;
 	pio->m_wsaBuf.len = len;
 	if(!postSend(pio))
 	{
+		free(pio);
+		SetEvent(g_hSendSyncEvent);
 		return -1;
 	}
+	free(pio);
+	SetEvent(g_hSendSyncEvent);
 	return len;
 }
 #ifdef __cplusplus

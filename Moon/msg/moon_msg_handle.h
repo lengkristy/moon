@@ -10,12 +10,14 @@
 extern "C" {
 #endif
 
+/////////////////////////////////////////////////////////////接收消息处理//////////////////////////////////////////////////////////////////////////
+
 #ifdef MS_WINDOWS
 	/**
 	 * 函数说明：
-	 *    消息队列处理线程
+	 *    消息接收队列处理线程
 	 */
-	DWORD WINAPI msg_handle_thread(LPVOID lpParam);
+	DWORD WINAPI msg_receive_handle_thread(LPVOID lpParam);
 #endif
 
 	/**
@@ -27,6 +29,17 @@ extern "C" {
 	 *    size:包大小
 	 */
 	void msg_handler(moon_char* client_id,char* utf8_package,int size);
+
+
+///////////////////////////////////////////////////////////发送消息处理////////////////////////////////////////////////////////////////////////////
+
+#ifdef MS_WINDOWS
+	/**
+	 * 函数说明：
+	 *     消息发送队列处理线程
+	 */
+	DWORD WINAPI msg_send_handle_thread(LPVOID lpParam);
+#endif
 
 #ifdef __cplusplus
 }

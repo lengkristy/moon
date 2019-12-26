@@ -10,15 +10,16 @@
 extern "C" {
 #endif
 
-#ifdef _MSC_VER/* only support win32 and greater. */
+#ifdef MS_WINDOWS
 #include <windows.h>
-#define MS_WINDOWS
-static HANDLE g_hMemoryPoolPEvent;
 #endif
 
 #define MP_CHUNKHEADER sizeof(struct _mp_chunk)
 #define MP_CHUNKEND sizeof(struct _mp_chunk*)
 
+/**
+ * 计算4字节对齐，如果分配的内存不是4字节的倍数，那么将补充到4字节的倍数
+ */
 #define MP_ALIGN_SIZE(_n) (_n + sizeof(long) - ((sizeof(long) - 1) & _n))
 
 #define MP_INIT_MEMORY_STRUCT(mm, mem_sz)       \
@@ -93,16 +94,40 @@ void moon_memory_zero(void* memory,unsigned int num_bytes)/*memory zero*/
 	memset(memory,0,num_bytes);
 }
 
+//加锁
+void MP_LOCK(MemoryPool* mp)
+{
+    do 
+	{                                    
+#ifdef MS_WINDOWS
+		WaitForSingleObject(mp->lock, INFINITE);
+#endif
+    } while (0);
+}
 
+//解锁
+void MP_UNLOCK(MemoryPool* mp)                    
+{
+    do
+	{   
+#ifdef MS_WINDOWS
+       SetEvent(mp->lock);
+#endif
+    } while (0);
+}
 
 void get_memory_list_count(MemoryPool* mp, mem_size_t* mlist_len) {
+	
     mem_size_t mlist_l = 0;
-    _MP_Memory* mm = mp->mlist;
+    _MP_Memory* mm = NULL;
+	MP_LOCK(mp);
+	mm = mp->mlist;
     while (mm) {
         mlist_l++;
         mm = mm->next;
     }
     *mlist_len = mlist_l;
+	MP_UNLOCK(mp);
 }
 
 void get_memory_info(MemoryPool* mp,
@@ -110,7 +135,9 @@ void get_memory_info(MemoryPool* mp,
                      mem_size_t* free_list_len,
                      mem_size_t* alloc_list_len) {
     mem_size_t free_l = 0, alloc_l = 0;
-    _MP_Chunk* p = mm->free_list;
+    _MP_Chunk* p = NULL;
+	MP_LOCK(mp);
+	p = mm->free_list;
     while (p) {
         free_l++;
         p = p->next;
@@ -123,6 +150,7 @@ void get_memory_info(MemoryPool* mp,
     }
     *free_list_len = free_l;
     *alloc_list_len = alloc_l;
+	MP_UNLOCK(mp);
 }
 
 
@@ -175,6 +203,7 @@ static int merge_free_chunk(MemoryPool* mp, _MP_Memory* mm, _MP_Chunk* c) {
     }
 
     *(_MP_Chunk**) ((char*) p1 + p1->alloc_mem - MP_CHUNKEND) = p1;
+	MP_UNLOCK(mp);
     return 0;
 }
 
@@ -182,7 +211,6 @@ static int merge_free_chunk(MemoryPool* mp, _MP_Memory* mm, _MP_Chunk* c) {
 MemoryPool* MemoryPoolInit(mem_size_t maxmempoolsize, mem_size_t mempoolsize) {
 	MemoryPool* mp = NULL;
 	char* s  = NULL;
-	moon_char muuid[50] = {0};
     if (mempoolsize > maxmempoolsize) {
         return NULL;
     }
@@ -191,22 +219,24 @@ MemoryPool* MemoryPoolInit(mem_size_t maxmempoolsize, mem_size_t mempoolsize) {
     if (!mp) return NULL;
     mp->last_id = 0;
     if (mempoolsize < maxmempoolsize) mp->auto_extend = 1;
-    mp->max_mem_pool_size = maxmempoolsize;
-    mp->total_mem_pool_size = mp->mem_pool_size = mempoolsize;
+    mp->max_mem_pool_size = maxmempoolsize;/*分配最大内存大小*/
+    mp->total_mem_pool_size = mp->mem_pool_size = mempoolsize;/*当前内存池大小*/
 
+	/*开始内存分配*/
     s = (char*) malloc(sizeof(_MP_Memory) +
                              sizeof(char) * mp->mem_pool_size);
     if (!s) return NULL;
 
     mp->mlist = (_MP_Memory*) s;
+	/*设置开始可用的内存区域*/
     mp->mlist->start = s + sizeof(_MP_Memory);
+	/*初始化内存*/
     MP_INIT_MEMORY_STRUCT(mp->mlist, mp->mem_pool_size);
     mp->mlist->next = NULL;
     mp->mlist->id = mp->last_id++;
 #ifdef MS_WINDOWS
-	moon_create_32uuid(muuid);
-	g_hMemoryPoolPEvent = CreateEvent(NULL, FALSE, TRUE, muuid);
-	if (g_hMemoryPoolPEvent == NULL)
+	mp->lock = CreateEvent(NULL, FALSE, TRUE, TEXT("MOON_MEM_POOL"));
+	if (mp->lock == NULL)
 	{
 		MemoryPoolFree(mp, NULL);
 		MemoryPoolClear(mp);
@@ -225,11 +255,11 @@ void* MemoryPoolAlloc(MemoryPool* mp, mem_size_t wantsize) {
 	_MP_Chunk*_not_free = NULL;
 	mem_size_t total_needed_size;
 	mem_size_t add_mem_sz;
-    if (wantsize <= 0) return NULL;
-    total_needed_size =
-            MP_ALIGN_SIZE(wantsize + MP_CHUNKHEADER + MP_CHUNKEND);
+	MP_LOCK(mp);
+	if (wantsize <= 0) return NULL;
+	/*计算总共需要分配的空间，按照4字节对齐*/
+    total_needed_size = MP_ALIGN_SIZE(wantsize + MP_CHUNKHEADER + MP_CHUNKEND);
     if (total_needed_size > mp->mem_pool_size) return NULL;
-
 FIND_FREE_CHUNK:
     mm = mp->mlist;
     while (mm) {
@@ -281,6 +311,7 @@ FIND_FREE_CHUNK:
                 mm->alloc_mem += _not_free->alloc_mem;
                 mm->alloc_prog_mem +=
                         (_not_free->alloc_mem - MP_CHUNKHEADER - MP_CHUNKEND);
+				MP_UNLOCK(mp);
                 return (void*) ((char*) _not_free + MP_CHUNKHEADER);
             }
             _free = _free->next;
@@ -305,8 +336,8 @@ FIND_FREE_CHUNK:
 
         goto FIND_FREE_CHUNK;
     }
-
 err_out:
+	MP_UNLOCK(mp);
     return NULL;
 }
 
@@ -315,6 +346,7 @@ int MemoryPoolFree(MemoryPool* mp, void* p) {
 	_MP_Chunk* ck = NULL;
 	_MP_Memory* mm = NULL;
     if (p == NULL || mp == NULL) return 1;
+	MP_LOCK(mp);
     mm = mp->mlist;
     if (mp->auto_extend) mm = find_memory_list(mp, p);
 
@@ -333,11 +365,13 @@ int MemoryPoolFree(MemoryPool* mp, void* p) {
 MemoryPool* MemoryPoolClear(MemoryPool* mp) {
 	_MP_Memory* mm = NULL;
     if (!mp) return NULL;
+	MP_LOCK(mp);
     mm = mp->mlist;
     while (mm) {
         MP_INIT_MEMORY_STRUCT(mm, mm->mem_pool_size);
         mm = mm->next;
     }
+	MP_UNLOCK(mp);
     return mp;
 }
 
@@ -346,12 +380,17 @@ int MemoryPoolDestroy(MemoryPool* mp) {
 	_MP_Memory *mm = NULL;
 	_MP_Memory *mm1 = NULL;
     if (mp == NULL) return 1;
+	MP_LOCK(mp);
     mm = mp->mlist;
     while (mm) {
         mm1 = mm;
         mm = mm->next;
         free(mm1);
     }
+	MP_UNLOCK(mp);
+#ifdef MS_WINDOWS
+	CloseHandle(mp->lock);
+#endif
     free(mp);
     return 0;
 }
@@ -364,22 +403,28 @@ mem_size_t GetTotalMemory(MemoryPool* mp) {
 
 mem_size_t GetUsedMemory(MemoryPool* mp) {
     mem_size_t total_alloc = 0;
-    _MP_Memory* mm = mp->mlist;
+	_MP_Memory* mm = NULL;
+	MP_LOCK(mp);
+    mm = mp->mlist;
     while (mm) {
         total_alloc += mm->alloc_mem;
         mm = mm->next;
     }
+	MP_UNLOCK(mp);
     return total_alloc;
 }
 
 
 mem_size_t GetProgMemory(MemoryPool* mp) {
     mem_size_t total_alloc_prog = 0;
-    _MP_Memory* mm = mp->mlist;
+	_MP_Memory* mm = NULL;
+	MP_LOCK(mp);
+    mm = mp->mlist;
     while (mm) {
         total_alloc_prog += mm->alloc_prog_mem;
         mm = mm->next;
     }
+	MP_UNLOCK(mp);
     return total_alloc_prog;
 }
 

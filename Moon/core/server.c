@@ -8,6 +8,7 @@
 #include "socket_context_manager.h"
 #include "../collection/queue.h"
 #include "../msg/moon_msg_handle.h"
+#include "../module/moon_string.h"
 #ifdef MS_WINDOWS
 #include "ms_socket_context.h"
 #endif
@@ -21,16 +22,20 @@ Moon_Server_Config* p_global_server_config = NULL;/*global server config*/
 bool b_config_load_finish = false;//config has inited
 
 #ifdef MS_WINDOWS
-HANDLE g_hMsgThread = NULL;
+HANDLE g_hReceiveMsgThread = NULL;
+HANDLE g_hSendMsgThread = NULL;
 #endif
 
-Queue* p_global_msg_queue = NULL;/*全局消息队列*/
+Queue* p_global_receive_msg_queue = NULL;/*全局接收消息队列*/
+
+Queue* p_global_send_msg_queue = NULL;/*全局发送消息队列，所有发送的消息都往该队列放入*/
 
 /************************************************************************/
 /* start server			                                                */
 /************************************************************************/
 void moon_start()
 {
+	void * p;
 #ifdef MS_WINDOWS
 	DWORD threadid = 0;
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
@@ -64,12 +69,21 @@ void moon_start()
 	}
 	moon_write_info_log("ms_nt_iocp server has start");
 	//初始化消息队列
-	p_global_msg_queue = Queue_Init(NULL);
-	//开始消息队列处理线程
-	g_hMsgThread = CreateThread(0, 0, msg_handle_thread, p_global_msg_queue, 0, &threadid);
-	if (g_hMsgThread == NULL)
+	p_global_receive_msg_queue = Queue_Init(NULL);
+	//开启接收消息队列处理线程
+	g_hReceiveMsgThread = CreateThread(0, 0, msg_receive_handle_thread, p_global_receive_msg_queue, 0, &threadid);
+	if (g_hReceiveMsgThread == NULL)
 	{
-		moon_write_error_log("create alive thread failed");
+		moon_write_error_log("create receive msg thread failed");
+		moon_stop();
+		return;
+	}
+	p_global_send_msg_queue = Queue_Init(NULL);
+	//开启发送消息队列处理线程
+	g_hSendMsgThread = CreateThread(0, 0, msg_send_handle_thread, p_global_send_msg_queue, 0, &threadid);
+	if(g_hSendMsgThread = NULL)
+	{
+		moon_write_error_log("create send msg thread failed");
 		moon_stop();
 		return;
 	}
@@ -90,13 +104,20 @@ void moon_start()
  */
 void moon_server_send_msg(moon_char* client_id,char * utf8_send_buf,int len)
 {
+	char str_msg[128] = {0};
+	char cid[50] = {0};
+	MS_SOCKET_CONTEXT * psocket_context = NULL;
 #ifdef MS_WINDOWS
-	if(client_id != NULL)
+	if(client_id != NULL && moon_char_length(client_id) > 0 && len > 0)
 	{
-		MS_SOCKET_CONTEXT * psocket_context = get_socket_context_by_client_id(client_id);
+		psocket_context = get_socket_context_by_client_id(client_id);
 		if(psocket_context != NULL)
 		{
-			ms_iocp_send(psocket_context->m_socket,utf8_send_buf,len);
+			if(ms_iocp_send(psocket_context->m_socket,utf8_send_buf,len) == -1)
+			{
+				sprintf(str_msg,"the client id %s send mssage faild.the message :\r\n",cid,utf8_send_buf);
+				moon_write_error_log(str_msg);
+			}
 		}
 	}
 #endif
@@ -116,6 +137,14 @@ void moon_stop()
 #ifdef MS_WINDOWS
 	/*close server*/
 	ms_iocp_server_stop();
+	if(g_hReceiveMsgThread != NULL)
+	{
+		CloseHandle(g_hReceiveMsgThread);
+	}
+	if(g_hSendMsgThread != NULL)
+	{
+		CloseHandle(g_hSendMsgThread);
+	}
 #endif
 	/*close http server*/
 	end_http_service();
