@@ -133,7 +133,7 @@ extern "C" {
 		strcat(pOutContent,"<body bgcolor='#3299CC'>");
 		strcat(pOutContent,"<div align='center'><h1>Moon Server Node Info</h1></div>");
 		memset(tmpHtml,0,1024);
-		sprintf(tmpHtml,"<div><image style='width:100px;height:100px;' src='http://%s:%d/image/748x578.jpg?platform=b'/></div>",p_global_server_config->server_ip,p_global_server_config->http_port);
+		sprintf(tmpHtml,"<div><image style='width:32px;height:32px;' src='http://%s:%d/image/logo.png?platform=b'/></div>",p_global_server_config->server_ip,p_global_server_config->http_port);
 		strcat(pOutContent,tmpHtml);
 		sprintf(tmpHtml,"<div><table  class=\"altrowstable\">                \
 			                  <tr><th>name</th><th>value</th></tr>              \
