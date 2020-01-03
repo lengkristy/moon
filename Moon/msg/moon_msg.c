@@ -117,7 +117,7 @@ Message* parse_msg_head(moon_char* str_message)
 	moon_char msg_id[50] = {0};
 	cJSON *head = NULL;
 	cJSON *item = NULL;
-	ascii_msg = (char*)malloc(size);
+	ascii_msg = (char*)moon_malloc(size);
 	if(ascii_msg == NULL)
 	{
 		return NULL;
@@ -127,23 +127,23 @@ Message* parse_msg_head(moon_char* str_message)
 	root = cJSON_Parse(ascii_msg);
 	if (root == NULL)
 	{
-		free(ascii_msg);
+		moon_free(ascii_msg);
 		return NULL;
 	}
 	if (root->type == cJSON_Object)
 	{
-		p_message = (Message*)malloc(sizeof(struct _Message));
+		p_message = (Message*)moon_malloc(sizeof(struct _Message));
 		if(p_message == NULL)
 		{
-			free(ascii_msg);
+			moon_free(ascii_msg);
 			return NULL;
 		}
 		memset(p_message,0,sizeof(struct _Message));
-		p_message->p_message_head = (MessageHead*)malloc(sizeof(struct _MessageHead));
+		p_message->p_message_head = (MessageHead*)moon_malloc(sizeof(struct _MessageHead));
 		if(p_message->p_message_head == NULL)
 		{
-			free(ascii_msg);
-			free(p_message);
+			moon_free(ascii_msg);
+			moon_free(p_message);
 			return NULL;
 		}
 		memset(p_message->p_message_head,0,sizeof(struct _MessageHead));
@@ -177,7 +177,7 @@ Message* parse_msg_head(moon_char* str_message)
 		}
 	}
 	cJSON_Delete(root);
-	free(ascii_msg);
+	moon_free(ascii_msg);
 	return p_message;
 }
 
@@ -190,22 +190,22 @@ void free_msg(Message* p_message)
 	{
 		if (p_message->p_message_body != NULL && p_message->p_message_body->p_content != NULL)
 		{
-			free(p_message->p_message_body->p_content);
+			moon_free(p_message->p_message_body->p_content);
 			p_message->p_message_body->p_content = NULL;
 		}
 		if (p_message->p_message_body != NULL)
 		{
-			free(p_message->p_message_body);
+			moon_free(p_message->p_message_body);
 			p_message->p_message_body = NULL;
 		}
 		if (p_message->p_message_head != NULL)
 		{
-			free(p_message->p_message_head);
+			moon_free(p_message->p_message_head);
 			p_message->p_message_head = NULL;
 		}
 		if (p_message != NULL)
 		{
-			free(p_message);
+			moon_free(p_message);
 			p_message = NULL;
 		}
 	}

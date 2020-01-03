@@ -69,7 +69,7 @@ void moon_start()
 	}
 	moon_write_info_log("ms_nt_iocp server has start");
 	//初始化消息队列
-	p_global_receive_msg_queue = Queue_Init(NULL);
+	p_global_receive_msg_queue = Queue_Init(receive_msg_queue_event);
 	//开启接收消息队列处理线程
 	g_hReceiveMsgThread = CreateThread(0, 0, msg_receive_handle_thread, p_global_receive_msg_queue, 0, &threadid);
 	if (g_hReceiveMsgThread == NULL)
@@ -78,7 +78,7 @@ void moon_start()
 		moon_stop();
 		return;
 	}
-	p_global_send_msg_queue = Queue_Init(NULL);
+	p_global_send_msg_queue = Queue_Init(send_msg_queue_event);
 	//开启发送消息队列处理线程
 	g_hSendMsgThread = CreateThread(0, 0, msg_send_handle_thread, p_global_send_msg_queue, 0, &threadid);
 	if(g_hSendMsgThread = NULL)

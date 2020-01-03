@@ -47,4 +47,6 @@
 #define _in_    //Input parameter
 #define _out_   //output paramter
 
+#define _global_ //定义全局变量的时候使用
+
 #endif

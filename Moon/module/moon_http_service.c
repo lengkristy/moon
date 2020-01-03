@@ -7,6 +7,7 @@
 #include "moon_memory_pool.h"
 #include "../core/socket_context_manager.h"
 #include <stdio.h>
+#include "../collection/queue.h"
 #ifdef MS_WINDOWS
 #include <direct.h>
 #include <Strsafe.h>
@@ -26,6 +27,14 @@ extern "C" {
 	static Array_List* pThreads = NULL;//thread list
 
 	static bool g_bEndListen = false;//has end listen
+
+	extern Queue* p_global_send_msg_queue;//发送消息队列
+
+	extern Queue* p_global_receive_msg_queue;/*全局接收消息队列*/
+
+	extern _global_ long long l_global_send_msg_total;//发送消息的总量
+
+	extern _global_ long long l_global_receive_msg_total;//接收消息的总量
 
 	
 	/************************************************************************/
@@ -135,12 +144,18 @@ extern "C" {
 		memset(tmpHtml,0,1024);
 		sprintf(tmpHtml,"<div><image style='width:32px;height:32px;' src='http://%s:%d/image/logo.png?platform=b'/></div>",p_global_server_config->server_ip,p_global_server_config->http_port);
 		strcat(pOutContent,tmpHtml);
-		sprintf(tmpHtml,"<div><table  class=\"altrowstable\">                \
-			                  <tr><th>name</th><th>value</th></tr>              \
-			                  <tr><td>Moon Server IP</td><td>%s</td>         \
-							  <tr><td>Moon Port</td><td>%d</td>              \
-							  <tr><td>current client count</td><td>%d</td>   \
-					    </div>",p_global_server_config->server_ip,p_global_server_config->server_port,get_socket_context_count());
+		sprintf(tmpHtml,"<div><table  class=\"altrowstable\">                    \
+			                  <tr><th>name</th><th>value</th></tr>               \
+			                  <tr><td>Moon Server IP</td><td>%s</td><tr>         \
+							  <tr><td>Moon Port</td><td>%d</td><tr>              \
+							  <tr><td>current client count</td><td>%d</td><tr>   \
+							  <tr><td>Pending message</td><td>%d</td><tr>        \
+							  <tr><td>Message to be sent</td><td>%d</td><tr>     \
+							  <tr><td>receive message count</td><td>%ld</td><tr> \
+							  <tr><td>sent message count</td><td>%ld</td><tr>    \
+					    </div>",p_global_server_config->server_ip,p_global_server_config->server_port,get_socket_context_count(),
+								p_global_receive_msg_queue->length,p_global_send_msg_queue->length,
+								l_global_receive_msg_total,l_global_send_msg_total);
 		strcat(pOutContent,tmpHtml);
 		memset(tmpHtml,0,1024);
 		strcat(pOutContent,"</body>");

@@ -15,6 +15,32 @@ extern "C" {
 
 	extern Queue* p_global_send_msg_queue;//发送消息队列
 
+	_global_ long long l_global_send_msg_total = 0;//发送消息的总量
+
+	_global_ long long l_global_receive_msg_total = 0;//接收消息的总量
+
+//////////////////////////////////////////////////////////////////消息计数器/////////////////////////////////////////////////////////////////
+
+	/**
+	 * 函数说明：
+	 *   发送消息队列回调事件
+	 */
+    int send_msg_queue_event(void* queue,void* data)
+	{
+		l_global_send_msg_total++;
+		return 0;
+	}
+
+	/**
+	 * 函数说明：
+	 *   接收消息队列回调事件
+	 */
+    int receive_msg_queue_event(void* queue,void* data)
+	{
+		l_global_receive_msg_total++;
+		return 0;
+	}
+
 //////////////////////////////////////////////////////////////////接收消息处理线程///////////////////////////////////////////////////////////
 
 	/**
@@ -39,7 +65,7 @@ extern "C" {
 		{
 		case SYS_SUB_PROTOCOL_ALL_CLIENT_LIST://获取所有客户端列表
 			{
-				msg = (moon_char*)malloc(msglen);
+				msg = (moon_char*)moon_malloc(msglen);
 				if(msg == NULL)
 				{
 					return;
@@ -55,29 +81,28 @@ extern "C" {
 					p_socket_context = get_socket_context_by_index(index);
 					if(p_socket_context != NULL)
 					{
-						if((moon_char_memory_size(msg) - moon_char_memory_size(((MS_SOCKET_CONTEXT *)p_socket_context)->m_client_id)) > msglen)
+						if((moon_char_memory_size(msg) + 3 * moon_char_memory_size(((MS_SOCKET_CONTEXT *)p_socket_context)->m_client_id)) > msglen)
 						{
 							//先发送到客户端，然后再发送后面的信息
 							//去掉最后一个逗号
-							/*if(client_count > 0)
+							if(client_count > 0)
 							{
 								msg[moon_char_length(msg) - 1] = L'\0';
 							}
 							char_to_moon_char("]}}",tmp);
 							moon_char_concat(msg,tmp);
 							memset(tmp,0,100);
-							msglen = moon_char_memory_size(msg) * 3 + 3;
-							utf8_msg = (char*)malloc(msglen);
+							utf8_msg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
 							moon_ms_windows_moonchar_to_utf8(msg,utf8_msg);
 							//发送消息
-							send_msg = (SendMsg*)malloc(sizeof(SendMsg));
+							send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
 							memset(send_msg,0,sizeof(SendMsg));
 							send_msg->length = msglen;
 							moon_char_copy(send_msg->send_client_id,client_id);
 							send_msg->utf8_msg_buf = utf8_msg;
 							//将发送的消息丢入队列
 							Queue_AddToHead(p_global_send_msg_queue,send_msg);
-							*/
+							
 							//
 							memset(tmp,0,100);
 							memset(msg,0,PKG_BYTE_MAX_LENGTH);
@@ -85,7 +110,7 @@ extern "C" {
 							moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK);
 							continue;
 						}
-						/*
+						
 						char_to_moon_char("\"",tmp);
 						moon_char_concat(msg,tmp);
 						memset(tmp,0,100);
@@ -96,7 +121,7 @@ extern "C" {
 						char_to_moon_char(",",tmp);
 						moon_char_concat(msg,tmp);
 						memset(tmp,0,100);
-						*/
+						
 						
 					}
 				}
@@ -109,11 +134,10 @@ extern "C" {
 				char_to_moon_char("]}}",tmp);
 				moon_char_concat(msg,tmp);
 				memset(tmp,0,100);
-				msglen = moon_char_memory_size(msg) * 3 + 3;
-				utf8_msg = (char*)malloc(msglen);
+				utf8_msg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
 				moon_ms_windows_moonchar_to_utf8(msg,utf8_msg);
 				//发送消息
-				send_msg = (SendMsg*)malloc(sizeof(SendMsg));
+				send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
 				memset(send_msg,0,sizeof(SendMsg));
 				send_msg->length = msglen;
 				moon_char_copy(send_msg->send_client_id,client_id);
@@ -123,7 +147,7 @@ extern "C" {
 				//释放内存
 				if(msg != NULL)
 				{
-					free(msg);
+					moon_free(msg);
 					msg = NULL;
 				}
 			}
@@ -159,7 +183,7 @@ extern "C" {
 		moon_char* client_msg = NULL;
 		Message* p_msg = NULL;
 		len = sizeof(moon_char) * (strlen(utf8_package) + 1);
-		client_msg = (moon_char*)malloc(len);
+		client_msg = (moon_char*)moon_malloc(len);
 		memset(client_msg,0,len);
 		if (client_msg == NULL)
 		{
@@ -175,7 +199,7 @@ extern "C" {
 		
 		if (p_msg == NULL || p_msg->p_message_head == NULL)
 		{
-			free(client_msg);
+			moon_free(client_msg);
 			free_msg(p_msg);
 			client_msg = NULL;
 			p_msg = NULL;
@@ -194,11 +218,11 @@ extern "C" {
 		
 		if(p_msg->p_message_head->client_id != NULL && moon_char_length(p_msg->p_message_head->client_id) > 0 && utf8_reply_msg != NULL && strlen(utf8_reply_msg) > 0 && len > 0)
 		{
-			send_msg = (SendMsg*)malloc(sizeof(SendMsg));
+			send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
 			memset(send_msg,0,sizeof(SendMsg));
 			send_msg->length = len;
 			moon_char_copy(send_msg->send_client_id,p_msg->p_message_head->client_id);
-			send_msg->utf8_msg_buf = (char*)malloc(len + 1);
+			send_msg->utf8_msg_buf = (char*)moon_malloc(len + 1);
 			memset(send_msg->utf8_msg_buf,0,len+1);
 			memcpy(send_msg->utf8_msg_buf,utf8_reply_msg,len);
 			//将发送的消息丢入队列
@@ -231,7 +255,7 @@ extern "C" {
 
 		if(client_msg != NULL)
 		{
-			free(client_msg);
+			moon_free(client_msg);
 			client_msg = NULL;
 		}
 	}
@@ -253,10 +277,10 @@ extern "C" {
 				if(utf8_package != NULL && strlen(utf8_package) > 0)
 				{
 					msg_handler(utf8_package,strlen(utf8_package));
-					free(utf8_package);
+					moon_free(utf8_package);
 				}
 			}
-			Sleep(5);
+			Sleep(10);
 		}
 		return 0;
 	}
@@ -281,11 +305,11 @@ extern "C" {
 				if(sendMsg != NULL && sendMsg->length > 0)
 				{
 					moon_server_send_msg(sendMsg->send_client_id,sendMsg->utf8_msg_buf,sendMsg->length);
-					free(sendMsg->utf8_msg_buf);
-					free(sendMsg);
+					moon_free(sendMsg->utf8_msg_buf);
+					moon_free(sendMsg);
 				}
 			}
-			Sleep(5);
+			Sleep(10);
 		}
 		return 0;
 	}
