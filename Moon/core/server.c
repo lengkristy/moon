@@ -9,6 +9,7 @@
 #include "../collection/queue.h"
 #include "../msg/moon_msg_handle.h"
 #include "../module/moon_string.h"
+#include "../module/moon_time.h"
 #ifdef MS_WINDOWS
 #include "ms_socket_context.h"
 #endif
@@ -20,6 +21,8 @@ extern "C" {
 
 Moon_Server_Config* p_global_server_config = NULL;/*global server config*/
 bool b_config_load_finish = false;//config has inited
+
+_global_ char g_global_server_start_time[100] = {0};//服务器启动时间
 
 #ifdef MS_WINDOWS
 HANDLE g_hReceiveMsgThread = NULL;
@@ -91,6 +94,9 @@ void moon_start()
 
 	//start http server
 	lauch_http_service();
+
+	//设置服务器启动时间
+	moon_current_time(g_global_server_start_time);
 }
 
 
@@ -113,11 +119,13 @@ void moon_server_send_msg(moon_char* client_id,char * utf8_send_buf,int len)
 		psocket_context = get_socket_context_by_client_id(client_id);
 		if(psocket_context != NULL)
 		{
+			_EnterCriticalSection(psocket_context);
 			if(ms_iocp_send(psocket_context->m_socket,utf8_send_buf,len) == -1)
 			{
 				sprintf(str_msg,"the client id %s send mssage faild.the message :\r\n",cid,utf8_send_buf);
 				moon_write_error_log(str_msg);
 			}
+			_LeaveCriticalSection(psocket_context);
 		}
 	}
 #endif

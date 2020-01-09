@@ -16,7 +16,7 @@ extern "C" {
 static FILE* pFile = NULL;/*log file point*/
 
 #ifdef MS_WINDOWS
-static HANDLE g_hMutex;
+static HANDLE g_h_log_event = NULL;
 #endif
 
 extern Moon_Server_Config* p_global_server_config;//global configuration struct
@@ -39,9 +39,6 @@ void moon_console_print(const char *log) //overwrite printf function with line f
 /*write file log*/
 void moon_file_print(const char* log)//write file log,thread sync
 {
-#ifdef MS_WINDOWS
-	HANDLE hMutex = NULL;
-#endif
 	time_t rawtime; 
 	struct tm * timeinfo; 
 	char strTime[255] = {0};
@@ -50,14 +47,7 @@ void moon_file_print(const char* log)//write file log,thread sync
 	}
 //thread synchronous
 #ifdef MS_WINDOWS
-	hMutex = OpenMutex(SYNCHRONIZE , TRUE, TEXT(LOG_MUTEX));
-	if(hMutex == NULL)
-	{
-		moon_console_print("can not OpenMutex");
-		return ;
-	}
-	//get mutexes object
-	WaitForSingleObject(hMutex, 1000);
+	WaitForSingleObject(g_h_log_event, INFINITE);
 #endif
 	//临界区
 	time(&rawtime); 
@@ -71,8 +61,7 @@ void moon_file_print(const char* log)//write file log,thread sync
 	fflush(pFile);
 
 #ifdef MS_WINDOWS
-	ReleaseMutex(hMutex);
-	CloseHandle(hMutex);
+	SetEvent(g_h_log_event);
 #endif
 }
 
@@ -98,8 +87,8 @@ bool moon_log_init()
 		return false;
 	//create windows mutexes object
 #ifdef MS_WINDOWS
-	g_hMutex = CreateMutex(NULL, FALSE,  TEXT(LOG_MUTEX));
-	if (g_hMutex == NULL)
+	g_h_log_event = CreateEvent(NULL, FALSE, TRUE,TEXT("LOG_EVENT"));
+	if (g_h_log_event == NULL)
 	{
 		return false;
 	}
@@ -118,9 +107,9 @@ void moon_log_close()
 		fclose(pFile);
 	}
 #ifdef MS_WINDOWS
-	if (g_hMutex != NULL)
+	if (g_h_log_event != NULL)
 	{
-		CloseHandle(g_hMutex);
+		CloseHandle(g_h_log_event);
 	}
 #endif
 }

@@ -23,6 +23,11 @@
 extern "C" {
 #endif
 
+//Enter critical region
+#define _EnterCriticalSection(x) {if( x != NULL){EnterCriticalSection(&x->m_SockCritSec);}}
+//exit critical region
+#define _LeaveCriticalSection(x) {if( x != NULL){LeaveCriticalSection(&x->m_SockCritSec);}}
+
 //////////////////////////////////////////////////////////////////
 // Type of I/O operation delivered on the completion port.
 typedef enum _OPERATION_TYPE  
@@ -57,7 +62,7 @@ void free_io_context(PMS_IO_CONTEXT context);
 /*Single handle data structure definition (for each completion port, which is the parameter of each Socket)*/
 typedef struct _MS_SOCKET_CONTEXT
 {
-	CRITICAL_SECTION     SockCritSec;//Socket synchronization critical area object.
+	CRITICAL_SECTION     m_SockCritSec;//Socket synchronization critical area object.
 	SOCKET      m_socket;      // Socket for each client connection.
 	SOCKADDR_IN m_client_addr; // Client address
 	unsigned int m_client_port;// Port for each client.						

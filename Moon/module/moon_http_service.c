@@ -5,6 +5,7 @@
 #include "module_log.h"
 #include "moon_string.h"
 #include "moon_memory_pool.h"
+#include "moon_time.h"
 #include "../core/socket_context_manager.h"
 #include <stdio.h>
 #include "../collection/queue.h"
@@ -35,6 +36,8 @@ extern "C" {
 	extern _global_ long long l_global_send_msg_total;//发送消息的总量
 
 	extern _global_ long long l_global_receive_msg_total;//接收消息的总量
+
+	extern _global_ char g_global_server_start_time[100];//服务器启动时间
 
 	
 	/************************************************************************/
@@ -106,6 +109,7 @@ extern "C" {
 	/************************************************************************/
 	int moon_http_browser_request_index(char* pOutContent)
 	{
+		char current_time[100] = {0};
 		char tmpHtml[1024] = {0};
 		sprintf(pOutContent,"<html xmlns=http://www.w3.org/1999/xhtml>");
 		strcat(pOutContent,"<head><title>moon http server</title>");
@@ -137,25 +141,45 @@ extern "C" {
 		strcat(pOutContent,".evenrowcolor{ ");
 		strcat(pOutContent,"    background-color:#c3dde0;");
 		strcat(pOutContent,"}");
+		strcat(pOutContent,".footer {");
+		strcat(pOutContent,"    position: fixed;");
+		strcat(pOutContent,"    left: 0px;");
+		strcat(pOutContent,"    bottom: 0px;");
+		strcat(pOutContent,"    width: 100%;");
+		strcat(pOutContent,"    height: 30px;");
+		strcat(pOutContent,"    background-color: #7FA8D6;");
+		strcat(pOutContent,"    z-index: 9999;");
+		strcat(pOutContent,"}");
 		strcat(pOutContent,"</style>");
 		strcat(pOutContent,"</head>");
 		strcat(pOutContent,"<body bgcolor='#3299CC'>");
-		strcat(pOutContent,"<div align='center'><h1>Moon Server Node Info</h1></div>");
 		memset(tmpHtml,0,1024);
-		sprintf(tmpHtml,"<div><image style='width:32px;height:32px;' src='http://%s:%d/image/logo.png?platform=b'/></div>",p_global_server_config->server_ip,p_global_server_config->http_port);
+		sprintf(tmpHtml,"<div align='center'><image style='width:32px;height:32px;float:left;' src='http://%s:%d/image/logo.png?platform=b'/><h1>Moon Server Node Info</h1></div>",p_global_server_config->server_ip,p_global_server_config->http_port);
 		strcat(pOutContent,tmpHtml);
-		sprintf(tmpHtml,"<div><table  class=\"altrowstable\">                    \
-			                  <tr><th>name</th><th>value</th></tr>               \
-			                  <tr><td>Moon Server IP</td><td>%s</td><tr>         \
-							  <tr><td>Moon Port</td><td>%d</td><tr>              \
-							  <tr><td>current client count</td><td>%d</td><tr>   \
-							  <tr><td>Pending message</td><td>%d</td><tr>        \
-							  <tr><td>Message to be sent</td><td>%d</td><tr>     \
-							  <tr><td>receive message count</td><td>%ld</td><tr> \
-							  <tr><td>sent message count</td><td>%ld</td><tr>    \
-					    </div>",p_global_server_config->server_ip,p_global_server_config->server_port,get_socket_context_count(),
-								p_global_receive_msg_queue->length,p_global_send_msg_queue->length,
-								l_global_receive_msg_total,l_global_send_msg_total);
+		sprintf(tmpHtml,"<div><table  class=\"altrowstable\">                      \
+			                  <tr><th>name</th><th>value</th></tr>                 \
+			                  <tr><td>Moon Server IP</td><td>%s</td><tr>           \
+							  <tr><td>Moon Port</td><td>%d</td><tr>                \
+							  <tr><td>current client count</td><td>%d</td><tr>     \
+							  <tr><td>Pending message</td><td>%ld</td><tr>         \
+							  <tr><td>Message to be sent</td><td>%ld</td><tr>      \
+							  <tr><td>receive message count</td><td>%lld</td><tr>  \
+							  <tr><td>send message count</td><td>%lld</td><tr>     \
+							</div>",
+								p_global_server_config->server_ip,
+						        p_global_server_config->server_port,
+								get_socket_context_count(),
+								p_global_receive_msg_queue->length,
+								p_global_send_msg_queue->length,
+								l_global_receive_msg_total,
+								l_global_send_msg_total
+			    );
+		strcat(pOutContent,tmpHtml);
+		memset(tmpHtml,0,1024);
+		moon_current_time(current_time);
+		sprintf(tmpHtml,"<div class=\"footer\">server start time:%s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current time:%s</div>",
+			            g_global_server_start_time,
+						current_time);
 		strcat(pOutContent,tmpHtml);
 		memset(tmpHtml,0,1024);
 		strcat(pOutContent,"</body>");

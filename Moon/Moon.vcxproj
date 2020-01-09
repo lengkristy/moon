@@ -106,6 +106,7 @@
     <ClInclude Include="module\moon_memory_pool.h" />
     <ClInclude Include="module\moon_string.h" />
     <ClInclude Include="module\moon_thread_pool.h" />
+    <ClInclude Include="module\moon_time.h" />
     <ClInclude Include="msg\moon_msg.h" />
     <ClInclude Include="msg\moon_msg_handle.h" />
     <ClInclude Include="msg\moon_protocol.h" />
@@ -175,6 +176,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="module\moon_time.c" />
     <ClCompile Include="moon.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

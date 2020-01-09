@@ -237,7 +237,7 @@ extern "C" {
 			break;
 		case SYS_MAIN_PROTOCOL_SCI:
 			{
-				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+				//msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
 			}
 			break;
 		default:
@@ -280,7 +280,7 @@ extern "C" {
 					moon_free(utf8_package);
 				}
 			}
-			Sleep(10);
+			Sleep(1);
 		}
 		return 0;
 	}
@@ -309,7 +309,7 @@ extern "C" {
 					moon_free(sendMsg);
 				}
 			}
-			Sleep(10);
+			Sleep(2);
 		}
 		return 0;
 	}

@@ -3,7 +3,6 @@
  * coding by: haoran dai
  * time:2018-5-1 21:56                               
  ***********************************************************************/
-#pragma once
 #ifndef _MODULE_LOG_H
 #define _MODULE_LOG_H
 #include "../cfg/environment.h"

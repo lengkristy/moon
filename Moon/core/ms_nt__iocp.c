@@ -32,13 +32,8 @@ extern "C" {
 #define RELEASE_HANDLE(x)               {if(x != NULL && x!=INVALID_HANDLE_VALUE){ CloseHandle(x);x = NULL;}}
 	// the macro definition of release socket
 #define RELEASE_SOCKET(x)               {if(x !=INVALID_SOCKET) { closesocket(x);x=INVALID_SOCKET;}}
-	//Enter critical region
-#define _EnterCriticalSection(x) {if( x != NULL){EnterCriticalSection(&x->SockCritSec);}}
-	//exit critical region
-#define _LeaveCriticalSection(x) {if( x != NULL){LeaveCriticalSection(&x->SockCritSec);}}
 
 	static HANDLE	g_hShutdownEvent;// the event of notifies the thread system to exit, in order to better exit the thread.
-	static HANDLE   g_hSendSyncEvent = NULL;//发送同步事件
 	static HANDLE g_hIOCompletionPort;//the handle of iocp
 	static unsigned int g_nThreads;//the count of thread
 	static HANDLE* g_phWorkerThreads;// the handle pointer of work thread
@@ -632,8 +627,6 @@ extern "C" {
 		// Close the system to exit the event handle.
 		RELEASE_HANDLE(g_hShutdownEvent);
 
-		//关于同步发送事件句柄
-		RELEASE_HANDLE(g_hSendSyncEvent);
 		// Release the worker thread handle pointer.
 		for(i=0;i<g_nThreads;i++ )
 		{
@@ -845,8 +838,6 @@ extern "C" {
 		}
 		// Establish notification of event notification of system exit.
 		g_hShutdownEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-		//创建发送消息同步事件
-		g_hSendSyncEvent = CreateEvent(NULL, FALSE, TRUE,TEXT("MOON_SEND_MSG_SYNC_EVENT"));
 		//Initialize the socket context manager
 		init_socket_context_manager();
 		// init IOCP
@@ -916,12 +907,10 @@ extern "C" {
 		//发送消息需要做同步处理
 		PMS_IO_CONTEXT pio = NULL;
 		int size = 0;
-		WaitForSingleObject(g_hSendSyncEvent, INFINITE);
 		size = sizeof(struct _MS_IO_CONTEXT);
 		pio = (PMS_IO_CONTEXT)moon_malloc(size);
 		if(pio == NULL)
 		{
-			SetEvent(g_hSendSyncEvent);
 			return -1;
 		}
 		memset(pio,0,sizeof(struct _MS_IO_CONTEXT));
@@ -932,11 +921,9 @@ extern "C" {
 		if(!postSend(pio))
 		{
 			moon_free(pio);
-			SetEvent(g_hSendSyncEvent);
 			return -1;
 		}
 		moon_free(pio);
-		SetEvent(g_hSendSyncEvent);
 		return len;
 	}
 #ifdef __cplusplus

@@ -30,7 +30,7 @@ PMS_SOCKET_CONTEXT create_new_socket_context()
 {
 	PMS_SOCKET_CONTEXT context = (PMS_SOCKET_CONTEXT)moon_malloc(sizeof(MS_SOCKET_CONTEXT));
 	memset(context,0,sizeof(MS_SOCKET_CONTEXT));
-	InitializeCriticalSection(&context->SockCritSec);
+	InitializeCriticalSection(&context->m_SockCritSec);
 	context->m_pListIOContext = array_list_init();
 	context->m_currentPkgSize = 0;
 	context->m_pkgSize = 0;
@@ -49,6 +49,7 @@ void free_socket_context(PMS_SOCKET_CONTEXT context)
 		}
 		array_list_free(context->m_pListIOContext);
 	}
+	DeleteCriticalSection(&context->m_SockCritSec);
 	moon_free(context);
 }
 
