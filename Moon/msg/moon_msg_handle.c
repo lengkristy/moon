@@ -6,6 +6,7 @@
 #include "../msg/moon_msg.h"
 #include "../core/moon_session_manager.h"
 #include "../collection/queue.h"
+#include "../module/moon_time.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -56,23 +57,29 @@ extern "C" {
 		moon_session* p_moon_session = NULL;
 		SendMsg* send_msg = NULL;
 		moon_char msgid[50] = {0};
-		moon_char tmp[100] = {0};
+		moon_char tmp[200] = {0};
 		moon_char* msg = NULL;
 		int msglen = DATA_BYTE_MAX_LENGTH;//消息初始大小
+		int msg_order = 0;//消息次序
+		moon_char msg_time[40] = {0};//消息发送时间
+		char ch_current_time[40] = {0};//当前时间
 		switch(pmsg->p_message_head->sub_msg_num)
 		{
 		case SYS_SUB_PROTOCOL_ALL_CLIENT_LIST://获取所有客户端列表
 			{
-				/*
+				
 				msg = (char*)moon_malloc(msglen);
 				if(msg == NULL)
 				{
 					return;
 				}
 				create_message_id(msgid);
-				char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":[ ",tmp);
-				moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK);
-				memset(tmp,0,100);
+				moon_current_time(ch_current_time);
+				char_to_moon_char(ch_current_time,msg_time);
+				char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"}, \
+					\"message_body\":{\"content\":[ ",tmp);
+				moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
+				memset(tmp,0,200);
 				client_count = get_socket_context_count();
 #ifdef MS_WINDOWS
 				for(index = 0;index < client_count;index++)
@@ -80,7 +87,7 @@ extern "C" {
 					p_moon_session = get_moon_session_by_index(index);
 					if(p_moon_session != NULL && p_moon_session->p_client_environment != NULL)
 					{
-						if((moon_char_memory_size(msg) + moon_char_memory_size(p_moon_session->p_client_environment->client_id)) > msglen)
+						if((moon_char_memory_size(msg) + 3 * moon_char_memory_size(p_moon_session->p_client_environment->client_id)) > msglen)
 						{
 							//先发送到客户端，然后再发送后面的信息
 							//去掉最后一个逗号
@@ -88,10 +95,10 @@ extern "C" {
 							{
 								msg[moon_char_length(msg) - 1] = L'\0';
 							}
-							moon_char_copy("]}}",tmp);
+							char_to_moon_char("]}}",tmp);
 							moon_char_concat(msg,tmp);
-							memset(tmp,0,100);
-							utf8_msg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
+							memset(tmp,0,200);
+							utf8_msg = (char*)moon_malloc(msglen);
 							moon_char_copy(utf8_msg,msg);
 							//发送消息
 							send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
@@ -101,25 +108,28 @@ extern "C" {
 							send_msg->size = sizeof(moon_char) * moon_char_length(send_msg->utf8_msg_buf);
 							//将发送的消息丢入队列
 							Queue_AddToHead(p_global_send_msg_queue,send_msg);
+							msg_order++;
 							
 							//
-							memset(tmp,0,100);
-							memset(msg,0,PKG_BYTE_MAX_LENGTH);
-							char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":[ ",tmp);
-							moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK);
-							continue;
+							memset(tmp,0,200);
+							memset(msg,0,msglen);
+							moon_current_time(ch_current_time);
+							char_to_moon_char(ch_current_time,msg_time);
+							char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"}, \
+											  },\"message_body\":{\"content\":[ ",tmp);
+							moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
 						}
 						
 						char_to_moon_char("\"",tmp);
 						moon_char_concat(msg,tmp);
-						memset(tmp,0,100);
+						memset(tmp,0,200);
 						moon_char_concat(msg,p_moon_session->p_client_environment->client_id);
 						char_to_moon_char("\"",tmp);
 						moon_char_concat(msg,tmp);
-						memset(tmp,0,100);
+						memset(tmp,0,200);
 						char_to_moon_char(",",tmp);
 						moon_char_concat(msg,tmp);
-						memset(tmp,0,100);
+						memset(tmp,0,200);
 					}
 				}
 				//去掉最后一个逗号
@@ -130,8 +140,8 @@ extern "C" {
 #endif
 				char_to_moon_char("]}}",tmp);
 				moon_char_concat(msg,tmp);
-				memset(tmp,0,100);
-				utf8_msg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
+				memset(tmp,0,200);
+				utf8_msg = (char*)moon_malloc(msglen);
 				moon_char_copy(utf8_msg,msg);
 				//发送消息
 				send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
@@ -147,7 +157,7 @@ extern "C" {
 					moon_free(msg);
 					msg = NULL;
 				}
-				*/
+				
 			}
 			break;
 		default:
@@ -204,13 +214,7 @@ extern "C" {
 		
 		//发送一条接收成功的消息
 		create_server_receive_message_rely(p_msg->p_message_head->msg_id,true,reply_msg);
-		
-//#ifdef MS_WINDOWS
-//		//转成utf8编码
-//		len = moon_ms_windows_moonchar_to_utf8(reply_msg,utf8_reply_msg);
-//#endif
-		
-		
+
 		if(p_msg->p_message_head->client_id != NULL && moon_char_length(p_msg->p_message_head->client_id) > 0 && reply_msg != NULL && moon_char_length(reply_msg) > 0 && len > 0)
 		{
 			len = sizeof(moon_char) * moon_char_length(reply_msg);
