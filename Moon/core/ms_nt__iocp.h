@@ -3,12 +3,12 @@
  * coding by: haoran dai
  * time:2018-5-1 16:23                               
  ***********************************************************************/
-#pragma once
-#ifndef _MS_NT_IOCP
-#define _MS_NT_IOCP
+#ifndef _MS_NT_IOCP_H
+#define _MS_NT_IOCP_H
 #include "../cfg/environment.h"
 #include "../module/moon_config_struct.h"
 #include "../module/module_log.h"
+#include "moon_session_manager.h"
 
 #ifdef MS_WINDOWS
 #include <winsock2.h>
@@ -38,10 +38,10 @@ void ms_iocp_server_stop();
  * @desc iocp send data to client
  * @param socket:client socket
  * @param send_buf:the data of will sent
- * @param len:the data length
+ * @param size:the data memory length
  * @return the sent-data length
  **/
-int ms_iocp_send(SOCKET socket,char * utf8_send_buf,int len);
+int ms_iocp_send(MS_SOCKET_CONTEXT * psocket_context,moon_char * utf8_send_buf,int size);
 
 #ifdef __cplusplus
 }

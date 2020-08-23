@@ -7,10 +7,10 @@
 #ifndef _MOON_STRING_H
 #define _MOON_STRING_H
 #include "../cfg/environment.h"
+#include "moon_base.h"
 #ifdef MS_WINDOWS
-#include <wchar.h>
+#include <windows.h>
 #endif
-#include "moon_char.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -89,6 +89,28 @@ int moon_char_memory_size(const moon_char* str);
  */
 void moon_create_32uuid(_out_ moon_char* p_out_uuid);
 
+/**
+ * 函数说明：
+ *   查询字符串，查询findStr在sourceStr中第一次出现的位置
+ * 参数：
+ *   sourceStr:被查询的源字符串
+ *   findStr：被查询的字符串
+ * 返回值：
+ *   如果查询到，则返回第一次出现的位置，如果没有查询到则返回-1
+ */
+int index_of(const char* sourceStr,const char* findStr);
+
+/**
+ * 函数说明：
+ *   查询字符串，查询findStr在sourceStr中第一次出现的位置
+ * 参数：
+ *   sourceStr:被查询的源字符串
+ *   findStr：被查询的字符串
+ * 返回值：
+ *   如果查询到，则返回第一次出现的位置，如果没有查询到则返回-1
+ */
+int moon_char_index_of(const moon_char* sourceStr,const moon_char* findStr);
+
 #ifdef MS_WINDOWS
 /**
  * function desc:
@@ -101,8 +123,18 @@ void moon_create_32uuid(_out_ moon_char* p_out_uuid);
  */
 int moon_ms_windows_ascii_to_utf8(const char* asciiStr,char* outUTF8);
 
+
 /**
- * function desc:
+ * 函数说明：
+ *     将int32转成4字节的字符串，只能转4位数及其以下的低于四位数，高位用0补齐
+ * 参数：
+ *     num：32位数字
+ *     outCh：输出转换的字符
+ */
+void moon_int32_to_4byte(const int num,char outCh[5]);
+
+/**
+ * function desc:...
  *      turn the ascii string to the unicode string.
  * params:
  *      asciiStr:ASCII string
@@ -121,7 +153,7 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode);
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_moonchar_to_utf8(const moon_char* moonchar,char* outUTF8);
+int moon_ms_windows_unicode_to_utf8(const wchar_t* moonchar,char* outUTF8);
 
 /**
  * function desc:
@@ -132,7 +164,7 @@ int moon_ms_windows_moonchar_to_utf8(const moon_char* moonchar,char* outUTF8);
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii);
+int moon_ms_windows_unicode_to_ascii(const wchar_t* unicodeStr,char* outAscii);
 
 /**
  * function desc:
@@ -143,7 +175,7 @@ int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_utf8_to_unicode(const char* utf8Str,moon_char* outUnicode);
+int moon_ms_windows_utf8_to_unicode(const char* utf8Str,wchar_t* outUnicode);
 
 /**
  * function desc:

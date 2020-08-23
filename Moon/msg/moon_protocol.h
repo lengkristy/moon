@@ -12,13 +12,17 @@
 /// 消息的前4个字节为消息的头部定义：MNPH
 /// 消息的第5-8字节为消息报文的大小，该消息报文的大小并不包括消息头部定义大小
 /// 报文头部后面的数据体才是Message结构体
-#define PKG_HEAD_LENGTH 8 //定义包头的长度，8个字节，前四字节为标识，后4字节为数据体长度
+#define PKG_HEAD_LENGTH 12 //定义包头的长度，12个字节，前八字节为标识，后4字节为数据体长度
+
+#define PKG_TAIL_LENGTH 8 //定义包尾的长度，8个字节
 
 #define DATA_BYTE_MAX_LENGTH  7000 //数据实体字节最大长度
 
 #define PKG_BYTE_MAX_LENGTH  8192 //包字节最大长度
 
-#define PKG_HEAD_FLAG "MNPH" //包头前4字节定义标识
+#define PKG_HEAD_FLAG "\n\rMNPH\n\r" //包头前8字节定义标识
+
+#define PKG_TAIL_FLAG "\n\rMNPT\n\r" //包尾后8个字节定义标识
 
 
 ///////////////////////////收到客户端消息回复协议//////////////////////////////////////////////////////////

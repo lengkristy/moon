@@ -1,6 +1,10 @@
-#include "moon_char.h"
+#include "moon_base.h"
 #include "moon_string.h"
 
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
 #ifdef MS_WINDOWS
 #include <windows.h>
 #endif
@@ -14,9 +18,7 @@ extern "C" {
  */
 void moon_char_copy(moon_char* destStr,const moon_char* sourceStr)
 {
-#ifdef MS_WINDOWS //windows platform
-	wcscpy(destStr,sourceStr);
-#endif
+	strcpy(destStr,sourceStr);
 }
 
 /**
@@ -24,9 +26,7 @@ void moon_char_copy(moon_char* destStr,const moon_char* sourceStr)
  */
 void moon_char_concat(moon_char* destStr,const moon_char* sourceStr)
 {
-#ifdef MS_WINDOWS //windows platform
-	wcscat(destStr,sourceStr);
-#endif
+	strcat(destStr,sourceStr);
 }
 
 /**
@@ -39,7 +39,9 @@ void moon_char_concat(moon_char* destStr,const moon_char* sourceStr)
 void char_to_moon_char(const char* sourceStr,_out_ moon_char* destStr)
 {
 #ifdef MS_WINDOWS //windows platform
-	moon_ms_windows_ascii_to_unicode(sourceStr,destStr);
+
+	//将asci 转成 utf-8编码
+	moon_ms_windows_ascii_to_utf8(sourceStr,destStr);
 #endif
 }
 
@@ -51,7 +53,9 @@ void char_to_moon_char(const char* sourceStr,_out_ moon_char* destStr)
 void moon_char_to_char(const moon_char* source_str,_out_ char* dest_str)
 {
 #ifdef MS_WINDOWS //windows platform
-	moon_ms_windows_unicode_to_ascii(source_str,dest_str);
+
+	//将utf-8转成asci编码
+	moon_ms_windows_utf8_to_ascii(source_str,dest_str);
 #endif
 }
 
@@ -66,17 +70,14 @@ void moon_char_to_char(const moon_char* source_str,_out_ char* dest_str)
  */
 bool moon_char_equals(const moon_char* source_str,const moon_char* desc_str)
 {
-#ifdef MS_WINDOWS
-	 if(wcscmp(source_str,desc_str) == 0)
-	 {
-		 return true;
-	 }
-	 else
-	 {
-		 return false;
-	 }
-#endif
-	 return false;
+	if(strcmp(source_str,desc_str) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 
@@ -90,14 +91,12 @@ bool moon_char_equals(const moon_char* source_str,const moon_char* desc_str)
  */
 int moon_sprintf(moon_char *buf, const moon_char *fmt, ...)
 {
-#ifdef MS_WINDOWS
-	int length = 0;
-	va_list args;
-	va_start(args,fmt);
-	length = _vscwprintf(fmt, args) + 1;
-	vswprintf_s(buf,length,fmt,args);
-	va_end(args);
-#endif
+	va_list ap;
+	int ret = -1;
+	va_start(ap, fmt);
+	ret = vsprintf(buf, fmt, ap);
+	va_end(ap);
+	return ret;
 }
 
 #ifdef __cplusplus

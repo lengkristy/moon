@@ -92,15 +92,15 @@
     <ClInclude Include="collection\array_list.h" />
     <ClInclude Include="collection\link_list.h" />
     <ClInclude Include="collection\queue.h" />
+    <ClInclude Include="core\moon_session.h" />
     <ClInclude Include="core\ms_nt__iocp.h" />
     <ClInclude Include="core\ms_socket_context.h" />
     <ClInclude Include="core\server.h" />
-    <ClInclude Include="core\socket_context_manager.h" />
+    <ClInclude Include="core\moon_session_manager.h" />
     <ClInclude Include="module\cJSON.h" />
     <ClInclude Include="module\module_cfg.h" />
     <ClInclude Include="module\module_log.h" />
-    <ClInclude Include="module\moon_char.h" />
-    <ClInclude Include="module\moon_client.h" />
+    <ClInclude Include="module\moon_base.h" />
     <ClInclude Include="module\moon_config_struct.h" />
     <ClInclude Include="module\moon_http_service.h" />
     <ClInclude Include="module\moon_memory_pool.h" />
@@ -132,6 +132,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="collection\queue.c" />
+    <ClCompile Include="core\moon_session.c" />
     <ClCompile Include="core\ms_nt__iocp.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -144,7 +145,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="core\socket_context_manager.c" />
+    <ClCompile Include="core\moon_session_manager.c" />
     <ClCompile Include="module\cJSON.c" />
     <ClCompile Include="module\module_cfg.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -154,8 +155,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="module\moon_char.c" />
-    <ClCompile Include="module\moon_client.c" />
+    <ClCompile Include="module\moon_base.c" />
     <ClCompile Include="module\moon_config_struct.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

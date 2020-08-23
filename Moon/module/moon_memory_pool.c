@@ -1,7 +1,7 @@
 #include "../cfg/environment.h"
 #include "../collection/array_list.h"
 #include "moon_memory_pool.h"
-#include "moon_char.h"
+#include "moon_base.h"
 #include "moon_string.h"
 #include <malloc.h>
 #include <string.h>

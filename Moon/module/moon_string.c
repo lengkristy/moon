@@ -1,9 +1,7 @@
 #include "../cfg/environment.h"
 #include "moon_string.h"
 #include <math.h>
-#ifdef MS_WINDOWS
-#include <windows.h>
-#endif
+
 #include "moon_memory_pool.h"
 
 
@@ -11,7 +9,8 @@
 extern "C" {
 #endif
 
-unsigned long moon_get_string_length(const char* str)/*get string length,with out '\0'*/
+/*get string length,with out '\0'*/
+unsigned long moon_get_string_length(const char* str)
 {
 	unsigned long length = 0;
 	if (NULL == str)
@@ -126,6 +125,26 @@ bool moon_string_parse_to_int(const char* str,unsigned int* outInt)
 	return bFlag;
 }
 
+/**
+ * 函数说明：
+ *     将int32转成4字节的字符串，只能转4位数及其以下的低于四位数，高位用0补齐
+ * 参数：
+ *     num：32位数字
+ *     outCh：输出转换的字符
+ */
+void moon_int32_to_4byte(const int num,char outCh[5])
+{
+	if(num > 9999) return;
+	if(num > 999)
+		sprintf(outCh,"%d",num);
+	else if (num > 99)
+		sprintf(outCh,"0%d",num);
+	else if (num > 9)
+		sprintf(outCh,"00%d",num);
+	else if (num > 0)
+		sprintf(outCh,"000%d",num);
+}
+
 bool stringIsEmpty(char* str)//判断字符串是否为NULL
 {
 	if(str == NULL)
@@ -146,12 +165,11 @@ bool stringIsEmpty(char* str)//判断字符串是否为NULL
  */
 bool moon_string_is_empty(moon_char* str)
 {
-#ifdef MS_WINDOWS
 	if(str == NULL)
 	{
 		return true;
 	}
-	if(str[0] == L'\0')
+	if(str[0] == '\0')
 	{
 		return true;
 	}
@@ -159,10 +177,48 @@ bool moon_string_is_empty(moon_char* str)
 	{
 		return false;
 	}
-#endif
-
 }
 
+/**
+ * 函数说明：
+ *   查询字符串，查询findStr在sourceStr中第一次出现的位置
+ * 参数：
+ *   sourceStr:被查询的源字符串
+ *   findStr：被查询的字符串
+ * 返回值：
+ *   如果查询到，则返回第一次出现的位置，如果没有查询到则返回-1
+ */
+int index_of(const char* sourceStr,const char* findStr)
+{
+	char *p=sourceStr;  
+	int i=0;  
+	p=strstr(sourceStr,findStr);  
+	if(p==NULL)  
+		return -1;  
+	else
+	{  
+		while(sourceStr!=p)  
+		{  
+			sourceStr++;  
+			i++;  
+		}  
+	}  
+	return i;
+}
+
+/**
+ * 函数说明：
+ *   查询字符串，查询findStr在sourceStr中第一次出现的位置
+ * 参数：
+ *   sourceStr:被查询的源字符串
+ *   findStr：被查询的字符串
+ * 返回值：
+ *   如果查询到，则返回第一次出现的位置，如果没有查询到则返回-1
+ */
+int moon_char_index_of(const moon_char* sourceStr,const moon_char* findStr)
+{
+	return index_of((char*)sourceStr,(char*)findStr);
+}
 
 #ifdef MS_WINDOWS
 /**
@@ -187,7 +243,7 @@ int moon_ms_windows_ascii_to_utf8(const char* asciiStr,char* outUTF8)
 	{
 		return 0;
 	}
-	unicodeStr = moon_malloc(widesize);
+	unicodeStr = moon_malloc(widesize * sizeof(wchar_t));
 	//ascii to unicode
 	convertSize = moon_ms_windows_ascii_to_unicode(asciiStr,unicodeStr);
 	if (convertSize == -1)
@@ -195,8 +251,11 @@ int moon_ms_windows_ascii_to_utf8(const char* asciiStr,char* outUTF8)
 		return convertSize;
 	}
 	//unicode to utf8
-	convertSize = moon_ms_windows_moonchar_to_utf8(unicodeStr,outUTF8);
-	moon_free(unicodeStr);
+	convertSize = moon_ms_windows_unicode_to_utf8(unicodeStr,outUTF8);
+	if (unicodeStr != NULL)
+	{
+		moon_free(unicodeStr);
+	}
 	return convertSize;
 }
 
@@ -211,8 +270,17 @@ int moon_ms_windows_ascii_to_utf8(const char* asciiStr,char* outUTF8)
  */
 int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)
 {
-	int widesize = MultiByteToWideChar(CP_ACP,0,asciiStr,-1,NULL,0);
+	int widesize = 0;
 	int convertlength = 0;
+	if(asciiStr == NULL)
+	{
+		return -1;
+	}
+	if(outUnicode == NULL)
+	{
+		return -1;
+	}
+	widesize = MultiByteToWideChar(CP_ACP,0,asciiStr,-1,NULL,0);
 	if (widesize == ERROR_NO_UNICODE_TRANSLATION)
 	{
 		return -1;
@@ -239,7 +307,7 @@ int moon_ms_windows_ascii_to_unicode(const char* asciiStr,wchar_t* outUnicode)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_moonchar_to_utf8(const moon_char* moonchar,char* outUTF8)
+int moon_ms_windows_unicode_to_utf8(const wchar_t* moonchar,char* outUTF8)
 {
 	int utf8size = WideCharToMultiByte(CP_UTF8,0,moonchar,-1,NULL,0,NULL,NULL);
 	int convertSize = 0;
@@ -265,15 +333,15 @@ int moon_ms_windows_moonchar_to_utf8(const moon_char* moonchar,char* outUTF8)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
+int moon_ms_windows_unicode_to_ascii(const wchar_t* unicodeStr,char* outAscii)
 {
 	int convertSize = 0;
-	int asciiSize = WideCharToMultiByte(CP_ACP,0,unicodeStr,-1,NULL,0,NULL,NULL);
+	int asciiSize = WideCharToMultiByte(CP_OEMCP,0,unicodeStr,-1,NULL,0,NULL,NULL);
 	if (asciiSize == 0)
 	{
 		return -1;
 	}
-	convertSize = WideCharToMultiByte(CP_ACP,0,unicodeStr,-1,outAscii,asciiSize,NULL,NULL);
+	convertSize = WideCharToMultiByte(CP_OEMCP,0,unicodeStr,-1,outAscii,asciiSize,NULL,NULL);
 	if (convertSize != asciiSize)
 	{
 		memset(outAscii,0,asciiSize);
@@ -291,7 +359,7 @@ int moon_ms_windows_unicode_to_ascii(const moon_char* unicodeStr,char* outAscii)
  * return:
  *      success returns the number of bytes that are actually converted,failure returns -1
  */
-int moon_ms_windows_utf8_to_unicode(const char* utf8Str,moon_char* outUnicode)
+int moon_ms_windows_utf8_to_unicode(const char* utf8Str,wchar_t* outUnicode)
 {
 	int convertSize = 0;
 	int unicodeSize = MultiByteToWideChar(CP_UTF8,0,utf8Str,-1,NULL,0);
@@ -330,7 +398,8 @@ int moon_ms_windows_utf8_to_ascii(const char* utf8Str,char* outAscii)
 	{
 		return 0;
 	}
-	unicodeStr = (wchar_t*)moon_malloc(unicodeSize);
+
+	unicodeStr = (wchar_t*)moon_malloc(3 * unicodeSize * sizeof(wchar_t));
 	convertSize = moon_ms_windows_utf8_to_unicode(utf8Str,unicodeStr);
 	if (convertSize == -1)
 	{
@@ -383,9 +452,7 @@ int moon_to_capital(char* srcStr,char* pOutCapital)
 int moon_char_length(const moon_char* str)
 {
 	int len = 0;
-#ifdef MS_WINDOWS
-	len = wcslen(str);
-#endif
+	len = strlen((char*)str);
 	return len;
 }
 
@@ -400,13 +467,10 @@ int moon_char_length(const moon_char* str)
 int moon_char_memory_size(const moon_char* str)
 {
 	int len = 0;
-#ifdef MS_WINDOWS
-	len = wcslen(str) * sizeof(moon_char);
-#endif
+	len = sizeof(moon_char) * strlen(str);
 	return len;
 }
-
-/**
+/**
  * function desc:
  *	create 32bit uuid
  * params:

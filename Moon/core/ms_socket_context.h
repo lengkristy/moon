@@ -3,13 +3,12 @@
  * coding by: haoran dai
  * time:2018-5-1 16:23                               
  ***********************************************************************/
-#pragma once
-#ifndef _MS_SOCKET_CONTEXT
-#define _MS_SOCKET_CONTEXT
+#ifndef _MS_SOCKET_CONTEXT_H
+#define _MS_SOCKET_CONTEXT_H
 #include "../cfg/environment.h"
-#include "../module/moon_client.h"
 #include "../msg/moon_protocol.h"
 #include "../collection/array_list.h"
+#include "../module/moon_base.h"
 
 #ifdef MS_WINDOWS
 #include <winsock2.h>
@@ -51,7 +50,6 @@ typedef struct _MS_IO_CONTEXT
 	WSABUF         m_wsaBuf;                                   // A buffer of type WSA used to pass parameters to overlapped operations.
 	char           m_szBuffer[PKG_BYTE_MAX_LENGTH];            // This is a buffer of specific characters in WSABUF.
 	OPERATION_TYPE m_OpType;                                   // Identify the type of network operation (corresponding to the enumeration above)
-
 } MS_IO_CONTEXT, *PMS_IO_CONTEXT;
 
 /*Create a new IO context*/
@@ -68,11 +66,11 @@ typedef struct _MS_SOCKET_CONTEXT
 	unsigned int m_client_port;// Port for each client.						
 	moon_char m_client_id[255];//Client ID(unique ID)
 	Array_List* m_pListIOContext;//// The context data for the client network operation, which means that for each client Socket, it is possible to deliver multiple IO requests simultaneously.
-	ClientEnvironment* mp_client_environment;//client running environment
+	//client_environment* mp_client_environment;//client running environment
 	//当前接收的数据的完整包，如果接收的数据不完整，那么将继续接收数据直到下一个包头，如果接收的数据是包头，那么将当前的数据给业务处理器，然后将当前缓冲区置空，包的编码为utf8
-	char m_completePkg[PKG_BYTE_MAX_LENGTH];
+	moon_char* m_completePkg;
 	//数据包大小
-	int m_pkgSize;
+	//int m_pkgSize;
 	//当前接收的数据大小
 	int m_currentPkgSize;
 }MS_SOCKET_CONTEXT,*PMS_SOCKET_CONTEXT;

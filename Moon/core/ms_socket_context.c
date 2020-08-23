@@ -33,7 +33,10 @@ PMS_SOCKET_CONTEXT create_new_socket_context()
 	InitializeCriticalSection(&context->m_SockCritSec);
 	context->m_pListIOContext = array_list_init();
 	context->m_currentPkgSize = 0;
-	context->m_pkgSize = 0;
+	//分配缓存数据空间
+	context->m_completePkg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
+	memset(context->m_completePkg,0,PKG_BYTE_MAX_LENGTH);
+	//context->m_pkgSize = 0;
 	return context;
 }
 
@@ -50,6 +53,7 @@ void free_socket_context(PMS_SOCKET_CONTEXT context)
 		array_list_free(context->m_pListIOContext);
 	}
 	DeleteCriticalSection(&context->m_SockCritSec);
+	moon_free(context->m_completePkg);
 	moon_free(context);
 }
 

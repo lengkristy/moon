@@ -15,9 +15,15 @@
 extern "C" {
 #endif
 
-#ifdef MS_WINDOWS
-	typedef wchar_t moon_char;
-#endif
+/**
+ * 定义使用的utf8类型的moon_char，使用moon_char代表着是utf-8的字符
+ */
+typedef char moon_char;
+
+/**
+ * 定义moon_char的字节长度，字节长度为utf8的编码占用字节大小
+ */
+#define MOON_CHAR_SIZE 3
 
 /**
  * moon char copy

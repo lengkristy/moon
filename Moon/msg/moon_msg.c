@@ -12,23 +12,22 @@ extern "C" {
 
 extern Moon_Server_Config* p_global_server_config;//global configuration struct
 
-extern MemoryPool *g_global_mp;//内存池
-
 
 /**
  * 函数说明：
- *   判断在网络上获取的数据包是否是包头开始，数据报文的前4个字节为包头标识
+ *   判断在网络上获取的数据包是否是包头开始，数据报文的前8个字节为包头标识
  * 返回值：
  *   如果是返回true，否则返回false
  */
-bool pkg_is_head(char* pkg)
+bool pkg_is_head(moon_char* pkg)
 {
-	char head_flag[5] = {0};
+	moon_char head_flag[9] = {0};
+	moon_char stand_head_flag[9] = {0};
 	if(pkg == NULL)
 	{
 		return false;
 	}
-	if(strlen(pkg) < PKG_HEAD_LENGTH)
+	if(moon_char_length(pkg) < PKG_HEAD_LENGTH)
 	{
 		return false;
 	}
@@ -36,7 +35,47 @@ bool pkg_is_head(char* pkg)
 	head_flag[1] = pkg[1];
 	head_flag[2] = pkg[2];
 	head_flag[3] = pkg[3];
-	if(strcmp(head_flag,PKG_HEAD_FLAG) != 0)
+	head_flag[4] = pkg[4];
+	head_flag[5] = pkg[5];
+	head_flag[6] = pkg[6];
+	head_flag[7] = pkg[7];
+	char_to_moon_char(PKG_HEAD_FLAG,stand_head_flag);
+	if(!moon_char_equals(head_flag,stand_head_flag))
+	{
+		return false;
+	}
+	return true;
+}
+
+/**
+ * 函数说明：
+ *   判断在网络上获取的数据包是否是以包尾结束，数据报文的后8个字节为包尾标识
+ * 返回值：
+ *   如果是返回true，否则返回false
+ */
+bool pkg_is_tail(moon_char* pkg)
+{
+	moon_char head_flag[9] = {0};
+	moon_char stand_tail_flag[9] = {0};
+	int length = moon_char_length(pkg);
+	if(pkg == NULL)
+	{
+		return false;
+	}
+	if(length < PKG_HEAD_LENGTH)
+	{
+		return false;
+	}
+	head_flag[0] = pkg[length - 8];
+	head_flag[1] = pkg[length - 7];
+	head_flag[2] = pkg[length - 6];
+	head_flag[3] = pkg[length - 5];
+	head_flag[4] = pkg[length - 4];
+	head_flag[5] = pkg[length - 3];
+	head_flag[6] = pkg[length - 2];
+	head_flag[7] = pkg[length - 1];
+	char_to_moon_char(PKG_TAIL_FLAG,stand_tail_flag);
+	if(!moon_char_equals(head_flag,stand_tail_flag))
 	{
 		return false;
 	}
@@ -52,35 +91,35 @@ bool pkg_is_head(char* pkg)
  * 返回值：
  *   返回该包的大小
  */
-int parse_pkg(char* src_pkg,_out_ char* out_data)
+int parse_pkg(moon_char* src_pkg,_out_ moon_char* out_data)
 {
 	unsigned int pkg_size = 0;
 
-	char head_size[5] = {0};
+	moon_char head_size[9] = {0};
 
 	unsigned int index = 0;
 
-	char* p = src_pkg;
+	moon_char* p = src_pkg;
 
 	if(src_pkg == NULL)
 	{
 		return 0;
 	}
-	if(strlen(src_pkg) < PKG_HEAD_LENGTH)
+	if(moon_char_length(src_pkg) < PKG_HEAD_LENGTH)
 	{
 		return 0;
 	}
-	head_size[0] = src_pkg[4];
-	head_size[1] = src_pkg[5];
-	head_size[2] = src_pkg[6];
-	head_size[3] = src_pkg[7];
+	head_size[0] = src_pkg[8];
+	head_size[1] = src_pkg[9];
+	head_size[2] = src_pkg[10];
+	head_size[3] = src_pkg[11];
 	
-	if(!moon_string_parse_to_int(head_size,&pkg_size))
+	if(!moon_string_parse_to_int((char*)head_size,&pkg_size))
 	{
 		return 0;
 	}
 	//从第8个字节开始读取，一直读pkg_size个字节
-	p = p + 8;
+	p = p + PKG_HEAD_LENGTH;
 	for(index = 0;index < pkg_size;index++)
 	{
 		out_data[index] = p[index];
@@ -112,8 +151,7 @@ Message* parse_msg_head(moon_char* str_message)
 	Message* p_message = NULL;
 	char* ascii_msg = NULL;
 	int length = moon_char_length(str_message);
-	int size = (length + 1) * sizeof(moon_char);
-	int len = 0;
+	int size = (length + 1) * MOON_CHAR_SIZE;
 	moon_char msg_id[50] = {0};
 	cJSON *head = NULL;
 	cJSON *item = NULL;
@@ -123,7 +161,7 @@ Message* parse_msg_head(moon_char* str_message)
 		return NULL;
 	}
 
-	len = moon_ms_windows_unicode_to_ascii(str_message,ascii_msg);
+	moon_char_to_char(str_message,ascii_msg);
 	root = cJSON_Parse(ascii_msg);
 	if (root == NULL)
 	{
@@ -240,7 +278,7 @@ void create_message_id(_out_ moon_char* out_msg_id)
  * @param msgData:message body
  * @return if success return ClientEnvironment struct pointer,otherwise return NULL
  **/
-bool parse_client_running_environment(moon_char* msgData,_out_ ClientEnvironment* p_client_env)
+bool parse_client_running_environment(moon_char* msgData,_out_ client_environment* p_client_env)
 {
 	cJSON * root = NULL;
 	cJSON * body = NULL;
@@ -248,10 +286,9 @@ bool parse_client_running_environment(moon_char* msgData,_out_ ClientEnvironment
 	char* ascii_msg;
 	int msg_body_length = 0;
 	int length = moon_char_length(msgData);
-	int size = length * 2 + 2;
-	ascii_msg = (char*)moon_malloc(size);
-	memset(ascii_msg,0,size);
-	moon_ms_windows_unicode_to_ascii(msgData,ascii_msg);
+	int size = (length + 1) * MOON_CHAR_SIZE;//
+	ascii_msg = (moon_char*)moon_malloc(size);
+	moon_char_to_char(msgData,ascii_msg);
 	root = cJSON_Parse(ascii_msg);
 	if (root == NULL)
 	{
@@ -278,27 +315,27 @@ bool parse_client_running_environment(moon_char* msgData,_out_ ClientEnvironment
 		item = cJSON_GetObjectItem(body,"client_sdk_version");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
-			strcpy(p_client_env->client_sdk_version,item->valuestring);
+			char_to_moon_char(item->valuestring,p_client_env->client_sdk_version);
 		}
 		item = cJSON_GetObjectItem(body,"client_platform");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
-			strcpy(p_client_env->client_platform,item->valuestring);
+			char_to_moon_char(item->valuestring,p_client_env->client_platform);
 		}
 		item = cJSON_GetObjectItem(body,"opra_system_version");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
-			strcpy(p_client_env->opra_system_version,item->valuestring);
+			char_to_moon_char(item->valuestring,p_client_env->opra_system_version);
 		}
 		item = cJSON_GetObjectItem(body,"connect_sdk_token");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
-			strcpy(p_client_env->connect_sdk_token,item->valuestring);
+			char_to_moon_char(item->valuestring,p_client_env->connect_sdk_token);
 		}
 		item = cJSON_GetObjectItem(body,"client_id");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
-			strcpy(p_client_env->client_id,item->valuestring);
+			char_to_moon_char(item->valuestring,p_client_env->client_id);
 		}
 	}
 	moon_free(ascii_msg);
@@ -311,17 +348,17 @@ bool parse_client_running_environment(moon_char* msgData,_out_ ClientEnvironment
  * @param msgData:message body
  * @param out_client_login_id:return client id
  **/
-void parse_login_id(moon_char* msgData,_out_ char* out_client_login_id)
+void parse_login_id(moon_char* msgData,_out_ moon_char* out_client_login_id)
 {
 	cJSON * root = NULL;
 	cJSON * item = NULL;
 	char* ascii_msg;
 	int msg_body_length = 0;
 	int length = moon_char_length(msgData);
-	int size = length * 2 + 2;
+	int size = (length + 1) * sizeof(moon_char);
 	ascii_msg = (char*)moon_malloc(size);
 	memset(ascii_msg,0,size);
-	moon_ms_windows_unicode_to_ascii(msgData,ascii_msg);
+	moon_ms_windows_utf8_to_ascii(msgData,ascii_msg);
 	root = cJSON_Parse(ascii_msg);
 	if (root == NULL)
 	{
@@ -334,7 +371,7 @@ void parse_login_id(moon_char* msgData,_out_ char* out_client_login_id)
 		item = cJSON_GetObjectItem(root,"id");
 		if (item != NULL && !stringIsEmpty(item->valuestring))
 		{
-			strcpy(out_client_login_id,item->valuestring);
+			char_to_moon_char(item->valuestring,out_client_login_id);
 		}
 	}
 	moon_free(ascii_msg);
@@ -370,6 +407,59 @@ void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moo
 	char_to_moon_char(tmp_msg,out_reply_msg);
 }
 
+
+/**
+ * 函数说明：
+ *    校验数据包是否有效
+ * 参数说明：
+ *    utf8_package：utf8的数据报文
+ * 返回值：
+ *    如果有效则返回true，如果无效则返回false
+ */
+bool check_data_package_valid(moon_char* utf8_package)
+{
+	unsigned int pkg_size = 0;
+
+	moon_char head_size[5] = {0};
+	char head_size_ch[5] = {0};
+
+	unsigned int index = 0;
+
+	int pos_pkg_head = PKG_HEAD_LENGTH;
+
+	if(utf8_package == NULL || moon_char_length(utf8_package) < (PKG_TAIL_LENGTH + PKG_HEAD_LENGTH))
+	{
+		return false;
+	}
+
+	//前12个字节为包头
+	if (!pkg_is_head(utf8_package)) return false;
+	//后8个字节为包尾
+	if(!pkg_is_tail(utf8_package)) return false;
+
+	//取出包大小进行校验，防止数据包被串改，第8-11个字节为包大小
+	head_size[0] = utf8_package[8];
+	head_size[1] = utf8_package[9];
+	head_size[2] = utf8_package[10];
+	head_size[3] = utf8_package[11];
+
+	moon_char_to_char(head_size,head_size_ch);
+
+	if(!moon_string_parse_to_int(head_size_ch,&pkg_size))
+	{
+		return false;
+	}
+	//去掉包头和包尾
+	memset(utf8_package + sizeof(moon_char) * moon_char_length(utf8_package) - PKG_TAIL_LENGTH,0,PKG_TAIL_LENGTH);
+	for (index = 0; !moon_string_is_empty(utf8_package+pos_pkg_head);index++,pos_pkg_head++)
+	{
+		utf8_package[index] = utf8_package[pos_pkg_head];
+	}
+	//然后将后面的清空
+	memset(utf8_package + index,0,sizeof(moon_char) * moon_char_length(utf8_package) - index);
+	if(sizeof(moon_char) *moon_char_length(utf8_package) != pkg_size) return false;
+	return true;
+}
 
 #ifdef __cplusplus
 }

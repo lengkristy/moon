@@ -6,7 +6,7 @@
 #define _SERVER_H
 #include "../cfg/environment.h"
 #include "../module/moon_config_struct.h"
-#include "../module/moon_char.h"
+#include "../module/moon_base.h"
 
 #ifdef MS_WINDOWS
 #define _CRTDBG_MAP_ALLOC
@@ -28,9 +28,9 @@ void moon_start(); //start server
  * 参数：
  *	  client_id：客户端id
  *	  utf8_send_buf：utf8编码消息
- *    len:消息长度
+ *    size:消息缓冲区占用内存大小
  */
-void moon_server_send_msg(moon_char* client_id,char * utf8_send_buf,int len);
+void moon_server_send_msg(moon_char* client_id,moon_char * utf8_send_buf,int size);
 
 void moon_stop();//stop server
 

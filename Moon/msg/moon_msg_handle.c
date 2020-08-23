@@ -4,14 +4,12 @@
 #include "../module/moon_string.h"
 #include "../core/server.h"
 #include "../msg/moon_msg.h"
-#include "../core/socket_context_manager.h"
+#include "../core/moon_session_manager.h"
 #include "../collection/queue.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-	extern MemoryPool *g_global_mp;//内存池
 
 	extern Queue* p_global_send_msg_queue;//发送消息队列
 
@@ -52,20 +50,21 @@ extern "C" {
 	 */
 	void msg_handler_sci(moon_char* client_id,Message* pmsg)
 	{
-		char* utf8_msg = NULL;
+		moon_char* utf8_msg = NULL;
 		int index = 0;
 		int client_count = 0;
-		void* p_socket_context = NULL;
+		moon_session* p_moon_session = NULL;
 		SendMsg* send_msg = NULL;
 		moon_char msgid[50] = {0};
 		moon_char tmp[100] = {0};
 		moon_char* msg = NULL;
-		int msglen = PKG_BYTE_MAX_LENGTH;//消息初始大小
+		int msglen = DATA_BYTE_MAX_LENGTH;//消息初始大小
 		switch(pmsg->p_message_head->sub_msg_num)
 		{
 		case SYS_SUB_PROTOCOL_ALL_CLIENT_LIST://获取所有客户端列表
 			{
-				msg = (moon_char*)moon_malloc(msglen);
+				/*
+				msg = (char*)moon_malloc(msglen);
 				if(msg == NULL)
 				{
 					return;
@@ -78,10 +77,10 @@ extern "C" {
 #ifdef MS_WINDOWS
 				for(index = 0;index < client_count;index++)
 				{
-					p_socket_context = get_socket_context_by_index(index);
-					if(p_socket_context != NULL)
+					p_moon_session = get_moon_session_by_index(index);
+					if(p_moon_session != NULL && p_moon_session->p_client_environment != NULL)
 					{
-						if((moon_char_memory_size(msg) + 3 * moon_char_memory_size(((MS_SOCKET_CONTEXT *)p_socket_context)->m_client_id)) > msglen)
+						if((moon_char_memory_size(msg) + moon_char_memory_size(p_moon_session->p_client_environment->client_id)) > msglen)
 						{
 							//先发送到客户端，然后再发送后面的信息
 							//去掉最后一个逗号
@@ -89,17 +88,17 @@ extern "C" {
 							{
 								msg[moon_char_length(msg) - 1] = L'\0';
 							}
-							char_to_moon_char("]}}",tmp);
+							moon_char_copy("]}}",tmp);
 							moon_char_concat(msg,tmp);
 							memset(tmp,0,100);
 							utf8_msg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
-							moon_ms_windows_moonchar_to_utf8(msg,utf8_msg);
+							moon_char_copy(utf8_msg,msg);
 							//发送消息
 							send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
 							memset(send_msg,0,sizeof(SendMsg));
-							send_msg->length = msglen;
 							moon_char_copy(send_msg->send_client_id,client_id);
 							send_msg->utf8_msg_buf = utf8_msg;
+							send_msg->size = sizeof(moon_char) * moon_char_length(send_msg->utf8_msg_buf);
 							//将发送的消息丢入队列
 							Queue_AddToHead(p_global_send_msg_queue,send_msg);
 							
@@ -114,15 +113,13 @@ extern "C" {
 						char_to_moon_char("\"",tmp);
 						moon_char_concat(msg,tmp);
 						memset(tmp,0,100);
-						moon_char_concat(msg,((MS_SOCKET_CONTEXT *)p_socket_context)->m_client_id);
+						moon_char_concat(msg,p_moon_session->p_client_environment->client_id);
 						char_to_moon_char("\"",tmp);
 						moon_char_concat(msg,tmp);
 						memset(tmp,0,100);
 						char_to_moon_char(",",tmp);
 						moon_char_concat(msg,tmp);
 						memset(tmp,0,100);
-						
-						
 					}
 				}
 				//去掉最后一个逗号
@@ -135,13 +132,13 @@ extern "C" {
 				moon_char_concat(msg,tmp);
 				memset(tmp,0,100);
 				utf8_msg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
-				moon_ms_windows_moonchar_to_utf8(msg,utf8_msg);
+				moon_char_copy(utf8_msg,msg);
 				//发送消息
 				send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
 				memset(send_msg,0,sizeof(SendMsg));
-				send_msg->length = msglen;
 				moon_char_copy(send_msg->send_client_id,client_id);
 				send_msg->utf8_msg_buf = utf8_msg;
+				send_msg->size = sizeof(moon_char) * moon_char_length(send_msg->utf8_msg_buf);
 				//将发送的消息丢入队列
 				Queue_AddToHead(p_global_send_msg_queue,send_msg);
 				//释放内存
@@ -150,6 +147,7 @@ extern "C" {
 					moon_free(msg);
 					msg = NULL;
 				}
+				*/
 			}
 			break;
 		default:
@@ -170,19 +168,18 @@ extern "C" {
 	 * 函数说明：
 	 *    对接收的客户端的JSON包进行处理
 	 * 参数：
-	 *    client_id:客户端id
-	 *    utf8_package:JSON数据包
-	 *	  size:包大小
+	 *    package:JSON数据包
+	 *    size:包大小
 	 */
-	void msg_handler(char* utf8_package,int size)
+	void msg_handler(moon_char* package,int size)
 	{
 		moon_char reply_msg[512] = {0};
-		char utf8_reply_msg[512] = {0};
+		//moon_char utf8_reply_msg[512] = {0};
 		SendMsg* send_msg = NULL;
 		int len = 0;
 		moon_char* client_msg = NULL;
 		Message* p_msg = NULL;
-		len = sizeof(moon_char) * (strlen(utf8_package) + 1);
+		len = sizeof(moon_char) * (moon_char_length(package) + 1);
 		client_msg = (moon_char*)moon_malloc(len);
 		memset(client_msg,0,len);
 		if (client_msg == NULL)
@@ -190,9 +187,7 @@ extern "C" {
 			return;
 		}
 
-#ifdef MS_WINDOWS
-		len = moon_ms_windows_utf8_to_unicode(utf8_package,client_msg);//将收到的utf-8的字节序转化为moon_char
-#endif
+		moon_char_copy(client_msg,package);
 
 		p_msg = parse_msg_head(client_msg);
 
@@ -210,21 +205,22 @@ extern "C" {
 		//发送一条接收成功的消息
 		create_server_receive_message_rely(p_msg->p_message_head->msg_id,true,reply_msg);
 		
-#ifdef MS_WINDOWS
-		//转成utf8编码
-		len = moon_ms_windows_moonchar_to_utf8(reply_msg,utf8_reply_msg);
-#endif
+//#ifdef MS_WINDOWS
+//		//转成utf8编码
+//		len = moon_ms_windows_moonchar_to_utf8(reply_msg,utf8_reply_msg);
+//#endif
 		
 		
-		if(p_msg->p_message_head->client_id != NULL && moon_char_length(p_msg->p_message_head->client_id) > 0 && utf8_reply_msg != NULL && strlen(utf8_reply_msg) > 0 && len > 0)
+		if(p_msg->p_message_head->client_id != NULL && moon_char_length(p_msg->p_message_head->client_id) > 0 && reply_msg != NULL && moon_char_length(reply_msg) > 0 && len > 0)
 		{
+			len = sizeof(moon_char) * moon_char_length(reply_msg);
 			send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
 			memset(send_msg,0,sizeof(SendMsg));
-			send_msg->length = len;
 			moon_char_copy(send_msg->send_client_id,p_msg->p_message_head->client_id);
 			send_msg->utf8_msg_buf = (char*)moon_malloc(len + 1);
 			memset(send_msg->utf8_msg_buf,0,len+1);
-			memcpy(send_msg->utf8_msg_buf,utf8_reply_msg,len);
+			memcpy(send_msg->utf8_msg_buf,reply_msg,len);
+			send_msg->size = sizeof(moon_char) * strlen(send_msg->utf8_msg_buf);
 			//将发送的消息丢入队列
 			Queue_AddToHead(p_global_send_msg_queue,send_msg);
 		}
@@ -237,13 +233,12 @@ extern "C" {
 			break;
 		case SYS_MAIN_PROTOCOL_SCI:
 			{
-				//msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
 			}
 			break;
 		default:
 			break;
 		}
-		
 
 
 		//销毁资源
@@ -268,17 +263,24 @@ extern "C" {
 	DWORD WINAPI msg_receive_handle_thread(LPVOID lpParam)
 	{
 		Queue* p_msg_queue = (Queue* )lpParam;
-		char* utf8_package = NULL;
+		moon_char* utf8_package = NULL;
 		while(true)
 		{
 			if(p_msg_queue->length > 0)
 			{
-				utf8_package = (char*)Queue_GetFromTail(p_msg_queue);
-				if(utf8_package != NULL && strlen(utf8_package) > 0)
+				utf8_package = (moon_char*)Queue_GetFromTail(p_msg_queue);
+				//进行消息包的校验，并且去掉包头和包尾
+				if(check_data_package_valid(utf8_package))
 				{
 					msg_handler(utf8_package,strlen(utf8_package));
-					moon_free(utf8_package);
 				}
+				else
+				{
+					//无效的数据包，记录日志
+					moon_write_error_log("无效的数据包：");
+					moon_write_error_log(utf8_package);
+				}
+				moon_free(utf8_package);
 			}
 			Sleep(1);
 		}
@@ -302,14 +304,14 @@ extern "C" {
 			if(p_msg_queue->length > 0)
 			{
 				SendMsg* sendMsg = (SendMsg*)Queue_GetFromTail(p_msg_queue);
-				if(sendMsg != NULL && sendMsg->length > 0)
+				if(sendMsg != NULL && sendMsg->size > 0)
 				{
-					moon_server_send_msg(sendMsg->send_client_id,sendMsg->utf8_msg_buf,sendMsg->length);
+					moon_server_send_msg(sendMsg->send_client_id,sendMsg->utf8_msg_buf,sendMsg->size);
 					moon_free(sendMsg->utf8_msg_buf);
 					moon_free(sendMsg);
 				}
 			}
-			Sleep(2);
+			Sleep(1);
 		}
 		return 0;
 	}

@@ -6,9 +6,9 @@
 #ifndef _MOON_MSG_H
 #define _MOON_MSG_H
 #include "moon_protocol.h"
-#include "../module/moon_char.h"
+#include "../module/moon_base.h"
 #include "../cfg/environment.h"
-#include "../module/moon_client.h"
+#include "../core/moon_session.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,7 +22,7 @@ typedef struct _MessageHead{
 	moon_char msg_id[50];/*message id,represents the unique identity of the message throughout the message chain*/
 	int main_msg_num;/*main message number*/
 	int sub_msg_num;/*sub message number*/
-	int msg_size;/*the message size*/
+	int msg_size;/*消息内容的大小，MessageBody中的p_content大小，由于网络传输消息过长会被截断，通过该字段进行组装*/
 	moon_char client_id[50];/*client id*/
 }MessageHead;
 
@@ -43,8 +43,8 @@ typedef struct _Message{
  */
 typedef struct _SendMsg{
 	moon_char send_client_id[50];/*发送客户端id*/
-	char* utf8_msg_buf;/*utf8消息缓冲区*/
-	int length;/*发送消息成都*/
+	moon_char* utf8_msg_buf;/*utf8消息缓冲区*/
+	int size;/*发送消息缓存区内存大小*/
 }SendMsg;
 
 ///////////////////////////////////////////////////////////////
@@ -54,11 +54,19 @@ typedef struct _SendMsg{
 
 /**
  * 函数说明：
- *   判断在网络上获取的数据包是否是包头开始，数据报文的前4个字节为包头标识
+ *   判断在网络上获取的数据包是否是包头开始，数据报文的前8个字节为包头标识
  * 返回值：
  *   如果是返回true，否则返回false
  */
-bool pkg_is_head(char* pkg);
+bool pkg_is_head(moon_char* pkg);
+
+/**
+ * 函数说明：
+ *   判断在网络上获取的数据包是否是以包尾结束，数据报文的后8个字节为包尾标识
+ * 返回值：
+ *   如果是返回true，否则返回false
+ */
+bool pkg_is_tail(moon_char* pkg);
 
 /**
  * 函数说明：
@@ -69,7 +77,7 @@ bool pkg_is_head(char* pkg);
  * 返回值：
  *   返回该包的大小
  */
-int parse_pkg(char* src_pkg,_out_ char* out_data);
+int parse_pkg(moon_char* src_pkg,_out_ moon_char* out_data);
 
 
 
@@ -113,26 +121,20 @@ void create_message_id(_out_ moon_char* out_msg_id);
  * @param msgData:message body
  * @return if success return ClientEnvironment struct pointer,otherwise return NULL
  **/
-bool parse_client_running_environment(moon_char* msgData,_out_ ClientEnvironment* p_client_env);
+bool parse_client_running_environment(moon_char* msgData,_out_ client_environment* p_client_env);
 
 /**
  * @desc parse client login id
  * @param msgData:message body
  * @param out_client_login_id:return client id
  **/
-void parse_login_id(moon_char* msgData,_out_ char* out_client_login_id);
+void parse_login_id(moon_char* msgData,_out_ moon_char* out_client_login_id);
 
 /**
  * @desc create a login-successful message json data
  * @param out_login_suc_msg:return json data
  **/
 void create_client_login_success_msg(_out_ moon_char* out_login_suc_msg);
-
-/**
- * @desc create a login-failed message json data
- * @param out_login_failed_msg:return json data
- **/
-void create_client_login_failed_msg(char* err_msg,_out_ moon_char* out_login_failed_msg);
 
 
 /**
@@ -145,6 +147,16 @@ void create_client_login_failed_msg(char* err_msg,_out_ moon_char* out_login_fai
  *  返回json数据包
  */
 void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moon_char* out_reply_msg);
+
+/**
+ * 函数说明：
+ *    校验数据包是否有效
+ * 参数说明：
+ *    utf8_package：utf8的数据报文
+ * 返回值：
+ *    如果有效则返回true，如果无效则返回false
+ */
+bool check_data_package_valid(moon_char* utf8_package);
 
 #ifdef __cplusplus
 }

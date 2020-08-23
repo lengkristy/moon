@@ -4,7 +4,7 @@
  * time:2019-12-14 16:23                               
  ***********************************************************************/
 #include "../core/ms_nt__iocp.h"
-#include "../module/moon_char.h"
+#include "../module/moon_base.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,11 +39,10 @@ extern "C" {
 	 * 函数说明：
 	 *    对接收的客户端的JSON包进行处理
 	 * 参数：
-	 *    client_id:客户端id
-	 *    utf8_package:JSON数据包
+	 *    package:JSON数据包
 	 *    size:包大小
 	 */
-	void msg_handler(moon_char* client_id,char* utf8_package,int size);
+	void msg_handler(moon_char* package,int size);
 
 
 ///////////////////////////////////////////////////////////发送消息处理////////////////////////////////////////////////////////////////////////////

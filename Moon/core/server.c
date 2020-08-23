@@ -5,7 +5,7 @@
 #include "../module/moon_memory_pool.h"
 #include "ms_nt__iocp.h"
 #include "../module/moon_http_service.h"
-#include "socket_context_manager.h"
+#include "moon_session_manager.h"
 #include "../collection/queue.h"
 #include "../msg/moon_msg_handle.h"
 #include "../module/moon_string.h"
@@ -106,29 +106,86 @@ void moon_start()
  * 参数：
  *	  client_id：客户端id
  *	  utf8_send_buf：utf8编码消息
- *    len:消息长度
+ *    size:消息缓冲区占用内存大小
  */
-void moon_server_send_msg(moon_char* client_id,char * utf8_send_buf,int len)
+void moon_server_send_msg(moon_char* client_id,moon_char * utf8_send_buf,int size)
 {
 	char str_msg[128] = {0};
 	char cid[50] = {0};
-	MS_SOCKET_CONTEXT * psocket_context = NULL;
-#ifdef MS_WINDOWS
-	if(client_id != NULL && moon_char_length(client_id) > 0 && len > 0)
+	moon_session* p_moon_session = NULL;
+	int msgCount = 1;
+	Array_List* msg_list = array_list_init(); 
+	int i = 0;
+	moon_char* send_msg = NULL;//发送的数据包
+	moon_char* p = utf8_send_buf;
+	int data_read_lenth = 0; //总共读取数据大小
+	char strlength[5] = {0};//数据体大小
+	moon_char mclength[5] = {0};//moon_char数据体大小
+	if(msg_list == NULL) return;
+	//将utf8_send_buf加上包头PKG_HEAD_FLAG标识，为了解决粘包，如果消息长度大于了DATA_BYTE_MAX_LENGTH，那么分批次发送
+	msgCount = (size / DATA_BYTE_MAX_LENGTH) + 1;
+	for(i = 0;i < msgCount;i++)
 	{
-		psocket_context = get_socket_context_by_client_id(client_id);
-		if(psocket_context != NULL)
+		//读取DATA_BYTE_MAX_LENGTH个字符
+		send_msg = (char*)moon_malloc(PKG_BYTE_MAX_LENGTH);
+		if(send_msg == NULL) continue;
+		memset(send_msg,0,PKG_BYTE_MAX_LENGTH);
+		strcpy(send_msg,PKG_HEAD_FLAG);
+		//读取真实发送字节数
+		if((size - data_read_lenth) > DATA_BYTE_MAX_LENGTH)
 		{
-			_EnterCriticalSection(psocket_context);
-			if(ms_iocp_send(psocket_context->m_socket,utf8_send_buf,len) == -1)
+			moon_int32_to_4byte(DATA_BYTE_MAX_LENGTH,strlength);
+			char_to_moon_char(strlength,mclength);
+			strcat(send_msg,mclength);
+			//读DATA_BYTE_MAX_LENGTH个字节
+			memcpy(send_msg + PKG_HEAD_LENGTH,p,DATA_BYTE_MAX_LENGTH);
+			p += DATA_BYTE_MAX_LENGTH;
+			data_read_lenth += DATA_BYTE_MAX_LENGTH;
+			
+		}
+		else
+		{
+			moon_int32_to_4byte(size - data_read_lenth,strlength);
+			char_to_moon_char(strlength,mclength);
+			strcat(send_msg,mclength);
+			//读取len - data_read_lenth个字节
+			memcpy(send_msg + PKG_HEAD_LENGTH,p,size - data_read_lenth);
+			p += size - data_read_lenth;
+			data_read_lenth += size - data_read_lenth;
+		}
+
+		//写入包尾标识
+		strcat(send_msg,PKG_TAIL_FLAG);
+		array_list_insert(msg_list,send_msg,-1);
+	}
+	
+	//
+	
+	if(client_id != NULL && moon_char_length(client_id) > 0 && size > 0)
+	{
+		p_moon_session = get_moon_session_by_client_id(client_id);
+		if(p_moon_session != NULL && p_moon_session->p_socket_context != NULL)
+		{
+			for(i = 0;i < msg_list->length;i++)
 			{
-				sprintf(str_msg,"the client id %s send mssage faild.the message :\r\n",cid,utf8_send_buf);
-				moon_write_error_log(str_msg);
+				send_msg = (moon_char*)array_list_getAt(msg_list,i);
+#ifdef MS_WINDOWS
+				if(ms_iocp_send(p_moon_session->p_socket_context,send_msg,sizeof(moon_char) * strlen(send_msg)) == -1)
+				{
+					sprintf(str_msg,"the client id %s send mssage faild.the message :\r\n",cid,utf8_send_buf);
+					moon_write_error_log(str_msg);
+				}
+#endif
 			}
-			_LeaveCriticalSection(psocket_context);
 		}
 	}
-#endif
+
+	//释放资源
+	for(i = 0;i < msg_list->length;i++)
+	{
+		moon_free(array_list_getAt(msg_list,i));
+	}
+	array_list_free(msg_list);
 }
 
 /************************************************************************/
