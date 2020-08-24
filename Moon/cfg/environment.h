@@ -32,7 +32,7 @@
 #define MOON_CONF_PATH ".\\config" /*define moon configuration dir*/
 #define MOON_SERVER_CONF_FILE ".\\config\\moon.cfg" /* server configuration file path*/
 #define MOON_CONF_FILE_SIZE 1024*1024 /*define config file size*/
-#define MOON_LOG_FILE_PATH ".\\log\\moon.log" /*server log path*/
+#define MOON_LOG_FILE_NAME "moon.log" /*server log path*/
 #endif
 
 #ifdef LINUX
@@ -40,7 +40,7 @@
 #define MOON_CONF_PATH "config" /*define moon configuration dir*/
 #define MOON_SERVER_CONF_FILE "config/moon.cfg" /* server configuration file path*/
 #define MOON_CONF_FILE_SIZE 10240 /*define config file size*/
-#define MOON_LOG_FILE_PATH "log/moon.log" /*server log path*/
+#define MOON_LOG_FILE_NAME "log/moon.log" /*server log path*/
 #endif
 
 /*define the param characteristic*/

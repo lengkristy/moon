@@ -6,6 +6,8 @@
 #ifdef MS_WINDOWS
 #include <windows.h>
 #include <process.h>
+#include <io.h>
+#include <direct.h>
 #endif
 #include "moon_config_struct.h"
 
@@ -72,19 +74,37 @@ bool moon_log_init()
 {
 	bool bFlag = true;
 	char path[1024] = {0};
+	char logFilePre[30] = {0};
+	time_t rawtime; 
+	struct tm * timeinfo; 
+	time(&rawtime); 
+	timeinfo = localtime( &rawtime ); 
 #ifdef LINUX
 	//get moon current work path
 	getcwd(path , 1024);
 	strcat(path,"/");
-	strcat(path,MOON_LOG_FILE_PATH);
+	strcat(path,MOON_LOG_FILE_NAME);
 #endif
 #ifdef MS_WINDOWS
-	strcpy(path,MOON_LOG_FILE_PATH);
+	GetCurrentDirectoryA(1024, path);
+	strcat(path,"\\log\\");
+	if(_access(path, 0) != 0)//如果文件夹不存在，那么则创建
+	{
+		_mkdir(path);
+	}
+	//按月生成日志文件
+	sprintf(logFilePre,"%d-%d",timeinfo->tm_year + 1900,timeinfo->tm_mon + 1);
+	strcat(path,logFilePre);
+	strcat(path,".");
+	strcat(path,MOON_LOG_FILE_NAME);
 #endif
 	pFile = fopen(path, "a+");
-	//pFile = fopen("/home/lengyue/workspace/cpp_work/moon/linux_debug/log/moon.log", "a+");
 	if(NULL == pFile)
+	{
+		moon_write_error_log("can not open log file:");
+		moon_write_error_log(path);
 		return false;
+	}
 	//create windows mutexes object
 #ifdef MS_WINDOWS
 	g_h_log_event = CreateEvent(NULL, FALSE, TRUE,TEXT("LOG_EVENT"));
