@@ -53,7 +53,8 @@ temp/
 ~*/  
 target/  
 build/  
-Debug/  
+Debug/
+Debug/log/
 Release/
 Moon/log/
 Moon/Debug/
