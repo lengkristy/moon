@@ -251,7 +251,7 @@ void free_msg(Message* p_message)
 
 /**
  * function desc:
- *	create message id,the rule as server_node_name + 32bit random number
+ *	create message id,the rule as server_node_name + 32bit random number,eg:node_one-7a06ed8e8df94e04981a45ae5adc5020
  * params:
  *	out_msg_id:return message id
  */
@@ -392,7 +392,9 @@ void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moo
 {
 	char* msg = "{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":\"%s\"}}";
 	char tmp_msg[512] = {0};
-	char c_msg_id[50] = {0};
+	char cc_msg_id[50] = {0};
+	moon_char cs_msg_id[50] = {0};
+	char cs_msg_id_tmp[50] = {0};
 	int sub_protocol = 0;
 	if(success)
 	{
@@ -402,8 +404,10 @@ void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moo
 	{
 		sub_protocol = SYS_SUB_PROTOCOL_REPLY_FAILD;
 	}
-	moon_char_to_char(msg_id,c_msg_id);
-	sprintf(tmp_msg,msg,c_msg_id,SYS_MAIN_PROTOCOL_REPLY,sub_protocol,"");
+	create_message_id(cs_msg_id);
+	moon_char_to_char(msg_id,cc_msg_id);
+	moon_char_to_char(cs_msg_id,cs_msg_id_tmp);
+	sprintf(tmp_msg,msg,cs_msg_id_tmp,SYS_MAIN_PROTOCOL_REPLY,sub_protocol,cc_msg_id);
 	char_to_moon_char(tmp_msg,out_reply_msg);
 }
 

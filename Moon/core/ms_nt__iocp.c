@@ -304,7 +304,6 @@ extern "C" {
 		// 5. After use, reset the IoContext of the Listen Socket, and then prepare to deliver the new AcceptEx.
 		memset(pIoContext->m_szBuffer,0,PKG_BYTE_MAX_LENGTH);
 
-
 		return post_accept( pIoContext );
 	}
 

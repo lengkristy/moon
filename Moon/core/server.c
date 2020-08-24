@@ -142,7 +142,6 @@ void moon_server_send_msg(moon_char* client_id,moon_char * utf8_send_buf,int siz
 	strcat(send_msg,PKG_TAIL_FLAG);
 	
 	//
-	
 	if(client_id != NULL && moon_char_length(client_id) > 0 && size > 0)
 	{
 		p_moon_session = get_moon_session_by_client_id(client_id);

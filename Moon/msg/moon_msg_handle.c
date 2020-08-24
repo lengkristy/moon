@@ -76,8 +76,7 @@ extern "C" {
 				create_message_id(msgid);
 				moon_current_time(ch_current_time);
 				char_to_moon_char(ch_current_time,msg_time);
-				char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"}, \
-					\"message_body\":{\"content\":[ ",tmp);
+				char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"}, \"message_body\":{\"content\":[ ",tmp);
 				moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
 				memset(tmp,0,200);
 				client_count = get_socket_context_count();
@@ -93,7 +92,7 @@ extern "C" {
 							//去掉最后一个逗号
 							if(client_count > 0)
 							{
-								msg[moon_char_length(msg) - 1] = L'\0';
+								msg[moon_char_length(msg) - 1] = '\0';
 							}
 							char_to_moon_char("]}}",tmp);
 							moon_char_concat(msg,tmp);
@@ -115,8 +114,7 @@ extern "C" {
 							memset(msg,0,msglen);
 							moon_current_time(ch_current_time);
 							char_to_moon_char(ch_current_time,msg_time);
-							char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"}, \
-											  },\"message_body\":{\"content\":[ ",tmp);
+							char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"},\"message_body\":{\"content\":[ ",tmp);
 							moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
 						}
 						
@@ -135,7 +133,7 @@ extern "C" {
 				//去掉最后一个逗号
 				if(client_count > 0)
 				{
-					msg[moon_char_length(msg) - 1] = L'\0';
+					msg[moon_char_length(msg) - 1] = '\0';
 				}
 #endif
 				char_to_moon_char("]}}",tmp);
@@ -237,7 +235,7 @@ extern "C" {
 			break;
 		case SYS_MAIN_PROTOCOL_SCI:
 			{
-				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+				//msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
 			}
 			break;
 		default:
