@@ -219,10 +219,10 @@ extern "C" {
 			send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
 			memset(send_msg,0,sizeof(SendMsg));
 			moon_char_copy(send_msg->send_client_id,p_msg->p_message_head->client_id);
-			send_msg->utf8_msg_buf = (char*)moon_malloc(len + 1);
+			send_msg->utf8_msg_buf = (moon_char*)moon_malloc(len + 1);
 			memset(send_msg->utf8_msg_buf,0,len+1);
 			memcpy(send_msg->utf8_msg_buf,reply_msg,len);
-			send_msg->size = sizeof(moon_char) * strlen(send_msg->utf8_msg_buf);
+			send_msg->size = sizeof(moon_char) * moon_char_length(send_msg->utf8_msg_buf);
 			//将发送的消息丢入队列
 			Queue_AddToHead(p_global_send_msg_queue,send_msg);
 		}
@@ -235,7 +235,7 @@ extern "C" {
 			break;
 		case SYS_MAIN_PROTOCOL_SCI:
 			{
-				//msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
 			}
 			break;
 		default:
@@ -271,7 +271,7 @@ extern "C" {
 			if(p_msg_queue->length > 0)
 			{
 				utf8_package = (moon_char*)Queue_GetFromTail(p_msg_queue);
-				//进行消息包的校验，并且去掉包头和包尾
+				////进行消息包的校验，并且去掉包头和包尾
 				if(check_data_package_valid(utf8_package))
 				{
 					msg_handler(utf8_package,strlen(utf8_package));

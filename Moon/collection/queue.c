@@ -23,6 +23,9 @@ Queue* Queue_Init(QueueIncreased queueIncreasedEvent)
 {
 	Queue* queue = NULL;
 	moon_char muuid[50] = {0};
+#ifdef MS_WINDOWS
+	wchar_t event_name[100] = {0};
+#endif
 	queue = (Queue*)malloc(sizeof(Queue));
 	if(queue == NULL)
 	{
@@ -33,9 +36,10 @@ Queue* Queue_Init(QueueIncreased queueIncreasedEvent)
 	queue->tail = NULL;
 	queue->onQueueIncreased = queueIncreasedEvent;
 
-	#ifdef MS_WINDOWS
+#ifdef MS_WINDOWS
 	moon_create_32uuid(muuid);
-	queue->hQueueEvent = CreateEvent(NULL, FALSE, TRUE,muuid);
+	moon_ms_windows_utf8_to_unicode(muuid,event_name);
+	queue->hQueueEvent = CreateEvent(NULL, FALSE, TRUE,event_name);
 	if (queue->hQueueEvent == NULL)
 	{
 		Queue_Free(queue,true);
@@ -215,20 +219,23 @@ void* Queue_GetFromTail(Queue* queue)
 	WaitForSingleObject(queue->hQueueEvent, INFINITE);
 #endif
 	node = queue->tail;
-	queue->tail = node->prior;
-	if(queue->tail != NULL)//如果取出的尾部不为空，将尾部的下一个节点置为NULL
+	if(node != NULL)
 	{
-		queue->tail->next = NULL;
+		queue->tail = node->prior;
+		if(queue->tail != NULL)//如果取出的尾部不为空，将尾部的下一个节点置为NULL
+		{
+			queue->tail->next = NULL;
+		}
+		else
+		{
+			//表示队列已经取完了
+			queue->tail = NULL;
+			queue->head = NULL;
+		}
+		data = node->data;
+		free(node);
+		queue->length--;
 	}
-	else
-	{
-		//表示队列已经取完了
-		queue->tail = NULL;
-		queue->head = NULL;
-	}
-	data = node->data;
-	free(node);
-	queue->length--;
 #ifdef MS_WINDOWS
 	SetEvent(queue->hQueueEvent);
 #endif

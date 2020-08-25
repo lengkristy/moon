@@ -18,6 +18,9 @@ Array_List* array_list_init()
 {
 	int i = 0;
 	moon_char muuid[50] = {0};
+#ifdef MS_WINDOWS
+	wchar_t event_name[100] = {0};
+#endif
 	Array_List* pList = (Array_List*)malloc(sizeof(Array_List));//Allocate the list address space
 	if(pList == NULL)
 	{
@@ -41,7 +44,8 @@ Array_List* array_list_init()
 	//init mutexes
 #ifdef MS_WINDOWS
 	moon_create_32uuid(muuid);
-	pList->hArrayListEvent = CreateEvent(NULL, FALSE, TRUE,muuid);
+	moon_ms_windows_utf8_to_unicode(muuid,event_name);
+	pList->hArrayListEvent = CreateEvent(NULL, FALSE, TRUE,event_name);
 	if (pList->hArrayListEvent == NULL)
 	{
 		array_list_free(pList);

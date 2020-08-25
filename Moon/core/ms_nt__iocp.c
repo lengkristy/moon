@@ -427,6 +427,11 @@ extern "C" {
 			memset(utf8_msg,0,pos_pkg_tail);
 			memcpy(utf8_msg,pSocketContext->m_completePkg,pos_pkg_tail);
 			Queue_AddToHead(p_global_receive_msg_queue,utf8_msg);
+		/*	utf8_msg = (moon_char*)Queue_GetFromTail(p_global_receive_msg_queue);
+			if (utf8_msg != NULL)
+			{
+				moon_free(utf8_msg);
+			}*/
 			pSocketContext->m_currentPkgSize = pSocketContext->m_currentPkgSize - pos_pkg_tail + 1;
 			//缓存数据移动到最开始位置
 			for (index_data = 0;pSocketContext->m_completePkg[pos_temp] != '\0';index_data++,pos_temp++)

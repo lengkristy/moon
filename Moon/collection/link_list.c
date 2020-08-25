@@ -18,6 +18,9 @@ Link_List* link_list_init()
 {
 	moon_char muuid[50] = {0};
 	Link_List* pList = NULL;
+#ifdef MS_WINDOWS
+	wchar_t event_name[100] = {0};
+#endif
 	pList = (Link_List*)malloc(sizeof(Link_List));
 	if(pList == NULL)
 	{
@@ -30,7 +33,8 @@ Link_List* link_list_init()
 
 #ifdef MS_WINDOWS
 	moon_create_32uuid(muuid);
-	pList->hLinkListEvent = CreateEvent(NULL, FALSE, TRUE, muuid);
+	moon_ms_windows_utf8_to_unicode(muuid,event_name);
+	pList->hLinkListEvent = CreateEvent(NULL, FALSE, TRUE, event_name);
 	if (pList->hLinkListEvent == NULL)
 	{
 		link_list_free(pList);
