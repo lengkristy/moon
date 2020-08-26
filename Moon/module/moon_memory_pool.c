@@ -56,7 +56,8 @@ extern "C" {
 
 void* moon_malloc(unsigned int num_bytes)/*allocate memory*/
 {
-	void* pMemory = malloc(num_bytes);
+	void* pMemory = NULL;
+	pMemory = malloc(num_bytes);
 	if(pMemory != NULL)
 	{
 		memset(pMemory,0,num_bytes);

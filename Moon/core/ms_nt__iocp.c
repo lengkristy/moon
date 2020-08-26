@@ -121,14 +121,13 @@ extern "C" {
 		DWORD dwBytes = 0;
 		int nBytesRecv = 0;
 		char strMsg[256] = {0};
-		WSABUF *p_wbuf   = &pIoContext->m_wsaBuf;
 		OVERLAPPED *p_ol = &pIoContext->m_Overlapped;
 
 		memset(pIoContext->m_szBuffer,0,PKG_BYTE_MAX_LENGTH);
 		pIoContext->m_OpType = RECV_POSTED;
-
+		
 		//After the initialization is complete, the WSARecv request is delivered.
-		nBytesRecv = WSARecv( pIoContext->m_sockAccept, p_wbuf, 1, &dwBytes, &dwFlags, p_ol, NULL );
+		nBytesRecv = WSARecv( pIoContext->m_sockAccept, &pIoContext->m_wsaBuf, 1, &dwBytes, &dwFlags, p_ol, NULL );
 
 		//If the return value error and the error code is not Pending, then this overlapping request fails.
 		if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))
@@ -287,7 +286,12 @@ extern "C" {
 			free_socket_context(pNewSocketContext);
 			return post_accept(pIoContext);
 		}
+		array_list_insert(pNewSocketContext->m_pListIOContext,pNewIoContext,-1);
 
+		pNewIoContext = create_new_io_context();
+		pNewIoContext->m_OpType       = SEND_POSTED;
+		pNewIoContext->m_sockAccept   = pNewSocketContext->m_socket;
+		array_list_insert(pNewSocketContext->m_pListIOContext,pNewIoContext,-1);
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		// 4. If the delivery is successful, then add this valid client information to the ContextList
 		//    (which requires unified management and easy release of resources)
@@ -298,7 +302,7 @@ extern "C" {
 		moon_current_time(current_datetime);
 		char_to_moon_char(current_datetime,p_moon_session->conn_datetime);
 		add_session(p_moon_session);
-		array_list_insert(pNewSocketContext->m_pListIOContext,pNewIoContext,-1);
+		
 
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		// 5. After use, reset the IoContext of the Listen Socket, and then prepare to deliver the new AcceptEx.
@@ -442,15 +446,23 @@ extern "C" {
 			memset(pSocketContext->m_completePkg + index_data,0,PKG_BYTE_MAX_LENGTH - index_data);
 			pos_pkg_tail = moon_char_index_of(pSocketContext->m_completePkg,stand_pkg_tail);
 		}
-		//
+		//清空缓存
+		memset(pIoContext->m_wsaBuf.buf,0,pIoContext->m_wsaBuf.len);
+
 		return postRecv(pIoContext);
 	}
 
 	//////////////////////////////////////////////////////////////////////////
 	// post a request for sending data.
-	bool postSend(MS_SOCKET_CONTEXT * psocket_context)
+	bool postSend(PMS_IO_CONTEXT pIoContext,MS_SOCKET_CONTEXT * psocket_context)
 	{
 		//记录发送的消息
+		//释放缓冲区资源
+		if(!stringIsEmpty(pIoContext->m_wsaBuf.buf))
+		{
+			moon_free(pIoContext->m_wsaBuf.buf);
+			pIoContext->m_wsaBuf.buf = NULL;
+		}
 		return true;
 	}
 
@@ -538,10 +550,6 @@ extern "C" {
 							// In order to increase the readability of the code, a special _DoRecv function is used to process the receive request.
 							pIoContext->m_wsaBuf.len = strlen(pIoContext->m_wsaBuf.buf);
 							doRecv(pIoContext,pSocketContext);
-							//make Io buf null
-							memset(pIoContext->m_wsaBuf.buf,0,pIoContext->m_wsaBuf.len);
-							pIoContext->m_wsaBuf.len = 0;
-
 						}
 						break;
 
@@ -549,6 +557,7 @@ extern "C" {
 					case SEND_POSTED:
 						{
 							//当消息成功发送的时候，会调用到这里，这里只是记录消息日志，或者可以不用处理
+							postSend(pIoContext,pSocketContext);
 						}
 						break;
 					default:
@@ -940,15 +949,23 @@ extern "C" {
 		DWORD dwFlags = 0;
 		DWORD dwBytes = 0;
 		int nBytesRecv = 0;
+		int index = 0;
 		char strMsg[255] = {0};
-		WSABUF sendBuf;
-		OVERLAPPED* p_ol;
+		PMS_IO_CONTEXT send_pms_io_context = NULL;
 		if(psocket_context == NULL) return -1;
 		_EnterCriticalSection(psocket_context);
-		sendBuf.buf = (CHAR*)utf8_send_buf;
-		sendBuf.len = size;
+		for(index = 0;psocket_context->m_pListIOContext->length;index++)
+		{
+			send_pms_io_context = (PMS_IO_CONTEXT)array_list_getAt(psocket_context->m_pListIOContext,index);
+			if(send_pms_io_context != NULL && send_pms_io_context->m_OpType == SEND_POSTED)
+				break;
+			send_pms_io_context = NULL;
+		}
+		memset(&(send_pms_io_context->m_Overlapped),0,sizeof(OVERLAPPED));
+		send_pms_io_context->m_wsaBuf.buf = utf8_send_buf;
+		send_pms_io_context->m_wsaBuf.len = size;
 		// After the initialization is complete, the request for sending the data is sent to the WSARecv request.
-		nBytesRecv = WSASend(psocket_context->m_socket, &sendBuf, 1, &dwBytes, dwFlags, NULL, NULL );
+		nBytesRecv = WSASend(psocket_context->m_socket, &(send_pms_io_context->m_wsaBuf), 1, &dwBytes, dwFlags,&(send_pms_io_context->m_Overlapped) , NULL );
 
 		// If the return value error and the error code is not Pending, then this overlapping request fails.
 		if ((SOCKET_ERROR == nBytesRecv) && (WSA_IO_PENDING != WSAGetLastError()))

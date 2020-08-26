@@ -158,7 +158,7 @@ void moon_server_send_msg(moon_char* client_id,moon_char * utf8_send_buf,int siz
 	}
 
 	//发送完成之后释放资源
-	moon_free(send_msg);
+	//moon_free(send_msg);
 }
 
 /************************************************************************/

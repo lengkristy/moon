@@ -63,7 +63,7 @@ typedef struct _MS_SOCKET_CONTEXT
 	CRITICAL_SECTION     m_SockCritSec;//Socket synchronization critical area object.
 	SOCKET      m_socket;      // Socket for each client connection.
 	SOCKADDR_IN m_client_addr; // Client address
-	unsigned int m_client_port;// Port for each client.						
+	unsigned int m_client_port;// Port for each client.
 	moon_char m_client_id[255];//Client ID(unique ID)
 	Array_List* m_pListIOContext;//// The context data for the client network operation, which means that for each client Socket, it is possible to deliver multiple IO requests simultaneously.
 	//client_environment* mp_client_environment;//client running environment

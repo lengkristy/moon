@@ -470,7 +470,8 @@ int moon_char_memory_size(const moon_char* str)
 	len = sizeof(moon_char) * strlen(str);
 	return len;
 }
-/**
+
+/**
  * function desc:
  *	create 32bit uuid
  * params:
