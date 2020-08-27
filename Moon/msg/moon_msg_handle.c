@@ -65,7 +65,7 @@ extern "C" {
 		char ch_current_time[40] = {0};//当前时间
 		switch(pmsg->p_message_head->sub_msg_num)
 		{
-		case SYS_SUB_PROTOCOL_ALL_CLIENT_LIST://获取所有客户端列表
+		case MN_PROTOCOL_SUB_ALL_CLIENT_LIST://获取所有客户端列表
 			{
 				
 				msg = (char*)moon_malloc(msglen);
@@ -77,7 +77,7 @@ extern "C" {
 				moon_current_time(ch_current_time);
 				char_to_moon_char(ch_current_time,msg_time);
 				char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"}, \"message_body\":{\"content\":[ ",tmp);
-				moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
+				moon_sprintf(msg,tmp,msgid,MN_PROTOCOL_SUB_SCI,MN_PROTOCAL_SUB_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
 				memset(tmp,0,200);
 				client_count = get_socket_context_count();
 #ifdef MS_WINDOWS
@@ -115,7 +115,7 @@ extern "C" {
 							moon_current_time(ch_current_time);
 							char_to_moon_char(ch_current_time,msg_time);
 							char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"},\"message_body\":{\"content\":[ ",tmp);
-							moon_sprintf(msg,tmp,msgid,SYS_MAIN_PROTOCOL_SCI,SYS_SUB_PROTOCAL_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
+							moon_sprintf(msg,tmp,msgid,MN_PROTOCOL_SUB_SCI,MN_PROTOCAL_SUB_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
 						}
 						
 						char_to_moon_char("\"",tmp);
@@ -230,10 +230,10 @@ extern "C" {
 		//判断消息类型，处理消息，后期采用消息队列的方式处理
 		switch(p_msg->p_message_head->main_msg_num)
 		{
-		case SYS_MAIN_PROTOCOL_MSG_POINT_TO_POINT:
+		case MN_PROTOCOL_MAIN_MSG_POINT_TO_POINT:
 			//msg_handler_ptp(p_msg->p_message_head->client_id,client_msg);
 			break;
-		case SYS_MAIN_PROTOCOL_SCI:
+		case MN_PROTOCOL_SUB_SCI:
 			{
 				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
 			}

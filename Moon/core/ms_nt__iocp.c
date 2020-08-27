@@ -454,7 +454,7 @@ extern "C" {
 
 	//////////////////////////////////////////////////////////////////////////
 	// post a request for sending data.
-	bool postSend(PMS_IO_CONTEXT pIoContext,MS_SOCKET_CONTEXT * psocket_context)
+	bool doSend(PMS_IO_CONTEXT pIoContext,MS_SOCKET_CONTEXT * psocket_context)
 	{
 		//记录发送的消息
 		//释放缓冲区资源
@@ -557,7 +557,7 @@ extern "C" {
 					case SEND_POSTED:
 						{
 							//当消息成功发送的时候，会调用到这里，这里只是记录消息日志，或者可以不用处理
-							postSend(pIoContext,pSocketContext);
+							doSend(pIoContext,pSocketContext);
 						}
 						break;
 					default:

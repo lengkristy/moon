@@ -398,16 +398,16 @@ void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moo
 	int sub_protocol = 0;
 	if(success)
 	{
-		sub_protocol = SYS_SUB_PROTOCOL_REPLY_OK;
+		sub_protocol = MN_PROTOCOL_SUB_REPLY_OK;
 	}
 	else
 	{
-		sub_protocol = SYS_SUB_PROTOCOL_REPLY_FAILD;
+		sub_protocol = MN_PROTOCOL_SUB_REPLY_FAILD;
 	}
 	create_message_id(cs_msg_id);
 	moon_char_to_char(msg_id,cc_msg_id);
 	moon_char_to_char(cs_msg_id,cs_msg_id_tmp);
-	sprintf(tmp_msg,msg,cs_msg_id_tmp,SYS_MAIN_PROTOCOL_REPLY,sub_protocol,cc_msg_id);
+	sprintf(tmp_msg,msg,cs_msg_id_tmp,MN_PROTOCOL_MAIN_REPLY,sub_protocol,cc_msg_id);
 	char_to_moon_char(tmp_msg,out_reply_msg);
 }
 
