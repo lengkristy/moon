@@ -465,6 +465,19 @@ bool check_data_package_valid(moon_char* utf8_package)
 	return true;
 }
 
+/**
+ * 函数说明：
+ *   创建接受客户端连接的消息
+ * 参数说明：
+ *   client_id：客户端id
+ *   out_accept_msg：输出接受客户端消息的json utf8字符串
+ */
+void create_message_accept_client(_in_ moon_char* client_id,_out_ moon_char* out_accept_msg)
+{
+	 char* msg = "{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":\"\"}}";
+
+}
+
 #ifdef __cplusplus
 }
 #endif

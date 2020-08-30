@@ -158,6 +158,15 @@ void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moo
  */
 bool check_data_package_valid(moon_char* utf8_package);
 
+/**
+ * 函数说明：
+ *   创建接受客户端连接的消息
+ * 参数说明：
+ *   client_id：客户端id
+ *   out_accept_msg：输出接受客户端消息的json utf8字符串
+ */
+void create_message_accept_client(_in_ moon_char* client_id,_out_ moon_char* out_accept_msg);
+
 #ifdef __cplusplus
 }
 #endif

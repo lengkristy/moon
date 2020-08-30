@@ -400,7 +400,6 @@ extern "C" {
 								memset(pSocketContext->m_completePkg + index_data,0,PKG_BYTE_MAX_LENGTH - index_data);
 								pos_pkg_tail = moon_char_index_of(pSocketContext->m_completePkg,stand_pkg_tail);
 							}
-
 						}
 						pSocketContext->m_completePkg[pSocketContext->m_currentPkgSize] = p_utf8_msg[index];
 						pSocketContext->m_currentPkgSize++;
