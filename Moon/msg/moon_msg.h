@@ -20,9 +20,11 @@ extern "C" {
 //define receive message head
 typedef struct _MessageHead{
 	moon_char msg_id[50];/*message id,represents the unique identity of the message throughout the message chain*/
+	int msg_order;/**消息次序*/
 	int main_msg_num;/*main message number*/
 	int sub_msg_num;/*sub message number*/
 	int msg_size;/*消息内容的大小，MessageBody中的p_content大小，由于网络传输消息过长会被截断，通过该字段进行组装*/
+	moon_char msg_time[30];/*消息发送时间*/
 	moon_char client_id[50];/*client id*/
 }MessageHead;
 
@@ -41,11 +43,11 @@ typedef struct _Message{
 /**
  * 定义发送消息的结构体
  */
-typedef struct _SendMsg{
+typedef struct _msg_send{
 	moon_char send_client_id[50];/*发送客户端id*/
 	moon_char* utf8_msg_buf;/*utf8消息缓冲区*/
 	int size;/*发送消息缓存区内存大小*/
-}SendMsg;
+}msg_send;
 
 ///////////////////////////////////////////////////////////////
 

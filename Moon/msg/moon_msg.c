@@ -3,6 +3,7 @@
 #include "../module/cJSON.h"
 #include "../module/moon_memory_pool.h"
 #include "../module/moon_string.h"
+#include "../module/moon_time.h"
 #include <memory.h>
 #include <string.h>
 
@@ -11,6 +12,31 @@ extern "C" {
 #endif
 
 extern Moon_Server_Config* p_global_server_config;//global configuration struct
+
+
+/**
+ * 函数说明：
+ *   创建消息
+ * 参数说明：
+ *   msg_id：消息id，在整个网络中流转的消息唯一标识，由服务节点名称+uuid构成
+ *   msg_order：消息次序
+ *   main_msg_num：主消息号
+ *   sub_msg_num：子消息号
+ *   msg_size：消息大小，单位字节
+ *   msg_time：消息发送时间
+ *   client_id：客户端id
+ *   content：消息体内容
+ *   msg_end：消息结束标志：解决多侦的问题，对于同一个消息id的消息如果消息没有传输完成，那么则为1，消息传输完成则为0
+ *   msg：输出消息JSON包
+ */
+static void _create_moon_msg(moon_char* msg_id,int* msg_order,int main_msg_num,int sub_msg_num,int msg_size,moon_char* msg_time,
+	moon_char* client_id,moon_char* content,int msg_end,_out_ moon_char* msg)
+{
+	char* p_msg_tmp = "{\"message_head\":{\"msg_id\":\"%s\",\"msg_order\":%ld,\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_size\":%ld,\"msg_time\":\"%s\",\"client_id\":\"%s\",\"msg_end\":%ld},\"message_body\":{\"content\":\"%s\"}}";
+	moon_char mn_msg[512] = {0};
+	char_to_moon_char(p_msg_tmp,mn_msg);
+	moon_sprintf(msg,mn_msg,msg_id,msg_order,main_msg_num,sub_msg_num,msg_size,msg_time,client_id,msg_end,content);
+}
 
 
 /**
@@ -402,7 +428,7 @@ void create_server_receive_message_rely(moon_char* msg_id,bool success,_out_ moo
 	}
 	else
 	{
-		sub_protocol = MN_PROTOCOL_SUB_REPLY_FAILD;
+		sub_protocol = MN_PROTOCOL_SUB_REPLY_FAILED;
 	}
 	create_message_id(cs_msg_id);
 	moon_char_to_char(msg_id,cc_msg_id);
@@ -458,7 +484,7 @@ bool check_data_package_valid(moon_char* utf8_package)
 	for (index = 0; !moon_string_is_empty(utf8_package+pos_pkg_head);index++,pos_pkg_head++)
 	{
 		utf8_package[index] = utf8_package[pos_pkg_head];
-	}
+	} 
 	//然后将后面的清空
 	memset(utf8_package + index,0,sizeof(moon_char) * moon_char_length(utf8_package) - index);
 	if(sizeof(moon_char) *moon_char_length(utf8_package) != pkg_size) return false;
@@ -474,8 +500,11 @@ bool check_data_package_valid(moon_char* utf8_package)
  */
 void create_message_accept_client(_in_ moon_char* client_id,_out_ moon_char* out_accept_msg)
 {
-	 char* msg = "{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld},\"message_body\":{\"content\":\"\"}}";
-
+	 moon_char msg_id[50] = {0};
+	 moon_char msg_time[30] = {0};
+	 create_message_id(msg_id);
+	 moon_utf8_current_time(msg_time);
+	 _create_moon_msg(msg_id,0,MN_PROTOCOL_MAIN_CONNECT_INIT,MN_PROTOCOL_SUB_SERVER_ACCEPT,0,msg_time,client_id,"",0,out_accept_msg);
 }
 
 #ifdef __cplusplus

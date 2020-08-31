@@ -73,6 +73,8 @@ bool moon_char_equals(const moon_char* source_str,const moon_char* desc_str);
  */
 int moon_sprintf(moon_char *buf, const moon_char *fmt, ...);
 
+
+
 #ifdef __cplusplus
 }
 #endif

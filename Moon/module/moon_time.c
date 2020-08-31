@@ -23,6 +23,18 @@ extern "C" {
 				timeinfo->tm_hour,timeinfo->tm_min,timeinfo->tm_sec);
 	}
 
+	/**
+	 * 函数说明：
+	 *   获取当前utf8时间
+	 * 参数：
+	 *   time_str：输出时间字符串
+	 */
+	void moon_utf8_current_time(_out_ moon_char* time_str)
+	{
+		char time[30] = {0};
+		moon_current_time(time);
+		char_to_moon_char(time,time_str);
+	}
 #ifdef __cplusplus
 }
 #endif

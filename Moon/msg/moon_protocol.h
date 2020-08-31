@@ -27,15 +27,17 @@
 
 ///////////////////////////收到客户端消息回复协议//////////////////////////////////////////////////////////
 #define MN_PROTOCOL_MAIN_REPLY  10003  //服务端回复主协议代码
-#define MN_PROTOCOL_SUB_REPLY_OK 1000301 //服务端收到消息成功的子协议代码
-#define MN_PROTOCOL_SUB_REPLY_FAILD 1000302 //服务端收到消息失败的子协议代码
+#define MN_PROTOCOL_SUB_REPLY_OK 1000301 //服务端收到消息处理成功的子协议代码
+#define MN_PROTOCOL_SUB_REPLY_FAILED 1000302 //服务端收到消息处理失败的子协议代码
+#define MN_PROTOCOL_SUB_CLIENT_REPLY_OK 1000303 //客户端收到客户端消息并处理成功的子协议代码，用于点对点消息发送
+#define MN_PROTOCOL_SUB_CLIENT_REPLY_FAILED 1000304 //客户端收到客户端消息并处理失败的子协议代码，用于点对点消息发送
+
 
 ///////////////////////////Connection initialization protocol////////////////////////////////
 #define MN_PROTOCOL_MAIN_CONNECT_INIT 10001 //客户端连接初始化主协议号，客户端连接服务器成功后的第一条消息，将会把客户端的运行环境信息传递过来
-
 #define MN_PROTOCOL_SUB_SERVER_CON 1000101 //server connection sub-Protocol(used to cluster)
-
 #define MN_PROTOCOL_SUB_CLIENT_CON 1000102 //client connection sub-Protocol
+#define MN_PROTOCOL_SUB_SERVER_ACCEPT 1000109 //服务端同意接受连接的子协议
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 

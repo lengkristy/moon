@@ -55,7 +55,7 @@ extern "C" {
 		int index = 0;
 		int client_count = 0;
 		moon_session* p_moon_session = NULL;
-		SendMsg* send_msg = NULL;
+		msg_send* send_msg = NULL;
 		moon_char msgid[50] = {0};
 		moon_char tmp[200] = {0};
 		moon_char* msg = NULL;
@@ -100,8 +100,7 @@ extern "C" {
 							utf8_msg = (char*)moon_malloc(msglen);
 							moon_char_copy(utf8_msg,msg);
 							//发送消息
-							send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
-							memset(send_msg,0,sizeof(SendMsg));
+							send_msg = (msg_send*)moon_malloc(sizeof(msg_send));
 							moon_char_copy(send_msg->send_client_id,client_id);
 							send_msg->utf8_msg_buf = utf8_msg;
 							send_msg->size = sizeof(moon_char) * moon_char_length(send_msg->utf8_msg_buf);
@@ -142,8 +141,7 @@ extern "C" {
 				utf8_msg = (char*)moon_malloc(msglen);
 				moon_char_copy(utf8_msg,msg);
 				//发送消息
-				send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
-				memset(send_msg,0,sizeof(SendMsg));
+				send_msg = (msg_send*)moon_malloc(sizeof(msg_send));
 				moon_char_copy(send_msg->send_client_id,client_id);
 				send_msg->utf8_msg_buf = utf8_msg;
 				send_msg->size = sizeof(moon_char) * moon_char_length(send_msg->utf8_msg_buf);
@@ -183,7 +181,7 @@ extern "C" {
 	{
 		moon_char reply_msg[512] = {0};
 		//moon_char utf8_reply_msg[512] = {0};
-		SendMsg* send_msg = NULL;
+		msg_send* send_msg = NULL;
 		int len = 0;
 		moon_char* client_msg = NULL;
 		Message* p_msg = NULL;
@@ -216,8 +214,7 @@ extern "C" {
 		if(p_msg->p_message_head->client_id != NULL && moon_char_length(p_msg->p_message_head->client_id) > 0 && reply_msg != NULL && moon_char_length(reply_msg) > 0 && len > 0)
 		{
 			len = sizeof(moon_char) * moon_char_length(reply_msg);
-			send_msg = (SendMsg*)moon_malloc(sizeof(SendMsg));
-			memset(send_msg,0,sizeof(SendMsg));
+			send_msg = (msg_send*)moon_malloc(sizeof(msg_send));
 			moon_char_copy(send_msg->send_client_id,p_msg->p_message_head->client_id);
 			send_msg->utf8_msg_buf = (moon_char*)moon_malloc(len + 1);
 			memset(send_msg->utf8_msg_buf,0,len+1);
@@ -305,12 +302,12 @@ extern "C" {
 		{
 			if(p_msg_queue->length > 0)
 			{
-				SendMsg* sendMsg = (SendMsg*)Queue_GetFromTail(p_msg_queue);
-				if(sendMsg != NULL && sendMsg->size > 0)
+				msg_send* msg_of_send = (msg_send*)Queue_GetFromTail(p_msg_queue);
+				if(msg_of_send != NULL && msg_of_send->size > 0)
 				{
-					moon_server_send_msg(sendMsg->send_client_id,sendMsg->utf8_msg_buf,sendMsg->size);
-					moon_free(sendMsg->utf8_msg_buf);
-					moon_free(sendMsg);
+					moon_server_send_msg(msg_of_send->send_client_id,msg_of_send->utf8_msg_buf,msg_of_send->size);
+					moon_free(msg_of_send->utf8_msg_buf);
+					moon_free(msg_of_send);
 				}
 			}
 			Sleep(1);

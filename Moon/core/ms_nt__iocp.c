@@ -45,6 +45,7 @@ extern "C" {
 	static LPFN_ACCEPTEX                g_lpfnAcceptEx;// the functions pointer of AcceptEx and GetAcceptExSockaddrs，in order to invoke them
 	static LPFN_GETACCEPTEXSOCKADDRS    g_lpfnGetAcceptExSockAddrs; 
 	extern Queue* p_global_receive_msg_queue;
+	extern Queue* p_global_send_msg_queue;//发送消息队列
 	extern Moon_Server_Config* p_global_server_config;/*全局配置*/
 	static HANDLE g_hAliveThread;//heartbeat detection thread
 
@@ -180,7 +181,7 @@ extern "C" {
 	////////////////////////////////////////////////////////////
 	// Processing when the client is connected.
 	//
-	bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT   pSocketContext)
+	bool doAccpet(PMS_IO_CONTEXT pIoContext,PMS_SOCKET_CONTEXT pSocketContext)
 	{
 		SOCKADDR_IN* ClientAddr = NULL;
 		SOCKADDR_IN* LocalAddr = NULL;  
@@ -194,6 +195,8 @@ extern "C" {
 		client_environment* p_client_env = NULL;
 		moon_session* p_moon_session = NULL;
 		char current_datetime[40] = {0};//当前连接时间
+		msg_send* p_msg_send = NULL;//发送同意接收消息
+		
 
 		//判断客户端id是否存在，如果存在，那么不需要accept
 		if(!moon_string_is_empty(pSocketContext->m_client_id))
@@ -308,6 +311,13 @@ extern "C" {
 		// 5. After use, reset the IoContext of the Listen Socket, and then prepare to deliver the new AcceptEx.
 		memset(pIoContext->m_szBuffer,0,PKG_BYTE_MAX_LENGTH);
 
+		//发送一个服务端同意接受客户端的消息
+		p_msg_send = (msg_send*)moon_malloc(sizeof(msg_send));
+		moon_char_copy(p_msg_send->send_client_id,p_client_env->client_id);
+		p_msg_send->utf8_msg_buf = (moon_char*)moon_malloc(DATA_BYTE_MAX_LENGTH);
+		create_message_accept_client(p_msg_send->send_client_id,p_msg_send->utf8_msg_buf);
+		p_msg_send->size = moon_char_length(p_msg_send->utf8_msg_buf);
+		Queue_AddToHead(p_global_send_msg_queue,p_msg_send);
 		return post_accept( pIoContext );
 	}
 
