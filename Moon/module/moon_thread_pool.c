@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-	extern Moon_Server_Config* p_global_server_config;//global configuration
+	extern moon_server_config* p_global_server_config;//global configuration
 
 	/**
 	 * function desc:

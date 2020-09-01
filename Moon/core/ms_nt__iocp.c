@@ -46,7 +46,7 @@ extern "C" {
 	static LPFN_GETACCEPTEXSOCKADDRS    g_lpfnGetAcceptExSockAddrs; 
 	extern Queue* p_global_receive_msg_queue;
 	extern Queue* p_global_send_msg_queue;//发送消息队列
-	extern Moon_Server_Config* p_global_server_config;/*全局配置*/
+	extern moon_server_config* p_global_server_config;/*全局配置*/
 	static HANDLE g_hAliveThread;//heartbeat detection thread
 
 	/**
@@ -706,7 +706,7 @@ extern "C" {
 
 	/////////////////////////////////////////////////////////////////
 	// init Socket
-	bool ms_init_listen_socket(const Moon_Server_Config* global_server_config)
+	bool ms_init_listen_socket(const moon_server_config* global_server_config)
 	{
 		// The GUID of AcceptEx and GetAcceptExSockaddrs for exporting function Pointers.
 		GUID GuidAcceptEx = WSAID_ACCEPTEX;  
@@ -880,7 +880,7 @@ extern "C" {
 		return true;
 	}
 
-	bool ms_iocp_server_start(const Moon_Server_Config* p_global_server_config)/*启动IOCP服务*/
+	bool ms_iocp_server_start(const moon_server_config* p_global_server_config)/*启动IOCP服务*/
 	{
 		DWORD nThreadID;
 		if(!load_socket_lib())

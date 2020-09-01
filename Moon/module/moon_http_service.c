@@ -23,7 +23,7 @@ extern "C" {
 #define RESPONSE_BUF_LENGTH 1024*10 //response buffer size
 #define SEND_FILE_SIZE 1024 //send a single file size
 
-	extern Moon_Server_Config* p_global_server_config;//global configuration
+	extern moon_server_config* p_global_server_config;//global configuration
 
 	static Array_List* pThreads = NULL;//thread list
 

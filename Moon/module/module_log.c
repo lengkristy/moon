@@ -21,7 +21,7 @@ static FILE* pFile = NULL;/*log file point*/
 static HANDLE g_h_log_event = NULL;
 #endif
 
-extern Moon_Server_Config* p_global_server_config;//global configuration struct
+extern moon_server_config* p_global_server_config;//global configuration struct
 extern bool b_config_load_finish;
 
 /*console output log*/

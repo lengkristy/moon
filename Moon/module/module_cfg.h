@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-bool load_config(Moon_Server_Config* pConf);//load configuration file
+bool load_config(moon_server_config* pConf);//load configuration file
 
 #ifdef __cplusplus
 }

@@ -3,14 +3,15 @@
 #include "module_cfg.h"
 #include "module_log.h"
 #include "moon_file.h"
+#include "moon_string.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-static const char *keys[] = {"server_ip", "server_port","http_port", "server_node_name","client_count","moon_manager_domain","log_level_debug","log_level_info","log_level_warnning","log_level_error"};/*define key*/
+static const char *keys[] = {"server_ip", "server_port","http_port", "server_node_name","client_count","router_server_ip","log_level_debug","log_level_info","log_level_warnning","log_level_error"};/*define key*/
 
-bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pConf)/*get value by key*/
+bool getValue(const char* keyAndValue,const char * key, moon_server_config* pConf)/*get value by key*/
 {
 	char val[1024] = {0};
 	char tmpVal[1024] = {0};
@@ -79,20 +80,6 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 			return false;
 		}
 		strcpy(pConf->server_node_name,val);
-	}
-	else if(strcmp("moon_manager_domain",key) == 0)
-	{
-		//
-		memset(tmpVal,0,1024);
-		memcpy(tmpVal,val,1024);
-		memset(val,0,1024);
-		moon_trim_line(tmpVal,val);
-		if(stringIsEmpty(val))
-		{
-			moon_write_error_log("moon_manager_domain is null");
-			return false;
-		}
-		strcpy(pConf->moon_manager_domain,val);
 	}
 	else if(strcmp("client_count",key) == 0)
 	{
@@ -183,9 +170,23 @@ bool getValue(const char* keyAndValue,const char * key, Moon_Server_Config* pCon
 		}
 		strcpy(&pConf->log_level_error,val);
 	}
+	else if(strcmp("router_server_ip",key) == 0)
+	{
+		//
+		memset(tmpVal,0,1024);
+		memcpy(tmpVal,val,1024);
+		memset(val,0,1024);
+		moon_trim_line(tmpVal,val);
+		if(stringIsEmpty(val))
+		{
+			moon_write_error_log("router_server_ip");
+			return false;
+		}
+		strcpy(pConf->router_server_ip,val);
+	}
 }
 
-bool load_config(Moon_Server_Config* pConf)//load configuration file
+bool load_config(moon_server_config* pConf)//load configuration file
 {
 	bool bFlag = true;
 	FILE* cfgFile = NULL;
@@ -232,11 +233,12 @@ bool load_config(Moon_Server_Config* pConf)//load configuration file
 		{
 			continue;
 		}
+		iKey = 0;
 		while(NULL != keys[iKey])
 		{
 			//getValue(lineConfig,keys[iKey],keyValue);
 			//iKey++;
-			if(strstr(lineConfig,keys[iKey]) != NULL)
+			if(strstr(lineConfig,keys[iKey]) != NULL && index_of(lineConfig,keys[iKey]) == 0)
 			{
 				if (!getValue(lineConfig,keys[iKey],pConf))
 				{
@@ -287,7 +289,7 @@ bool load_config(Moon_Server_Config* pConf)//load configuration file
 	sprintf(keyValue,"client_count:%d",pConf->client_count);
 	moon_write_info_log(keyValue);
 	memset(keyValue,0,1024);
-	sprintf(keyValue,"moon_manager_domain:%s",pConf->moon_manager_domain);
+	sprintf(keyValue,"router_server_ip:%s",pConf->router_server_ip);
 	moon_write_info_log(keyValue);
 	memset(keyValue,0,1024);
 	return bFlag;

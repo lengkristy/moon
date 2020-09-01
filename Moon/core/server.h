@@ -18,7 +18,7 @@
 extern "C" {
 #endif
 
-extern Moon_Server_Config* p_global_server_config;/*global server config*/
+extern moon_server_config* p_global_server_config;/*global server config*/
 
 void moon_start(); //start server
 

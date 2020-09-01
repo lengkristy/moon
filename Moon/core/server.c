@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-Moon_Server_Config* p_global_server_config = NULL;/*global server config*/
+moon_server_config* p_global_server_config = NULL;/*global server config*/
 bool b_config_load_finish = false;//config has inited
 
 _global_ char g_global_server_start_time[100] = {0};//服务器启动时间
@@ -54,7 +54,7 @@ void moon_start()
 	//load config
 	if(NULL == p_global_server_config)
 	{
-		p_global_server_config = (Moon_Server_Config*)moon_malloc(sizeof(Moon_Server_Config));
+		p_global_server_config = (moon_server_config*)moon_malloc(sizeof(moon_server_config));
 	}
 	if(!load_config(p_global_server_config))
 	{

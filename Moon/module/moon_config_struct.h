@@ -14,8 +14,7 @@ extern "C" {
 /************************************************************************
  * define server configuration
  ************************************************************************/
-typedef struct _Moon_Server_Config{
-	char moon_manager_domain[1024];//MoonManager url address
+typedef struct _moon_server_config{
 	unsigned int client_count;//Number of clients (single server allows maximum number of client connections)
 	char server_ip[16];//Server IP
 	unsigned int server_port;//Server port
@@ -26,7 +25,12 @@ typedef struct _Moon_Server_Config{
 	char log_level_warnning;//Whether to configure the warnning log.
 	char log_level_error;//Configure the error log.
 	char moon_work_path[1024];//moon server work path
-}Moon_Server_Config;
+	/**
+	 * 消息路由的ip，如果有多个的话，则逗号隔开，
+	 * 如果有多个那么连接的时候第一个连不上就用第二个，以此类推
+	 */
+	char router_server_ip[128];
+}moon_server_config;
 
 #ifdef __cplusplus
 }
