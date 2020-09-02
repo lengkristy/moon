@@ -18,7 +18,7 @@ extern "C" {
 ///////////////define message struct///////////////////////////
 
 //define receive message head
-typedef struct _MessageHead{
+typedef struct _message_head{
 	moon_char msg_id[50];/*message id,represents the unique identity of the message throughout the message chain*/
 	int msg_order;/**消息次序*/
 	int main_msg_num;/*main message number*/
@@ -26,19 +26,42 @@ typedef struct _MessageHead{
 	int msg_size;/*消息内容的大小，MessageBody中的p_content大小，由于网络传输消息过长会被截断，通过该字段进行组装*/
 	moon_char msg_time[30];/*消息发送时间*/
 	moon_char client_id[50];/*client id*/
-}MessageHead;
+	int msg_end;//消息结束标识，解决多侦的问题，对于同一个消息id的消息如果消息没有传输完成，那么则为1，消息传输完成则为0
+}message_head;
 
 //define message body
-typedef struct _MessageBody{
+typedef struct _message_body{
 	moon_char* p_content;/*message content*/
-}MessageBody;
+}message_body;
 
 
 //define message struct
-typedef struct _Message{
-	MessageHead *p_message_head;/*message head*/
-	MessageBody *p_message_body;/*message body*/
-}Message;
+typedef struct _moon_message{
+	message_head *p_message_head;/*message head*/
+	message_body *p_message_body;/*message body*/
+}moon_message;
+
+//定义点对点消息结构
+typedef struct _ptp_message_body{
+	//发送方的客户端id
+	moon_char from_client_id[50];
+	//接收方客户端id
+	moon_char to_client_id[50];
+	//发送内容
+	moon_char* p_content;
+}ptp_message_body;
+
+//定义广播消息的结构
+typedef struct _user_broadcast_message_body{
+	//发起方的客户端id
+	moon_char from_client_id[50];
+	//接收方的客户端id列表
+	Array_List* p_to_client_ids;
+	//群id
+	moon_char group_id[50];
+	//消息内容
+	moon_char* p_content;
+}user_broadcast_message_body;
 
 /**
  * 定义发送消息的结构体
@@ -101,13 +124,13 @@ int parse_pkg(moon_char* src_pkg,_out_ moon_char* out_data);
  * return:
  *	if success return the pointer of Message struct,otherwise return null
  */
-Message* parse_msg_head(moon_char* str_message);
+moon_message* parse_msg_head(moon_char* str_message);
 
 
 /**
  * release message memory
  */
-void free_msg(Message* p_message);
+void free_msg(moon_message* p_message);
 
 /**
  * function desc:
@@ -168,6 +191,24 @@ bool check_data_package_valid(moon_char* utf8_package);
  *   out_accept_msg：输出接受客户端消息的json utf8字符串
  */
 void create_message_accept_client(_in_ moon_char* client_id,_out_ moon_char* out_accept_msg);
+
+/**
+ * 函数说明：
+ *    解析点对点消息体
+ * 参数说明：
+ *    p_msg：原始utf8消息包
+ *    p_ptp_message_body：输出解析后点对点消息结构体信息
+ */
+void parse_ptp_message_body(moon_char* p_msg,ptp_message_body* p_ptp_message_body);
+
+/**
+ * 函数说明：
+ *    解析用户广播群组消息
+ * 参数说明：
+ *    p_msg：原始utf8消息包
+ *    p_user_broadcast_msg_body：输出解析后的广播消息体
+ */
+void parse_broadcast_message_body(moon_char* p_msg,user_broadcast_message_body* p_user_broadcast_msg_body);
 
 #ifdef __cplusplus
 }

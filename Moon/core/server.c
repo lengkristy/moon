@@ -148,7 +148,7 @@ void moon_server_send_msg(moon_char* client_id,moon_char * utf8_send_buf,int siz
 		if(p_moon_session != NULL && p_moon_session->p_socket_context != NULL)
 		{
 #ifdef MS_WINDOWS
-			if(ms_iocp_send(p_moon_session->p_socket_context,send_msg,sizeof(moon_char) * moon_char_length(send_msg)) == -1)
+			if(ms_iocp_send(p_moon_session->p_socket_context,send_msg,moon_char_memory_size(send_msg)) == -1)
 			{
 				sprintf(str_msg,"the client id %s send mssage faild.the message :\r\n",cid,utf8_send_buf);
 				moon_write_error_log(str_msg);

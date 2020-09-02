@@ -466,9 +466,9 @@ int moon_char_length(const moon_char* str)
  */
 int moon_char_memory_size(const moon_char* str)
 {
-	int len = 0;
-	len = sizeof(moon_char) * strlen(str);
-	return len;
+	char* p = (char*) str;
+	while (*p++);
+	return p - str;
 }
 
 /**

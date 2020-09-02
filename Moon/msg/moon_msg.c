@@ -171,10 +171,10 @@ int parse_pkg(moon_char* src_pkg,_out_ moon_char* out_data)
  * return:
  *	if success return the pointer of Message struct,otherwise return null
  */
-Message* parse_msg_head(moon_char* str_message)
+moon_message* parse_msg_head(moon_char* str_message)
 {
 	cJSON * root = NULL;
-	Message* p_message = NULL;
+	moon_message* p_message = NULL;
 	char* ascii_msg = NULL;
 	int length = moon_char_length(str_message);
 	int size = (length + 1) * MOON_CHAR_SIZE;
@@ -196,21 +196,21 @@ Message* parse_msg_head(moon_char* str_message)
 	}
 	if (root->type == cJSON_Object)
 	{
-		p_message = (Message*)moon_malloc(sizeof(struct _Message));
+		p_message = (moon_message*)moon_malloc(sizeof(struct _moon_message));
 		if(p_message == NULL)
 		{
 			moon_free(ascii_msg);
 			return NULL;
 		}
-		memset(p_message,0,sizeof(struct _Message));
-		p_message->p_message_head = (MessageHead*)moon_malloc(sizeof(struct _MessageHead));
+		memset(p_message,0,sizeof(struct _moon_message));
+		p_message->p_message_head = (message_head*)moon_malloc(sizeof(struct _message_head));
 		if(p_message->p_message_head == NULL)
 		{
 			moon_free(ascii_msg);
 			moon_free(p_message);
 			return NULL;
 		}
-		memset(p_message->p_message_head,0,sizeof(struct _MessageHead));
+		memset(p_message->p_message_head,0,sizeof(struct _message_head));
 		p_message->p_message_body = NULL;
 		//get header
 		head = cJSON_GetObjectItem(root,"message_head");
@@ -219,6 +219,7 @@ Message* parse_msg_head(moon_char* str_message)
 			item = cJSON_GetObjectItem(head,"msg_id");
 			if (item != NULL && !stringIsEmpty(item->valuestring))
 			{
+				memset(msg_id,0,50);
 				char_to_moon_char(item->valuestring,msg_id);
 				moon_char_copy(p_message->p_message_head->msg_id,msg_id);
 			}
@@ -235,8 +236,26 @@ Message* parse_msg_head(moon_char* str_message)
 			item = cJSON_GetObjectItem(head,"client_id");
 			if (item != NULL)
 			{
+				memset(msg_id,0,50);
 				char_to_moon_char(item->valuestring,msg_id);
 				moon_char_copy(p_message->p_message_head->client_id,msg_id);
+			}
+			item = cJSON_GetObjectItem(head,"msg_order");
+			if (item != NULL)
+			{
+				p_message->p_message_head->msg_order = item->valueint;
+			}
+			item = cJSON_GetObjectItem(head,"msg_end");
+			if (item != NULL)
+			{
+				p_message->p_message_head->msg_end = item->valueint;
+			}
+			item = cJSON_GetObjectItem(head,"msg_time");
+			if (item != NULL)
+			{
+				memset(msg_id,0,50);
+				char_to_moon_char(item->valuestring,msg_id);
+				moon_char_copy(p_message->p_message_head->msg_time,msg_id);
 			}
 		}
 	}
@@ -248,7 +267,7 @@ Message* parse_msg_head(moon_char* str_message)
 /**
  * release message memory
  */
-void free_msg(Message* p_message)
+void free_msg(moon_message* p_message)
 {
 	if (p_message != NULL)
 	{
@@ -505,6 +524,76 @@ void create_message_accept_client(_in_ moon_char* client_id,_out_ moon_char* out
 	 create_message_id(msg_id);
 	 moon_utf8_current_time(msg_time);
 	 _create_moon_msg(msg_id,0,MN_PROTOCOL_MAIN_CONNECT_INIT,MN_PROTOCOL_SUB_SERVER_ACCEPT,0,msg_time,client_id,"",0,out_accept_msg);
+}
+
+/**
+ * 函数说明：
+ *    解析点对点消息体
+ * 参数说明：
+ *    p_msg：utf8消息包
+ *    p_ptp_message_body：输出解析后点对点消息结构体信息
+ */
+void parse_ptp_message_body(moon_char* p_msg,ptp_message_body* p_ptp_message_body)
+{
+	cJSON * root = NULL;
+	cJSON * item = NULL;
+	cJSON *p_body = NULL;
+	char* ascii_msg;
+	int msg_body_length = 0;
+	int length = moon_char_length(p_msg);
+	int size = (length + 1) * sizeof(moon_char);
+	ascii_msg = (char*)moon_malloc(size);
+	memset(ascii_msg,0,size);
+	moon_ms_windows_utf8_to_ascii(p_msg,ascii_msg);
+	root = cJSON_Parse(ascii_msg);
+	if (root == NULL)
+	{
+		moon_free(ascii_msg);
+		cJSON_Delete(root);
+		return;
+	}
+	if (root->type == cJSON_Object)
+	{
+		//get body
+		p_body = cJSON_GetObjectItem(root,"message_body");
+		if (p_body != NULL)
+		{
+			p_body = cJSON_GetObjectItem(p_body,"content");
+			if(p_body != NULL)
+			{
+				item = cJSON_GetObjectItem(p_body,"from_client_id");
+				if (item != NULL && !stringIsEmpty(item->valuestring))
+				{
+					char_to_moon_char(item->valuestring,p_ptp_message_body->from_client_id);
+				}
+				item = cJSON_GetObjectItem(p_body,"to_client_id");
+				if (item != NULL && !stringIsEmpty(item->valuestring))
+				{
+					char_to_moon_char(item->valuestring,p_ptp_message_body->to_client_id);
+				}
+				item = cJSON_GetObjectItem(p_body,"context");
+				if (item != NULL && !stringIsEmpty(item->valuestring))
+				{
+					p_ptp_message_body->p_content = (moon_char *)moon_malloc((strlen(item->valuestring) + 1) * MOON_CHAR_SIZE);
+					char_to_moon_char(item->valuestring,p_ptp_message_body->p_content);
+				}
+			}
+		}
+	}
+	moon_free(ascii_msg);
+	cJSON_Delete(root);
+}
+
+/**
+ * 函数说明：
+ *    解析用户广播群组消息
+ * 参数说明：
+ *    p_msg：原始utf8消息包
+ *    p_user_broadcast_msg_body：输出解析后的广播消息体
+ */
+void parse_broadcast_message_body(moon_char* p_msg,user_broadcast_message_body* p_user_broadcast_msg_body)
+{
+
 }
 
 #ifdef __cplusplus

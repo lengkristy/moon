@@ -49,7 +49,7 @@ extern "C" {
 	 *   client_id：客户端id
 	 *   pmsg：消息头
 	 */
-	void msg_handler_sci(moon_char* client_id,Message* pmsg)
+	void msg_handler_sci(moon_char* client_id,moon_message* pmsg)
 	{
 		moon_char* utf8_msg = NULL;
 		int index = 0;
@@ -77,7 +77,7 @@ extern "C" {
 				moon_current_time(ch_current_time);
 				char_to_moon_char(ch_current_time,msg_time);
 				char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"}, \"message_body\":{\"content\":[ ",tmp);
-				moon_sprintf(msg,tmp,msgid,MN_PROTOCOL_SUB_SCI,MN_PROTOCAL_SUB_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
+				moon_sprintf(msg,tmp,msgid,MN_PROTOCOL_MAIN_SCI,MN_PROTOCAL_SUB_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
 				memset(tmp,0,200);
 				client_count = get_socket_context_count();
 #ifdef MS_WINDOWS
@@ -114,7 +114,7 @@ extern "C" {
 							moon_current_time(ch_current_time);
 							char_to_moon_char(ch_current_time,msg_time);
 							char_to_moon_char("{\"message_head\":{\"msg_id\":\"%s\",\"main_msg_num\":%ld,\"sub_msg_num\":%ld,\"msg_order\":%ld,\"msg_time\":\"%s\"},\"message_body\":{\"content\":[ ",tmp);
-							moon_sprintf(msg,tmp,msgid,MN_PROTOCOL_SUB_SCI,MN_PROTOCAL_SUB_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
+							moon_sprintf(msg,tmp,msgid,MN_PROTOCOL_MAIN_SCI,MN_PROTOCAL_SUB_ALL_CLIENBT_LIST_OK,msg_order,msg_time);
 						}
 						
 						char_to_moon_char("\"",tmp);
@@ -165,9 +165,46 @@ extern "C" {
 	/**
 	 * 点对点消息
 	 */
-	void msg_handler_ptp(moon_char* client_id,moon_char* client_msg)
+	void msg_handler_ptp(message_head* p_message_head,moon_char* client_msg)
 	{
+		//解析消息体，获取发向对象的客户端id
+		ptp_message_body* p_ptp_msg_body = NULL;
+		msg_send* send_msg = NULL;
+		p_ptp_msg_body = (ptp_message_body*)moon_malloc(sizeof(ptp_message_body));
+		parse_ptp_message_body(client_msg,p_ptp_msg_body);
+		if (!moon_string_is_empty(p_ptp_msg_body->to_client_id))
+		{
+			//构建发送的消息
+			send_msg = (msg_send*)moon_malloc(sizeof(msg_send));
+			moon_char_copy(send_msg->send_client_id,p_ptp_msg_body->to_client_id);
+			send_msg->size = moon_char_memory_size(client_msg);
+			send_msg->utf8_msg_buf = (moon_char*)moon_malloc(moon_char_memory_size(p_message_head->client_id));
+			moon_char_copy(send_msg->utf8_msg_buf,client_msg);
+			//将发送的消息丢入队列
+			Queue_AddToHead(p_global_send_msg_queue,send_msg);
+		}
+		//释放资源
+		moon_free(p_ptp_msg_body->p_content);
+		moon_free(p_ptp_msg_body);
+	}
 
+	/**
+	 * 函数说明：
+	 *   处理广播消息
+	 * 参数：
+	 *   client_id：发送方的客户端id
+	 *   client_msg：客户端原始消息
+	 */
+	void handler_msg_broadcast(message_head* p_message_head,moon_char* client_msg)
+	{
+		user_broadcast_message_body* p_user_broadcast_msg_body = NULL;
+
+		if (p_message_head->sub_msg_num == MN_PROTOCOL_SUB_USER_BROADCAST) //用户发送的群消息
+		{
+			p_user_broadcast_msg_body = (user_broadcast_message_body*)moon_malloc(sizeof(user_broadcast_message_body));
+			if(p_user_broadcast_msg_body == NULL) return;
+			parse_broadcast_message_body(client_msg,p_user_broadcast_msg_body);
+		}
 	}
 
 	/**
@@ -184,7 +221,7 @@ extern "C" {
 		msg_send* send_msg = NULL;
 		int len = 0;
 		moon_char* client_msg = NULL;
-		Message* p_msg = NULL;
+		moon_message* p_msg = NULL;
 		len = sizeof(moon_char) * (moon_char_length(package) + 1);
 		client_msg = (moon_char*)moon_malloc(len);
 		memset(client_msg,0,len);
@@ -227,12 +264,17 @@ extern "C" {
 		//判断消息类型，处理消息，后期采用消息队列的方式处理
 		switch(p_msg->p_message_head->main_msg_num)
 		{
-		case MN_PROTOCOL_MAIN_MSG_POINT_TO_POINT:
-			//msg_handler_ptp(p_msg->p_message_head->client_id,client_msg);
+		case MN_PROTOCOL_MAIN_MSG_POINT_TO_POINT://点对点消息
+			msg_handler_ptp(p_msg->p_message_head,client_msg);
 			break;
-		case MN_PROTOCOL_SUB_SCI:
+		case MN_PROTOCOL_MAIN_SCI://获取服务节点的所有客户端列表
 			{
 				msg_handler_sci(p_msg->p_message_head->client_id,p_msg);
+			}
+			break;
+		case MN_PROTOCOL_MAIN_BROADCAST://广播消息
+			{
+				handler_msg_broadcast(p_msg->p_message_head,client_msg);
 			}
 			break;
 		default:

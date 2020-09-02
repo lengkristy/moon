@@ -191,7 +191,7 @@ extern "C" {
 		//char package_data[PKG_BYTE_MAX_LENGTH] = {0};
 		moon_char clientMsg[PKG_BYTE_MAX_LENGTH] = {0};
 		int len = 0;
-		Message* p_msg = NULL;
+		moon_message* p_msg = NULL;
 		client_environment* p_client_env = NULL;
 		moon_session* p_moon_session = NULL;
 		char current_datetime[40] = {0};//当前连接时间
