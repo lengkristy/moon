@@ -22,6 +22,8 @@ extern moon_server_config* p_global_server_config;/*global server config*/
 
 void moon_start(); //start server
 
+void moon_stop();//stop server
+
 /**
  * 函数说明：
  *    向客户端发送消息
@@ -32,7 +34,7 @@ void moon_start(); //start server
  */
 void moon_server_send_msg(moon_char* client_id,moon_char * utf8_send_buf,int size);
 
-void moon_stop();//stop server
+
 
 #ifdef __cplusplus
 }

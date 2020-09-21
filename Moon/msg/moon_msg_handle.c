@@ -178,7 +178,7 @@ extern "C" {
 			send_msg = (msg_send*)moon_malloc(sizeof(msg_send));
 			moon_char_copy(send_msg->send_client_id,p_ptp_msg_body->to_client_id);
 			send_msg->size = moon_char_memory_size(client_msg);
-			send_msg->utf8_msg_buf = (moon_char*)moon_malloc(moon_char_memory_size(p_message_head->client_id));
+			send_msg->utf8_msg_buf = (moon_char*)moon_malloc(moon_char_memory_size(client_msg));
 			moon_char_copy(send_msg->utf8_msg_buf,client_msg);
 			//将发送的消息丢入队列
 			Queue_AddToHead(p_global_send_msg_queue,send_msg);
@@ -198,12 +198,38 @@ extern "C" {
 	void handler_msg_broadcast(message_head* p_message_head,moon_char* client_msg)
 	{
 		user_broadcast_message_body* p_user_broadcast_msg_body = NULL;
-
-		if (p_message_head->sub_msg_num == MN_PROTOCOL_SUB_USER_BROADCAST) //用户发送的群消息
+		int index = 0;
+		msg_send* send_msg = NULL;
+		moon_char* send_client;
+		if (p_message_head->sub_msg_num == MN_PROTOCOL_SUB_USER_TEXT_BROADCAST) //用户发送的群消息
 		{
 			p_user_broadcast_msg_body = (user_broadcast_message_body*)moon_malloc(sizeof(user_broadcast_message_body));
 			if(p_user_broadcast_msg_body == NULL) return;
 			parse_broadcast_message_body(client_msg,p_user_broadcast_msg_body);
+			//判断有哪些客户端
+			for (index = 0; index < p_user_broadcast_msg_body->p_to_client_ids->length;index++)
+			{
+				send_client = (moon_char*)array_list_getAt(p_user_broadcast_msg_body->p_to_client_ids,index);
+				//构建发送的消息
+				send_msg = (msg_send*)moon_malloc(sizeof(msg_send));
+				moon_char_copy(send_msg->send_client_id,send_client);
+				send_msg->size = moon_char_memory_size(client_msg);
+				send_msg->utf8_msg_buf = (moon_char*)moon_malloc(moon_char_memory_size(client_msg));
+				moon_char_copy(send_msg->utf8_msg_buf,client_msg);
+				//将发送的消息丢入队列
+				Queue_AddToHead(p_global_send_msg_queue,send_msg);
+			}
+		}
+		if (p_user_broadcast_msg_body != NULL)
+		{
+			//释放资源
+			for (index = 0; index < p_user_broadcast_msg_body->p_to_client_ids->length;index++)
+			{
+				send_client = (moon_char*)array_list_getAt(p_user_broadcast_msg_body->p_to_client_ids,index);
+				moon_free(send_client);
+			}
+			array_list_free(p_user_broadcast_msg_body->p_to_client_ids);
+			moon_free(p_user_broadcast_msg_body);
 		}
 	}
 

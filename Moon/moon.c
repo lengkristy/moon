@@ -11,6 +11,7 @@
 #pragma comment (lib,"User32.lib")
 #endif
 
+#include "collection/map.h"
 #ifdef MS_WINDOWS
 int _tmain(int argc, _TCHAR* argv[])
 {

@@ -60,6 +60,11 @@
 ///////////////////////////定义发送广播群聊消息////////////////////////////////////////////////////////
 #define MN_PROTOCOL_MAIN_BROADCAST 10005 //广播消息的主协议代码
 #define MN_PROTOCOL_SUB_SYS_BROADCAST 1000501 //系统广播消息
-#define MN_PROTOCOL_SUB_USER_BROADCAST 1000502 //发送用户群组消息
+#define MN_PROTOCOL_SUB_USER_TEXT_BROADCAST 1000510 //发送用户群组消息
+#define MN_PROTOCOL_SUB_USER_EMOTICON_BROADCAST 1000511 //发送用户群组表情消息
+#define MN_PROTOCOL_SUB_USER_IMG_BROADCAST 1000512 //发送用户群组图片消息
+#define MN_PROTOCOL_SUB_USER_VIDE_BROADCAST 1000513 //发送用户群组短视频消息
+#define MN_PROTOCOL_SUB_USER_FILE_BROADCAT 1000514 //发送用户群组文件传输消息
+
 
 #endif

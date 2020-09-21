@@ -155,6 +155,11 @@ void moon_server_send_msg(moon_char* client_id,moon_char * utf8_send_buf,int siz
 			}
 #endif
 		}
+		else
+		{
+			//将消息发送到消息路由服务
+			
+		}
 	}
 }
 

@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 
-	//定义bool类型
+//定义bool类型
 #ifndef bool
 #define bool int
 #endif

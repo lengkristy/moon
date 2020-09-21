@@ -159,6 +159,9 @@
     <ClInclude Include="core\moon_session_manager.h">
       <Filter>头文件\core</Filter>
     </ClInclude>
+    <ClInclude Include="collection\map.h">
+      <Filter>头文件\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -232,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="core\moon_session_manager.c">
       <Filter>源文件\core</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\map.c">
+      <Filter>源文件\collection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
