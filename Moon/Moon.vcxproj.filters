@@ -162,6 +162,12 @@
     <ClInclude Include="collection\map.h">
       <Filter>头文件\collection</Filter>
     </ClInclude>
+    <ClInclude Include="module\moon_file.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
+    <ClInclude Include="core\moon_message_router.h">
+      <Filter>头文件\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -238,6 +244,12 @@
     </ClCompile>
     <ClCompile Include="collection\map.c">
       <Filter>源文件\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="module\moon_file.c">
+      <Filter>源文件\module</Filter>
+    </ClCompile>
+    <ClCompile Include="core\moon_message_router.c">
+      <Filter>头文件\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

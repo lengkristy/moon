@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-static const char *keys[] = {"server_ip", "server_port","http_port", "server_node_name","client_count","router_server_ip","log_level_debug","log_level_info","log_level_warnning","log_level_error"};/*define key*/
+static const char *keys[] = {"client_count", "server_ip","server_port", "http_port","server_node_name","log_level_debug","log_level_info","log_level_warnning","log_level_error","router_server_ip"};/*define key*/
 
 bool getValue(const char* keyAndValue,const char * key, moon_server_config* pConf)/*get value by key*/
 {
@@ -114,7 +114,7 @@ bool getValue(const char* keyAndValue,const char * key, moon_server_config* pCon
 			moon_write_error_log("log_level_debug must be Y OR N");
 			return false;
 		}
-		strcpy(&pConf->log_level_debug,val);
+		pConf->log_level_debug = val[0];
 	}
 	else if(strcmp("log_level_info",key) == 0)
 	{
@@ -132,7 +132,7 @@ bool getValue(const char* keyAndValue,const char * key, moon_server_config* pCon
 			moon_write_error_log("log_level_info must be Y OR N");
 			return false;
 		}
-		strcpy(&pConf->log_level_info,val);
+		pConf->log_level_info = val[0];
 	}
 	else if(strcmp("log_level_warnning",key) == 0)
 	{
@@ -150,7 +150,7 @@ bool getValue(const char* keyAndValue,const char * key, moon_server_config* pCon
 			moon_write_error_log("log_level_warnning must be Y OR N");
 			return false;
 		}
-		strcpy(&pConf->log_level_warnning,val);
+		pConf->log_level_warnning = val[0];
 	}
 	else if(strcmp("log_level_error",key) == 0)
 	{
@@ -168,7 +168,7 @@ bool getValue(const char* keyAndValue,const char * key, moon_server_config* pCon
 			moon_write_error_log("log_level_error must be Y OR N");
 			return false;
 		}
-		strcpy(&pConf->log_level_error,val);
+		pConf->log_level_error = val[0];
 	}
 	else if(strcmp("router_server_ip",key) == 0)
 	{

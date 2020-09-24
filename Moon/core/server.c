@@ -10,6 +10,7 @@
 #include "../msg/moon_msg_handle.h"
 #include "../module/moon_string.h"
 #include "../module/moon_time.h"
+#include "moon_message_router.h"
 #ifdef MS_WINDOWS
 #include "ms_socket_context.h"
 #endif
@@ -91,6 +92,9 @@ void moon_start()
 		return;
 	}
 #endif
+
+	//开启消息路由服务
+	start_message_router_service(p_global_server_config);
 
 	//start http server
 	lauch_http_service();
@@ -186,6 +190,8 @@ void moon_stop()
 		CloseHandle(g_hSendMsgThread);
 	}
 #endif
+	//停止消息路由服务
+	stop_message_router_service();
 	/*close http server*/
 	end_http_service();
 	//close log
