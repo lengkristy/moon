@@ -6,8 +6,10 @@
 #pragma once
 #ifndef _MOON_STRING_H
 #define _MOON_STRING_H
+
 #include "../cfg/environment.h"
 #include "moon_base.h"
+
 #ifdef MS_WINDOWS
 #include <windows.h>
 #endif
