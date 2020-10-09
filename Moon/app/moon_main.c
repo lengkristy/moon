@@ -14,10 +14,8 @@ extern "C" {
 #ifdef MS_WINDOWS
 int windows_main(int argc, _TCHAR* argv[])
 {
+	//Æô¶¯·þÎñ
 	moon_start();
-	getchar();
-	//cammand option
-	moon_stop();
 	return 0;
 }
 #endif

@@ -518,6 +518,52 @@ void moon_create_32uuid(_out_ moon_char* p_out_uuid)
 	char_to_moon_char(buf,p_out_uuid);
 }
 
+/**
+ * 函数说明：
+ *    创建32位uuid
+ * 参数：
+ *    p_out_uuid：输出uuid
+ */
+void create_32uuid(_out_ char* p_out_uuid)
+{
+	const char *c = "89ab";
+	char buf[40] = {0};
+	char *p = buf;
+	int n;  
+
+	for( n = 0; n < 16; ++n )  
+	{  
+		int b = rand()%255;  
+
+		switch( n )  
+		{  
+		case 6:  
+			sprintf(  
+				p,  
+				"4%x",  
+				b%15 );  
+			break;  
+		case 8:  
+			sprintf(  
+				p,  
+				"%c%x",  
+				c[rand()%strlen( c )],  
+				b%15 );  
+			break;  
+		default:  
+			sprintf(  
+				p,  
+				"%02x",  
+				b );  
+			break;  
+		}  
+
+		p += 2;
+	}  
+	*p = 0;
+	strcpy(p_out_uuid,buf);
+}
+
 #ifdef __cplusplus
 }
 #endif

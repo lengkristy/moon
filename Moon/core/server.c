@@ -10,6 +10,7 @@
 #include "../msg/moon_msg_handle.h"
 #include "../module/moon_string.h"
 #include "../module/moon_time.h"
+#include "../module/module_command.h"
 #include "moon_message_router.h"
 #ifdef MS_WINDOWS
 #include "ms_socket_context.h"
@@ -40,6 +41,7 @@ Queue* p_global_send_msg_queue = NULL;/*全局发送消息队列，所有发送的消息都往该队
 void moon_start()
 {
 	void * p;
+	char moon_id[50] = {0};//服务节点id
 #ifdef MS_WINDOWS
 	DWORD threadid = 0;
 	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
@@ -63,6 +65,10 @@ void moon_start()
 		return;
 	}
 	b_config_load_finish = true;
+
+	//生成服务id
+	create_32uuid(moon_id);
+	strcpy(p_global_server_config->server_node_id,moon_id);
 #ifdef MS_WINDOWS
 	moon_write_info_log("start ms_nt_iocp server...");
 	//start windows platform server
@@ -94,13 +100,20 @@ void moon_start()
 #endif
 
 	//开启消息路由服务
-	start_message_router_service(p_global_server_config);
+	if (!start_message_router_service(p_global_server_config))
+	{
+		moon_stop();
+		return;
+	}
 
 	//start http server
 	lauch_http_service();
 
 	//设置服务器启动时间
 	moon_current_time(g_global_server_start_time);
+
+	//等待用户输入命令
+	process_command();
 }
 
 

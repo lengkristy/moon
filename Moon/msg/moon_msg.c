@@ -596,6 +596,40 @@ void parse_broadcast_message_body(moon_char* p_msg,user_broadcast_message_body* 
 
 }
 
+/**
+ * 函数说明：
+ *   创建注册路由服务消息
+ * 参数：
+ *   p_out_msg：输出utf8消息
+ */
+void create_regist_router_server_msg(_out_ moon_char* p_out_msg)
+{
+	char msg_id[40] = {0};
+	char msg[512] = {0};
+	char str_time[40] = {0};
+	char* p_msg = NULL;
+	int len = 0;
+	char str_len[5] = {0};
+	char* p_format_msg = "{\"message_head\":{\"msg_id\":\"%s\",\"msg_order\":0,\"main_msg_num\":%d, \
+						\"sub_msg_num\":%d,\"msg_size\":%ld,\"msg_time\":\"%s\",\"moon_id\":\"%s\",\
+						\"msg_end\":0},\"message_body\":{\"content\":{\"client_sdk_version\":"",\
+						\"client_platform\":\"%s\",\"opra_system_version\":\"%s\",\"moon_id\":\"%s\"}}}";
+	create_32uuid(msg_id);
+	moon_current_time(str_time);
+	sprintf(msg,p_format_msg,msg_id,MN_PROTOCOL_MAIN_CONNECT_ROUTER_INIT,MN_PROTOCOL_SUB_MOON_TO_ROTUER,0,
+		str_time,p_global_server_config->server_node_id,"windows","0.6",p_global_server_config->server_node_id);
+	len = moon_char_memory_size(p_format_msg);
+	moon_int32_to_4byte(len,str_len);
+	p_msg = moon_malloc(PKG_BYTE_MAX_LENGTH);
+	strcpy(p_msg,PKG_HEAD_FLAG);
+	strcat(p_msg,str_len);
+	strcat(p_msg,msg);
+	strcat(p_msg,PKG_TAIL_FLAG);
+	memset(msg,0,512);
+	char_to_moon_char(p_msg,p_out_msg);
+	moon_free(p_msg);
+}
+
 #ifdef __cplusplus
 }
 #endif

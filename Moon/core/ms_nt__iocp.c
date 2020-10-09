@@ -191,7 +191,6 @@ extern "C" {
 		//char package_data[PKG_BYTE_MAX_LENGTH] = {0};
 		moon_char clientMsg[PKG_BYTE_MAX_LENGTH] = {0};
 		int len = 0;
-		moon_message* p_msg = NULL;
 		client_environment* p_client_env = NULL;
 		moon_session* p_moon_session = NULL;
 		char current_datetime[40] = {0};//当前连接时间
@@ -210,6 +209,7 @@ extern "C" {
 			closesocket(pIoContext->m_sockAccept);
 			return post_accept( pIoContext );
 		}
+
 		moon_write_debug_log("new connect is comming");
 
 		///////////////////////////////////////////////////////////////////////////
@@ -241,7 +241,6 @@ extern "C" {
 		{
 			//close client socket
 			closesocket(pIoContext->m_sockAccept);
-			free_msg(p_msg);
 			return post_accept( pIoContext );
 		}
 		memset(p_client_env,0,sizeof(client_environment));
@@ -249,7 +248,6 @@ extern "C" {
 		{
 			//close client socket
 			closesocket(pIoContext->m_sockAccept);
-			free_msg(p_msg);
 			moon_free(p_client_env);
 			return post_accept( pIoContext );
 		}

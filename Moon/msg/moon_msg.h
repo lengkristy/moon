@@ -210,6 +210,14 @@ void parse_ptp_message_body(moon_char* p_msg,ptp_message_body* p_ptp_message_bod
  */
 void parse_broadcast_message_body(moon_char* p_msg,user_broadcast_message_body* p_user_broadcast_msg_body);
 
+/**
+ * 函数说明：
+ *   创建注册路由服务消息
+ * 参数：
+ *   p_out_msg：输出utf8消息
+ */
+void create_regist_router_server_msg(_out_ moon_char* p_out_msg);
+
 #ifdef __cplusplus
 }
 #endif

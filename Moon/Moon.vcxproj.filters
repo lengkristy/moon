@@ -168,6 +168,9 @@
     <ClInclude Include="core\moon_message_router.h">
       <Filter>头文件\core</Filter>
     </ClInclude>
+    <ClInclude Include="module\module_command.h">
+      <Filter>头文件\module</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -250,6 +253,9 @@
     </ClCompile>
     <ClCompile Include="core\moon_message_router.c">
       <Filter>头文件\core</Filter>
+    </ClCompile>
+    <ClCompile Include="module\module_command.c">
+      <Filter>源文件\module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

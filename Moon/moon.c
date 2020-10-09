@@ -13,6 +13,8 @@
 
 #include "collection/map.h"
 #ifdef MS_WINDOWS
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	HWND hWnd = GetConsoleWindow();

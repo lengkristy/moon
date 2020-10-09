@@ -520,14 +520,14 @@ extern "C" {
 		g_hListener = CreateThread(NULL,0,moon_win32_http_listen,NULL,0,&g_dListenerId);
 		if (g_hListener == NULL)
 		{
-			moon_write_error_log("create http_listenning_server thread failed");
+			moon_write_error_log("create http_listenning_server thread failed\n\r");
 			return false;
 		}
 		//关闭监听线程句柄
 		CloseHandle(g_hListener);
 		//pThreads = moon_create_thread_pool(10,moon_win32_http_request,NULL);
 #endif
-		moon_write_info_log("moon http service started");
+		moon_write_info_log("moon http service started\n\r");
 	}
 
 	/************************************************************************/

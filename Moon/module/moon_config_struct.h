@@ -20,6 +20,7 @@ typedef struct _moon_server_config{
 	unsigned int server_port;//Server port
 	unsigned int http_port;//The port for the HTTP service.
 	char server_node_name[255];//Server node name.
+	char server_node_id[50];//当前服务节点id，启动时候动态生成
 	char log_level_debug;//Configure the debug log.
 	char log_level_info;//Configure the info log.
 	char log_level_warnning;//Whether to configure the warnning log.

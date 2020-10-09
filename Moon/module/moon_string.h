@@ -93,6 +93,14 @@ void moon_create_32uuid(_out_ moon_char* p_out_uuid);
 
 /**
  * 函数说明：
+ *    创建32位uuid
+ * 参数：
+ *    p_out_uuid：输出uuid
+ */
+void create_32uuid(_out_ char* p_out_uuid);
+
+/**
+ * 函数说明：
  *   查询字符串，查询findStr在sourceStr中第一次出现的位置
  * 参数：
  *   sourceStr:被查询的源字符串

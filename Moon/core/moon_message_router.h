@@ -17,7 +17,7 @@ extern "C" {
 	 * 参数说明：
 	 *    p_server_config：服务配置
 	 */
-	void start_message_router_service(moon_server_config *p_server_config);
+	bool start_message_router_service(moon_server_config *p_server_config);
 
 	/**
 	 * 函数说明：
